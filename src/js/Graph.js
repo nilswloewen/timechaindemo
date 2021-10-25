@@ -1,15 +1,16 @@
 class Graph {
   constructor(id, canvasHeight, canvasWidth) {
+    this.bgColor = '#f9f9fb';
     const canvas = document.getElementById(id);
     canvas.height = canvasHeight;
     canvas.width = canvasWidth;
-    canvas.style.backgroundColor = 'white';
+    canvas.style.backgroundColor = this.bgColor;
     this.ctx = canvas.getContext('2d');
     this.ctx.globalCompositeOperation = 'source-over';
-    this.ctx.font = '16px Fira Mono';
+    this.ctx.font = '16px Fira Code';
 
     this.xPad = canvasWidth * 0.1;
-    this.yPad = canvasHeight * 0.1;
+    this.yPad = canvasHeight * 0.05;
 
     this.width = canvasWidth - (this.xPad * 2);
     this.height = canvasHeight - (this.yPad * 2);
@@ -21,7 +22,6 @@ class Graph {
     this.ticks = [];
     this.guesses = [];
     this.encoding = 'decimal';
-    this.setAxisLabels();
     this.setTicks(16);
   }
 
@@ -32,24 +32,13 @@ class Graph {
     }
   }
 
-  setAxisLabels() {
-    const max = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff;
-    this.axisLabels = {
-      // eslint-disable-next-line no-undef
-      decimal: BigInt(max).toLocaleString('en-US'),
-      exponential: max.toExponential(),
-      binary: ''.padStart(103, '1'),
-      hexadecimal: ''.padStart(64, 'f'),
-    };
-  }
-
   clear() {
     this.ctx.clearRect(0, 0, this.width + this.xPad * 2, this.height + this.yPad * 2);
   }
 
   drawAxis(xLabel) {
     const xGrd = this.ctx.createLinearGradient(this.xPad, this.zero.y, this.width, this.zero.y);
-    xGrd.addColorStop(0, 'rgba(255,255,255,0)');
+    xGrd.addColorStop(0, this.bgColor);
     xGrd.addColorStop(1, 'black');
 
     // X-axis.
@@ -76,24 +65,16 @@ class Graph {
     this.ctx.fillText('Max', this.zero.x - 10, this.yPad - 20);
     this.ctx.fillText('Min', this.zero.x - 10, this.zero.y + 20);
     this.ctx.fillText('0', this.zero.x - 30, this.zero.y + 20);
-
-    this.ctx.direction = 'rtl';
-    this.ctx.fillText(this.axisLabels[this.encoding], this.zero.x - 30, this.yPad - 20);
   }
 
   drawTarget(yRatio) {
-    const y = this.zero.y - (this.height * yRatio);
-
-    // Tick mark on right.
-    this.ctx.beginPath();
-    this.ctx.strokeStyle = 'green';
-    this.ctx.moveTo(this.zero.x + 2, y);
-    this.ctx.lineTo(this.zero.x + 20, y);
-    this.ctx.stroke();
-
     this.ctx.direction = 'ltr';
     this.ctx.fillStyle = 'green';
-    this.ctx.fillText('Target', this.zero.x + 30, y + 4);
+    this.ctx.fillText(
+        '🠔Target',
+        this.zero.x + 3,
+        this.zero.y - (this.height * yRatio) + 4
+    );
   }
 
   calcTicks() {
@@ -132,7 +113,7 @@ class Graph {
     const x = this.zero.x - (this.width * xRatio);
 
     const grd = this.ctx.createLinearGradient(this.zero.x, this.zero.y, this.zero.x, this.yPad);
-    grd.addColorStop(1, 'white');
+    grd.addColorStop(1, this.bgColor);
     grd.addColorStop(0, `rgba(0, 0, 0, ${1 - xRatio})`);
 
     this.ctx.beginPath();
@@ -149,41 +130,41 @@ class Graph {
 
     // Background
     const labelMetrics = this.ctx.measureText(label);
-    this.ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+    this.ctx.fillStyle = 'rgba(249, 249, 251, 0.8)';
     this.ctx.fillRect(
-      x + 27, y - 10,
-      labelMetrics.width + 9, 19,
+        x + 27, y - 10,
+        labelMetrics.width + 9, 19,
     );
 
     // Label
     this.ctx.direction = 'ltr';
     this.ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`;
-    this.ctx.fillText(label, x + 30, y + 4);
-
-    // Point
-    this.ctx.beginPath();
-    this.ctx.strokeStyle = 'blue';
-    this.ctx.moveTo(x, y);
-    this.ctx.lineTo(x + 20, y);
-    this.ctx.stroke();
-    this.ctx.closePath();
+    this.ctx.fillText('🠔' + label, x + 30, y + 4);
+    //
+    // // Point
+    // this.ctx.beginPath();
+    // this.ctx.strokeStyle = 'blue';
+    // this.ctx.moveTo(x, y);
+    // this.ctx.lineTo(x + 20, y);
+    // this.ctx.stroke();
+    // this.ctx.closePath();
   }
 
   drawEndCaps() {
     const leftGrd = this.ctx.createLinearGradient(100, 0, 300, 0);
-    leftGrd.addColorStop(0, 'white');
+    leftGrd.addColorStop(0, this.bgColor);
     leftGrd.addColorStop(1, 'rgba(255,255,255,0)');
 
     this.ctx.fillStyle = leftGrd;
     this.ctx.fillRect(0, this.yPad, this.xPad + this.width, this.height + 5);
 
     // Right
-    this.ctx.fillStyle = 'white';
+    this.ctx.fillStyle = this.bgColor;
     this.ctx.fillRect(
-      this.xPad + this.width,
-      0,
-      this.xPad * 2 + this.width,
-      this.height + this.yPad * 2,
+        this.xPad + this.width,
+        0,
+        this.xPad * 2 + this.width,
+        this.height + this.yPad * 2,
     );
   }
 }

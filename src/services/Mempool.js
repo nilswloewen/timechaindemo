@@ -7,7 +7,10 @@ class Mempool {
   }
 
   async getBlockById(hash) {
-    return this.api.getBlock({ hash });
+    const block = await this.api.getBlock({ hash });
+    // In case of Genesis block returning prev hash as null.
+    block.previousBlockHash = block.previousBlockHash || ''.padStart(64, '0');
+    return block
   }
 
   async getLatestBlockHash() {

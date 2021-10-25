@@ -140,24 +140,23 @@
               <!--                </b-list-group>-->
               <!--              </b-card>-->
 
-              <b-card title="Legend" id="legend">
-                <b-list-group>
-                  <!--  Max -->
-                  <b-list-group-item class="list-field border-bottom-0"> Max </b-list-group-item>
-                  <b-list-group-item class="list-value">{{ this.hashMax[this.encoding] }} </b-list-group-item>
-                  <!-- Target -->
-                  <b-list-group-item class="list-field border-bottom-0"> Target </b-list-group-item>
-                  <b-list-group-item class="list-value">{{ this.target[this.encoding] }} </b-list-group-item>
-                  <!-- Hash -->
-                  <b-list-group-item class="list-field border-bottom-0"> Hash </b-list-group-item>
-                  <b-list-group-item class="list-value">{{ this.hash[this.encoding] }} </b-list-group-item>
-                </b-list-group>
+              <!--              <b-card title="Legend" id="legend">-->
+              <!--                <b-list-group>-->
+              <!--                  &lt;!&ndash;  Max &ndash;&gt;-->
+              <!--                  <b-list-group-item class="list-field border-bottom-0"> Max </b-list-group-item>-->
+              <!--                  <b-list-group-item class="list-value">{{ this.hashMax[this.encoding] }} </b-list-group-item>-->
+              <!--                  &lt;!&ndash; Target &ndash;&gt;-->
+              <!--                  <b-list-group-item class="list-field border-bottom-0">-->
+              <!--                    Target {{ this.target.yRatio.toString() }}-->
+              <!--                  </b-list-group-item>-->
+              <!--                  <b-list-group-item class="list-value">{{ this.target[this.encoding] }} </b-list-group-item>-->
+              <!--                  &lt;!&ndash; Hash &ndash;&gt;-->
+              <!--                  <b-list-group-item class="list-field border-bottom-0"> Hash </b-list-group-item>-->
+              <!--                  <b-list-group-item class="list-value">{{ this.hash[this.encoding] }} </b-list-group-item>-->
+              <!--                </b-list-group>-->
 
-                <b-button @click="onChangeEncoding" variant="primary">Encoding</b-button>
-              </b-card>
-              <b-card>
-                <canvas id="graph"/>
-              </b-card>
+              <!--                <b-button @click="onChangeEncoding" variant="primary">Encoding</b-button>-->
+              <!--              </b-card>-->
 
               <!--              <div>-->
               <!--                Thanks to <a href="https://learnmeabitcoin.com">learnmeabitcoin.com</a> for technical explanations of serialization.-->
@@ -166,6 +165,10 @@
             </b-col>
           </b-row>
         </b-container>
+      </div>
+
+      <div class="section">
+        <canvas id="graph"/>
       </div>
 
     </full-page>
@@ -204,29 +207,31 @@
         graph: Object,
 
         hashMax: Object,
-        target: Object,
+        target: {yRatio: 0},
         encoding: 'decimal',
       }
     },
 
     async mounted() {
-      this.startTime = new Date().getTime();
-      this.blockHeight = await this.mempool.getHeightOfLatestBlock();
-      this.blockHeightMax = this.blockHeight;
-      await this.setBlock();
-
-      this.graph = this.initGraph();
-      this.calcGraph();
-      this.drawGraph();
-
-      this.setHashMax();
-      this.setTarget();
-
       import("wasm_sha256_from_hex_str")
       .then((wasm) => {
         this.wasm = wasm;
       })
       .catch((err) => alert("Failed to load wasm module" + err));
+
+      this.startTime = new Date().getTime();
+      await this.setBlock();
+
+      this.setHashMax();
+      this.setTarget();
+
+      this.graph = new Graph(
+        'graph',
+        document.documentElement.clientHeight,
+        document.documentElement.clientWidth
+      );
+      this.calcGraph();
+      this.drawGraph();
     },
 
     watch: {
@@ -239,19 +244,10 @@
     },
 
     methods: {
-      setHashMax() {
-        this.hashMax = this.encode(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffn);
-        this.hashMax.binary = ''.padStart(256, '1');
-        this.hashMax.hexadecimal = ''.padStart(64, 'f');
-      },
-
-      setTarget() {
-        const targetMax = 0x00000000ffff0000000000000000000000000000000000000000000000000000n;
-        const target = Number(targetMax) / Number(this.rawBlock.difficulty);
-        this.target = this.encode(target);
-      },
-
       async setBlock( ) {
+        this.blockHeight = await this.mempool.getHeightOfLatestBlock();
+        this.blockHeightMax = this.blockHeight;
+
         const id = await this.mempool.getBlockIdFromHeight(this.blockHeight)
         this.rawBlock = await this.mempool.getBlockById(id);
 
@@ -260,24 +256,24 @@
 
         this.blockList = [
           {field: "Version", value: this.rawBlock.version},
-          {field: "Previous this.rawBlock", value: this.rawBlock.previousblockhash || '0'.padStart(64, '0')},
+          {field: "Previous this.rawBlock", value: this.rawBlock.previousblockhash},
           {field: "Merkle Root", value: this.rawBlock.merkle_root},
           {field: "Time", value: time},
           {field: "Bits", value: this.rawBlock.bits},
         ];
       },
-
-      encode(val) {
-        // eslint-disable-next-line no-undef
-        const bigInt = BigInt(val);
-        return {
-          bigInt,
-          binary: bigInt.toString(2).padStart(256, '0'),
-          decimal: bigInt.toLocaleString('en-US').padStart(103, '000,'),
-          exponential: Number(bigInt).toExponential(),
-          hexadecimal: bigInt.toString(16).padStart(64, '0'),
-        }
+      setHashMax() {
+        this.hashMax = this.encode(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffn);
+        this.hashMax.binary = ''.padStart(256, '1');
+        this.hashMax.hexadecimal = ''.padStart(64, 'f');
       },
+      setTarget() {
+        const targetMax = 0x00000000ffff0000000000000000000000000000000000000000000000000000n;
+        const target = Number(targetMax) / Number(this.rawBlock.difficulty);
+        this.target = this.encode(target);
+        this.target.yRatio = Number(this.target.bigInt) / Number(this.hashMax.bigInt);
+      },
+
       onBlockHeightChange(value) {
         this.blockHeight = Number(value);
       },
@@ -326,16 +322,25 @@
         this.graph.encoding = this.encoding;
       },
 
+      encode(val) {
+        // eslint-disable-next-line no-undef
+        const bigInt = BigInt(val);
+        return {
+          bigInt,
+          binary: bigInt.toString(2).padStart(256, '0'),
+          decimal: bigInt.toLocaleString('en-US').padStart(103, '000,'),
+          exponential: Number(bigInt).toExponential(),
+          hexadecimal: bigInt.toString(16).padStart(64, '0'),
+        }
+      },
       sha256d(hexStr) {
         let hash = this.wasm.sha256_of_hex_str(hexStr);
         hash = this.wasm.sha256_of_hex_str(hash);
         return this.swapEndian(hash);
       },
-
       intToHex(val) {
         return Number(val).toString(16).padStart(8, '0');
       },
-
       swapEndian(val) {
         const str = String(val);
 
@@ -349,44 +354,37 @@
         }
         return result.join('');
       },
-
       serializeBlockHeader(
-          version,
-          previousBlockHash,
-          merkleRoot,
-          timestamp,
-          bits,
-          nonce,
+        version,
+        previousBlockHash,
+        merkleRoot,
+        timestamp,
+        bits,
+        nonce,
       ) {
-        // In case of Genesis block returning prev hash as null.
-        previousBlockHash = previousBlockHash || ''.padStart(64, '0');
-
         return this.swapEndian(this.intToHex(version))
-            + this.swapEndian(previousBlockHash)
-            + this.swapEndian(merkleRoot)
-            + this.swapEndian(this.intToHex(timestamp))
-            + this.swapEndian(this.intToHex(bits))
-            + this.swapEndian(this.intToHex(nonce));
+          + this.swapEndian(previousBlockHash)
+          + this.swapEndian(merkleRoot)
+          + this.swapEndian(this.intToHex(timestamp))
+          + this.swapEndian(this.intToHex(bits))
+          + this.swapEndian(this.intToHex(nonce));
       },
-
       calcHash(block, nonce) {
         const blockHeader = this.serializeBlockHeader(
-            block.version,
-            block.previousblockhash,
-            block.merkle_root,
-            block.timestamp,
-            block.bits,
-            nonce,
+          block.version,
+          block.previousblockhash,
+          block.merkle_root,
+          block.timestamp,
+          block.bits,
+          nonce,
         );
 
         return this.sha256d(blockHeader);
       },
 
-      initGraph() {
-        const canvasMinWidth = 965;
-        const viewPortWidth = document.documentElement.clientWidth - 50;
-        const canvasWidth = viewPortWidth > canvasMinWidth ? viewPortWidth : canvasMinWidth;
-        return new Graph('graph', 500, canvasWidth);
+      calcHashesPerSecond() {
+        const elapsed = new Date().getTime() - this.startTime;
+        return (this.tries / elapsed) * 1000;
       },
       calcGraph() {
         this.graph.calcTicks();
@@ -395,25 +393,19 @@
       },
       drawGraph() {
         this.graph.clear();
-        this.graph.drawTicks();
         this.graph.drawGuesses();
+        this.graph.drawTicks();
         this.graph.drawEndCaps();
 
         // Hashes per second.
-        const elapsed = new Date().getTime() - this.startTime;
-        const hashesPerSecond = (this.tries / elapsed) * 1000;
-        const xLabel =  String(hashesPerSecond).substr(0, 4);
-        this.graph.drawAxis(`${xLabel} hashes per second`);
+        const xLabel = String(this.calcHashesPerSecond()).substr(0, 4);
+        this.graph.drawAxis(`${xLabel} Hashes per Second`);
 
         this.graph.drawAxisLabels();
-
-        const yRatio = this.target.num / Number(this.hashMax.bigInt);
-        this.graph.drawTarget(yRatio);
+        this.graph.drawTarget(this.target.yRatio);
 
         window.requestAnimationFrame(this.drawGraph);
       },
-
-
     }
   }
 </script>
@@ -450,7 +442,11 @@
     font-weight: lighter;
     font-size: .8em;
   }
+  .list-value {
+    padding-top: 0 !important;
+  }
   #graph {
+    z-index: -1;
     height: 100%;
     width: 100%;
   }

@@ -393,13 +393,13 @@
       },
       drawGraph() {
         this.graph.clear();
+
+        const xLabel = String(this.calcHashesPerSecond()).substr(0, 4);
+        this.graph.drawAxis(`${xLabel} Hashes per Second`);
+
         this.graph.drawGuesses();
         this.graph.drawTicks();
         this.graph.drawEndCaps();
-
-        // Hashes per second.
-        const xLabel = String(this.calcHashesPerSecond()).substr(0, 4);
-        this.graph.drawAxis(`${xLabel} Hashes per Second`);
 
         this.graph.drawAxisLabels();
         this.graph.drawTarget(this.target.yRatio);

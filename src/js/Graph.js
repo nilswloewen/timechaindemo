@@ -50,8 +50,8 @@ class Graph {
     this.ctx.closePath();
 
     // X-axis label.
-    const xLabelMetrics = this.ctx.measureText(xLabel);
     this.ctx.fillStyle = 'black';
+    const xLabelMetrics = this.ctx.measureText(xLabel);
     const center = this.zero.x - (this.width / 2) - (xLabelMetrics.width / 2);
     this.ctx.fillText(xLabel, center, this.zero.y + 20);
 
@@ -71,9 +71,9 @@ class Graph {
     this.ctx.direction = 'ltr';
     this.ctx.fillStyle = 'green';
     this.ctx.fillText(
-        '🠔Target',
-        this.zero.x + 3,
-        this.zero.y - (this.height * yRatio) + 4
+      '🠔Target',
+      this.zero.x + 3,
+      this.zero.y - (this.height * yRatio) + 4
     );
   }
 
@@ -114,7 +114,7 @@ class Graph {
 
     const grd = this.ctx.createLinearGradient(this.zero.x, this.zero.y, this.zero.x, this.yPad);
     grd.addColorStop(1, this.bgColor);
-    grd.addColorStop(0, `rgba(0, 0, 0, ${1 - xRatio})`);
+    grd.addColorStop(0, `rgba(0, 0, 0, ${0.5 - xRatio})`);
 
     this.ctx.beginPath();
     this.ctx.strokeStyle = grd;
@@ -132,28 +132,20 @@ class Graph {
     const labelMetrics = this.ctx.measureText(label);
     this.ctx.fillStyle = 'rgba(249, 249, 251, 0.8)';
     this.ctx.fillRect(
-        x + 27, y - 10,
-        labelMetrics.width + 9, 19,
+      x + 27, y - 10,
+      labelMetrics.width + 9, 19,
     );
 
     // Label
     this.ctx.direction = 'ltr';
     this.ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`;
     this.ctx.fillText('🠔' + label, x + 30, y + 4);
-    //
-    // // Point
-    // this.ctx.beginPath();
-    // this.ctx.strokeStyle = 'blue';
-    // this.ctx.moveTo(x, y);
-    // this.ctx.lineTo(x + 20, y);
-    // this.ctx.stroke();
-    // this.ctx.closePath();
   }
 
   drawEndCaps() {
     const leftGrd = this.ctx.createLinearGradient(100, 0, 300, 0);
     leftGrd.addColorStop(0, this.bgColor);
-    leftGrd.addColorStop(1, 'rgba(255,255,255,0)');
+    leftGrd.addColorStop(1, 'rgba(249,249,251,0)');
 
     this.ctx.fillStyle = leftGrd;
     this.ctx.fillRect(0, this.yPad, this.xPad + this.width, this.height + 5);
@@ -161,10 +153,10 @@ class Graph {
     // Right
     this.ctx.fillStyle = this.bgColor;
     this.ctx.fillRect(
-        this.xPad + this.width,
-        0,
-        this.xPad * 2 + this.width,
-        this.height + this.yPad * 2,
+      this.xPad + this.width,
+      0,
+      this.xPad * 2 + this.width,
+      this.height + this.yPad * 2,
     );
   }
 }

@@ -80,33 +80,84 @@
         <b-container class="vh-100">
           <b-row align-v="center" class="vh-100">
             <b-col>
-              <h3>Mine by Hand</h3>
-              <b-card id="raw_block_wrapper">
-                <b-table id="block" :items="block"/>
+
+              <b-card id="block_header_wrapper" title="Block Header">
+                <b-list-group id="block_height_and_id">
+                  <!-- Height -->
+                  <b-list-group-item class="list-field border-bottom-0"> Height </b-list-group-item>
+                  <b-list-group-item class="list-value">
+                    <b-form-input @change="onBlockHeightChange"
+                                  id="block_height_input"
+                                  type="number"
+                                  :value="this.rawBlock.height"
+                                  :max="this.blockHeightMax"
+                                  :min="0"
+                    />
+                  </b-list-group-item>
+
+                  <!-- Id -->
+                  <b-list-group-item class="list-field border-bottom-0"> Id </b-list-group-item>
+                  <b-list-group-item class="list-value"> {{ this.rawBlock.id }} </b-list-group-item>
+                </b-list-group>
+
+                <!--                <b-list-group id="block_serialized">-->
+                <!--                  <template v-for="item in this.blockList">-->
+                <!--                    <b-list-group-item :key="item.field" class="list-field border-bottom-0"> {{ item.field }} </b-list-group-item>-->
+                <!--                    <b-list-group-item :key="item.value" class="list-value"> {{ item.value }} </b-list-group-item>-->
+                <!--                  </template>-->
+                <!--                </b-list-group>-->
+
+                <b-list-group id="block_serialized">
+                  <b-list-group-item class="list-field border-bottom-0"> Nonce </b-list-group-item>
+                  <b-list-group-item class="list-value">
+                    <b-form-input  @change="onNonceChange"
+                                   id="nonce_input"
+                                   type="number"
+                                   :value="this.nonce"
+                                   class="d-inline-block"
+                    />
+                    <b-button @click="onIncrementNonce" class="d-inline-block">+</b-button>
+                    <b-button @click="onShowNonce" class="d-inline-block">Show</b-button>
+                  </b-list-group-item>
+                </b-list-group>
               </b-card>
 
-              <br/>
-              <b-form >
-                <!--                    <b-form-group>-->
-                <!--                      <b-form-input id="block_search_input" type="text" placeholder="Look up a block by height or by id (hash)" />-->
-                <!--                      <b-button @click="onSearch" variant="primary">Search</b-button>-->
-                <!--                    </b-form-group>-->
-                <b-form-group>
-                  <b-form-input id="nonce_input" type="number" default="0" placeholder="Guess a nonce" />
+              <!--              <b-card title="Algorithm">-->
+              <!--                <b-list-group id="block_serialized">-->
+              <!--                  <b-list-group-item>-->
+              <!--                    <p>1. Serialize block header and nonce.</p>-->
+              <!--                    <p>{{ this.serializedHeader }}</p>-->
+              <!--                  </b-list-group-item>-->
+              <!--                  <b-list-group-item>-->
+              <!--                    <p>2. Calculated hash of header.</p>-->
+              <!--                    <p>{{ this.hash }}</p>-->
+              <!--                  </b-list-group-item>-->
+              <!--                  <b-list-group-item>-->
+              <!--                    <p>3. Compare hash against target. </p>-->
+              <!--                    <p> - If greater: Try Again!</p>-->
+              <!--                    <p> - If less: You Win!</p>-->
+              <!--                  </b-list-group-item>-->
+              <!--                </b-list-group>-->
+              <!--              </b-card>-->
 
-                  <b-button @click="onTry" variant="primary" >Try</b-button>
-                  <b-button @click="onInc" variant="secondary">Increment</b-button>
-                  <b-button @click="onReset" variant="danger">Reset</b-button>
-                </b-form-group>
-              </b-form>
+              <b-card title="Legend" id="legend">
+                <b-list-group>
+                  <!--  Max -->
+                  <b-list-group-item class="list-field border-bottom-0"> Max </b-list-group-item>
+                  <b-list-group-item class="list-value">{{ this.hashMax[this.encoding] }} </b-list-group-item>
+                  <!-- Target -->
+                  <b-list-group-item class="list-field border-bottom-0"> Target </b-list-group-item>
+                  <b-list-group-item class="list-value">{{ this.target[this.encoding] }} </b-list-group-item>
+                  <!-- Hash -->
+                  <b-list-group-item class="list-field border-bottom-0"> Hash </b-list-group-item>
+                  <b-list-group-item class="list-value">{{ this.hash[this.encoding] }} </b-list-group-item>
+                </b-list-group>
 
-              <b-table id="encoding" striped hover :items="encodingTable"/>
-
-              <b-button @click="onEncoding" variant="primary">Encoding</b-button>
-
-              <div>
-                <canvas id="graph" style="border: 1px solid"></canvas>
-              </div>
+                <b-button @click="onChangeEncoding" variant="primary">Encoding</b-button>
+              </b-card>
+              <b-card>
+                <canvas id="graph"/>
+              </b-card>
 
               <!--              <div>-->
               <!--                Thanks to <a href="https://learnmeabitcoin.com">learnmeabitcoin.com</a> for technical explanations of serialization.-->
@@ -122,212 +173,286 @@
 </template>
 
 <script>
+  import Mempool from './services/Mempool.js';
+  import Graph from './js/Graph';
 
-//
-//const intToHex = (val) => Number(val).toString(16).padStart(8, '0');
-//
-//const swapEndian = (val) => {
-//  const str = String(val);
-//
-//  const result = [];
-//  let len = str.length - 2;
-//
-//  while (len >= 0) {
-//    const pair = str.substr(len, 2);
-//    result.push(pair);
-//    len -= 2;
-//  }
-//  return result.join('');
-//};
-//
-// const sha256d = (hexStr) => {
-//   let hash = this.wasm.sha256_of_hex_str(hexStr);
-//   hash = this.wasm.sha256_of_hex_str(hash);
-//   return swapEndian(hash);
-// };
-//
-// const serializeBlockHeader = (
-//     version,
-//     previousBlockhash,
-//     merkleRoot,
-//     timestamp,
-//     bits,
-//     nonce,
-// ) => {
-//   // In case of Genesis block returning prev hash as null.
-//   const prevBlockhash = previousBlockhash || ''.padStart(64, '0');
-//
-//   return swapEndian(intToHex(version))
-//       + swapEndian(prevBlockhash)
-//       + swapEndian(merkleRoot)
-//       + swapEndian(intToHex(timestamp))
-//       + swapEndian(intToHex(bits))
-//       + swapEndian(intToHex(nonce));
-// };
-//
-// const calcHash = (block, nonce) => {
-//   const blockHeader = serializeBlockHeader(
-//       block.version,
-//       block.previousblockhash,
-//       block.merkle_root,
-//       block.timestamp,
-//       block.bits,
-//       nonce,
-//   );
-//
-//   return sha256d(blockHeader);
-// };
+  export default {
+    data () {
+      return {
+        fullPageOptions: {
+          licenseKey: '2C8168FC-415648B7-B94C4003-80F51EAC',
+          afterLoad: this.afterLoad,
+          scrollOverflow: false,
+          scrollBar: false,
+          menu: '#menu',
+          navigation: true,
+          sectionsColor: ['#41b883', '#ff5f45', '#0798ec', '#fec401']
+        },
+        wasm: { sha256_of_hex_str: () => {} },
+        mempool: new Mempool(),
 
-// function formatBlock(block) {
-//   const date = new Date(block.timestamp * 1000);
-//   const time = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeStyle: 'short' }).format(date);
-//
-//   return {
-//     'Id (hash)': block.id,
-//     Height: block.height,
-//     Version: block.version,
-//     'Previous Block Hash': block.previousblockhash,
-//     'Merkle Root': block.merkle_root,
-//     Time: time,
-//     Bits: block.bits,
-//     Nonce: block.nonce,
-//   };
-// }
-//
-// function calcTarget(difficulty) {
-//   const targetMax = 0x00000000ffff0000000000000000000000000000000000000000000000000000;
-//   return targetMax / Number(difficulty);
-// }
+        startTime: 0,
+        tries: 0,
 
-export default {
-  name: 'app',
-  data () {
-    return {
-      fullPageOptions: {
-        licenseKey: 'YOUR_KEY_HERE',
-        afterLoad: this.afterLoad,
-        scrollOverflow: false,
-        scrollBar: false,
-        menu: '#menu',
-        navigation: true,
-        sectionsColor: ['#41b883', '#ff5f45', '#0798ec', '#fec401']
-      },
-      encodingTable: [
-        {Encoding: "Hexadecimal", base: 16, value: "0234"},
-        {Encoding: "Binary", base: 2, value: "0101"},
-        {Encoding: "Decimal", base: 10, value: "0101"},
-        {Encoding: "Exponential", base: 10, value: "0101"},
-      ],
-      block: [
-        { Field: "Height", value: "363,366"},
-        { Field: "Id", value: "000000000000000015dc777b3ff2611091336355d3f0ee9766a2cf3be8e4b1ce"},
-        { Field: "Previous Block", value: "000000000000000010c545b6fa3ef1f7cf45a2a8760b1ee9f2e89673218207ce"},
-        { Field: "Merkle Root", value: "9d3cb87bf05ebae366b4262ed5f768ce8c62fc385c3886c9cb097647b04b686c"},
-        { Field: "Version", value: "01"},
-        { Field: "Time", value: "1435766771"},
-        { Field: "Bits", value: "404111758"},
-        { Field: "Nonce", value: "??????"},
-      ],
-      wasmPromise: null,
-      wasm: null,
-    }
-  },
+        blockHeight: 0,
+        blockHeightMax: 0,
 
-  methods: {
-    mounted() {
-      this.wasmPromise = import("wasm_sha256_from_hex_str")
+        nonce: 0,
+        hash: {decimal: 0, binary: 0, hexadecimal: 0, exponential: 0},
+        rawBlock: Object,
+        blockList: Array,
+        graph: Object,
+
+        hashMax: Object,
+        target: Object,
+        encoding: 'decimal',
+      }
+    },
+
+    async mounted() {
+      this.startTime = new Date().getTime();
+      this.blockHeight = await this.mempool.getHeightOfLatestBlock();
+      this.blockHeightMax = this.blockHeight;
+      await this.setBlock();
+
+      this.graph = this.initGraph();
+      this.calcGraph();
+      this.drawGraph();
+
+      this.setHashMax();
+      this.setTarget();
+
+      import("wasm_sha256_from_hex_str")
       .then((wasm) => {
         this.wasm = wasm;
       })
       .catch((err) => alert("Failed to load wasm module" + err));
     },
-    onSearch(e) {
-      e.preventDefault();
-      console.log(e.target);
-    },
-    onTry(e) {
-      e.preventDefault();
 
-      // start = start === 0 ? new Date().getTime() : start;
-      // tries += 1;
-      //
-      // const nonce = document.getElementById('nonce_input').valueOf().value;
-      //
-      // const block = {
-      //   id: "000000000000000015dc777b3ff2611091336355d3f0ee9766a2cf3be8e4b1ce",
-      //   height: 363366,
-      //   version: 2,
-      //   timestamp: 1435766771,
-      //   tx_count: 494,
-      //   size: 286494,
-      //   weight: 1145976,
-      //   merkle_root: "9d3cb87bf05ebae366b4262ed5f768ce8c62fc385c3886c9cb097647b04b686c",
-      //   previousblockhash: "000000000000000010c545b6fa3ef1f7cf45a2a8760b1ee9f2e89673218207ce",
-      //   mediantime: 1435763435,
-      //   nonce: 2892644888,
-      //   bits: 404111758,
-      //   difficulty: 49402014931
-      // };
-      const hash = this.sha256d("a0");
+    watch: {
+      async blockHeight() {
+        await this.setBlock();
+      },
+      nonce() {
+        this.onNonceChange(this.nonce);
+      }
+    },
 
-      console.log(hash);
-      //
-      // const encodings = {
-      //   hex: hash,
-      //   binary: BigInt(`0x${hash}`).toString(2).padStart(256, '0'),
-      //   scientific: Number(`0x${hash}`).toExponential(),
-      //   decimal: BigInt(`0x${hash}`).toLocaleString('en-US'),
-      // };
-      //
-      // graph.guesses.push({
-      //   xRatio: 0,
-      //   yRatio: parseInt(hash, 16) / 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff,
-      //   encodings,
-      // });
-      //
-      // generateTable(document.querySelector('table#encoding'), {
-      //   Hexadecimal: encodings.hex,
-      //   // Fold binary.
-      //   Binary: encodings.binary.replace(
-      //       /(\d{64})(\d{64})(\d{64})(\d{64})/,
-      //       '$1\n↳$2\n↳$3\n↳$4',
-      //   ),
-      //   Scientific: encodings.scientific,
-      //   Decimal: encodings.decimal,
-      // });
-    },
-    onInc(e) {
-      e.preventDefault();
-      console.log(e.target);
-    },
-    onReset(e) {
-      e.preventDefault();
-      console.log(e.target);
-    },
-    onEncoding(e) {
-      e.preventDefault();
-      console.log(e.target);
-    },
-    sha256d(hexStr) {
-      let hash = this.wasm.sha256_of_hex_str(hexStr);
-      hash = this.wasm.sha256_of_hex_str(hash);
-      // return swapEndian(hash);
-      return hash;
+    methods: {
+      setHashMax() {
+        this.hashMax = this.encode(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffn);
+        this.hashMax.binary = ''.padStart(256, '1');
+        this.hashMax.hexadecimal = ''.padStart(64, 'f');
+      },
+
+      setTarget() {
+        const targetMax = 0x00000000ffff0000000000000000000000000000000000000000000000000000n;
+        const target = Number(targetMax) / Number(this.rawBlock.difficulty);
+        this.target = this.encode(target);
+      },
+
+      async setBlock( ) {
+        const id = await this.mempool.getBlockIdFromHeight(this.blockHeight)
+        this.rawBlock = await this.mempool.getBlockById(id);
+
+        const date = new Date(this.rawBlock.timestamp * 1000);
+        const time = new Intl.DateTimeFormat('en-US', {dateStyle: 'medium', timeStyle: 'long'}).format(date);
+
+        this.blockList = [
+          {field: "Version", value: this.rawBlock.version},
+          {field: "Previous this.rawBlock", value: this.rawBlock.previousblockhash || '0'.padStart(64, '0')},
+          {field: "Merkle Root", value: this.rawBlock.merkle_root},
+          {field: "Time", value: time},
+          {field: "Bits", value: this.rawBlock.bits},
+        ];
+      },
+
+      encode(val) {
+        // eslint-disable-next-line no-undef
+        const bigInt = BigInt(val);
+        return {
+          bigInt,
+          binary: bigInt.toString(2).padStart(256, '0'),
+          decimal: bigInt.toLocaleString('en-US').padStart(103, '000,'),
+          exponential: Number(bigInt).toExponential(),
+          hexadecimal: bigInt.toString(16).padStart(64, '0'),
+        }
+      },
+      onBlockHeightChange(value) {
+        this.blockHeight = Number(value);
+      },
+      onNonceChange(nonce) {
+        this.nonce = nonce;
+        this.startTime = this.startTime === 0 ? new Date().getTime() : this.startTime;
+        this.tries += 1;
+
+        let hash = this.calcHash(this.rawBlock, nonce);
+        hash = this.encode(`0x${hash}`);
+        this.hash = hash;
+
+        this.graph.guesses.push({
+          xRatio: 0,
+          yRatio: parseInt(this.hash.hexadecimal, 16) / Number(this.hashMax.bigInt),
+          hash
+        });
+      },
+      onIncrementNonce() {
+        this.nonce += 1;
+      },
+      onShowNonce() {
+        this.nonce = this.rawBlock.nonce;
+        this.encoding = 'decimal';
+      },
+      onChangeEncoding(e) {
+        switch (this.encoding) {
+          case 'hexadecimal':
+            this.encoding = 'decimal';
+            e.target.innerText = 'Decimal';
+            break;
+          case 'decimal':
+            this.encoding = 'exponential';
+            e.target.innerText = 'Exponent';
+            break;
+          case 'exponential':
+            this.encoding = 'binary';
+            e.target.innerText = 'Binary';
+            break;
+          case 'binary':
+          default:
+            this.encoding = 'hexadecimal';
+            e.target.innerText = 'Hexadecimal';
+            break;
+        }
+        this.graph.encoding = this.encoding;
+      },
+
+      sha256d(hexStr) {
+        let hash = this.wasm.sha256_of_hex_str(hexStr);
+        hash = this.wasm.sha256_of_hex_str(hash);
+        return this.swapEndian(hash);
+      },
+
+      intToHex(val) {
+        return Number(val).toString(16).padStart(8, '0');
+      },
+
+      swapEndian(val) {
+        const str = String(val);
+
+        const result = [];
+        let len = str.length - 2;
+
+        while (len >= 0) {
+          const pair = str.substr(len, 2);
+          result.push(pair);
+          len -= 2;
+        }
+        return result.join('');
+      },
+
+      serializeBlockHeader(
+          version,
+          previousBlockHash,
+          merkleRoot,
+          timestamp,
+          bits,
+          nonce,
+      ) {
+        // In case of Genesis block returning prev hash as null.
+        previousBlockHash = previousBlockHash || ''.padStart(64, '0');
+
+        return this.swapEndian(this.intToHex(version))
+            + this.swapEndian(previousBlockHash)
+            + this.swapEndian(merkleRoot)
+            + this.swapEndian(this.intToHex(timestamp))
+            + this.swapEndian(this.intToHex(bits))
+            + this.swapEndian(this.intToHex(nonce));
+      },
+
+      calcHash(block, nonce) {
+        const blockHeader = this.serializeBlockHeader(
+            block.version,
+            block.previousblockhash,
+            block.merkle_root,
+            block.timestamp,
+            block.bits,
+            nonce,
+        );
+
+        return this.sha256d(blockHeader);
+      },
+
+      initGraph() {
+        const canvasMinWidth = 965;
+        const viewPortWidth = document.documentElement.clientWidth - 50;
+        const canvasWidth = viewPortWidth > canvasMinWidth ? viewPortWidth : canvasMinWidth;
+        return new Graph('graph', 500, canvasWidth);
+      },
+      calcGraph() {
+        this.graph.calcTicks();
+        this.graph.calcGuesses();
+        setTimeout(this.calcGraph, 25);
+      },
+      drawGraph() {
+        this.graph.clear();
+        this.graph.drawTicks();
+        this.graph.drawGuesses();
+        this.graph.drawEndCaps();
+
+        // Hashes per second.
+        const elapsed = new Date().getTime() - this.startTime;
+        const hashesPerSecond = (this.tries / elapsed) * 1000;
+        const xLabel =  String(hashesPerSecond).substr(0, 4);
+        this.graph.drawAxis(`${xLabel} hashes per second`);
+
+        this.graph.drawAxisLabels();
+
+        const yRatio = this.target.num / Number(this.hashMax.bigInt);
+        this.graph.drawTarget(yRatio);
+
+        window.requestAnimationFrame(this.drawGraph);
+      },
+
+
     }
   }
-}
 </script>
 
 <style>
-@font-face {
-  font-family: "Fira Mono";
-  src: url("/assets/FiraMono-Regular.ttf");
-}
-#app {
-  font-size: 16px;
-  font-family: 'Fira Mono', monospace;
-}
-#raw_block_wrapper {
-  overflow-x: scroll;
-}
+  @import url('https://fonts.googleapis.com/css2?family=Fira%20Code:wght@300..700&display=swap');
+  #app {
+    font-size: 16px;
+    font-family: 'Fira Code', monospace;
+  }
+  #legend {
+    word-wrap: normal;
+    overflow-x: auto;
+  }
+  #legend .list-group {
+    width: 2480px;
+  }
+  #nonce_input {
+    width: 50%;
+    margin-right: 1em;
+  }
+  .card,
+  .card-body .list-group {
+    margin-top: .5em;
+    margin-bottom: .5em;
+  }
+  #block_height_input {
+    padding-top: 0.1em !important;
+    padding-bottom: 0.1em !important;
+    padding-left: 0.4em !important;
+  }
+  .list-field {
+    padding-bottom: 0 !important;
+    font-weight: lighter;
+    font-size: .8em;
+  }
+  #graph {
+    height: 100%;
+    width: 100%;
+  }
 </style>
+

@@ -19,7 +19,7 @@ class Mempool {
   }
 
   async getBlockByHeight(height) {
-    return this.api.getBlockHeight({ height });
+    return this.api.getBlockHeight({ height});
   }
 
   async getHeightOfLatestBlock() {

@@ -35,10 +35,11 @@ class Graph {
   setAxisLabels() {
     const max = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff;
     this.axisLabels = {
+      // eslint-disable-next-line no-undef
       decimal: BigInt(max).toLocaleString('en-US'),
-      scientific: max.toExponential(),
+      exponential: max.toExponential(),
       binary: ''.padStart(103, '1'),
-      hex: ''.padStart(64, 'f'),
+      hexadecimal: ''.padStart(64, 'f'),
     };
   }
 
@@ -123,7 +124,7 @@ class Graph {
     for (let i = 0; i < this.guesses.length; i += 1) {
       const guess = this.guesses[i];
       const opacity = i / this.guesses.length;
-      this.drawHorizontalLine(guess.xRatio, guess.yRatio, guess.encodings[this.encoding], opacity);
+      this.drawHorizontalLine(guess.xRatio, guess.yRatio, guess.hash[this.encoding], opacity);
     }
   }
 

@@ -30,9 +30,9 @@ document.getElementById('submit_btn').onclick = async (e) => {
   const hash = calcHash(rawBlock, nonce);
 
   const encodings = {
-    hex: hash,
+    hexadecimal: hash,
     binary: BigInt(`0x${hash}`).toString(2).padStart(256, '0'),
-    scientific: Number(`0x${hash}`).toExponential(),
+    exponential: Number(`0x${hash}`).toExponential(),
     decimal: BigInt(`0x${hash}`).toLocaleString('en-US'),
   };
 
@@ -43,13 +43,13 @@ document.getElementById('submit_btn').onclick = async (e) => {
   });
 
   generateTable(document.querySelector('table#encoding'), {
-    Hexadecimal: encodings.hex,
+    hexadecimal: encodings.hex,
     // Fold binary.
     Binary: encodings.binary.replace(
       /(\d{64})(\d{64})(\d{64})(\d{64})/,
       '$1\n↳$2\n↳$3\n↳$4',
     ),
-    Scientific: encodings.scientific,
+    exponential: encodings.exponential,
     Decimal: encodings.decimal,
   });
 };
@@ -89,17 +89,17 @@ document.getElementById('encoding_btn').onclick = async (e) => {
       e.target.innerText = 'Decimal';
       break;
     case 'decimal':
-      graph.encoding = 'scientific';
-      e.target.innerText = 'Scientific Notation';
+      graph.encoding = 'exponential';
+      e.target.innerText = 'exponential Notation';
       break;
-    case 'scientific':
+    case 'exponential':
       graph.encoding = 'binary';
       e.target.innerText = 'Binary';
       break;
     case 'binary':
     default:
       graph.encoding = 'hex';
-      e.target.innerText = 'Hexadecimal';
+      e.target.innerText = 'hexadecimal:';
       break;
   }
 };

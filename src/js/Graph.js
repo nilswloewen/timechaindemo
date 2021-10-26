@@ -36,7 +36,7 @@ class Graph {
     this.ctx.clearRect(0, 0, this.width + this.xPad * 2, this.height + this.yPad * 2);
   }
 
-  drawAxis(xLabel) {
+  drawXAxis() {
     const xGrd = this.ctx.createLinearGradient(this.xPad, this.zero.y, this.width, this.zero.y);
     xGrd.addColorStop(0, this.bgColor);
     xGrd.addColorStop(1, 'black');
@@ -48,14 +48,8 @@ class Graph {
     this.ctx.lineTo(this.xPad + this.width, this.zero.y);
     this.ctx.stroke();
     this.ctx.closePath();
-
-    // X-axis label.
-    this.ctx.fillStyle = 'black';
-    const xLabelMetrics = this.ctx.measureText(xLabel);
-    const center = this.zero.x - (this.width / 2) - (xLabelMetrics.width / 2);
-    this.ctx.fillText(xLabel, center, this.zero.y + 20);
-
-    // Y-axis.
+  }
+  drawYAxis() {
     this.drawVerticalLine(0);
   }
 
@@ -139,7 +133,7 @@ class Graph {
     // Label
     this.ctx.direction = 'ltr';
     this.ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`;
-    this.ctx.fillText('🠔' + label, x + 30, y + 4);
+    this.ctx.fillText('🠔' + label, x, y + 4);
   }
 
   drawEndCaps() {

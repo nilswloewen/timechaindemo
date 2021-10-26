@@ -76,101 +76,162 @@
       <!--        </b-container>-->
       <!--      </div>-->
 
-      <div id="mine_by_hand" class="section">
-        <b-container class="vh-100">
-          <b-row align-v="center" class="vh-100">
-            <b-col>
+      <!--      <div id="mine_by_hand" class="section">-->
+      <!--        <b-container class="vh-100">-->
+      <!--          <b-row align-v="center" class="vh-100">-->
+      <!--            <b-col>-->
 
-              <b-card id="block_header_wrapper" title="Block Header">
-                <b-list-group id="block_height_and_id">
-                  <!-- Height -->
-                  <b-list-group-item class="list-field border-bottom-0"> Height </b-list-group-item>
-                  <b-list-group-item class="list-value">
-                    <b-form-input @change="onBlockHeightChange"
-                                  id="block_height_input"
-                                  type="number"
-                                  :value="this.rawBlock.height"
-                                  :max="this.blockHeightMax"
-                                  :min="0"
-                    />
-                  </b-list-group-item>
+      <!--              <b-card id="block_header_wrapper" title="Block Header">-->
+      <!--                <b-list-group id="block_height_and_id">-->
+      <!--                  &lt;!&ndash; Height &ndash;&gt;-->
+      <!--                  <b-list-group-item class="list-field border-bottom-0"> Height </b-list-group-item>-->
+      <!--                  <b-list-group-item class="list-value">-->
+      <!--                    <b-form-input @change="onBlockHeightChange"-->
+      <!--                                  id="block_height_input"-->
+      <!--                                  type="number"-->
+      <!--                                  :value="this.rawBlock.height"-->
+      <!--                                  :max="this.blockHeightMax"-->
+      <!--                                  :min="0"-->
+      <!--                    />-->
+      <!--                  </b-list-group-item>-->
 
-                  <!-- Id -->
-                  <b-list-group-item class="list-field border-bottom-0"> Id </b-list-group-item>
-                  <b-list-group-item class="list-value"> {{ this.rawBlock.id }} </b-list-group-item>
-                </b-list-group>
+      <!--                  &lt;!&ndash; Id &ndash;&gt;-->
+      <!--                  <b-list-group-item class="list-field border-bottom-0"> Id </b-list-group-item>-->
+      <!--                  <b-list-group-item class="list-value"> {{ this.rawBlock.id }} </b-list-group-item>-->
+      <!--                </b-list-group>-->
 
-                <!--                <b-list-group id="block_serialized">-->
-                <!--                  <template v-for="item in this.blockList">-->
-                <!--                    <b-list-group-item :key="item.field" class="list-field border-bottom-0"> {{ item.field }} </b-list-group-item>-->
-                <!--                    <b-list-group-item :key="item.value" class="list-value"> {{ item.value }} </b-list-group-item>-->
-                <!--                  </template>-->
-                <!--                </b-list-group>-->
+      <!--                &lt;!&ndash;                <b-list-group id="block_serialized">&ndash;&gt;-->
+      <!--                &lt;!&ndash;                  <template v-for="item in this.blockList">&ndash;&gt;-->
+      <!--                &lt;!&ndash;                    <b-list-group-item :key="item.field" class="list-field border-bottom-0"> {{ item.field }} </b-list-group-item>&ndash;&gt;-->
+      <!--                &lt;!&ndash;                    <b-list-group-item :key="item.value" class="list-value"> {{ item.value }} </b-list-group-item>&ndash;&gt;-->
+      <!--                &lt;!&ndash;                  </template>&ndash;&gt;-->
+      <!--                &lt;!&ndash;                </b-list-group>&ndash;&gt;-->
 
-                <b-list-group id="block_serialized">
-                  <b-list-group-item class="list-field border-bottom-0"> Nonce </b-list-group-item>
-                  <b-list-group-item class="list-value">
-                    <b-form-input  @change="onNonceChange"
-                                   id="nonce_input"
-                                   type="number"
-                                   :value="this.nonce"
-                                   class="d-inline-block"
-                    />
-                    <b-button @click="onIncrementNonce" class="d-inline-block">+</b-button>
-                    <b-button @click="onShowNonce" class="d-inline-block">Show</b-button>
-                  </b-list-group-item>
-                </b-list-group>
-              </b-card>
+      <!--                <b-list-group id="block_serialized">-->
+      <!--                  <b-list-group-item class="list-field border-bottom-0"> Nonce </b-list-group-item>-->
+      <!--                  <b-list-group-item class="list-value">-->
+      <!--                    <b-form-input  @change="onNonceChange"-->
+      <!--                                   id="nonce_input"-->
+      <!--                                   type="number"-->
+      <!--                                   :value="this.nonce"-->
+      <!--                                   class="d-inline-block"-->
+      <!--                    />-->
+      <!--                    <b-button @click="onIncrementNonce" class="d-inline-block">+</b-button>-->
+      <!--                    <b-button @click="onShowNonce" class="d-inline-block">Show</b-button>-->
+      <!--                  </b-list-group-item>-->
+      <!--                </b-list-group>-->
+      <!--              </b-card>-->
 
-              <!--              <b-card title="Algorithm">-->
-              <!--                <b-list-group id="block_serialized">-->
-              <!--                  <b-list-group-item>-->
-              <!--                    <p>1. Serialize block header and nonce.</p>-->
-              <!--                    <p>{{ this.serializedHeader }}</p>-->
-              <!--                  </b-list-group-item>-->
-              <!--                  <b-list-group-item>-->
-              <!--                    <p>2. Calculated hash of header.</p>-->
-              <!--                    <p>{{ this.hash }}</p>-->
-              <!--                  </b-list-group-item>-->
-              <!--                  <b-list-group-item>-->
-              <!--                    <p>3. Compare hash against target. </p>-->
-              <!--                    <p> - If greater: Try Again!</p>-->
-              <!--                    <p> - If less: You Win!</p>-->
-              <!--                  </b-list-group-item>-->
-              <!--                </b-list-group>-->
-              <!--              </b-card>-->
+      <!--              <b-card title="Algorithm">-->
+      <!--                <b-list-group id="block_serialized">-->
+      <!--                  <b-list-group-item>-->
+      <!--                    <p>1. Serialize block header and nonce.</p>-->
+      <!--                    <p>{{ this.serializedHeader }}</p>-->
+      <!--                  </b-list-group-item>-->
+      <!--                  <b-list-group-item>-->
+      <!--                    <p>2. Calculated hash of header.</p>-->
+      <!--                    <p>{{ this.hash }}</p>-->
+      <!--                  </b-list-group-item>-->
+      <!--                  <b-list-group-item>-->
+      <!--                    <p>3. Compare hash against target. </p>-->
+      <!--                    <p> - If greater: Try Again!</p>-->
+      <!--                    <p> - If less: You Win!</p>-->
+      <!--                  </b-list-group-item>-->
+      <!--                </b-list-group>-->
+      <!--              </b-card>-->
 
-              <!--              <b-card title="Legend" id="legend">-->
-              <!--                <b-list-group>-->
-              <!--                  &lt;!&ndash;  Max &ndash;&gt;-->
-              <!--                  <b-list-group-item class="list-field border-bottom-0"> Max </b-list-group-item>-->
-              <!--                  <b-list-group-item class="list-value">{{ this.hashMax[this.encoding] }} </b-list-group-item>-->
-              <!--                  &lt;!&ndash; Target &ndash;&gt;-->
-              <!--                  <b-list-group-item class="list-field border-bottom-0">-->
-              <!--                    Target {{ this.target.yRatio.toString() }}-->
-              <!--                  </b-list-group-item>-->
-              <!--                  <b-list-group-item class="list-value">{{ this.target[this.encoding] }} </b-list-group-item>-->
-              <!--                  &lt;!&ndash; Hash &ndash;&gt;-->
-              <!--                  <b-list-group-item class="list-field border-bottom-0"> Hash </b-list-group-item>-->
-              <!--                  <b-list-group-item class="list-value">{{ this.hash[this.encoding] }} </b-list-group-item>-->
-              <!--                </b-list-group>-->
+      <!--      <b-card title="Legend" id="legend">-->
+      <!--        <b-list-group>-->
+      <!--          &lt;!&ndash;  Max &ndash;&gt;-->
+      <!--          <b-list-group-item class="list-field border-bottom-0"> Max </b-list-group-item>-->
+      <!--          <b-list-group-item class="list-value">{{ this.hashMax[this.encoding] }} </b-list-group-item>-->
+      <!--          &lt;!&ndash; Target &ndash;&gt;-->
+      <!--          <b-list-group-item class="list-field border-bottom-0">-->
+      <!--            Target {{ this.target.yRatio.toString() }}-->
+      <!--          </b-list-group-item>-->
+      <!--          <b-list-group-item class="list-value">{{ this.target[this.encoding] }} </b-list-group-item>-->
+      <!--          &lt;!&ndash; Hash &ndash;&gt;-->
+      <!--          <b-list-group-item class="list-field border-bottom-0"> Hash </b-list-group-item>-->
+      <!--          <b-list-group-item class="list-value">{{ this.hash[this.encoding] }} </b-list-group-item>-->
+      <!--        </b-list-group>-->
 
-              <!--                <b-button @click="onChangeEncoding" variant="primary">Encoding</b-button>-->
-              <!--              </b-card>-->
+      <!--        <b-button @click="onChangeEncoding" variant="primary">Encoding</b-button>-->
+      <!--      </b-card>-->
 
-              <!--              <div>-->
-              <!--                Thanks to <a href="https://learnmeabitcoin.com">learnmeabitcoin.com</a> for technical explanations of serialization.-->
-              <!--                Thanks to <a href="https://blockchaindemo.io">blockchaindemo.io</a> for inspiration on gui.-->
-              <!--              </div>-->
-            </b-col>
-          </b-row>
-        </b-container>
-      </div>
+      <!--              <div>-->
+      <!--                Thanks to <a href="https://learnmeabitcoin.com">learnmeabitcoin.com</a> for technical explanations of serialization.-->
+      <!--                Thanks to <a href="https://blockchaindemo.io">blockchaindemo.io</a> for inspiration on gui.-->
+      <!--              </div>-->
+      <!--            </b-col>-->
+      <!--          </b-row>-->
+      <!--        </b-container>-->
+      <!--      </div>-->
 
       <div class="section">
         <canvas id="graph"/>
-      </div>
 
+        <b-container id="overlay">
+          <b-row class="vh-100">
+            <b-col>
+
+              <b-button v-b-toggle.collapse_legend>
+                <b-iconstack rotate="90">
+                  <b-icon stacked icon="chevron-right" shift-h="-4" variant="danger"></b-icon>
+                  <b-icon stacked icon="chevron-right" shift-h="0" variant="success"></b-icon>
+                  <b-icon stacked icon="chevron-right" shift-h="4" variant="primary"></b-icon>
+                </b-iconstack>
+              </b-button>
+              <b-collapse id="collapse_legend">
+                <b-card title="Legend" id="legend">
+
+                  <b-list-group>
+                    <b-list-group-item>Hash = sha256d(Serialized Header + Nonce ({{ this.nonce }}))</b-list-group-item>
+                  </b-list-group>
+
+                  <b-list-group>
+                    <!--  Max -->
+                    <b-list-group-item class="list-field border-bottom-0"> Max </b-list-group-item>
+                    <b-list-group-item class="list-value">{{ this.hashMax[this.encoding] }} </b-list-group-item>
+                    <!-- Target -->
+                    <b-list-group-item class="list-field border-bottom-0">
+                      Target {{ (this.target.yRatio * 100).toFixed(24) }}%
+                    </b-list-group-item>
+                    <b-list-group-item class="list-value">{{ this.target[this.encoding] }} </b-list-group-item>
+                    <!-- Hash -->
+                    <b-list-group-item class="list-field border-bottom-0"> Hash </b-list-group-item>
+                    <b-list-group-item class="list-value">{{ this.hash[this.encoding] }} </b-list-group-item>
+                  </b-list-group>
+
+                  <b-button @click="onChangeEncoding" variant="primary" style="min-width: 132px">Encoding</b-button>
+                </b-card>
+              </b-collapse>
+
+              <b-card id="controls">
+                <label>Nonce</label>
+                <b-button-toolbar>
+
+                  <b-form-input  @change="onNonceChange"
+                                 id="nonce_input"
+                                 type="number"
+                                 :value="this.nonce"
+                                 class="d-inline-block"
+                                 style="max-width: 140px;"
+                  />
+                  <b-button-group size="sm">
+                    <b-button @click="onIncrementNonce" class="d-inline-block" variant="primary">+</b-button>
+                    <b-button @click="onShowNonce" class="d-inline-block">Show</b-button>
+                  </b-button-group>
+                  <span>{{ this.hashesPerSecond }} Hashes per Second</span>
+                  <b-form-input @change="onSlider" id="target_range" title="Target" type="range" min="0" max="100" step="0.1"/>
+
+                </b-button-toolbar>
+              </b-card>
+
+            </b-col>
+          </b-row>
+        </b-container>
+
+      </div>
     </full-page>
   </div>
 </template>
@@ -191,7 +252,7 @@
           navigation: true,
           sectionsColor: ['#41b883', '#ff5f45', '#0798ec', '#fec401']
         },
-        wasm: { sha256_of_hex_str: () => {} },
+        wasm: { sha256_from_hex_str: () => {} },
         mempool: new Mempool(),
 
         startTime: 0,
@@ -209,14 +270,12 @@
         hashMax: Object,
         target: {yRatio: 0},
         encoding: 'decimal',
+        hashesPerSecond: '0.00',
       }
     },
 
     async mounted() {
-      import("wasm_sha256_from_hex_str")
-      .then((wasm) => {
-        this.wasm = wasm;
-      })
+      import("wasm_sha256_from_hex_str").then((wasm) => {this.wasm = wasm; })
       .catch((err) => alert("Failed to load wasm module" + err));
 
       this.startTime = new Date().getTime();
@@ -271,6 +330,11 @@
         const targetMax = 0x00000000ffff0000000000000000000000000000000000000000000000000000n;
         const target = Number(targetMax) / Number(this.rawBlock.difficulty);
         this.target = this.encode(target);
+        this.target.yRatio = (Number(this.target.bigInt) / Number(this.hashMax.bigInt)).toFixed(24);
+      },
+      setTargetByPercentage(percentage) {
+        const target = Number(this.hashMax.bigInt) * percentage;
+        this.target = this.encode(target);
         this.target.yRatio = Number(this.target.bigInt) / Number(this.hashMax.bigInt);
       },
 
@@ -281,6 +345,7 @@
         this.nonce = nonce;
         this.startTime = this.startTime === 0 ? new Date().getTime() : this.startTime;
         this.tries += 1;
+        this.calcHashesPerSecond();
 
         let hash = this.calcHash(this.rawBlock, nonce);
         hash = this.encode(`0x${hash}`);
@@ -291,6 +356,10 @@
           yRatio: parseInt(this.hash.hexadecimal, 16) / Number(this.hashMax.bigInt),
           hash
         });
+
+        if (this.hash.bigInt < this.target.bigInt) {
+          alert("YOU WIN!");
+        }
       },
       onIncrementNonce() {
         this.nonce += 1;
@@ -307,7 +376,7 @@
             break;
           case 'decimal':
             this.encoding = 'exponential';
-            e.target.innerText = 'Exponent';
+            e.target.innerText = 'Exponential';
             break;
           case 'exponential':
             this.encoding = 'binary';
@@ -320,6 +389,10 @@
             break;
         }
         this.graph.encoding = this.encoding;
+      },
+      onSlider(val) {
+        const value = Number(val);
+        this.setTargetByPercentage(value / 100);
       },
 
       encode(val) {
@@ -334,8 +407,8 @@
         }
       },
       sha256d(hexStr) {
-        let hash = this.wasm.sha256_of_hex_str(hexStr);
-        hash = this.wasm.sha256_of_hex_str(hash);
+        let hash = this.wasm.sha256_from_hex_str(hexStr);
+        hash = this.wasm.sha256_from_hex_str(hash);
         return this.swapEndian(hash);
       },
       intToHex(val) {
@@ -384,7 +457,10 @@
 
       calcHashesPerSecond() {
         const elapsed = new Date().getTime() - this.startTime;
-        return (this.tries / elapsed) * 1000;
+        const hps = (this.tries / elapsed) * 1000;
+        this.hashesPerSecond = String(hps).substr(0, 4)
+
+          setTimeout(this.calcHashesPerSecond, 1000);
       },
       calcGraph() {
         this.graph.calcTicks();
@@ -394,8 +470,7 @@
       drawGraph() {
         this.graph.clear();
 
-        const xLabel = String(this.calcHashesPerSecond()).substr(0, 4);
-        this.graph.drawAxis(`${xLabel} Hashes per Second`);
+        this.graph.drawXAxis();
 
         this.graph.drawGuesses();
         this.graph.drawTicks();
@@ -403,6 +478,7 @@
 
         this.graph.drawAxisLabels();
         this.graph.drawTarget(this.target.yRatio);
+        this.graph.drawYAxis();
 
         window.requestAnimationFrame(this.drawGraph);
       },
@@ -449,6 +525,11 @@
     z-index: -1;
     height: 100%;
     width: 100%;
+  }
+  #overlay {
+    position: absolute;
+    top: 2em;
+    left: 1em;
   }
 </style>
 

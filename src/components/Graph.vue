@@ -9,7 +9,7 @@
       id: String,
       guesses: [],
       target: Object,
-      encoding: String,
+      encoding: [],
     },
 
     mounted() {
@@ -77,7 +77,7 @@
         // X-axis.
         this.ctx.beginPath();
         this.ctx.strokeStyle = xGrd;
-        this.ctx.moveTo(this.xPad, this.zero.y);
+        this.ctx.moveTo(0, this.zero.y);
         this.ctx.lineTo(this.xPad + this.width + this.xPad, this.zero.y);
         this.ctx.stroke();
         this.ctx.closePath();
@@ -91,7 +91,7 @@
         this.ctx.fillStyle = 'green';
         this.ctx.fillText(
           '🠔Target',
-          this.zero.x + 3,
+          this.zero.x - 80,
           this.zero.y - (this.height * yRatio) + 4
         );
       },
@@ -122,14 +122,17 @@
 
       drawGuesses(guesses) {
         for (let i = 0; i < guesses.length; i += 1) {
+          let opacity = 1;
+          if (guesses.length > 5) {
+            opacity = (i / guesses.length) + 0.1;
+          }
           const guess = guesses[i];
-          const opacity = i / guesses.length;
-          this.drawHorizontalLine(guess.xRatio, guess.yRatio, guess.hash[this.encoding], opacity);
+          this.drawHorizontalLine(guess.xRatio, guess.yRatio, guess.hash[this.encoding[0]], opacity);
         }
       },
 
       drawVerticalLine(xRatio) {
-        const x = this.zero.x - (this.width * xRatio);
+        const x = (this.width + this.xPad + this.xPad) - (this.width + this.xPad + this.xPad) * xRatio;
 
         const grd = this.ctx.createLinearGradient(this.zero.x, this.zero.y, this.zero.x, this.yPad);
         grd.addColorStop(1, this.bgColor);
@@ -144,7 +147,7 @@
       },
 
       drawHorizontalLine(xRatio, yRatio, label, opacity = 1) {
-        const arrowLabel = '🠔' + label;
+        const arrowLabel = '' + label;
 
         const x = this.zero.x - (this.width * xRatio);
         const y = this.zero.y - (this.height * yRatio);

@@ -1,5 +1,5 @@
 <template>
-  <b-collapse id="collapse_algorithm" visible>
+  <b-collapse id="collapse_algorithm">
     <b-card no-body>
       <b-card-header v-b-toggle="['collapse_algorithm', 'collapse_controls']">
         <b-icon-chevron-compact-up />
@@ -8,9 +8,11 @@
 
       <b-card-body>
         <p>A. Prepare
-          <b-button v-b-toggle.collapse_block_header size="sm">BLOCK HEADER</b-button>
+          <b-button v-b-toggle.collapse_block_header size="sm">
+            <b-icon-chevron-compact-down /> BLOCK HEADER
+          </b-button>
         </p>
-        <p> 1. Pick a random NONCE (number used only once) between 0 - 4,294,967,295 2^32-1</p>
+        <p> 1. Pick a random NONCE (number used only once) between 0 - 4,294,967,295 </p>
         <p> 2. Calculate HASH: sha256d ( BLOCK HEADER + NONCE ) </p>
 
         3. If HASH is less than TARGET then you win reward + fees

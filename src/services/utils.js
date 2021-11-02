@@ -28,6 +28,9 @@ function serializeBlockHeader(block, nonce) {
     + swapEndian(intToHex(nonce));
 }
 
+function textToUint8Array(text) {
+  return new TextEncoder().encode(text);
+}
 async function sha256_from_text(text) {
   return await sha256_from_Uint8Array(textToUint8Array(text));
 }
@@ -35,9 +38,6 @@ async function sha256d_from_text(data) {
   const pass1 = await sha256_from_text(data);
   const pass2 = await sha256_from_text(pass1);
   return swapEndian(pass2);
-}
-function textToUint8Array(text) {
-  return new TextEncoder().encode(text);
 }
 
 function hexToUint8Array(hex_str) {

@@ -18,7 +18,6 @@ function swapEndian(val) {
 
 function serializeBlockHeader(block, nonce) {
   // In case of Genesis block returning prev hash as null.
-  console.log(block);
   const prevBlockhash = block.previousBlockHash || ''.padStart(64, '0');
 
   return swapEndian(intToHex(block.version))

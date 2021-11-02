@@ -23,7 +23,7 @@
                     <b-dropdown-item-btn v-b-toggle="['collapse_welcome']">Welcome</b-dropdown-item-btn>
                   </b-dropdown>
 
-                  <b-form-input id="nonce_input" @change="tryNonce" :value="this.nonce"
+                  <b-form-input id="nonce_input" @change="tryNonce" v-model="nonce"
                                 type="number" pattern="[0-9]*" min="0" max="4294967295"
                                 style="max-width: 140px; text-align: right;" />
 
@@ -146,13 +146,10 @@ export default {
       this.target.yRatio = Number(this.target.bigInt) / Number(this.hashMax.bigInt);
     },
 
-    async tryNonce(nonce) {
-      this.nonce = Number(nonce);
-
+    async tryNonce() {
       // Calculate hash.
-      const serializedHeader = serializeBlockHeader(this.block, nonce);
+      const serializedHeader = serializeBlockHeader(this.block, this.nonce);
       let hash = await sha256d_from_hex(serializedHeader);
-      console.log(serializedHeader);
       hash = this.encode(`0x${hash}`);
       this.hash = hash;
 
@@ -171,10 +168,12 @@ export default {
     },
 
     onIncrementNonce() {
-      this.tryNonce(this.nonce + 1);
+      this.nonce = this.nonce + 1;
+      this.tryNonce(this.block.nonce);
     },
     onShowNonce() {
-      this.tryNonce(this.block.nonce);
+      this.nonce = this.block.nonce;
+      this.tryNonce();
     },
 
     onTargetRangeChange(val) {
@@ -223,12 +222,12 @@ body{
 }
 .card-body {
   overflow-y: auto;
-  max-height: 100%;
+  max-height: 70vh;
 }
 .card
 {
   margin-top: .5em;
-  margin-bottom: .5em;
+  /*margin-bottom: .5em;*/
 }
 </style>
 

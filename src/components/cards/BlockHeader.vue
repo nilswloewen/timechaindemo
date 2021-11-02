@@ -6,7 +6,6 @@
         <b-icon-chevron-compact-up /> Block Header
       </b-card-header>
 
-      <b-card-text>
         <!-- Height -->
         <b-list-group-item class="list-field border-bottom-0"> Height </b-list-group-item>
         <b-list-group-item class="list-value">
@@ -35,7 +34,6 @@
         <b-list-group-item class="list-field border-bottom-0"> Bits - a shorthand recording of the current TARGET </b-list-group-item>
         <b-list-group-item class="list-value"> {{ this.targetBits }} </b-list-group-item>
 
-      </b-card-text>
     </b-card>
   </b-collapse>
 

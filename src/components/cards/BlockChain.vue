@@ -8,13 +8,21 @@
       <b-card-body>
         A data structure that links sets of data together through hashes.
 
-        <b-button @click="addBlock">Add Block</b-button>
-        <Block v-for="block in this.blockList" :key="block.data"
+        <Block v-for="(block, index) in getBlockList" :key="index"
                :data="block.data"
                :previous-block-hash="block.previousBlockHash"
                :height="block.height"
-               :id="block.id"/>
+               :hash="block.hash"
+               :index="index"
+               v-on:finalizeBlock="finalizeBlock"
+               v-on:updateData="updateData" />
 
+        <br>
+
+        <b-input-group size="sm"  prepend="Data">
+          <b-form-input v-model="newBlockData"/>
+          <b-button @click="addBlock" variant="primary">Add Block</b-button>
+        </b-input-group>
       </b-card-body>
 
     </b-card>
@@ -31,30 +39,59 @@
     },
     data() {
       return {
+        newBlockData: '',
         blockList: [{
           data: 'Alice sent Bob $50',
           previousBlockHash: '0000',
           height: 0,
-          id: 'Hey',
+          hash: '????'
         }],
       }
     },
+    computed: {
+      getBlockList() {
+        return this.blockList;
+      }
+    },
     methods: {
-      addBlock() {
-        const prevBlock = this.blockList[this.blockList.length - 1];
-        const id= this.calcId('00');
+      async addBlock() {
+        await this.finalizeBlock(0);
+        const prevBlock = this.blockList[0];
+        const hash = await this.calcHash(this.newBlockData + prevBlock.previousBlockHash);
 
-        this.blockList.push({
-          data: '',
-          previousBlockHash: prevBlock.id,
+        this.blockList.unshift({
+          data: this.newBlockData,
+          previousBlockHash: prevBlock.hash,
           height: prevBlock.height + 1,
-          id
+          hash
         })
+
+        this.newBlockData = '';
       },
 
-      async calcId(data) {
-        return await sha256d_from_text(data);
+      async calcHash(data) {
+        const hash = await sha256d_from_text(data);
+        return hash.substr(0, 4);
+      },
+
+      async updateData(newData, index) {
+        this.blockList[index].data = newData;
+
+        for (let i = index; i >= 0; i -= 1) {
+          await this.finalizeBlock(i);
+        }
+      },
+
+      async finalizeBlock(index) {
+        const data = this.blockList[index].data + this.blockList[index].previousBlockHash;
+        const newHash = await this.calcHash(data);
+        this.blockList[index].hash = newHash;
+
+        if (index > 0) {
+          this.blockList[index - 1].previousBlockHash = newHash;
+        }
       }
     }
+
   }
 </script>

@@ -13,8 +13,7 @@
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
-    "vue-fullpage.js": "^0.1.7",
-    "wasm_sha256_from_hex_str": "^0.1.2"
+    "vue-fullpage.js": "^0.1.7"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

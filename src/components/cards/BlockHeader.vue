@@ -31,6 +31,10 @@
           <b-list-group-item :key="item.value" class="list-value"> {{ item.value }} </b-list-group-item>
         </template>
 
+        <!-- Id -->
+        <b-list-group-item class="list-field border-bottom-0"> Bits - a shorthand recording of the current TARGET </b-list-group-item>
+        <b-list-group-item class="list-value"> {{ this.targetBits }} </b-list-group-item>
+
       </b-card-text>
     </b-card>
   </b-collapse>
@@ -39,6 +43,7 @@
 
 <script>
   import Mempool from '@/services/Mempool.js';
+  import {intToHex} from '@/services/utils';
 
   export default {
     mounted() {
@@ -57,10 +62,11 @@
           id: "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
           merkle_root: "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b",
           nonce: 2083236893,
-          previousblockhash: ''.padStart(64, '0'),
+          previousBlockHash: ''.padStart(64, '0'),
           timestamp: 1231006505,
           version: 1,
         },
+        targetBits: String,
         blockHeightMax: 706894,
         blockList: Array,
       }
@@ -88,13 +94,13 @@
       setBlockList() {
         const date = new Date(this.block.timestamp * 1000);
         const time = new Intl.DateTimeFormat('en-US', {dateStyle: 'medium', timeStyle: 'long'}).format(date);
+        this.targetBits = intToHex(this.block.bits);
 
         this.blockList = [
-          {field: "Version", value: this.block.version},
-          {field: "Previous Block Hash", value: this.block.previousblockhash},
-          {field: "Merkle Root", value: this.block.merkle_root},
+          {field: "Version - protocol version ", value: intToHex(this.block.version)},
+          {field: "Previous Block Hash - ID of previous block", value: this.block.previousBlockHash},
+          {field: "Merkle Root - a record of transactions included in this block", value: this.block.merkle_root},
           {field: "Time", value: time},
-          {field: "Bits", value: this.block.bits},
         ];
       },
     }

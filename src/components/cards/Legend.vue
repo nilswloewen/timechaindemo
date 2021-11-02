@@ -19,13 +19,13 @@
 
       <!-- Target -->
       <b-list-group-item class="list-field border-bottom-0" style="color: green;">
-        TARGET &nbsp;{{ this.targetOdds }}%
+        TARGET &nbsp;{{ this.targetOdds }}% of Max
       </b-list-group-item>
       <b-list-group-item class="list-value" style="color: green;">{{ this.target[this.encoding[0]] }} </b-list-group-item>
 
       <!-- Hash -->
       <b-list-group-item class="list-field border-bottom-0">
-        HASH &nbsp;&nbsp;{{ this.hashOdds }}%
+        HASH &nbsp;&nbsp;{{ this.hashOdds }}% of Max
       </b-list-group-item>
       <b-list-group-item class="list-value">{{ this.hash[this.encoding[0]] }} </b-list-group-item>
     </b-card>

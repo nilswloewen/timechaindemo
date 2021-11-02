@@ -7,17 +7,21 @@
       <b-row>
         <b-col>
 
-          <Welcome/>
-
-          <b-collapse id="collapse_controls" >
+          <b-collapse id="collapse_controls" visible>
             <b-card no-body>
 
               <b-button-toolbar size="sm" class="w-100">
                 <b-button-group class="w-100">
+
                   <!-- Down Arrow -->
-                  <b-button style="background-color: rgba(0, 0, 0, 0.03); color: black; max-width: 42px;" v-b-toggle="['collapse_algorithm', 'collapse_controls']" class="border-0 ">
-                    <b-icon-chevron-compact-down />
-                  </b-button>
+                  <b-dropdown style="background-color: rgba(0, 0, 0, 0.03); color: black; max-width: 42px;"  class="border-0 ">
+                    <b-dropdown-item-btn v-b-toggle="['collapse_algorithm']"> Algorithm</b-dropdown-item-btn>
+                    <b-dropdown-item-btn v-b-toggle="['collapse_block_header']">Block Header</b-dropdown-item-btn>
+                    <b-dropdown-item-btn v-b-toggle="['collapse_block_chain']">Blockchain</b-dropdown-item-btn>
+                    <b-dropdown-item-btn v-b-toggle="['collapse_hash']">Hash</b-dropdown-item-btn>
+                    <b-dropdown-item-btn v-b-toggle="['collapse_legend']">Legend</b-dropdown-item-btn>
+                    <b-dropdown-item-btn v-b-toggle="['collapse_welcome']">Welcome</b-dropdown-item-btn>
+                  </b-dropdown>
 
                   <b-form-input id="nonce_input" @change="tryNonce" :value="this.nonce"
                                 type="number" pattern="[0-9]*" min="0" max="4294967295"
@@ -41,11 +45,13 @@
           </b-collapse>
 
           <Algorithm />
+          <BlockHeader v-on:updateBlock="updateBlock"/>
+          <BlockChain/>
+          <Hash/>
           <Legend :target="this.target" :encoding="this.encoding" v-on:rotateEncoding="rotateEncoding"
                   :hash="this.hash" :hashMax="this.hashMax"/>
-          <BlockHeader v-on:updateBlock="updateBlock"/>
+          <Welcome/>
 
-          <Hash/>
         </b-col>
       </b-row>
     </b-container>
@@ -53,7 +59,7 @@
     <b-container class="fixed-bottom text-center pb-3">
       <b-row >
         <b-col >
-          {{  this.hashesPerSecond }} Hashes per Second
+          <span id="hps">{{  this.hashesPerSecond }}</span> Hashes per Second
         </b-col>
       </b-row>
     </b-container>
@@ -63,17 +69,35 @@
 
 <script>
 import Algorithm from './components/cards/Algorithm';
+import BlockChain from '@/components/cards/BlockChain';
 import BlockHeader from '@/components/cards/BlockHeader';
 import Graph from './components/Graph';
 import Hash from '@/components/cards/Hash';
+import {serializeBlockHeader, sha256d_from_hex } from '@/services/utils';
 import Legend from './components/cards/Legend';
 import Welcome from '@/components/cards/Welcome';
-import {serializeBlockHeader, swapEndian} from './services/util.js';
+
+
+// Not sure why this didn't work in vue object. It was updating far too often.
+let tries = 0;
+let startTime= new Date().getTime();
+function calcHashesPerSecond() {
+  const elapsed = new Date().getTime() - startTime;
+  const hps = (tries / elapsed) * 1000;
+  const hashesPerSecond = String(hps).substr(0, 4);
+  const hps_span = document.getElementById('hps');
+  if (hps_span) {
+    hps_span.innerText = hashesPerSecond;
+  }
+  setTimeout(calcHashesPerSecond, 1000);
+}
+calcHashesPerSecond();
 
 export default {
   components: {
     Algorithm,
     BlockHeader,
+    BlockChain,
     Graph,
     Hash,
     Legend,
@@ -81,8 +105,6 @@ export default {
   },
   data () {
     return {
-      wasm: { sha256_from_hex_str: () => {} },
-
       hashesPerSecond: '0.00',
       startTime: 0,
       tries: 0,
@@ -100,9 +122,6 @@ export default {
   },
 
   async mounted() {
-    import("wasm_sha256_from_hex_str").then((wasm) => {this.wasm = wasm; })
-        .catch((err) => alert("Failed to load wasm module" + err));
-
     this.startTime = new Date().getTime();
 
     this.setHashMax();
@@ -127,25 +146,19 @@ export default {
       this.target.yRatio = Number(this.target.bigInt) / Number(this.hashMax.bigInt);
     },
 
-    tryNonce(nonce) {
+    async tryNonce(nonce) {
       this.nonce = Number(nonce);
 
       // Calculate hash.
       const serializedHeader = serializeBlockHeader(this.block, nonce);
-      let hash = this.wasm.sha256_from_hex_str(serializedHeader);
-      hash = this.wasm.sha256_from_hex_str(hash);
-      hash = swapEndian(hash);
+      let hash = await sha256d_from_hex(serializedHeader);
+      console.log(serializedHeader);
       hash = this.encode(`0x${hash}`);
       this.hash = hash;
 
       // Add yRatio for Legend.
       const yRatio = parseInt(this.hash.hexadecimal, 16) / Number(this.hashMax.bigInt);
       this.hash.yRatio = yRatio;
-
-      // Performance governor.
-      // if (this.guesses.length > 10) {
-      //   this.guesses.shift();
-      // }
 
       this.guesses.push({ xRatio: 0, yRatio, hash });
 
@@ -154,8 +167,7 @@ export default {
       }
 
       this.startTime = this.startTime === 0 ? new Date().getTime() : this.startTime;
-      this.tries += 1;
-      this.calcHashesPerSecond();
+      tries += 1;
     },
 
     onIncrementNonce() {
@@ -190,12 +202,7 @@ export default {
       }
     },
 
-    calcHashesPerSecond() {
-      const elapsed = new Date().getTime() - this.startTime;
-      const hps = (this.tries / elapsed) * 1000;
-      this.hashesPerSecond = String(hps).substr(0, 4)
-      setTimeout(this.calcHashesPerSecond, 1000);
-    },
+
   }
 }
 </script>
@@ -213,10 +220,13 @@ body{
 .card {
   min-width: 660px;
   max-width: 660px;
-  /*overflow: scroll;*/
 }
-.card,
-.card-body .list-group {
+.card-body {
+  overflow-y: auto;
+  max-height: 100%;
+}
+.card
+{
   margin-top: .5em;
   margin-bottom: .5em;
 }

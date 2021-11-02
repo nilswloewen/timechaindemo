@@ -12,9 +12,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueFullPage from 'vue-fullpage.js'
 Vue.use(VueFullPage);
 
-// Global Variables
-Vue.prototype.$block = Object;
-
 Vue.config.productionTip = false
 
 new Vue({

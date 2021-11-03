@@ -11,42 +11,42 @@
             <b-card no-body>
 
               <b-button-toolbar size="sm" class="w-100">
-                <b-button-group class="w-100">
 
-                  <!-- Down Arrow -->
-                  <b-dropdown style="background-color: rgba(0, 0, 0, 0.03); color: black; max-width: 42px;"  class="border-0 ">
-                    <b-dropdown-item-btn v-b-toggle="['collapse_algorithm']"> Algorithm</b-dropdown-item-btn>
-                    <b-dropdown-item-btn v-b-toggle="['collapse_block_header']">Block Header</b-dropdown-item-btn>
-                    <b-dropdown-item-btn v-b-toggle="['collapse_block_chain']">Blockchain</b-dropdown-item-btn>
-                    <b-dropdown-item-btn v-b-toggle="['collapse_hash']">Hash</b-dropdown-item-btn>
-                    <b-dropdown-item-btn v-b-toggle="['collapse_legend']">Legend</b-dropdown-item-btn>
-                    <b-dropdown-item-btn v-b-toggle="['collapse_welcome']">Welcome</b-dropdown-item-btn>
-                  </b-dropdown>
+                <!-- Down Arrow -->
+                <b-dropdown style="background-color: rgba(0, 0, 0, 0.03); color: black; max-width: 42px;"  class="border-0 ">
+                  <b-dropdown-item-btn v-b-toggle="['collapse_algorithm']"> Algorithm</b-dropdown-item-btn>
+                  <b-dropdown-item-btn v-b-toggle="['collapse_block_header']">Block Header</b-dropdown-item-btn>
+                  <b-dropdown-item-btn v-b-toggle="['collapse_block_chain_overview']">Blockchain</b-dropdown-item-btn>
+                  <b-dropdown-item-btn v-b-toggle="['collapse_hash']">Hash</b-dropdown-item-btn>
+                  <b-dropdown-item-btn v-b-toggle="['collapse_legend']">Legend</b-dropdown-item-btn>
+                  <b-dropdown-item-btn v-b-toggle="['collapse_welcome']">Welcome</b-dropdown-item-btn>
+                </b-dropdown>
 
+                <b-input-group prepend="Nonce">
                   <b-form-input id="nonce_input" @change="tryNonce" v-model="nonce"
                                 type="number" pattern="[0-9]*" min="0" max="4294967295"
                                 style="max-width: 140px; text-align: right;" />
 
                   <b-button @click="onIncrementNonce" variant="primary">
-                    NONCE + 1
+                    + 1
                   </b-button>
 
                   <b-button @click="onShowNonce" variant="info">
                     Solve
                   </b-button>
 
-                  <b-button v-b-toggle.collapse_legend> Legend </b-button>
+                </b-input-group>
+                <b-button v-b-toggle.collapse_legend> Legend </b-button>
 
-                  <!--                  <b-form-input id="target_range" @change="onTargetRangeChange" title="Target" type="range" min="0" max="100" step="0.1"/>-->
+                <!--                  <b-form-input id="target_range" @change="onTargetRangeChange" title="Target" type="range" min="0" max="100" step="0.1"/>-->
 
-                </b-button-group>
               </b-button-toolbar>
             </b-card>
           </b-collapse>
 
           <Algorithm />
           <BlockHeader v-on:updateBlock="updateBlock"/>
-          <BlockChain/>
+          <BlockchainOverview/>
           <Hash/>
           <Legend :target="this.target" :encoding="this.encoding" v-on:rotateEncoding="rotateEncoding"
                   :hash="this.hash" :hashMax="this.hashMax"/>
@@ -69,7 +69,7 @@
 
 <script>
   import Algorithm from './components/cards/Algorithm';
-  import BlockChain from '@/components/cards/BlockChain';
+  import BlockchainOverview from "@/components/cards/BlockchainOverview";
   import BlockHeader from '@/components/cards/BlockHeader';
   import Graph from './components/Graph';
   import Hash from '@/components/cards/Hash';
@@ -96,7 +96,7 @@
     components: {
       Algorithm,
       BlockHeader,
-      BlockChain,
+      BlockchainOverview,
       Graph,
       Hash,
       Legend,
@@ -213,7 +213,7 @@
   }
   .card-body {
     overflow-y: auto;
-    max-height: 70vh;
+    max-height: 90vh;
   }
   .card
   {

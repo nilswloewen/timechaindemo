@@ -1,34 +1,41 @@
 <template>
-  <b-collapse id="collapse_block_chain" visible>
-    <b-card no-body>
-      <b-card-header v-b-toggle.collapse_block_chain @click="resetList">
-        <b-icon-chevron-compact-up /> Blockchain
-      </b-card-header>
+  <b-collapse id="collapse_blockchain" hidden>
+    <h4>
+      Example 1: Non-Proof-of-Work Blockchain
+    </h4>
 
-      <b-card-body>
-        A data structure that links sets of data together through hashes.
+    <p>
+      Here is a simplified example of a blockchain. The hash of the block is calculated from the data and the previous block hash. Try changing the data and watch how the block hash changes.
+    </p>
 
-        <div id="blockchain" class="text-center">
-          <Block v-for="(block, index) in getBlockList" :key="index"
-                 :data="block.data"
-                 :previous-block-hash="block.previousBlockHash"
-                 :height="block.height"
-                 :hash="block.hash"
-                 :index="index"
-                 :color="block.color"
-                 :prev-color="block.prevColor"
-                 v-on:finalizeBlock="finalizeBlock"
-                 v-on:updateData="updateData" />
-        </div>
-        <br>
+    <b-card id="blockchain" class="text-center">
+      <Block v-for="(block, index) in getBlockList" :key="index"
+             :color="block.color"
+             :data="block.data"
+             :hash="block.hash"
+             :height="block.height"
+             :index="index"
+             :prev-color="block.prevColor"
+             :previous-block-hash="block.previousBlockHash"
+             v-on:finalizeBlock="finalizeBlock"
+             v-on:updateData="updateData" />
+    </b-card>
+    <br>
 
-        <b-input-group size="sm"  prepend="Data">
-          <b-form-input v-model="newBlockData"/>
-          <b-button @click="addBlock" variant="primary">Add Block</b-button>
-        </b-input-group>
+    <!-- Add Block Button -->
+    <b-input-group size="sm"  prepend="Data">
+      <b-form-input v-model="newBlockData"/>
+      <b-button @click="addBlock" variant="primary">Add Block</b-button>
+    </b-input-group>
 
-      </b-card-body>
+    <br>
+    <p>
+      In this example any block hash is considered valid. Because the cost of calculating a single hash is negligible, and an attacker could change data from the past and recalculate the following blocks instantly.
+    </p>
 
+    <b-card>
+      <h5>Height</h5>
+      Because each new block embeds the hash of the previous block, the new block is thought of as being added to the tip of the chain. This is known as the block height.
     </b-card>
   </b-collapse>
 </template>
@@ -94,15 +101,23 @@
 
       async calcHash(data) {
         const hash = await sha256d_from_text(data);
-        return hash.substr(0, 4);
+        return hash.substr(0, 2);
       },
 
       async updateData(newData, index) {
         this.blockList[index].data = newData;
 
-        for (let i = index; i >= 0; i -= 1) {
-          await this.finalizeBlock(i);
+        await this.delayUpdate(index);
+      },
+
+      async delayUpdate(index) {
+        await this.finalizeBlock(index);
+        if (index === 0) {
+          return;
         }
+        setTimeout(async() => {
+          await this.delayUpdate(index - 1);
+        }, 500)
       },
 
       async finalizeBlock(index) {
@@ -116,8 +131,8 @@
       },
       resetList() {
         this.blockList = [{
-          data: 'Alice sent Bob $50',
-          previousBlockHash: '0000 (Genesis Block)',
+          data: 'Alice sent Bob 50₿',
+          previousBlockHash: '00 (Genesis Block)',
           height: 0,
           hash: '????',
           color: '#61e294'

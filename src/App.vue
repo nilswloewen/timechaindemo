@@ -7,42 +7,36 @@
       <b-row>
         <b-col>
 
-          <b-collapse id="collapse_controls" visible>
-            <b-card no-body>
+            <b-button-toolbar size="sm" class="justify-content-center">
 
-              <b-button-toolbar size="sm" class="w-100">
+              <!-- Down Arrow -->
+              <b-dd style="background-color: rgba(0, 0, 0, 0.03); color: black; max-width: 42px;"  class="border-0 float-start">
+                <b-dd-item-btn v-b-toggle="['collapse_algorithm']">Algorithm</b-dd-item-btn>
+                <b-dd-item-btn v-b-toggle="['collapse_block_header']">Block Header</b-dd-item-btn>
+                <b-dd-item-btn v-b-toggle="['collapse_block_chain_overview']">Blockchain</b-dd-item-btn>
+                <b-dd-item-btn v-b-toggle="['collapse_controls']">Controls</b-dd-item-btn>
+                <b-dd-item-btn v-b-toggle="['collapse_hash']">Hash</b-dd-item-btn>
+                <b-dd-item-btn v-b-toggle="['collapse_legend']">Legend</b-dd-item-btn>
+                <b-dd-item-btn v-b-toggle="['collapse_welcome']">Welcome</b-dd-item-btn>
+              </b-dd>
 
-                <!-- Down Arrow -->
-                <b-dropdown style="background-color: rgba(0, 0, 0, 0.03); color: black; max-width: 42px;"  class="border-0 ">
-                  <b-dropdown-item-btn v-b-toggle="['collapse_algorithm']"> Algorithm</b-dropdown-item-btn>
-                  <b-dropdown-item-btn v-b-toggle="['collapse_block_header']">Block Header</b-dropdown-item-btn>
-                  <b-dropdown-item-btn v-b-toggle="['collapse_block_chain_overview']">Blockchain</b-dropdown-item-btn>
-                  <b-dropdown-item-btn v-b-toggle="['collapse_hash']">Hash</b-dropdown-item-btn>
-                  <b-dropdown-item-btn v-b-toggle="['collapse_legend']">Legend</b-dropdown-item-btn>
-                  <b-dropdown-item-btn v-b-toggle="['collapse_welcome']">Welcome</b-dropdown-item-btn>
-                </b-dropdown>
-
+              <b-collapse id="collapse_controls">
                 <b-input-group prepend="Nonce">
-                  <b-form-input id="nonce_input" @change="tryNonce" v-model="nonce"
+                  <b-form-input @change="tryNonce" v-model.number="nonce"
                                 type="number" pattern="[0-9]*" min="0" max="4294967295"
                                 style="max-width: 140px; text-align: right;" />
 
-                  <b-button @click="onIncrementNonce" variant="primary">
+                  <b-button @click="onIncrementNonce" variant="secondary">
                     + 1
                   </b-button>
 
-                  <b-button @click="onShowNonce" variant="info">
+                  <b-button @click="onShowNonce" variant="warning">
                     Solve
                   </b-button>
-
                 </b-input-group>
-                <b-button v-b-toggle.collapse_legend> Legend </b-button>
+              </b-collapse>
 
-                <!--                  <b-form-input id="target_range" @change="onTargetRangeChange" title="Target" type="range" min="0" max="100" step="0.1"/>-->
-
-              </b-button-toolbar>
-            </b-card>
-          </b-collapse>
+            </b-button-toolbar>
 
           <Algorithm />
           <BlockHeader v-on:updateBlock="updateBlock"/>
@@ -79,14 +73,12 @@
 
   // Not sure why this didn't work in vue object. It was updating far too often.
   let tries = 0;
-  let startTime= new Date().getTime();
+  let startTime = new Date().getTime();
   function calcHashesPerSecond() {
-    const elapsed = new Date().getTime() - startTime;
-    const hps = (tries / elapsed) * 1000;
-    const hashesPerSecond = String(hps).substr(0, 4);
     const hps_span = document.getElementById('hps');
     if (hps_span) {
-      hps_span.innerText = hashesPerSecond;
+      const elapsed = (new Date().getTime() - startTime) * 1000;
+      hps_span.innerText = String(tries / elapsed).substr(0, 4);
     }
     setTimeout(calcHashesPerSecond, 1000);
   }
@@ -154,6 +146,7 @@
 
         if (this.hash.bigInt < this.target.bigInt) {
           alert("YOU WIN!");
+
         }
 
         this.startTime = this.startTime === 0 ? new Date().getTime() : this.startTime;
@@ -167,15 +160,6 @@
       onShowNonce() {
         this.nonce = this.block.nonce;
         this.tryNonce();
-      },
-
-      onTargetRangeChange(val) {
-        const value = Number(val);
-        this.setTargetByPercentage(value / 100);
-      },
-
-      rotateEncoding() {
-        this.encoding.push(this.encoding.shift());
       },
       updateBlock(block) {
         this.block = block;
@@ -192,6 +176,9 @@
           exponential: Number(val).toExponential(),
           hexadecimal: bigInt.toString(16).padStart(64, '0'),
         }
+      },
+      rotateEncoding() {
+        this.encoding.push(this.encoding.shift());
       },
     }
   }

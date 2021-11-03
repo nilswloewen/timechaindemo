@@ -2,8 +2,11 @@
   <div>
     <b-card no-body class="block">
 
-      <b-card-header :style="getColor">
-        Block Hash: <b>{{ this.hash }}</b> | Height: <b>{{ this.height }}</b>
+      <b-card-header>
+        <b-button-group style="line-height: 2em;">
+          Block Hash: <b-form-input  id="block_hash" :style="getColor" class="p-1 border-0 fw-bold" :value="hash" :disabled="true" :state="isHashValid"/>
+          | Height: <b>{{ this.height }}</b>
+        </b-button-group>
       </b-card-header>
 
       <!-- Data -->
@@ -16,10 +19,13 @@
       <template v-if="typeof this.nonce != 'undefined'">
         <b-list-group-item class="list-field border-bottom-0"> Nonce </b-list-group-item>
         <b-list-group-item class="list-value">
-          <b-input-group size="sm">
-            <b-form-input id="nonce" @change="onNonceChange" :value="this.nonce" :state="isNonceValid" class="text-center" type="number"/>
-            <b-button @click="incrementNonce" >+ 1</b-button>
-            <b-button @click="solveNonce" variant="warning" :disabled="this.isNonceValid">Solve</b-button>
+          <b-input-group class="justify-content-center p-1">
+            <b-button-group>
+              <b-form-input id="nonce" @change="onNonceChange" :value="nonce" :state="isHashValid" class="text-center" type="number"/>
+              <b-button @click="incrementNonce">+ 1</b-button>
+              <b-button @click="solveNonce" variant="warning">Solve</b-button>
+            </b-button-group>
+            <div class="p-2" v-if="typeof this.tries !== 'undefined'">Tries: {{this.tries}}</div>
           </b-input-group>
         </b-list-group-item>
       </template>
@@ -34,7 +40,7 @@
 
     <b-iconstack font-scale="3" v-if="this.height > 0">
       <b-icon-link stacked rotate="90" :style="getLinkColor" />
-      <!--      <b-icon stacked icon="slash" variant="danger" v-if="this.link"></b-icon>-->
+      <b-icon stacked icon="slash" variant="danger" v-if="!this.isHashValid"></b-icon>
     </b-iconstack>
   </div>
 </template>
@@ -47,13 +53,18 @@
       hash: String,
       height: Number,
       index: Number,
+      isHashValid: Boolean,
       nonce: Number,
-      isNonceValid: Boolean,
       prevColor: String,
       previousBlockHash: String,
+      tries: Number,
     },
 
     computed: {
+      getStyle() {
+        const color = this.isHashValid ? 'black' : 'red';
+        return `color: ${color};`;
+      },
       getColor() {
         return `background-color: ${this.color};`;
       },
@@ -89,6 +100,9 @@
   .block {
     margin-bottom: 0;
     margin-right: 1em;
+  }
+  #block_hash {
+    max-width: 60px;
   }
   #nonce {
     max-width: 120px;

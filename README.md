@@ -24,6 +24,23 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
-
 # TODO:
- - [ ] Create Icon
+Welcome - Educational Tool
+
+Terms you need to know:
+ - Hash
+ - Hexadecimal/Binary Encoding
+ - Blockchain
+   - Non-pow
+   - Proof of Work
+     - Nonce
+     - Target
+     - Difficulty
+     - Probability
+     - Time
+     - Timechain
+
+How hard is it, really?
+Historical Blocks
+
+Difficulty chart

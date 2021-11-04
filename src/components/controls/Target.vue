@@ -41,13 +41,13 @@
     },
     mounted() {
       this.target = this.initialTarget;
-      // this.$emit('updateTarget', this.target);
+      this.$emit('updateTarget', this.target);
       this.calcStats();
     },
     watch: {
       target() {
         this.calcStats();
-        // this.$emit('updateTarget', this.target);
+        this.$emit('updateTarget', this.target);
       }
     },
     methods: {

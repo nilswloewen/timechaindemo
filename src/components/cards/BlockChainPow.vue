@@ -8,7 +8,7 @@
       Here we add one new field to the block called a <b>Nonce</b>, which is shorthand for 'a number used only once'. Also, the block hash is now required to meet a certain criteria: we will interpret the hash as a number and only consider it valid if it is less than the <b>target</b>. This is known as the <b>difficulty</b>.
     </p>
 
-    <Target :initial-target="31" :target-max="this.targetMax" v-on:updateTarget="updateTarget"/>
+    <Target :initial-target="31" :max="this.targetMax" v-on:updateTarget="updateTarget"/>
 
     <b-card id="blockchainPow" class="text-center">
       <Block v-for="(block, index) in this.blockList" :key="index"
@@ -77,6 +77,7 @@
       updateTarget(newTarget) {
         this.target = newTarget;
 
+        console.log('updated');
         // Check if all blocks are still under the target.
         for (let i = 0; i < this.blockList.length; i += 1) {
           this.blockList[i].isHashValid = parseInt(this.blockList[i].hash, 16) < this.target;
@@ -162,9 +163,6 @@
 
         const newHash = await this.calcHash(header);
         this.blockList[index].hash = newHash;
-
-        console.log(parseInt(newHash, 16));
-        console.log(this.target);
         this.blockList[index].isHashValid = parseInt(newHash, 16) < this.target;
 
         if (index > 0) {

@@ -13,7 +13,7 @@ class Mempool {
     block.previousBlockHash = block.previousblockhash || ''.padStart(64, '0');
     delete block.previousblockhash;
 
-    return block
+    return block;
   }
 
   async getLatestBlockHash() {

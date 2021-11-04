@@ -9,8 +9,10 @@
         <b-collapse id="collapse_satoshi_quote" >
           <b-card>
             <q>
-              We propose a solution to the double-spending problem using a peer-to-peer network. The network timestamps transactions by hashing them into an ongoing chain of hash-based proof-of-work, forming a record that cannot be changed without redoing
-              the proof-of-work.
+              We propose a solution to the double-spending problem using a
+              peer-to-peer network. The network timestamps transactions by hashing
+              them into an ongoing chain of hash-based proof-of-work, forming a
+              record that cannot be changed without redoing the proof-of-work.
             </q> - <a href="https://bitcoin.org/bitcoin.pdf">Bitcoin Whitepaper</a>
           </b-card>
           <br/>
@@ -26,13 +28,13 @@
 </template>
 
 <script>
-  import BlockChain from "@/components/cards/BlockChain";
-  import BlockChainPow from "@/components/cards/BlockChainPow";
+import BlockChain from '@/components/cards/BlockChain.vue';
+import BlockChainPow from '@/components/cards/BlockChainPow.vue';
 
-  export default {
-    components: {
-      BlockChain,
-      BlockChainPow
-    }
-  }
+export default {
+  components: {
+    BlockChain,
+    BlockChainPow,
+  },
+};
 </script>

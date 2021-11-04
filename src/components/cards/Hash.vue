@@ -9,24 +9,39 @@
       <b-card-body>
         <b-card>
           <h4><a href="https://www.etymonline.com/word/hash">hash (v.)</a></h4>
-          1650s, "to hack, chop into small pieces," from French hacher "chop up" (14c.), from Old French hache "ax" (see hatchet).
+          1650s, "to hack, chop into small pieces," from French hacher "chop up"
+          (14c.), from Old French hache "ax" (see hatchet).
         </b-card>
 
         <p>
-          In computer science, a hash is a function that yields a short, unique output for every unique input of arbitrary length. In the process the input data is scrambled and mixed around, 'hashed' if you will, to derive the output.
+          In computer science, a hash is a function that yields a short, unique
+          output for every unique input of arbitrary length. In the process the
+          input data is scrambled and mixed around, 'hashed' if you will, to
+          derive the output.
         </p>
 
         <p>
-          Bitcoin mining uses a particular hash function called SHA-256, which means the <a href="https://en.wikipedia.org/wiki/Secure_Hash_Algorithms">"Secure Hash Algorithm"</a> with an output length of 256 bits. The output is usually encoded in hexadecimal notation which makes a string of 64 characters. <a href="https://youtu.be/y3dqhixzGVo">SHA-256 by hand</a>
+          Bitcoin mining uses a particular hash function called SHA-256, which
+          means the <a href="https://en.wikipedia.org/wiki/Secure_Hash_Algorithms">
+          "Secure Hash Algorithm"</a> with an output length of 256 bits. The
+          output is usually encoded in hexadecimal notation which makes a string
+          of 64 characters. <a href="https://youtu.be/y3dqhixzGVo">SHA-256 by hand</a>
         </p>
 
         <p>
-          Part of why Bitcoin is known as a 'cryptocurrency' is because hash functions are used in cryptography. A hash can be used to validate that information has not been altered in transit even though it may not be encrypted. In the case of the Bitcoin blockchain, the hash of each block header (the block id) is used to verify that every node has the exact same copy of that block and all previous blocks.
+          Part of why Bitcoin is known as a 'cryptocurrency' is because hash
+          functions are used in cryptography. A hash can be used to validate that
+          information has not been altered in transit even though it may not be
+          encrypted. In the case of the Bitcoin blockchain, the hash of each
+          block header (the block id) is used to verify that every node has the
+          exact same copy of that block and all previous blocks.
         </p>
 
         In mining the hash is used in two ways:
         <ol>
-          <li>To uniquely identify each block - the successful hash of the block header becomes the block ID. This is embedded in the next block header as the previous block hash.</li>
+          <li>To uniquely identify each block - the successful hash of the block
+            header becomes the block ID. This is embedded in the next block header
+            as the previous block hash.</li>
           <li>As a random number generator - hash is not actually random, </li>
         </ol>
 
@@ -48,7 +63,6 @@
         <p>
           Difficulty
         </p>
-
 
       </b-card-body>
     </b-card>

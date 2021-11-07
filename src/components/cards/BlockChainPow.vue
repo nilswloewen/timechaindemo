@@ -36,11 +36,11 @@
 
     <!-- Add Block Button -->
     <b-input-group prepend="Data">
-      <b-form-input v-model="newBlockData"/>
-      <b-button @click="addBlock" variant="primary" :disabled="disableAddBlock">Add Block</b-button>
+      <b-form-input v-model="newBlockData" :disabled="disableAddBlockBtn"/>
+      <b-button @click="addBlock" variant="primary" :disabled="disableAddBlockBtn">
+        Add Block
+      </b-button>
     </b-input-group>
-
-    <br>
 
   </b-collapse>
 </template>
@@ -57,12 +57,6 @@ export default {
   },
   data() {
     return {
-      newBlockData: '',
-      target: Number,
-      initialTarget: 32,
-      targetMax: 256,
-      disableAddBlock: true,
-      encoding: ['hexadecimal', 'decimal', 'binary'],
       blockList: [],
       colors: [
         '#61e294',
@@ -71,6 +65,12 @@ export default {
         '#bd93d8',
         '#b47aea',
       ],
+      disableAddBlockBtn: true,
+      encoding: ['hexadecimal', 'decimal', 'binary'],
+      initialTarget: 32,
+      newBlockData: '',
+      target: Number,
+      targetMax: 256,
     };
   },
   mounted() {
@@ -98,6 +98,7 @@ export default {
         // eslint-disable-next-line no-await-in-loop
         await this.finalizeBlock(index);
       }
+      await this.delayedUpdate(index);
     },
 
     rotateEncoding() {
@@ -113,7 +114,6 @@ export default {
     },
 
     async addBlock() {
-      await this.finalizeBlock(0);
       const prevBlock = this.blockList[0];
       const hash = await this.calcHash(`${this.newBlockData + prevBlock.previousBlockHash}0`);
 
@@ -121,18 +121,18 @@ export default {
       const prevColorMod = (this.blockList.length - 1) % this.colors.length;
 
       this.blockList.unshift({
-        data: this.newBlockData,
-        previousBlockHash: prevBlock.hash,
-        height: prevBlock.height + 1,
-        hash,
-        nonce: 0,
-        isHashValid: false,
         color: this.colors[colorMod],
+        data: this.newBlockData,
+        hash,
+        height: prevBlock.height + 1,
+        isHashValid: false,
+        nonce: 0,
         prevColor: this.colors[prevColorMod],
+        previousBlockHash: prevBlock.hash,
       });
 
+      this.disableAddBlockBtn = true;
       this.newBlockData = '';
-      this.disableAddBlock = true;
     },
 
     async calcHash(data) {
@@ -173,34 +173,35 @@ export default {
         this.blockList[index - 1].previousBlockHash = newHash;
       }
 
-      this.disableAddBlock = false;
+      this.disableAddBlockBtn = false;
       this.blockList.forEach((block) => {
         if (!block.isHashValid) {
-          this.disableAddBlock = true;
+          this.disableAddBlockBtn = true;
         }
       });
     },
 
     resetList() {
       this.blockList = [{
-        data: 'Alice sent Bob 5₿',
-        previousBlockHash: '0000 (Genesis Block)',
-        height: 0,
-        hash: '7c',
-        nonce: 0,
-        isHashValid: false,
         color: '#61e294',
+        data: 'Alice sent Bob 5₿',
+        hash: '7c',
+        height: 0,
+        isHashValid: false,
+        nonce: 0,
+        previousBlockHash: '0000 (Genesis Block)',
       }];
     },
 
   },
-
 };
 </script>
+
 <style>
   #blockchainPow {
     overflow-y: auto;
     max-height: 40vh;
+    background-color: ghostwhite;
   }
   #target_table th {
     text-align: center;

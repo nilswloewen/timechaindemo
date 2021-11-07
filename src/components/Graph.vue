@@ -132,7 +132,8 @@ export default {
     },
 
     drawVerticalLine(xRatio) {
-      const x = (this.width + this.xPad + this.xPad - this.width + this.xPad + this.xPad) * xRatio;
+      const x = (this.width + this.xPad + this.xPad)
+        - (this.width + this.xPad + this.xPad) * xRatio;
 
       const grd = this.ctx.createLinearGradient(this.zero.x, this.zero.y, this.zero.x, this.yPad);
       grd.addColorStop(1, this.bgColor);

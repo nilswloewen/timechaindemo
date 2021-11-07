@@ -25,8 +25,8 @@
 
               <b-collapse id="collapse_controls">
                 <b-input-group prepend="Nonce">
-                  <b-form-input @change="tryNonce" v-model.number="nonce"
-                                type="number" pattern="[0-9]*" min="0" max="4294967295"
+                  <b-form-input @change="tryNonce" v-model.number="nonce" type="number"
+                                pattern="[0-9]*" min="0" max="4294967295"
                                 style="max-width: 140px; text-align: right;" />
 
                   <b-button @click="onIncrementNonce" variant="secondary">
@@ -202,7 +202,7 @@ export default {
   }
 
   .card {
-    min-width: 660px;
+    /*min-width: 660px;*/
     max-width: 660px;
   }
   .card-body {
@@ -213,5 +213,8 @@ export default {
   {
     margin-top: .5em;
     /*margin-bottom: .5em;*/
+  }
+  .list-field {
+    border-bottom: none;
   }
 </style>

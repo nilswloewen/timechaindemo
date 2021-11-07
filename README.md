@@ -23,24 +23,32 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-
 # TODO:
 Welcome - Educational Tool
 
 Terms you need to know:
- - Hash
- - Hexadecimal/Binary Encoding
- - Blockchain
-   - Non-pow
-   - Proof of Work
-     - Nonce
-     - Target
-     - Difficulty
-     - Probability
-     - Time
-     - Timechain
+  - Hexadecimal/Binary Encoding
+  - Hash
+  - Blockchain
+    - Non-pow
+    - Proof of Work
+      - Nonce
+      - Target
+      - Difficulty
+      - Probability
+      - Hash Rate
+      - Time
+      - Timechain
 
 How hard is it, really?
 Historical Blocks
 
 Difficulty chart
+
+
+## Definitions: 
+
+Difficulty 
+ - The average number of tries it takes to find a valid block within a given time frame. 
+
+Throughput / Transactions per Second

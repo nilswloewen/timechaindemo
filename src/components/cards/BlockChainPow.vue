@@ -1,22 +1,21 @@
 <template>
   <div>
-    <h4>
-      Example 2: Proof-of-Work Blockchain
-    </h4>
+<!--    <h4>-->
+<!--      Example 2: Proof-of-Work Blockchain-->
+<!--    </h4>-->
 
-    <p>
-      Here we add one new field to the block called a <b>Nonce</b>, which is
-      shorthand for 'a number used only once'. Also, the block hash is now
-      required to meet a certain criteria: we will interpret the hash as a
-      number and only consider it valid if it is less than the <b>target</b>.
-      This is known as the <b>difficulty</b>.
-    </p>
+<!--    <p>-->
+<!--      Here we add one new field to the block called a <b>Nonce</b>, which is-->
+<!--      shorthand for 'a number used only once'. Also, the block hash is now-->
+<!--      required to meet a certain criteria: we will interpret the hash as a-->
+<!--      number and only consider it valid if it is less than the <b>target</b>.-->
+<!--      This is known as the <b>difficulty</b>.-->
+<!--    </p>-->
 
     <Target :initial-target="initialTarget" :max="this.targetMax"
             v-on:updateTarget="updateTarget"/>
-    <Difficulty :hps-of-this-device="hpsOfThisDevice" v-on:calibrate="calibrateHps"/>
-
-    <br>
+    <Difficulty :hps-of-this-device="hpsOfThisDevice" :avg-hashes="avgHashes()"
+                v-on:calibrate="calibrateHps"/>
 
     <!-- Add block Button -->
     <b-input-group prepend="Data">
@@ -53,16 +52,16 @@ export default {
   },
   data() {
     return {
-      hpsOfThisDevice: 0,
       blocks: [],
       colors: [
         '#61e294',
         '#7bcdba',
         '#9799ca',
-        '#bd93d8',
         '#b47aea',
+        '#bd93d8',
       ],
       disableAddBlockBtn: true,
+      hpsOfThisDevice: 100,
       initialTarget: 32,
       newBlockData: '',
       target: 32,
@@ -75,21 +74,21 @@ export default {
   },
 
   methods: {
+    avgHashes() {
+      return 1 / (this.target / this.targetMax);
+    },
     async calibrateHps() {
       const start = new Date().getTime();
-      let current = 0;
       let elapsed = 0;
 
       while (elapsed < 3000) {
-        current = new Date().getTime();
-        elapsed = current - start;
-
         this.blocks[0].header.nonce += 1;
         // eslint-disable-next-line no-await-in-loop
         await this.finalizeBlock(0);
+        elapsed = new Date().getTime() - start;
       }
 
-      this.hpsOfThisDevice = (this.blocks[0].header.nonce / elapsed) * 1000;
+      this.hpsOfThisDevice = this.blocks[0].header.nonce / (elapsed / 1000);
 
       // Reset block.
       this.blocks[0].header.nonce = 0;
@@ -101,29 +100,34 @@ export default {
 
       // Check if all blocks are still under the target.
       for (let i = 0; i < this.blocks.length; i += 1) {
-        this.blocks[i].isHashValid = parseInt(this.blocks[i].hash, 16) < this.target;
+        const hash = parseInt(this.blocks[i].hash.toString().substr(0, 2), 16);
+        this.blocks[i].isHashValid = hash < this.target;
+        this.blocks[i].stats = [];
       }
     },
 
     async solveNonce(index) {
-      let tries = 0;
+      const startTime = new Date().getTime();
+      const block = this.blocks[index];
+      const startingNonce = block.header.nonce;
 
       // Allow Solve btn to be clicked even when hash is valid.
-      if (this.blocks[index].isHashValid) {
-        tries += 1;
-        this.blocks[index].header.nonce += 1;
+      if (block.isHashValid) {
+        block.header.nonce += 1;
         await this.finalizeBlock(index);
       }
 
-      while (!this.blocks[index].isHashValid) {
-        tries += 1;
-        this.blocks[index].header.nonce += 1;
+      while (!block.isHashValid) {
+        block.header.nonce += 1;
         // eslint-disable-next-line no-await-in-loop
         await this.finalizeBlock(index);
       }
 
-      this.blocks[index].tries.push(tries);
       await this.delayedUpdate(index);
+      block.stats.push({
+        tries: block.header.nonce - startingNonce,
+        elapsed: new Date().getTime() - startTime,
+      });
     },
 
     getColor() {
@@ -166,14 +170,18 @@ export default {
     },
 
     async finalizeBlock(index) {
-      await this.blocks[index].calcHash();
-      const hash = parseInt(this.blocks[index].hash.substr(0, 2), 16);
-      this.blocks[index].isHashValid = hash < this.target;
+      const block = this.blocks[index];
+      await block.calcHash();
+
+      const hash = parseInt(block.hash.substr(0, 2), 16);
+      block.isHashValid = hash < this.target;
 
       if (index > 0) {
-        this.blocks[index - 1].header.prevHash = this.blocks[index].hash;
+        this.blocks[index - 1].header.prevHash = block.hash;
       }
-
+      this.resetAddBlockBtn();
+    },
+    resetAddBlockBtn() {
       this.disableAddBlockBtn = false;
       this.blocks.forEach((block) => {
         if (!block.isHashValid) {
@@ -181,7 +189,6 @@ export default {
         }
       });
     },
-
     async resetBlocks() {
       const block = new Block('', BlockHeader.genesis, 0, this.colors[0], 'inherit');
       await block.calcHash();

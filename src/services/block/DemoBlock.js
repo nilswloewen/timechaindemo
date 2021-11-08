@@ -7,7 +7,7 @@ class DemoBlock extends Block {
     this.color = color;
     this.prevColor = prevColor;
     this.isHashValid = false;
-    this.tries = [];
+    this.stats = [];
   }
 
   async calcHash() {

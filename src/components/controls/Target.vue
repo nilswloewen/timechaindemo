@@ -62,11 +62,10 @@ export default {
 
   methods: {
     calcStats() {
-      const possible = this.target;
-      this.probability = (((possible) / this.max) * 100).toFixed(2).padStart(5, '0');
+      this.probability = (((this.target) / this.max) * 100).toFixed(2).padStart(5, '0');
 
-      const gcd = this.gcd(possible, this.max);
-      this.numerator = possible / gcd;
+      const gcd = this.gcd(this.target, this.max);
+      this.numerator = this.target / gcd;
       this.denominator = this.max / gcd;
       this.estimatedTries = ((1 / this.probability) * 100).toFixed(0);
     },

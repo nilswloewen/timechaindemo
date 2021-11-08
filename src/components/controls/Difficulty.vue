@@ -8,10 +8,9 @@
         This device can calculate <b>~{{ hpsOfThisDevice.toFixed(0) }}</b> Hashes per Second
         <b-button @click="$emit('calibrate')">Calibrate</b-button>
       </div>
-      <div>Average number of tries: {{avgNumTries}}</div>
+      <div>Average number of hashes: {{ avgHashes }}</div>
 
-      <div>Average number of seconds to find valid block: </div>
-      <b-form-input type="number" v-model="avgTime"/>
+      <div>Average time to find valid block: {{avgTime}} Seconds</div>
     </b-card-body>
   </b-card>
 </template>
@@ -19,22 +18,27 @@
 <script>
 export default {
   props: {
+    avgHashes: Number,
     hpsOfThisDevice: Number,
   },
   data() {
     return {
-      avgNumTries: 0,
-      avgTime: 3,
+      avgTime: 0,
     };
   },
+  mounted() {
+    this.calcAvgTime();
+  },
   watch: {
-    avgTime() {
-      this.avgTime = 0;
-    },
     hpsOfThisDevice() {
-      this.avgTime = 3;
+      this.calcAvgTime();
     },
   },
-
+  methods: {
+    calcAvgTime() {
+      const avgSeconds = (1 / this.hpsOfThisDevice) * this.avgHashes;
+      this.avgTime = avgSeconds.toFixed(2);
+    },
+  },
 };
 </script>

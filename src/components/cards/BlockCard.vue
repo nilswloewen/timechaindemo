@@ -34,9 +34,6 @@
             <b-button @click="incrementNonce" :disabled="block.isHashValid">+ 1</b-button>
             <b-button @click="solveNonce" variant="warning">Solve</b-button>
           </b-button-group>
-          <div class="p-2" v-if="typeof block.tries !== 'undefined'">
-            Tries: {{getTries()}}, Avg: {{avgTries()}}
-          </div>
         </b-input-group>
       </b-list-group-item>
 
@@ -82,17 +79,6 @@ export default {
   },
 
   methods: {
-    getTries() {
-      return this.block.tries[this.block.tries.length - 1];
-    },
-    avgTries() {
-      if (this.block.tries.length > 0) {
-        const { length } = this.block.tries;
-        const sum = this.block.tries.reduce((a, b) => a + b, 0);
-        return (sum / length).toFixed(1);
-      }
-      return '?';
-    },
     solveNonce() {
       this.$emit('solveNonce', this.index);
     },

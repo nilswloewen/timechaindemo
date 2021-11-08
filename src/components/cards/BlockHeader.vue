@@ -45,7 +45,6 @@
 
 <script>
 import Mempool from '@/services/Mempool';
-import { intToHex } from '@/services/utils';
 
 export default {
   mounted() {
@@ -96,13 +95,25 @@ export default {
     setBlockList() {
       const date = new Date(this.block.timestamp * 1000);
       const time = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeStyle: 'long' }).format(date);
-      this.targetBits = intToHex(this.block.bits);
+      this.targetBits = this.block.bits.toString(16).padStart(8, '0');
 
       this.blockList = [
-        { field: 'Version - protocol version ', value: intToHex(this.block.version) },
-        { field: 'Previous Block Hash - ID of previous block', value: this.block.previousBlockHash },
-        { field: 'Merkle Root - a record of transactions included in this block', value: this.block.merkle_root },
-        { field: 'Time', value: time },
+        {
+          field: 'Version - protocol version ',
+          value: this.block.version.toString(16).padStart(8, '0'),
+        },
+        {
+          field: 'Previous block Hash - ID of previous block',
+          value: this.block.previousBlockHash,
+        },
+        {
+          field: 'Merkle Root - a record of transactions included in this block',
+          value: this.block.merkle_root,
+        },
+        {
+          field: 'Time',
+          value: time,
+        },
       ];
     },
   },

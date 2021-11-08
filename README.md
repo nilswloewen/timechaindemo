@@ -49,6 +49,12 @@ Difficulty chart
 ## Definitions: 
 
 Difficulty 
- - The average number of tries it takes to find a valid block within a given time frame. 
+ - The average time it takes to find a valid block within a given time frame. 
 
 Throughput / Transactions per Second
+
+Mind Explode Meme:
+
+1: Blockchain (Non-Pow)
+2: Proof of Work Blockchain (Target/Nonce)
+3: Timechain (Difficulty/Hps)

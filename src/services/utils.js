@@ -67,4 +67,5 @@ export {
   serializeBlockHeader,
   sha256dFromHex,
   sha256dFromText,
+  swapEndian,
 };

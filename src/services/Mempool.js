@@ -1,4 +1,6 @@
 import mempoolJS from '@mempool/mempool.js';
+import Block from '@/services/block/Block';
+import BlockHeader from '@/services/block/BlockHeader';
 
 class Mempool {
   constructor() {
@@ -13,7 +15,21 @@ class Mempool {
     block.previousBlockHash = block.previousblockhash || ''.padStart(64, '0');
     delete block.previousblockhash;
 
-    return block;
+    const props = [
+      'bits',
+      'merkleRoot',
+      'nonce',
+      'previousBlockHash',
+      'timestamp',
+      'version',
+    ];
+
+    const header = new BlockHeader();
+    props.forEach((prop) => {
+      header[prop] = block[prop];
+    });
+
+    return new Block(header);
   }
 
   async getLatestBlockHash() {

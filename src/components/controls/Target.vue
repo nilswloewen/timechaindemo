@@ -13,17 +13,20 @@
     tries to find a valid hash.
 
     <div class="text-center m-3">
-      Min 0
-      <b-form-input v-model.number="target" type="range" :max="max - 1" style="width: 70%; "/>
+      <label class="d-block"> Target </label>
+      Min 1
+      <b-form-input :title="target" v-model.number="target" type="range"
+                   min="1" :max="max - 1" style="width: 70%; "/>
       Max 255
     </div>
 
     <table id="target_table" class="m-auto">
-      <tr><th>Encoding   </th><th>Base</th><th>Value</th></tr>
-      <tr><td>Decimal    </td><td> 10 </td><td>{{ target.toString() }}</td></tr>
-      <tr><td>Hexadecimal</td><td> 16 </td><td>{{ target.toString(16).padStart(2, '0') }}</td></tr>
-      <tr><td>Binary     </td><td>  2 </td><td>{{ target.toString(2).padStart(8, '0') }}</td></tr>
+      <tr><th>Encoding   </th><th>Value</th></tr>
+      <tr><td>Decimal    </td><td>{{ target.toString() }}</td></tr>
+      <tr><td>Hexadecimal</td><td>{{ target.toString(16).padStart(2, '0') }}</td></tr>
+      <tr><td>Binary     </td><td>{{ target.toString(2).padStart(8, '0') }}</td></tr>
     </table>
+    Winning hash must be in the range of 0..{{ this.target - 1 }}.
   </b-card>
 </template>
 
@@ -33,39 +36,45 @@ export default {
     initialTarget: Number,
     max: Number,
   },
+
   data() {
     return {
-      target: 31,
+      target: 1,
       numerator: Number,
       denominator: Number,
       probability: Number,
       estimatedTries: Number,
     };
   },
+
   mounted() {
     this.target = this.initialTarget;
     this.$emit('updateTarget', this.target);
     this.calcStats();
   },
+
   watch: {
     target() {
       this.calcStats();
       this.$emit('updateTarget', this.target);
     },
   },
+
   methods: {
     calcStats() {
-      const target = this.target + 1;
-      this.probability = ((target / this.max) * 100).toFixed(2).padStart(5, '0');
+      const possible = this.target;
+      this.probability = (((possible) / this.max) * 100).toFixed(2).padStart(5, '0');
 
-      const gcd = this.gcd(target, this.max);
-      this.numerator = target / gcd;
+      const gcd = this.gcd(possible, this.max);
+      this.numerator = possible / gcd;
       this.denominator = this.max / gcd;
-      this.estimatedTries = this.denominator;
+      this.estimatedTries = ((1 / this.probability) * 100).toFixed(0);
     },
-    gcd(numerator, denominator) {
-      let a = numerator;
-      let b = denominator;
+
+    gcd(first, second) {
+      let a = first;
+      let b = second;
+
       // eslint-disable-next-line no-constant-condition
       while (true) {
         if (b === 0) return a;

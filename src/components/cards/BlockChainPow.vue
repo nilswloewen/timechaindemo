@@ -1,5 +1,5 @@
 <template>
-  <b-collapse id="collapse_blockchain_pow" visible>
+  <div>
     <h4>
       Example 2: Proof-of-Work Blockchain
     </h4>
@@ -12,29 +12,13 @@
       This is known as the <b>difficulty</b>.
     </p>
 
-    <Target :initial-target="31" :max="this.targetMax" v-on:updateTarget="updateTarget"/>
+    <Target :initial-target="initialTarget" :max="this.targetMax"
+            v-on:updateTarget="updateTarget"/>
+    <Difficulty :hps-of-this-device="hpsOfThisDevice"/>
 
-    <b-card id="blockchainPow" class="text-center">
-      <Block v-for="(block, index) in this.blockList" :key="index"
-             :color="block.color"
-             :data="block.data"
-             :hash="block.hash"
-             :height="block.height"
-             :index="index"
-             :is-hash-valid="block.isHashValid"
-             :nonce="block.nonce"
-             :prev-color="block.prevColor"
-             :previous-block-hash="block.previousBlockHash"
-             :tries="block.tries"
-             v-on:finalizeBlock="finalizeBlock"
-             v-on:updateData="updateData"
-             v-on:updateNonce="updateNonce"
-             v-on:solveNonce="solveNonce" />
-
-    </b-card>
     <br>
 
-    <!-- Add Block Button -->
+    <!-- Add block Button -->
     <b-input-group prepend="Data">
       <b-form-input v-model="newBlockData" :disabled="disableAddBlockBtn"/>
       <b-button @click="addBlock" variant="primary" :disabled="disableAddBlockBtn">
@@ -42,22 +26,35 @@
       </b-button>
     </b-input-group>
 
-  </b-collapse>
+    <div id="blockchainPow" class="text-center">
+      <BlockCard v-for="(block, index) in this.blocks" :key="index"
+                 :block="block"
+                 :index="index"
+                 v-on:finalizeBlock="finalizeBlock"
+                 v-on:updateData="updateData"
+                 v-on:updateNonce="updateNonce"
+                 v-on:solveNonce="solveNonce" />
+    </div>
+  </div>
 </template>
 
 <script>
-import Block from '@/components/cards/Block.vue';
-import { sha256dFromText } from '@/services/utils';
+import Block from '@/services/block/DemoBlock';
+import BlockHeader from '@/services/block/DemoBlockHeader';
+import BlockCard from '@/components/cards/BlockCard.vue';
+import Difficulty from '@/components/controls/Difficulty.vue';
 import Target from '@/components/controls/Target.vue';
 
 export default {
   components: {
-    Block,
+    BlockCard,
+    Difficulty,
     Target,
   },
   data() {
     return {
-      blockList: [],
+      hpsOfThisDevice: 0,
+      blocks: [],
       colors: [
         '#61e294',
         '#7bcdba',
@@ -66,87 +63,100 @@ export default {
         '#b47aea',
       ],
       disableAddBlockBtn: true,
-      encoding: ['hexadecimal', 'decimal', 'binary'],
       initialTarget: 32,
       newBlockData: '',
       target: Number,
       targetMax: 256,
     };
   },
-  mounted() {
-    this.resetList();
+
+  async mounted() {
+    await this.resetList();
+    // await this.calibrateHps();
   },
 
   methods: {
+    async calibrateHps() {
+      const start = new Date().getTime();
+      let tries = 0;
+      let current = 0;
+      let elapsed = 0;
+      this.target = 1;
+
+      while (elapsed < 3000) {
+        tries += 1;
+        current = new Date().getTime();
+        elapsed = current - start;
+
+        this.blocks[0].nonce = tries;
+        // eslint-disable-next-line no-await-in-loop
+        await this.finalizeBlock(0);
+      }
+
+      this.hpsOfThisDevice = (tries / elapsed) * 1000;
+    },
+
     updateTarget(newTarget) {
       this.target = newTarget;
 
       // Check if all blocks are still under the target.
-      for (let i = 0; i < this.blockList.length; i += 1) {
-        this.blockList[i].isHashValid = parseInt(this.blockList[i].hash, 16) < this.target;
+      for (let i = 0; i < this.blocks.length; i += 1) {
+        this.blocks[i].isHashValid = parseInt(this.blocks[i].hash, 16) < this.target;
       }
     },
+
     async solveNonce(index) {
-      if (this.blockList[index].isHashValid) {
-        this.blockList[index].nonce += 1;
+      let tries = 0;
+
+      // Allow Solve btn to be clicked even when hash is valid.
+      if (this.blocks[index].isHashValid) {
+        tries += 1;
+        this.blocks[index].header.nonce += 1;
         await this.finalizeBlock(index);
       }
-      this.blockList[index].tries = 1;
-      while (!this.blockList[index].isHashValid) {
-        this.blockList[index].tries += 1;
-        this.blockList[index].nonce += 1;
+
+      while (!this.blocks[index].isHashValid) {
+        tries += 1;
+        this.blocks[index].header.nonce += 1;
         // eslint-disable-next-line no-await-in-loop
         await this.finalizeBlock(index);
       }
+
+      this.blocks[index].tries.push(tries);
       await this.delayedUpdate(index);
     },
 
-    rotateEncoding() {
-      this.encoding.push(this.encoding.shift());
-    },
-    getPreviousColor() {
-      const i = (this.index + 1) % this.colors.length;
-      return this.colors[i];
-    },
     getColor() {
       const i = this.index % this.colors.length;
       return this.colors[i];
     },
 
     async addBlock() {
-      const prevBlock = this.blockList[0];
-      const hash = await this.calcHash(`${this.newBlockData + prevBlock.previousBlockHash}0`);
+      const header = new BlockHeader(
+        this.newBlockData,
+        0,
+        this.blocks[0].hash,
+      );
 
-      const colorMod = this.blockList.length % this.colors.length;
-      const prevColorMod = (this.blockList.length - 1) % this.colors.length;
+      const block = new Block('', header, 0,
+        this.colors[this.blocks.length % this.colors.length],
+        this.colors[(this.blocks.length - 1) % this.colors.length]);
 
-      this.blockList.unshift({
-        color: this.colors[colorMod],
-        data: this.newBlockData,
-        hash,
-        height: prevBlock.height + 1,
-        isHashValid: false,
-        nonce: 0,
-        prevColor: this.colors[prevColorMod],
-        previousBlockHash: prevBlock.hash,
-      });
+      await block.calcHash();
+
+      this.blocks.unshift(block);
 
       this.disableAddBlockBtn = true;
       this.newBlockData = '';
     },
 
-    async calcHash(data) {
-      const hash = await sha256dFromText(data);
-      return hash.substr(0, 2);
-    },
-
     async updateData(newData, index) {
-      this.blockList[index].data = newData;
+      this.blocks[index].header.data = newData;
       await this.delayedUpdate(index);
     },
 
     async updateNonce(nonce, index) {
-      this.blockList[index].nonce = nonce;
+      this.blocks[index].header.nonce = nonce;
       await this.delayedUpdate(index);
     },
 
@@ -161,36 +171,26 @@ export default {
     },
 
     async finalizeBlock(index) {
-      const header = this.blockList[index].data
-        + this.blockList[index].previousBlockHash
-        + this.blockList[index].nonce;
-
-      const newHash = await this.calcHash(header);
-      this.blockList[index].hash = newHash;
-      this.blockList[index].isHashValid = parseInt(newHash, 16) < this.target;
+      await this.blocks[index].calcHash();
+      const hash = parseInt(this.blocks[index].hash.substr(0, 2), 16);
+      this.blocks[index].isHashValid = hash < this.target;
 
       if (index > 0) {
-        this.blockList[index - 1].previousBlockHash = newHash;
+        this.blocks[index - 1].header.prevHash = this.blocks[index].hash;
       }
 
       this.disableAddBlockBtn = false;
-      this.blockList.forEach((block) => {
+      this.blocks.forEach((block) => {
         if (!block.isHashValid) {
           this.disableAddBlockBtn = true;
         }
       });
     },
 
-    resetList() {
-      this.blockList = [{
-        color: '#61e294',
-        data: 'Alice sent Bob 5₿',
-        hash: '7c',
-        height: 0,
-        isHashValid: false,
-        nonce: 0,
-        previousBlockHash: '0000 (Genesis Block)',
-      }];
+    async resetList() {
+      const block = new Block('', BlockHeader.genesis, 0, this.colors[0], 'inherit');
+      await block.calcHash();
+      this.blocks = [block];
     },
 
   },

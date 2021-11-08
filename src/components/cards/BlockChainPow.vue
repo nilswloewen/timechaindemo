@@ -14,7 +14,7 @@
 
     <Target :initial-target="initialTarget" :max="this.targetMax"
             v-on:updateTarget="updateTarget"/>
-    <Difficulty :hps-of-this-device="hpsOfThisDevice"/>
+    <Difficulty :hps-of-this-device="hpsOfThisDevice" v-on:calibrate="calibrateHps"/>
 
     <br>
 
@@ -65,35 +65,35 @@ export default {
       disableAddBlockBtn: true,
       initialTarget: 32,
       newBlockData: '',
-      target: Number,
+      target: 32,
       targetMax: 256,
     };
   },
 
   async mounted() {
-    await this.resetList();
-    // await this.calibrateHps();
+    await this.resetBlocks();
   },
 
   methods: {
     async calibrateHps() {
       const start = new Date().getTime();
-      let tries = 0;
       let current = 0;
       let elapsed = 0;
-      this.target = 1;
 
       while (elapsed < 3000) {
-        tries += 1;
         current = new Date().getTime();
         elapsed = current - start;
 
-        this.blocks[0].nonce = tries;
+        this.blocks[0].header.nonce += 1;
         // eslint-disable-next-line no-await-in-loop
         await this.finalizeBlock(0);
       }
 
-      this.hpsOfThisDevice = (tries / elapsed) * 1000;
+      this.hpsOfThisDevice = (this.blocks[0].header.nonce / elapsed) * 1000;
+
+      // Reset block.
+      this.blocks[0].header.nonce = 0;
+      await this.finalizeBlock(0);
     },
 
     updateTarget(newTarget) {
@@ -132,20 +132,15 @@ export default {
     },
 
     async addBlock() {
-      const header = new BlockHeader(
-        this.newBlockData,
-        0,
-        this.blocks[0].hash,
-      );
-
+      const header = new BlockHeader(this.newBlockData, 0, this.blocks[0].hash);
       const block = new Block('', header, 0,
         this.colors[this.blocks.length % this.colors.length],
         this.colors[(this.blocks.length - 1) % this.colors.length]);
-
       await block.calcHash();
 
       this.blocks.unshift(block);
 
+      // Reset 'Add Block' input.
       this.disableAddBlockBtn = true;
       this.newBlockData = '';
     },
@@ -187,12 +182,11 @@ export default {
       });
     },
 
-    async resetList() {
+    async resetBlocks() {
       const block = new Block('', BlockHeader.genesis, 0, this.colors[0], 'inherit');
       await block.calcHash();
       this.blocks = [block];
     },
-
   },
 };
 </script>

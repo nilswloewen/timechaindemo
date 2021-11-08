@@ -12,7 +12,7 @@
           Block #{{ this.block.height }}
         </b-button>
         <b-button-group style="line-height: 2em;">
-          <b-form-input id="block_hash" title="Hash" :style="getColor" class="p-1 border-0 fw-bold"
+          <b-form-input title="Hash" :style="getColor" class="p-1 border-0 fw-bold"
                         :value="getHash" :disabled="true" :state="block.isHashValid"/>
         </b-button-group>
       </b-card-header>
@@ -121,9 +121,6 @@ export default {
     background-color: rgba(0, 0, 0, 0);
     border: none;
     color: black;
-  }
-  #block_hash {
-    /*max-width: 60px;*/
   }
   #nonce {
     max-width: 120px;

@@ -39,7 +39,7 @@
 <script>
 export default {
   props: {
-    encoding: [],
+    encoding: { type: Array },
     hashMax: {},
     hash: {},
     target: {},

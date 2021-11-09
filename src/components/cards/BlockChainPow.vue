@@ -12,6 +12,7 @@
 <!--      This is known as the <b>difficulty</b>.-->
 <!--    </p>-->
 
+    <Hex />
     <Target :initial-target="initialTarget" :max="this.targetMax"
             v-on:updateTarget="updateTarget"/>
     <Difficulty :hps-of-this-device="hpsOfThisDevice" :avg-hashes="avgHashes()"
@@ -43,11 +44,13 @@ import BlockHeader from '@/services/block/DemoBlockHeader';
 import BlockCard from '@/components/cards/BlockCard.vue';
 import Difficulty from '@/components/controls/Difficulty.vue';
 import Target from '@/components/controls/Target.vue';
+import Hex from '@/components/cards/Hex.vue';
 
 export default {
   components: {
     BlockCard,
     Difficulty,
+    Hex,
     Target,
   },
   data() {

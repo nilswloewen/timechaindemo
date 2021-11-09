@@ -6,9 +6,9 @@
 
 export default {
   props: {
-    guesses: [],
+    guesses: { type: Array },
     target: Object,
-    encoding: [],
+    encoding: { type: Array },
   },
 
   mounted() {

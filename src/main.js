@@ -1,17 +1,17 @@
 import Vue from 'vue';
 
-import { BootstrapVue, IconsPlugin, CardPlugin } from 'bootstrap-vue';
+// import { BootstrapVue, IconsPlugin, CardPlugin } from 'bootstrap-vue';
 
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
+// import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 import VueFullPage from 'vue-fullpage.js';
 
 import App from './App.vue';
 
-Vue.use(BootstrapVue);
-Vue.use(IconsPlugin);
-Vue.use(CardPlugin);
+// Vue.use(BootstrapVue);
+// Vue.use(IconsPlugin);
+// Vue.use(CardPlugin);
 Vue.use(VueFullPage);
 
 Vue.config.productionTip = false;

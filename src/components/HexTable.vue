@@ -1,33 +1,20 @@
 <template>
-  <b-card no-body>
-    <b-card-header>
-      Hexadecimal Notation
-    </b-card-header>
-
-    <b-card-body>
-      <b-table-simple outlined striped id="hex_table" class="border-1" small>
-        <b-thead head-variant="dark">
-          <b-tr>
-            <b-th class="text-right">Decimal</b-th>
-            <b-th class="text-center">Binary</b-th>
-            <b-th>Hexadecimal</b-th>
-          </b-tr>
-        </b-thead>
-        <b-tr>
-          <b-th class="text-right">Base 10</b-th>
-          <b-th class="text-center">Base 2</b-th>
-          <b-th>Base 16</b-th>
-        </b-tr>
-        <b-tbody>
-          <b-tr v-for="(row, index) in rows" :key="index">
-            <b-td class="text-right"> {{row['d']}}</b-td>
-            <b-td class="text-center">{{row['b']}}</b-td>
-            <b-td class="hex">        {{row['h']}}</b-td>
-          </b-tr>
-        </b-tbody>
-      </b-table-simple>
-    </b-card-body>
-  </b-card>
+  <b-table-simple outlined striped hover id="hex_table" class="border-1" small>
+    <b-thead head-variant="dark">
+      <b-tr>
+        <b-th class="text-right">Decimal</b-th>
+        <b-th class="text-center">Binary</b-th>
+        <b-th>Hexadecimal</b-th>
+      </b-tr>
+    </b-thead>
+    <b-tbody>
+      <b-tr v-for="(row, index) in rows" :key="index">
+        <b-td class="text-right"> {{row['d']}}</b-td>
+        <b-td class="text-center">{{row['b']}}</b-td>
+        <b-td class="hex">        {{row['h']}}</b-td>
+      </b-tr>
+    </b-tbody>
+  </b-table-simple>
 </template>
 
 <script>

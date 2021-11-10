@@ -44,7 +44,7 @@ import BlockHeader from '@/services/block/DemoBlockHeader';
 import BlockCard from '@/components/cards/BlockCard.vue';
 import Difficulty from '@/components/controls/Difficulty.vue';
 import Target from '@/components/controls/Target.vue';
-import Hex from '@/components/cards/Hex.vue';
+import Hex from '@/components/cards/HexTable.vue';
 
 export default {
   components: {

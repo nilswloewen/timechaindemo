@@ -101,18 +101,4 @@ export default {
     text-align: center;
   }
 
-  ul.sections a {
-    text-decoration: none;
-  }
-
-  #menu a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0 1.1em 1.1em;
-  }
-
-  ul {
-    list-style-type: none;
-  }
-
 </style>

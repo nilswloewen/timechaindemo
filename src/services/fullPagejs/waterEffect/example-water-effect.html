@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>fullPage.js - Water Effect Extension</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="Alvaro Trigo Lopez" />
+    <meta name="description" content="Water Effect Extension for fullPage.js. Available for React, Vue, Angular and WordPress." />
+    <meta name="keywords"  content="fullpage,extension,addon,plugin,water,watery,wave,water effect,waterEffevct,slides,slide,panel,full-screen,full width,mousewheel,wheel,trackpad,snap" />
+    <meta name="Resource-type" content="Document" />
+
+    <meta property="og:title" content="New Water Effect for your page!">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="New Water Effect for your page! Check it out!">
+    <meta property="og:image" content="https://alvarotrigo.com/fullPage/extensions/imgs/water-effect/water-effect-card.jpg">
+    <meta property="og:url" content="https://alvarotrigo.com/fullPage/extensions/water-effect.html">
+    <meta name="twitter:card" content="photo">
+    <meta name="twitter:site" content="@imac2">
+    <meta name="twitter:creator" content="@imac2">
+    <meta name="twitter:title" content="New Water Effect for your page!">
+    <meta name="twitter:description" content="New Water Effect for your page! Check it out!">
+    <meta name="twitter:image" content="https://alvarotrigo.com/fullPage/extensions/imgs/water-effect/water-effect-card.jpg">
+    <meta name="twitter:url" content="https://alvarotrigo.com/fullPage/extensions/water-effect.html">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/fullpage.js/dist/fullpage.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://alvarotrigo.com/fullPage/examples/examples.css" />
+
+    <style type="text/css">
+        h1{
+            font-weight: 900;
+            font-size: 8em;
+            -webkit-text-shadow: 0 .3rem .9rem rgba(0,0,0,.4);
+            text-shadow: 0 0.3rem 0.9rem rgba(0,0,0,.4);
+            letter-spacing: -3px;
+        }
+        h1,
+        p{
+            color: #fff;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        .documentation a{
+            font-size: 13px;
+            margin: 20px 0;
+            padding: 0;
+            color: #f2f2f2;
+        }
+
+        .section, 
+        .slide{
+            background-size: cover;
+        }
+        
+        
+        /* Sections
+        * --------------------------------------- */
+        #section0 {
+            background-position: center;
+        }
+        #section0 h1{
+            font-size: 12em;
+        }
+
+        #section1 .slide1 {
+            background-image: url(./imgs/s1.jpg);
+            background-position: center;
+        }
+
+        #section1 .slide2 {
+            background-image: url(./imgs/s2.jpg);
+            background-position: center;
+        }
+
+        #section1 .slide3 {
+            background-image: url(./imgs/s3.jpg);
+            background-position: center;
+        }
+
+        #section2 {
+            background-image: url(./imgs/3.jpg);
+            background-position: center;
+        }
+
+
+        /* Docs button
+         * --------------------------------------- */
+        .button-docs {
+            background: #2ecc71;
+            margin-top:15px;
+            color: #fff;
+            border-width: 0;
+            border-radius: 50px;
+            padding: 0.8rem 2rem;
+            font: 18px "Margarine", sans-serif;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            transition: 0.2s ease-in-out;
+            letter-spacing: 2px;
+            display: inline-block;
+        }
+        .button-docs:hover{
+                animation: rainbow 3s infinite, heartbeat 0.6s infinite;
+        }
+        .button-docs .rainbow {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            top: -40px;
+            transition: 0.5s ease;
+            opacity: 0;
+            transform: rotate(0);
+        }
+
+        @keyframes heartbeat {
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes rainbow {
+            0% {
+                background: #1abc9c;
+            }
+            10% {
+                background: #2ecc71;
+            }
+            20% {
+                background: #3498db;
+            }
+            30% {
+                background: #9b59b6;
+            }
+            40% {
+                background: #e74c3c;
+            }
+            50% {
+                background: #e67e22;
+            }
+            60% {
+                background: #f1c40f;
+            }
+            70% {
+                background: #2c3e50;
+            }
+            80% {
+                background: #9b59b6;
+            }
+        }
+
+
+        /* White Navigation Bullets
+         * --------------------------------------- */
+        #fp-nav ul li a span, 
+        .fp-slidesNav ul li a span{
+            background: #fff;
+        }
+
+        /* Configuration
+         * --------------------------------------- */
+        #actions{
+            position:fixed;
+            top: 73px;
+            left: 30px;
+            z-index: 99999;
+        }
+        #actions li{
+            background: rgba(255,255,255,0.6);
+            padding: 7px;
+            margin: 2px;
+            color: #000;
+            display: inline-block;
+            cursor: pointer;
+        }
+        #actions li:hover{
+            color: #fff;
+            background: #2ecc71;
+        }
+        #actions .active{
+            color: #fff;
+            background: #2ecc71;
+        }
+    </style>
+</head>
+<body class="fp-waterOn">
+
+<ul id="menu">
+    <li data-menuanchor="firstPage"><a href="#firstPage">First slide</a></li>
+    <li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
+    <li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
+</ul>
+
+<div id="myContainer">
+    <div id="section0" class="section">
+        <di class="intro">
+            <h1>WATER</h1>
+            <p>
+                Use `waterEffect: true`.
+            </p>
+            <div>
+                <a class="button-docs" href="https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect">Documentation</a>
+            </div>
+        </di>
+    </div>
+    <div id="section1" class="section">
+        <div class="slide slide1">
+            <h1>Slide 2.1</h1>
+        </div>
+        <div class="slide slide2">
+            <h1>Slide 2.2</h1>
+        </div>
+        <div class="slide slide3">
+            <h1>Slide 2.3</h1>
+        </div>
+    </div>
+    <div id="section2" class="section">
+        <h1>Section 3</h1>
+    </div>
+</div>
+
+<ul id="actions">
+    <li id="turnOn" class="active">Turn on</li>
+    <li id="turnOff">Turn off</li>
+</ul>
+
+<script type="text/javascript" src="fullpage.waterEffect.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/fullpage.js/dist/fullpage.extensions.min.js"></script>
+
+<script>
+    new fullpage('#myContainer', {
+        anchors: ['firstPage', 'secondPage', '3rdPage', 'pepe'],
+        menu: '#menu',
+        navigation: true,
+        slidesNavigation: true,
+        loopBottom: true,
+        loopTop: true,
+
+        waterEffect: true,
+        waterEffectKey: 'YWx2YXJvdHJpZ28uY29tXzg5M2QyRjBaWEpGWm1abFkzUT16SXo=',
+        waterEffectOptions: {
+            animateContent: true,
+            animateOnMouseMove: true
+        },
+    });
+
+    //action buttons
+    document.getElementById('turnOn').addEventListener('click', function(){
+        removeClass(document.getElementById('actions').querySelector('li.active'), 'active');
+        addClass(this, 'active');
+
+        fullpage_api.waterEffect.turnOn();
+    });
+
+    document.getElementById('turnOff').addEventListener('click', function(){
+        removeClass(document.getElementById('actions').querySelector('li.active'), 'active');
+        addClass(this, 'active');
+
+        fullpage_api.waterEffect.destroy();
+    });
+
+    //utils
+    function removeClass(item, className){
+        if (item.classList){
+            item.classList.remove(className);
+        }
+        else{
+            item.className = item.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+        }
+        return item;
+    }
+
+    function addClass(item, className) {
+        if (item.classList){
+            item.classList.add(className);
+        }
+        else{
+          item.className += ' ' + className;
+        }
+        return item;
+    }
+</script>
+
+</body>
+</html>

@@ -8,14 +8,15 @@
 
     <b-card no-body>
       <b-table-simple class="block" small>
+
         <b-thead head-variant="dark">
           <b-tr>
+            <b-th> Block #{{ this.block.height }} </b-th>
             <b-th>
-              Block #{{ this.block.height }}
-            </b-th>
-            <b-th>
-              <b-form-input title="Hash" size="sm" :style="getColor"
-                            :value="getHash" :disabled="true" :state="block.isHashValid"/>
+              <b-input-group prepend="Hash" size="sm">
+                <b-form-input title="Hash" size="sm" :style="getColor"
+                              :value="getHash" :disabled="true" :state="block.isHashValid"/>
+              </b-input-group>
             </b-th>
           </b-tr>
         </b-thead>
@@ -27,6 +28,7 @@
               <b-form-input @change="onDataChange" :value="block.header.data" size="sm"/>
             </b-td>
           </b-tr>
+
           <b-tr>
             <b-td>Nonce</b-td>
             <b-td>
@@ -43,6 +45,7 @@
               </b-input-group>
             </b-td>
           </b-tr>
+
           <b-tr>
             <b-td>Previous Hash</b-td>
             <b-td>
@@ -50,6 +53,7 @@
                             :value="getPrevHash" :state="block.isHashValid"/>
             </b-td>
           </b-tr>
+
         </b-tbody>
       </b-table-simple>
     </b-card>
@@ -77,8 +81,9 @@ export default {
     },
     getHash() {
       const hex = this.block.hash.substr(0, 2);
-      const decimal = parseInt(hex, 16);
-      return `Hex: ${hex} | Decimal: ${decimal}`;
+      const decimal = parseInt(hex, 16).toString().padStart(3, ' ');
+      const bin = parseInt(hex, 16).toString(2).padStart(8, '0');
+      return `${hex}₁₆ | ${decimal}₁₀ | ${bin}₂`;
     },
     getPrevHash() {
       return this.block.header.prevHash.substr(0, 2);

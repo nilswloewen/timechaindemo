@@ -7,7 +7,7 @@
       <TermsPage/>
       <Blockchain/>
       <PowBlockchainPage/>
-      <TimeChainPage/>
+<!--      <TimeChainPage/>-->
       <MiningPage/>
       <ResourcesPage/>
 
@@ -38,11 +38,12 @@ export default {
   data() {
     return {
       fullpageOptions: {
-        licenseKey: '2C8168FC-415648B7-B94C4003-80F51EAC',
-        scrollBar: false,
-        afterLoad: this.afterLoad,
-        navigation: true,
         anchors: [],
+        licenseKey: '75EC2C59-580B47EA-8CE07EC3-BFC00055',
+        navigation: true,
+        scrollBar: false,
+        scrollHorizontally: true,
+        scrollOverflow: true,
       },
       contents: [
         { anchor: 'intro', color: '#15202b' },
@@ -59,7 +60,14 @@ export default {
           color: '#0798ec',
           slides: [
             { anchor: 'simple' },
-            { anchor: 'proof-of-work' },
+          ],
+        },
+        {
+          anchor: 'proof-of-work',
+          color: '#fec401',
+          slides: [
+            { anchor: 'target' },
+            { anchor: 'pow_blockchain' },
           ],
         },
         { anchor: 'mining', color: '#fec401' },

@@ -1,34 +1,48 @@
 <template>
   <Page slide data-anchor="hexadecimal_notation">
-    <h1>Hexadecimal Notation</h1>
+    <h1>Hex Notation</h1>
 
-    <b-row>
-      <b-col>
-        Computers deal with strings of ones and zeros which are interpreted in
-        different ways for different purposes.
-      </b-col>
+    <b-card class="mb-4">
+      <h4 class="text-left"><a href="https://www.etymonline.com/word/hexadecimal">hexadecimal (adj.)</a></h4>
+      <hr>
+      1952, in reference to a numeral system based on 16, not 10; from hexa- + decimal.
+      From 1970 as a noun. Greek hexa-, combining form of hex "six".
+    </b-card>
 
-      <b-col>
-        <b-card id="hex_table" no-body>
-          <b-table-simple outlined striped hover class="border-1" small>
-            <b-thead head-variant="dark">
-              <b-tr>
-                <b-th class="text-right">Decimal</b-th>
-                <b-th class="text-center">Binary</b-th>
-                <b-th>Hexadecimal</b-th>
-              </b-tr>
-            </b-thead>
-            <b-tbody>
-              <b-tr v-for="(row, index) in rows" :key="index">
-                <b-td class="text-right"> {{row['d']}}</b-td>
-                <b-td class="text-center">{{row['b']}}</b-td>
-                <b-td class="hex">        {{row['h']}}</b-td>
-              </b-tr>
-            </b-tbody>
-          </b-table-simple>
-        </b-card>
-      </b-col>
-    </b-row>
+    <p>
+      The hash function about to be discussed uses hexadecimal notation (hex) as a compact and human
+      readable way to represent the binary hash output.
+    </p>
+
+    <p>
+      As you can see in the following table the values are equivalent yet notated differently.
+      To distinguish which notation system is being used numbers will be presented in base format:
+      Value <sub>(base)</sub>.
+    </p>
+
+    <b-card id="hex_table" no-body class="mt-4">
+      <b-table-simple outlined striped hover class="border-1" small>
+        <b-thead head-variant="dark">
+          <b-tr>
+            <b-th class="text-right">Decimal</b-th>
+            <b-th class="text-center">Binary</b-th>
+            <b-th>Hexadecimal</b-th>
+          </b-tr>
+        </b-thead>
+        <b-tbody>
+          <b-tr v-for="(row, index) in rows" :key="index">
+            <b-td class="text-right"> {{row['d']}}<sub>10</sub></b-td>
+            <b-td class="text-center">{{row['b']}}<sub>2</sub></b-td>
+            <b-td><b>{{row['h']}}</b><sub>16</sub></b-td>
+          </b-tr>
+        </b-tbody>
+        <caption>
+
+          * A-F can be upper or lowercase
+        </caption>
+      </b-table-simple>
+    </b-card>
+
 
   </Page>
 </template>
@@ -54,12 +68,12 @@ export default {
         { d: 7, b: '0111', h: '7' },
         { d: 8, b: '1000', h: '8' },
         { d: 9, b: '1001', h: '9' },
-        { d: 10, b: '1010', h: 'A | a' },
-        { d: 11, b: '1011', h: 'B | b' },
-        { d: 12, b: '1100', h: 'C | c' },
-        { d: 13, b: '1101', h: 'D | d' },
-        { d: 14, b: '1110', h: 'E | e' },
-        { d: 15, b: '1111', h: 'F | f' },
+        { d: 10, b: '1010', h: 'A' },
+        { d: 11, b: '1011', h: 'B' },
+        { d: 12, b: '1100', h: 'C' },
+        { d: 13, b: '1101', h: 'D' },
+        { d: 14, b: '1110', h: 'E' },
+        { d: 15, b: '1111', h: 'F' },
       ],
     };
   },
@@ -68,9 +82,8 @@ export default {
 
 <style>
   #hex_table {
+    margin-left: auto;
+    margin-right: auto;
     max-width: 315px;
-  }
-  .hex {
-    font-weight: bold;
   }
 </style>

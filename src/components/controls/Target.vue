@@ -1,32 +1,53 @@
 <template>
-  <b-card class="text-center" header="Target">
+  <b-card no-body class="mb-2">
 
-    We will only accept <div class="stat probability">{{ this.probability }}%</div>
-    of possible hashes.
-    <br/>
+    <b-table-simple>
+      <b-thead head-variant="dark">
+        <b-tr>
+          <b-th>Target</b-th>
+          <b-th colspan="3">
+            <b-input-group prepend="Min 1" append="Max 255" size="sm" >
+              <b-form-input :title="target" v-model.number="target" type="range"
+                            min="1" :max="max - 1" size="sm"/>
+            </b-input-group>
+          </b-th>
+        </b-tr>
+      </b-thead>
 
-    Each try has a <div class="stat odds">{{ this.numerator }}</div> out of
-    <div class="stat odds">{{ this.denominator }}</div> chance of winning.
+      <b-tbody>
+        <b-tr>
+          <b-td>Value</b-td>
+          <b-td>{{ target.toString(16).padStart(2, '0') }}<sub>16</sub></b-td>
+          <b-td>{{ target.toString() }}<sub>10</sub></b-td>
+          <b-td>{{ target.toString(2).padStart(8, '0') }}<sub>2</sub></b-td>
+        </b-tr>
 
-    <br/>
-    On average it will take <div class="stat odds">~{{ this.estimatedTries }}</div>
-    tries to find a valid hash.
+        <template v-if="full">
+         <b-tr>
+          <b-td> Probability </b-td>
+           <b-td colspan="3">
+             Only <div class="stat probability">{{ this.probability }}%</div>
+             of possible hashes will be accepted.
+           </b-td>
+         </b-tr>
+          <b-tr>
+            <b-td>Odds</b-td>
+            <b-td colspan="3">
+              Each try has a <div class="stat odds">{{ this.numerator }}</div> out of
+              <div class="stat odds">{{ this.denominator }}</div> chance of winning.
+            </b-td>
+          </b-tr>
+          <b-tr>
+            <b-td>Average</b-td>
+            <b-td colspan="3">
+              On average it will take <div class="stat odds">~{{ this.estimatedTries }}</div>
+              tries to find a valid hash.
+            </b-td>
+          </b-tr>
+      </template>
 
-    <div class="text-center m-3">
-      <label class="d-block"> Target </label>
-      Min 1
-      <b-form-input :title="target" v-model.number="target" type="range"
-                   min="1" :max="max - 1" style="width: 70%; "/>
-      Max 255
-    </div>
-
-    <table id="target_table" class="m-auto">
-      <tr><th>Encoding   </th><th>Value</th></tr>
-      <tr><td>Decimal    </td><td>{{ target.toString() }}</td></tr>
-      <tr><td>Hexadecimal</td><td>{{ target.toString(16).padStart(2, '0') }}</td></tr>
-      <tr><td>Binary     </td><td>{{ target.toString(2).padStart(8, '0') }}</td></tr>
-    </table>
-    Winning hash must be in the range of 0..{{ this.target - 1 }}.
+      </b-tbody>
+    </b-table-simple>
   </b-card>
 </template>
 
@@ -35,6 +56,7 @@ export default {
   props: {
     initialTarget: Number,
     max: Number,
+    full: Boolean,
   },
 
   data() {

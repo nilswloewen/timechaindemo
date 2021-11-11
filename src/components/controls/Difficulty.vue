@@ -6,7 +6,7 @@
     <b-card-body>
       <div>
         This device can calculate <b>~{{ hpsOfThisDevice.toFixed(0) }}</b> Hashes per Second
-        <b-button @click="$emit('calibrate')">Calibrate</b-button>
+        <b-button @click="$emit('calibrate-hps')">Calibrate</b-button>
       </div>
       <div>Average number of hashes: {{ avgHashes }}</div>
 

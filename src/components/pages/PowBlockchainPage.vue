@@ -1,6 +1,6 @@
 <template>
   <div class="section">
-    <Page slide data-anchor="proof-of-work">
+    <Page data-anchor="proof-of-work" slide>
       <h1>
         Proof-of-Work Blockchain
       </h1>
@@ -13,13 +13,15 @@
       </p>
     </Page>
 
-    <Page slide data-anchor="target">
+    <Page data-anchor="target" slide >
       <Target :initial-target="initialTarget" :max="this.targetMax"
               v-on:updateTarget="updateTarget"/>
     </Page>
-    <Page slide data-anchor="pow_blockchain">
+
+    <Page data-anchor="pow_blockchain" slide>
       <h1>POW Blockchain</h1>
       <p> Target: {{ this.target }} </p>
+
       <!-- Add block Button -->
       <b-input-group prepend="Data">
         <b-form-input v-model="newBlockData" :disabled="disableAddBlockBtn"/>
@@ -28,7 +30,7 @@
         </b-button>
       </b-input-group>
 
-      <div id="blockchainPow" class="text-center">
+      <div id="blockchainPow" class="text-center mt-4">
         <BlockCard v-for="(block, index) in this.blocks" :key="index"
                    :block="block"
                    :index="index"
@@ -141,9 +143,11 @@ export default {
 
     async addBlock() {
       const header = new BlockHeader(this.newBlockData, 0, this.blocks[0].hash);
-      const block = new Block('', header, 0,
-        this.colors[this.blocks.length % this.colors.length],
-        this.colors[(this.blocks.length - 1) % this.colors.length]);
+      const height = this.blocks.length;
+      const color = this.colors[this.blocks.length % this.colors.length];
+      const prevColor = this.colors[(this.blocks.length - 1) % this.colors.length];
+
+      const block = new Block('', header, height, color, prevColor);
       await block.calcHash();
 
       this.blocks.unshift(block);

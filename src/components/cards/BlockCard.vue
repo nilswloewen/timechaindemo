@@ -1,50 +1,57 @@
 <template>
   <div>
     <!-- Chain-link icon -->
-    <b-iconstack font-scale="3" v-if="index > 0">
+    <b-iconstack font-scale="3" v-if="index > 0" class="m-2">
       <b-icon-link stacked rotate="90" :style="getLinkColor" />
       <b-icon stacked icon="slash" variant="danger" v-if="!block.isHashValid"></b-icon>
     </b-iconstack>
 
-    <b-card no-body class="block">
-      <b-card-header>
-        <b-button title="Block Height" style="float: left;" :disabled="true" size="sm">
-          Block #{{ this.block.height }}
-        </b-button>
-        <b-button-group style="line-height: 2em;">
-          <b-form-input title="Hash" :style="getColor" class="p-1 border-0 fw-bold"
-                        :value="getHash" :disabled="true" :state="block.isHashValid"/>
-        </b-button-group>
-      </b-card-header>
+    <b-card no-body>
+      <b-table-simple class="block" small>
+        <b-thead head-variant="dark">
+          <b-tr>
+            <b-th>
+              Block #{{ this.block.height }}
+            </b-th>
+            <b-th>
+              <b-form-input title="Hash" size="sm" :style="getColor"
+                            :value="getHash" :disabled="true" :state="block.isHashValid"/>
+            </b-th>
+          </b-tr>
+        </b-thead>
 
-      <!-- Data -->
-      <b-list-group-item class="list-field"> Data </b-list-group-item>
-      <b-list-group-item class="list-value">
-        <b-form-input @change="onDataChange" :value="block.header.data" class="text-center"/>
-      </b-list-group-item>
-
-      <!-- Nonce -->
-      <b-list-group-item class="list-field"> Nonce </b-list-group-item>
-      <b-list-group-item class="list-value">
-        <b-input-group class="justify-content-center p-1">
-          <b-button-group>
-            <b-form-input id="nonce" class="text-center" @change="onNonceChange"
-                          :value="block.header.nonce" :state="block.isHashValid"
-                          type="number"/>
-            <b-button @click="incrementNonce" :disabled="block.isHashValid">+ 1</b-button>
-            <b-button @click="solveNonce" variant="warning">Solve</b-button>
-          </b-button-group>
-        </b-input-group>
-      </b-list-group-item>
-
-      <!-- Previous block hash -->
-      <b-list-group-item class="list-field"> Previous block hash </b-list-group-item>
-      <b-list-group-item class="list-value">
-        <span :style="getPrevColor" class="rounded p-1">
-          <b>{{ getPrevHash }}</b>
-        </span>
-      </b-list-group-item>
-
+        <b-tbody>
+          <b-tr>
+            <b-td>Data</b-td>
+            <b-td>
+              <b-form-input @change="onDataChange" :value="block.header.data" size="sm"/>
+            </b-td>
+          </b-tr>
+          <b-tr>
+            <b-td>Nonce</b-td>
+            <b-td>
+              <b-input-group>
+                <b-form-input class="nonce_input" @change="onNonceChange"
+                              :value="block.header.nonce" :state="block.isHashValid"
+                              type="number" size="sm"/>
+                <b-button-group>
+                  <b-button size="sm" @click="incrementNonce" :disabled="block.isHashValid">
+                    + 1
+                  </b-button>
+                  <b-button size="sm" @click="solveNonce" variant="warning">Solve</b-button>
+                </b-button-group>
+              </b-input-group>
+            </b-td>
+          </b-tr>
+          <b-tr>
+            <b-td>Previous Hash</b-td>
+            <b-td>
+              <b-form-input title="Hash" :style="getPrevColor" size="sm" :disabled="true"
+                            :value="getPrevHash" :state="block.isHashValid"/>
+            </b-td>
+          </b-tr>
+        </b-tbody>
+      </b-table-simple>
     </b-card>
   </div>
 </template>
@@ -99,16 +106,10 @@ export default {
 </script>
 
 <style>
-  .block {
-    margin-bottom: 0;
-    margin-right: 1em;
+  .table.block tr {
+    line-height: 31px;
   }
-  .block .card-header button {
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-    color: black;
-  }
-  #nonce {
-    max-width: 120px;
+  .table.block td {
+    text-align: left;
   }
 </style>

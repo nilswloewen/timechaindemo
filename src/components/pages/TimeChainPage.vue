@@ -2,7 +2,7 @@
   <Page data-anchor="timechain">
 
     <div class="slide">
-      <h3>Timechain</h3>
+      <h1>Timechain</h1>
       <ul>
         <li>Difficulty</li>
         <li>Probability</li>

@@ -1,5 +1,5 @@
 <template>
-  <div class="section" :data-anchor="dataAnchor">
+  <div :data-anchor="dataAnchor" :class="type">
     <b-container>
       <b-row>
         <b-col>
@@ -14,6 +14,13 @@
 export default {
   props: {
     dataAnchor: String,
+    slide: Boolean,
+  },
+  computed: {
+    type() {
+      if (this.slide) return 'slide';
+      return 'section';
+    },
   },
 };
 </script>

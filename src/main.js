@@ -12,6 +12,14 @@ Vue.use(IconsPlugin);
 Vue.use(CardPlugin);
 Vue.use(VueFullPage);
 
+Vue.mixin({
+  methods: {
+    moveTo(anchor, index) {
+      window.fullpage_api.moveTo(anchor, index);
+    },
+  },
+});
+
 Vue.config.productionTip = false;
 
 new Vue({

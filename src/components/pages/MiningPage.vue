@@ -1,16 +1,19 @@
 <template>
   <Page data-anchor="mining">
 
-    <h3>Mining</h3>
+    <h1>Mining</h1>
 
+    <Algorithm/>
   </Page>
 </template>
 
 <script>
 import Page from '@/components/pages/Page.vue';
+import Algorithm from '@/components/cards/Algorithm.vue';
 
 export default {
   components: {
+    Algorithm,
     Page,
   },
 };

@@ -1,40 +1,43 @@
 <template>
-  <div>
-<!--    <h4>-->
-<!--      Example 2: Proof-of-Work Blockchain-->
-<!--    </h4>-->
+  <div class="section">
+    <Page slide data-anchor="proof-of-work">
+      <h1>
+        Proof-of-Work Blockchain
+      </h1>
 
-<!--    <p>-->
-<!--      Here we add one new field to the block called a <b>Nonce</b>, which is-->
-<!--      shorthand for 'a number used only once'. Also, the block hash is now-->
-<!--      required to meet a certain criteria: we will interpret the hash as a-->
-<!--      number and only consider it valid if it is less than the <b>target</b>.-->
-<!--      This is known as the <b>difficulty</b>.-->
-<!--    </p>-->
+      <p>
+        Here we add one new field to the block called a <b>Nonce</b>, which is
+        shorthand for 'a number used only once'. Also, the block hash is now
+        required to meet a certain criteria: we will interpret the hash as a
+        number and only consider it valid if it is less than the <b>target</b>.
+      </p>
+    </Page>
 
-    <Hex />
-    <Target :initial-target="initialTarget" :max="this.targetMax"
-            v-on:updateTarget="updateTarget"/>
-    <Difficulty :hps-of-this-device="hpsOfThisDevice" :avg-hashes="avgHashes()"
-                v-on:calibrate="calibrateHps"/>
+    <Page slide data-anchor="target">
+      <Target :initial-target="initialTarget" :max="this.targetMax"
+              v-on:updateTarget="updateTarget"/>
+    </Page>
+    <Page slide data-anchor="pow_blockchain">
+      <h1>POW Blockchain</h1>
+      <p> Target: {{ this.target }} </p>
+      <!-- Add block Button -->
+      <b-input-group prepend="Data">
+        <b-form-input v-model="newBlockData" :disabled="disableAddBlockBtn"/>
+        <b-button @click="addBlock" variant="primary" :disabled="disableAddBlockBtn">
+          Add Block
+        </b-button>
+      </b-input-group>
 
-    <!-- Add block Button -->
-    <b-input-group prepend="Data">
-      <b-form-input v-model="newBlockData" :disabled="disableAddBlockBtn"/>
-      <b-button @click="addBlock" variant="primary" :disabled="disableAddBlockBtn">
-        Add Block
-      </b-button>
-    </b-input-group>
-
-    <div id="blockchainPow" class="text-center">
-      <BlockCard v-for="(block, index) in this.blocks" :key="index"
-                 :block="block"
-                 :index="index"
-                 v-on:finalizeBlock="finalizeBlock"
-                 v-on:updateData="updateData"
-                 v-on:updateNonce="updateNonce"
-                 v-on:solveNonce="solveNonce" />
-    </div>
+      <div id="blockchainPow" class="text-center">
+        <BlockCard v-for="(block, index) in this.blocks" :key="index"
+                   :block="block"
+                   :index="index"
+                   v-on:finalizeBlock="finalizeBlock"
+                   v-on:updateData="updateData"
+                   v-on:updateNonce="updateNonce"
+                   v-on:solveNonce="solveNonce" />
+      </div>
+    </Page>
   </div>
 </template>
 
@@ -42,16 +45,14 @@
 import Block from '@/services/block/DemoBlock';
 import BlockHeader from '@/services/block/DemoBlockHeader';
 import BlockCard from '@/components/cards/BlockCard.vue';
-import Difficulty from '@/components/controls/Difficulty.vue';
 import Target from '@/components/controls/Target.vue';
-import Hex from '@/components/cards/HexTable.vue';
+import Page from '@/components/pages/Page.vue';
 
 export default {
   components: {
     BlockCard,
-    Difficulty,
-    Hex,
     Target,
+    Page,
   },
   data() {
     return {
@@ -205,7 +206,6 @@ export default {
   #blockchainPow {
     overflow-y: auto;
     max-height: 40vh;
-    background-color: ghostwhite;
   }
   #target_table th {
     text-align: center;

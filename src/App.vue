@@ -6,6 +6,7 @@
 
       <TermsPage/>
       <Blockchain/>
+      <PowBlockchainPage/>
       <TimeChainPage/>
       <MiningPage/>
       <ResourcesPage/>
@@ -18,6 +19,7 @@
 import Blockchain from '@/components/pages/BlockchainPage.vue';
 import IntroPage from '@/components/pages/IntroPage.vue';
 import MiningPage from '@/components/pages/MiningPage.vue';
+import PowBlockchainPage from '@/components/pages/PowBlockchainPage.vue';
 import ResourcesPage from '@/components/pages/ResourcesPage.vue';
 import TermsPage from '@/components/pages/TermsPage.vue';
 import TimeChainPage from '@/components/pages/TimeChainPage.vue';
@@ -28,6 +30,7 @@ export default {
     Blockchain,
     IntroPage,
     MiningPage,
+    PowBlockchainPage,
     ResourcesPage,
     TermsPage,
     TimeChainPage,
@@ -40,10 +43,9 @@ export default {
         afterLoad: this.afterLoad,
         navigation: true,
         anchors: [],
-        sectionsColor: [],
       },
       contents: [
-        { anchor: 'intro', color: '#41b883' },
+        { anchor: 'intro', color: '#15202b' },
         {
           anchor: 'terms',
           color: '#ff5f45',
@@ -67,8 +69,6 @@ export default {
           slides: [
             { anchor: 'hash_rate' },
             { anchor: 'probability' },
-            { anchor: 'difficulty' },
-            { anchor: 'difficulty_adjustment' },
           ],
         },
         { anchor: 'resources', color: '#ee1a59' },
@@ -77,28 +77,65 @@ export default {
   },
   mounted() {
     this.addAnchorsToFullpage();
+    this.moveToUrl();
   },
   methods: {
     addAnchorsToFullpage() {
       this.contents.forEach((section) => {
         this.fullpageOptions.anchors.push(section.anchor);
-        this.fullpageOptions.sectionsColor.push(section.color);
       });
+    },
+    moveToUrl() {
+      const anchors = window.location.hash.match(/(\w+)/g) || [].reverse();
+      if (anchors.length > 0) {
+        this.moveTo(anchors.pop());
+      }
     },
   },
 };
 </script>
 
 <style>
-  .section {
-    position: relative;
+  .card {
+    background-color: #f9f9fb;
+    color: #15202b;
+  }
+  .card-header {
+    background-color: #343a40;
+    color: #f9f9fb;
+  }
+  .table {
+    margin-bottom: 0;
+  }
+  tr {
+    background-color: transparent;
   }
 
-  h3 {
-    color: #fff;
-    font-size: 5em;
-    font-weight: 700;
+  hr {
+    margin: .5em 0;
+  }
+
+  h1 {
+    margin-bottom: 1em;
     text-align: center;
+    color: #f9f9fb;
+  }
+
+  /* FullPage Controls */
+  #fp-nav {
+    top: 33%;
+  }
+  .fp-controlArrow {
+    top: 66%;
+  }
+  .fp-controlArrow.fp-prev{
+    border-width: 16px 16px 16px 0;
+  }
+  .fp-controlArrow.fp-next {
+    border-width: 16px 0 16px 16px;
+  }
+  #fp-nav ul li a span, .fp-slidesNav ul li a span {
+    background-color: #f9f9fb;
   }
 
 </style>

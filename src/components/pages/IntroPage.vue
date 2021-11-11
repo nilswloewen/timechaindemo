@@ -1,14 +1,11 @@
 <template>
   <Page data-anchor="intro">
+    <h1 class="text-center">
+      How Bitcoin Mining Works
+    </h1>
+    Welcome to an interactive demo of what bitcoin miners are technically upto.
 
-    <b-card header="Timechain Demo">
-      <h4>How Bitcoin Mining Works</h4>
-
-      <q>Bitcoin is time.</q> - <a href="https://dergigi.com/2021/01/14/bitcoin-is-time">derGigi</a>
-
-      <TableOfContents :contents="contents"/>
-    </b-card>
-
+    <TableOfContents class="fade-in" :contents="contents"/>
   </Page>
 </template>
 
@@ -28,3 +25,30 @@ export default {
   },
 };
 </script>
+
+<style>
+  /*[data-anchor="intro"] {*/
+  /*  background-image: url("/assets/brain_black.webp");*/
+  /*  background-repeat: no-repeat;*/
+  /*  background-size: cover;*/
+  /*  background-position: center center;*/
+  /*}*/
+  /*.fade-in {*/
+  /*  animation-name: FadeIn;*/
+  /*  animation-duration: 4s;*/
+  /*  transition-timing-function: ease-in;*/
+  /*  opacity: 1;*/
+  /*}*/
+  /*.delay-fade {*/
+  /*  animation-delay: 1s;*/
+  /*}*/
+
+  /*@keyframes FadeIn {*/
+  /*  0% {*/
+  /*    opacity: 0;*/
+  /*  }*/
+  /*  100% {*/
+  /*    opacity: 1;*/
+  /*  }*/
+  /*}*/
+</style>

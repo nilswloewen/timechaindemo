@@ -12,18 +12,16 @@
       In computer science, a hash is the output of a function that yields a short,
       unique output for each unique input of arbitrary length. In the process the
       input data is scrambled and mixed around, 'hashed' if you will, to derive
-      the output.
+      the output. A hash is a one-way function because the input data can never be
+      recovered from the output data.
     </p>
 
     <p>
       A hash can be thought of as the digital fingerprint of a piece of data. If
       even one bit in the input data is changed the entire hash becomes wildly different.
       While the output of a hash may look random it is not, it is simply unpredictable.
-      The only way to find a hash is to put in the work of calculating it.
+      The only way to find a hash is to take the time to put in the work of calculating it.
     </p>
-
-    For example, the first four characters of the SHA-256 hash of these
-    characters look random.
 
     <b-card no-body class="mb-4 mt-4" header="SHA-256 Calculator">
       <b-list-group-item class="list-field">
@@ -93,7 +91,6 @@ export default {
   },
   methods: {
     async updateHash(newData) {
-      console.log(newData);
       this.data = newData;
       this.hash = await sha256dFromText(this.data);
     },

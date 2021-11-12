@@ -39,7 +39,6 @@ export default {
         licenseKey: '75EC2C59-580B47EA-8CE07EC3-BFC00055',
         navigation: true,
         scrollBar: false,
-        scrollHorizontally: true,
         scrollOverflow: true,
       },
       contents: [

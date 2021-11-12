@@ -3,9 +3,15 @@
     <Page slide data-anchor="blockchain">
       <h1>Blockchain</h1>
 
+      <b-card class="mb-4">
+        <h4 class="text-left"><a href="https://www.etymonline.com/word/hash">blockchain (n.)</a></h4>
+        <hr>
+          <q>A blockchain is a chain of blocks.</q>
+        <a href="https://t.co/HQwDRlKKx9" target="_blank">&nbsp;&mdash; Peter Todd</a>
+      </b-card>
+
       <p>
-        <q>A blockchain is a chain of blocks</q>
-        - Peter Todd
+        Bitcoin
       </p>
     </Page>
 
@@ -25,3 +31,7 @@ export default {
   },
 };
 </script>
+
+<style>
+
+</style>

@@ -3,7 +3,7 @@
     <!-- Chain-link icon -->
     <b-iconstack font-scale="3" v-if="index > 0" class="m-2">
       <b-icon-link stacked rotate="90" :style="getLinkColor" />
-      <b-icon stacked icon="slash" variant="danger" v-if="!block.isHashValid"></b-icon>
+      <b-icon stacked icon="slash" variant="danger" v-if="!isHashValid"></b-icon>
     </b-iconstack>
 
     <b-card no-body class="text-left">
@@ -25,14 +25,14 @@
       <b-list-group-item class="list-field">Hash (ID) </b-list-group-item>
       <b-list-group-item class="list-value">
         <b-form-input title="Hash" size="sm" :style="getColor"
-                      :value="getHash" :disabled="true" :state="block.isHashValid"/>
+                      :value="getHash" :disabled="true" :state="isHashValid"/>
       </b-list-group-item>
 
       <template v-if="showData">
         <!--Data-->
         <b-list-group-item class="list-field">Data</b-list-group-item>
         <b-list-group-item class="list-value">
-          <b-form-input @change="onDataChange" :value="block.header.data" size="sm"/>
+          <b-form-input @keyup="onDataChange" :value="block.header.data" size="sm"/>
         </b-list-group-item>
       </template>
 
@@ -50,16 +50,16 @@
         <b-list-group-item class="list-value">{{ block.header.merkleRoot }}</b-list-group-item>
       </template>
 
-      <template v-if="showData">
+      <template v-if="showNonce">
         <!--Nonce-->
         <b-list-group-item class="list-field">Nonce</b-list-group-item>
         <b-list-group-item class="list-value">
           <b-input-group>
             <b-form-input class="nonce_input" @change="onNonceChange"
-                          :value="block.header.nonce" :state="block.isHashValid"
+                          :value="block.header.nonce" :state="isHashValid"
                           type="number" size="sm"/>
             <b-button-group>
-              <b-button size="sm" @click="incrementNonce" :disabled="block.isHashValid">
+              <b-button size="sm" @click="incrementNonce" :disabled="isHashValid">
                 + 1
               </b-button>
               <b-button size="sm" @click="solveNonce" variant="warning">Solve</b-button>
@@ -69,14 +69,14 @@
       </template>
 
       <!--Time-->
-      <b-list-group-item class="list-field">Time</b-list-group-item>
+      <b-list-group-item class="list-field">Timestamp</b-list-group-item>
       <b-list-group-item class="list-value">{{ getTime }}</b-list-group-item>
 
       <!--Previous Hash-->
       <b-list-group-item class="list-field">Previous Hash</b-list-group-item>
       <b-list-group-item class="list-value">
         <b-form-input title="Hash" :style="getPrevColor" size="sm" :disabled="true"
-                      :value="getPrevHash" :state="block.isHashValid"/>
+                      :value="getPrevHash" :state="isHashValid"/>
       </b-list-group-item>
 
     </b-card>
@@ -90,7 +90,10 @@ import Mempool from '@/services/Mempool';
 export default {
   props: {
     block: Block,
-    hexDigits: Number,
+    hexDigits: {
+      type: Number,
+      required: false,
+    },
     index: Number,
     showBlockHeightInput: Boolean,
     showData: Boolean,
@@ -126,6 +129,10 @@ export default {
       const date = new Date(this.block.header.timestamp * 1000);
       return new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeStyle: 'long' }).format(date);
     },
+    isHashValid() {
+      if (!this.showNonce) return true;
+      return this.block.isHashValid;
+    },
   },
 
   methods: {
@@ -149,7 +156,6 @@ export default {
       const id = await this.mempool.getBlockIdFromHeight(height);
       this.block = await this.mempool.getBlockById(id);
 
-      this.setBlockList();
       this.$emit('updateBlock', this.block);
     },
 

@@ -15,7 +15,7 @@
     </p>
 
     <p>
-      As you can see in the following table the values are equivalent yet notated differently.
+      As you can see in the following table these values are equivalent yet notated differently.
       To distinguish which notation system is being used numbers will be presented in base format:
       Value <sub>(base)</sub>.
     </p>

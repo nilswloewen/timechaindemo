@@ -32,7 +32,7 @@
 
       <b-list-group-item class="list-field">Average</b-list-group-item>
       <b-list-group-item class="list-value">
-        On average it will take <div class="stat odds">~{{ this.estimatedTries }}</div>
+        On average it will take <div class="stat odds">~{{ this.avgHashes }}</div>
         tries to find a valid hash.
       </b-list-group-item>
     </template>
@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       denominator: Number,
-      estimatedTries: Number,
+      avgHashes: Number,
       numerator: Number,
       probability: Number,
       target: 1,
@@ -79,7 +79,7 @@ export default {
       const gcd = this.gcd(this.target, this.max);
       this.numerator = this.target / gcd;
       this.denominator = this.max / gcd;
-      this.estimatedTries = ((1 / this.probability) * 100).toFixed(0);
+      this.avgHashes = ((1 / this.probability) * 100).toFixed(0);
     },
 
     gcd(first, second) {

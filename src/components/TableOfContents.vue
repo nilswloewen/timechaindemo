@@ -1,5 +1,5 @@
 <template>
-  <b-card id="table_of_contents" no-body>
+  <b-card id="table_of_contents" no-body class="mt-4">
     <b-card-header>
       Table of Contents:
     </b-card-header>

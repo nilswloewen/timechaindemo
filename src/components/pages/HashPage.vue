@@ -87,7 +87,7 @@ export default {
   },
   data() {
     return {
-      data: 'Try changing this data',
+      data: 'Try changing this data...',
       hash: '60759d1ab05baf2c79e281d8fbff268f559328dc45bd46b12114bbbe40197271',
     };
   },

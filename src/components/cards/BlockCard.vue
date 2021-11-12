@@ -6,67 +6,103 @@
       <b-icon stacked icon="slash" variant="danger" v-if="!block.isHashValid"></b-icon>
     </b-iconstack>
 
-    <b-card no-body>
-      <b-table-simple class="block" small>
+    <b-card no-body class="text-left">
+      <!-- Height -->
+      <b-card-header>
+        Block #{{ this.block.height }}
+        <template v-if="showBlockHeightInput">
+          <b-button-toolbar>
+            <b-button-group>
+              <b-form-input @change="onBlockHeightChange" :value="this.block.height"
+                            :max="this.blockHeightMax" :min="0" type="number" />
+              <b-button @click="onLatest" variant="primary">Latest</b-button>
+            </b-button-group>
+          </b-button-toolbar>
+        </template>
+      </b-card-header>
 
-        <b-thead head-variant="dark">
-          <b-tr>
-            <b-th> Block #{{ this.block.height }} </b-th>
-            <b-th>
-              <b-input-group prepend="Hash" size="sm">
-                <b-form-input title="Hash" size="sm" :style="getColor"
-                              :value="getHash" :disabled="true" :state="block.isHashValid"/>
-              </b-input-group>
-            </b-th>
-          </b-tr>
-        </b-thead>
+      <!--Hash-->
+      <b-list-group-item class="list-field">Hash (ID) </b-list-group-item>
+      <b-list-group-item class="list-value">
+        <b-form-input title="Hash" size="sm" :style="getColor"
+                      :value="getHash" :disabled="true" :state="block.isHashValid"/>
+      </b-list-group-item>
 
-        <b-tbody>
-          <b-tr>
-            <b-td>Data</b-td>
-            <b-td>
-              <b-form-input @change="onDataChange" :value="block.header.data" size="sm"/>
-            </b-td>
-          </b-tr>
+      <template v-if="showData">
+        <!--Data-->
+        <b-list-group-item class="list-field">Data</b-list-group-item>
+        <b-list-group-item class="list-value">
+          <b-form-input @change="onDataChange" :value="block.header.data" size="sm"/>
+        </b-list-group-item>
+      </template>
 
-          <b-tr>
-            <b-td>Nonce</b-td>
-            <b-td>
-              <b-input-group>
-                <b-form-input class="nonce_input" @change="onNonceChange"
-                              :value="block.header.nonce" :state="block.isHashValid"
-                              type="number" size="sm"/>
-                <b-button-group>
-                  <b-button size="sm" @click="incrementNonce" :disabled="block.isHashValid">
-                    + 1
-                  </b-button>
-                  <b-button size="sm" @click="solveNonce" variant="warning">Solve</b-button>
-                </b-button-group>
-              </b-input-group>
-            </b-td>
-          </b-tr>
+      <template v-if="showMerkle">
+        <!--Version-->
+        <b-list-group-item class="list-field">Version</b-list-group-item>
+        <b-list-group-item class="list-value">{{ block.header.version }}</b-list-group-item>
 
-          <b-tr>
-            <b-td>Previous Hash</b-td>
-            <b-td>
-              <b-form-input title="Hash" :style="getPrevColor" size="sm" :disabled="true"
-                            :value="getPrevHash" :state="block.isHashValid"/>
-            </b-td>
-          </b-tr>
+        <!--Bits-->
+        <b-list-group-item class="list-field">Bits</b-list-group-item>
+        <b-list-group-item class="list-value">{{ block.header.bits }}</b-list-group-item>
 
-        </b-tbody>
-      </b-table-simple>
+        <!--Merkle Root-->
+        <b-list-group-item class="list-field">Merkle Root</b-list-group-item>
+        <b-list-group-item class="list-value">{{ block.header.merkleRoot }}</b-list-group-item>
+      </template>
+
+      <template v-if="showData">
+        <!--Nonce-->
+        <b-list-group-item class="list-field">Nonce</b-list-group-item>
+        <b-list-group-item class="list-value">
+          <b-input-group>
+            <b-form-input class="nonce_input" @change="onNonceChange"
+                          :value="block.header.nonce" :state="block.isHashValid"
+                          type="number" size="sm"/>
+            <b-button-group>
+              <b-button size="sm" @click="incrementNonce" :disabled="block.isHashValid">
+                + 1
+              </b-button>
+              <b-button size="sm" @click="solveNonce" variant="warning">Solve</b-button>
+            </b-button-group>
+          </b-input-group>
+        </b-list-group-item>
+      </template>
+
+      <!--Time-->
+      <b-list-group-item class="list-field">Time</b-list-group-item>
+      <b-list-group-item class="list-value">{{ getTime }}</b-list-group-item>
+
+      <!--Previous Hash-->
+      <b-list-group-item class="list-field">Previous Hash</b-list-group-item>
+      <b-list-group-item class="list-value">
+        <b-form-input title="Hash" :style="getPrevColor" size="sm" :disabled="true"
+                      :value="getPrevHash" :state="block.isHashValid"/>
+      </b-list-group-item>
+
     </b-card>
   </div>
 </template>
 
 <script>
 import Block from '@/services/block/DemoBlock';
+import Mempool from '@/services/Mempool';
 
 export default {
   props: {
     block: Block,
+    hexDigits: Number,
     index: Number,
+    showBlockHeightInput: Boolean,
+    showData: Boolean,
+    showMerkle: Boolean,
+    showNonce: Boolean,
+  },
+
+  data() {
+    return {
+      blockHeightMax: 706894,
+      memPool: new Mempool(),
+    };
   },
 
   computed: {
@@ -80,13 +116,15 @@ export default {
       return `color: ${this.block.color};`;
     },
     getHash() {
-      const hex = this.block.hash.substr(0, 2);
-      const decimal = parseInt(hex, 16).toString().padStart(3, ' ');
-      const bin = parseInt(hex, 16).toString(2).padStart(8, '0');
-      return `${hex}₁₆ | ${decimal}₁₀ | ${bin}₂`;
+      const hex = this.block.hash.substr(0, this.hexDigits);
+      return `${hex}₁₆`;
     },
     getPrevHash() {
-      return this.block.header.prevHash.substr(0, 2);
+      return this.block.header.prevHash.substr(0, this.hexDigits);
+    },
+    getTime() {
+      const date = new Date(this.block.header.timestamp * 1000);
+      return new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeStyle: 'long' }).format(date);
     },
   },
 
@@ -105,6 +143,24 @@ export default {
     },
     async finalizeBlock() {
       this.$emit('finalizeBlock', this.index);
+    },
+
+    async getBlock(height) {
+      const id = await this.mempool.getBlockIdFromHeight(height);
+      this.block = await this.mempool.getBlockById(id);
+
+      this.setBlockList();
+      this.$emit('updateBlock', this.block);
+    },
+
+    async onBlockHeightChange(height) {
+      await this.getBlock(height);
+    },
+
+    async onLatest() {
+      const height = await this.mempool.getHeightOfLatestBlock();
+      this.blockHeightMax = height;
+      await this.getBlock(height);
     },
   },
 };

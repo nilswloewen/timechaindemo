@@ -1,93 +1,95 @@
 <template>
-    <div class="section">
-      <Page data-anchor="proof-of-work" slide>
-        <h1>
-          Proof-of-Work Blockchain
-        </h1>
+  <div class="section">
+    <Page data-anchor="proof-of-work" slide>
+      <h1>
+        Proof-of-Work Blockchain
+      </h1>
 
-        <p>
-          <q>We propose a solution to the double-spending problem using a
-            peer-to-peer network. The network timestamps transactions by hashing
-            them into an ongoing chain of hash-based proof-of-work, forming a
-            record that cannot be changed without redoing the proof-of-work.</q>
-          - <a href="https://bitcoin.org/bitcoin.pdf">Bitcoin Whitepaper</a>
-        </p>
+      <p>
+        <q>We propose a solution to the double-spending problem using a
+          peer-to-peer network. The network timestamps transactions by hashing
+          them into an ongoing chain of hash-based proof-of-work, forming a
+          record that cannot be changed without redoing the proof-of-work.</q>
+        - <a href="https://bitcoin.org/bitcoin.pdf">Bitcoin Whitepaper</a>
+      </p>
 
-        <p>
-          The block hash is now required to meet a certain criteria: we will
-          interpret the hash as a number and only consider it valid if it is
-          less than the <b>target</b>.
-        </p>
+      <p>
+        The block hash is now required to meet a certain criteria: we will
+        interpret the hash as a number and only consider it valid if it is
+        less than the <b>target</b>.
+      </p>
 
-        <p>
-          Because a hash of the data and previous hash will not meet the new criteria
-          we will add one new field to the block called a <b>Nonce</b>, which is
-          shorthand for 'a number used only once'. If the output hash does not meet the
-          target criteria, we can change the nonce and try again.
-        </p>
-      </Page>
+      <p>
+        Because a hash of the data and previous hash will not meet the new criteria
+        we will add one new field to the block called a <b>Nonce</b>, which is
+        shorthand for 'a number used only once'. If the output hash does not meet the
+        target criteria, we can change the nonce and try again.
+      </p>
+      <Algorithm/>
+    </Page>
 
-      <Page data-anchor="target" slide >
-        <Target full :initial-target="initialTarget" :max="this.targetMax"
-                v-on:updateTarget="updateTarget"/>
-      </Page>
+    <Page data-anchor="target" slide >
+      <Target full :initial-target="initialTarget" :max="this.targetMax"
+              v-on:updateTarget="updateTarget"/>
+    </Page>
 
-      <Page data-anchor="pow_blockchain" slide>
-        <h1>Proof-of-work Blockchain</h1>
+    <Page data-anchor="pow_blockchain" slide>
+      <h1>Proof-of-work Blockchain</h1>
 
-        <Target :initial-target="initialTarget" :max="this.targetMax"
-                v-on:updateTarget="updateTarget"/>
+      <Target :initial-target="initialTarget" :max="this.targetMax"
+              v-on:updateTarget="updateTarget"/>
 
-        <!-- Add block Button -->
-        <b-input-group prepend="Data">
-          <b-form-input v-model="newBlockData" :disabled="disableAddBlockBtn"/>
-          <b-button @click="addBlock" variant="primary" :disabled="disableAddBlockBtn">
-            Add Block
-          </b-button>
-          <b-button @click="resetBlocks()">Reset</b-button>
+      <!-- Add block Button -->
+      <b-input-group prepend="Data">
+        <b-form-input v-model="newBlockData" :disabled="disableAddBlockBtn"/>
+        <b-button @click="addBlock" variant="primary" :disabled="disableAddBlockBtn">
+          Add Block
+        </b-button>
+        <b-button @click="resetBlocks()">Reset</b-button>
+      </b-input-group>
+
+      <div id="blockchainPow" class="text-center mt-4">
+        <BlockCard v-for="(block, index) in this.blocks" :key="index"
+                   :block="block"
+                   :hex-digits="hexDigits"
+                   :index="index"
+                   showData
+                   showNonce
+                   v-on:finalizeBlock="finalizeBlock"
+                   v-on:updateData="updateData"
+                   v-on:updateNonce="updateNonce"
+                   v-on:solveNonce="solveNonce" />
+      </div>
+    </Page>
+
+    <Page data-anchor="Complexity" slide>
+      <h1>Complexity</h1>
+      <p>
+        So far the demo has only shown the first two digits of the hash. Change
+        the slider to see more digits of the hash and see how the difficulty grows...
+      </p>
+      <b-card no-body header="Complexity" class="mb-4" size="sm">
+        <b-input-group prepend="Min 2" append="Max 64">
+          <b-form-input :title="hexDigits" v-model.number="hexDigits" type="range"
+                        min="2" :max="64" size="sm"/>
         </b-input-group>
-
-        <div id="blockchainPow" class="text-center mt-4">
-          <BlockCard v-for="(block, index) in this.blocks" :key="index"
-                     :block="block"
-                     :index="index"
-                     v-on:finalizeBlock="finalizeBlock"
-                     v-on:updateData="updateData"
-                     v-on:updateNonce="updateNonce"
-                     v-on:solveNonce="solveNonce" />
-        </div>
-      </Page>
-    </div>
-
-<!--    <div class="section">-->
-<!--      <Page slide data-anchor="timechain">-->
-<!--        <h1>Timechain</h1>-->
-<!--      </Page>-->
-
-<!--      <Page slide data-anchor="difficulty">-->
-<!--        <h1>Difficulty</h1>-->
-<!--        <Difficulty :avg-hashes="avgHashes()" :hps-of-this-device="hpsOfThisDevice"-->
-<!--                    v-on:calibrate-hps="calibrateHps()"/>-->
-<!--      </Page>-->
-
-<!--      <Page slide data-anchor="hash_rate">-->
-<!--        <h1>Hash Rate</h1>-->
-<!--      </Page>-->
-<!--    </div>-->
+      </b-card>
+    </Page>
+  </div>
 </template>
 
 <script>
+import Algorithm from '@/components/cards/Algorithm.vue';
 import Block from '@/services/block/DemoBlock';
 import BlockHeader from '@/services/block/DemoBlockHeader';
 import BlockCard from '@/components/cards/BlockCard.vue';
 import Target from '@/components/controls/Target.vue';
 import Page from '@/components/pages/Page.vue';
-import Difficulty from '@/components/controls/Difficulty.vue';
 
 export default {
   components: {
+    Algorithm,
     BlockCard,
-    Difficulty,
     Target,
     Page,
   },
@@ -103,6 +105,7 @@ export default {
       ],
       disableAddBlockBtn: true,
       hpsOfThisDevice: 100,
+      hexDigits: 2,
       initialTarget: 32,
       newBlockData: '',
       target: 32,
@@ -112,6 +115,12 @@ export default {
 
   async mounted() {
     await this.resetBlocks();
+  },
+
+  watch: {
+    hexDigits() {
+      this.targetMax = 2 ** (this.hexDigits * 4);
+    },
   },
 
   methods: {
@@ -141,7 +150,7 @@ export default {
 
       // Check if all blocks are still under the target.
       for (let i = 0; i < this.blocks.length; i += 1) {
-        const hash = parseInt(this.blocks[i].hash.toString().substr(0, 2), 16);
+        const hash = parseInt(this.blocks[i].hash.toString().substr(0, this.hexDigits), 16);
         this.blocks[i].isHashValid = hash < this.target;
         this.blocks[i].stats = [];
       }
@@ -216,7 +225,7 @@ export default {
       const block = this.blocks[index];
       await block.calcHash();
 
-      const hash = parseInt(block.hash.substr(0, 2), 16);
+      const hash = parseInt(block.hash.substr(0, this.hexDigits), 16);
       block.isHashValid = hash < this.target;
 
       if (index > 0) {

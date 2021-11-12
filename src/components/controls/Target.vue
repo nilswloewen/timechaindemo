@@ -1,71 +1,61 @@
 <template>
   <b-card no-body class="mb-2">
 
-    <b-table-simple>
-      <b-thead head-variant="dark">
-        <b-tr>
-          <b-th>Target</b-th>
-          <b-th colspan="3">
-            <b-input-group prepend="Min 1" append="Max 255" size="sm" >
-              <b-form-input :title="target" v-model.number="target" type="range"
-                            min="1" :max="max - 1" size="sm"/>
-            </b-input-group>
-          </b-th>
-        </b-tr>
-      </b-thead>
+    <b-card-header>
+      Target
+      <b-input-group prepend="Min 1" size="sm" append="Max">
+        <b-form-input :title="target" v-model.number="target" type="range"
+                      min="1" :max="max - 1" size="sm"/>
+      </b-input-group>
+    </b-card-header>
 
-      <b-tbody>
-        <b-tr>
-          <b-td>Value</b-td>
-          <b-td>{{ target.toString(16).padStart(2, '0') }}<sub>16</sub></b-td>
-          <b-td>{{ target.toString() }}<sub>10</sub></b-td>
-          <b-td>{{ target.toString(2).padStart(8, '0') }}<sub>2</sub></b-td>
-        </b-tr>
+    <b-list-group-item class="list-field">Max</b-list-group-item>
+    <b-list-group-item class="list-value">{{ max }}<sub>10</sub></b-list-group-item>
 
-        <template v-if="full">
-         <b-tr>
-          <b-td> Probability </b-td>
-           <b-td colspan="3">
-             Only <div class="stat probability">{{ this.probability }}%</div>
-             of possible hashes will be accepted.
-           </b-td>
-         </b-tr>
-          <b-tr>
-            <b-td>Odds</b-td>
-            <b-td colspan="3">
-              Each try has a <div class="stat odds">{{ this.numerator }}</div> out of
-              <div class="stat odds">{{ this.denominator }}</div> chance of winning.
-            </b-td>
-          </b-tr>
-          <b-tr>
-            <b-td>Average</b-td>
-            <b-td colspan="3">
-              On average it will take <div class="stat odds">~{{ this.estimatedTries }}</div>
-              tries to find a valid hash.
-            </b-td>
-          </b-tr>
-      </template>
+    <b-list-group-item class="list-field">Value</b-list-group-item>
+    <b-list-group-item class="list-value">
+      {{ target.toString() }}<sub>10</sub>
+    </b-list-group-item>
 
-      </b-tbody>
-    </b-table-simple>
+    <template v-if="full">
+      <b-list-group-item class="list-field">Probability</b-list-group-item>
+      <b-list-group-item class="list-value">
+        Only <div class="stat probability">{{ this.probability }}%</div>
+        of possible hashes will be accepted.
+      </b-list-group-item>
+
+      <b-list-group-item class="list-field">Odds</b-list-group-item>
+      <b-list-group-item class="list-value">
+        Each try has a <div class="stat odds">{{ this.numerator }}</div> out of
+        <div class="stat odds">{{ this.denominator }}</div> chance of winning.
+      </b-list-group-item>
+
+      <b-list-group-item class="list-field">Average</b-list-group-item>
+      <b-list-group-item class="list-value">
+        On average it will take <div class="stat odds">~{{ this.estimatedTries }}</div>
+        tries to find a valid hash.
+      </b-list-group-item>
+    </template>
+
   </b-card>
 </template>
 
 <script>
 export default {
   props: {
+    full: Boolean,
+    hexDigits: Number,
     initialTarget: Number,
     max: Number,
-    full: Boolean,
   },
 
   data() {
     return {
-      target: 1,
-      numerator: Number,
       denominator: Number,
-      probability: Number,
       estimatedTries: Number,
+      numerator: Number,
+      probability: Number,
+      target: 1,
     };
   },
 

@@ -7,8 +7,7 @@
       <TermsPage/>
       <Blockchain/>
       <PowBlockchainPage/>
-<!--      <TimeChainPage/>-->
-      <MiningPage/>
+      <TimeChainPage/>
       <ResourcesPage/>
 
     </full-page>
@@ -18,7 +17,6 @@
 <script>
 import Blockchain from '@/components/pages/BlockchainPage.vue';
 import IntroPage from '@/components/pages/IntroPage.vue';
-import MiningPage from '@/components/pages/MiningPage.vue';
 import PowBlockchainPage from '@/components/pages/PowBlockchainPage.vue';
 import ResourcesPage from '@/components/pages/ResourcesPage.vue';
 import TermsPage from '@/components/pages/TermsPage.vue';
@@ -29,7 +27,6 @@ export default {
   components: {
     Blockchain,
     IntroPage,
-    MiningPage,
     PowBlockchainPage,
     ResourcesPage,
     TermsPage,
@@ -68,13 +65,14 @@ export default {
           slides: [
             { anchor: 'target' },
             { anchor: 'pow_blockchain' },
+            { anchor: 'complexity' },
           ],
         },
-        { anchor: 'mining', color: '#fec401' },
         {
           anchor: 'timechain',
           color: '#1bcee6',
           slides: [
+            { anchor: 'difficulty' },
             { anchor: 'hash_rate' },
             { anchor: 'probability' },
           ],

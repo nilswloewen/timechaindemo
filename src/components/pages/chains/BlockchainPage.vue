@@ -22,7 +22,7 @@
 
 <script>
 import Page from '@/components/pages/Page.vue';
-import SimpleBlockchainPage from '@/components/pages/SimpleBlockchainPage.vue';
+import SimpleBlockchainPage from '@/components/pages/chains/SimpleBlockchainPage.vue';
 
 export default {
   components: {

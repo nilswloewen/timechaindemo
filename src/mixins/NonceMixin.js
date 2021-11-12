@@ -1,5 +1,9 @@
 export default {
   methods: {
+    async updateNonce(nonce, index) {
+      this.blocks[index].header.nonce = nonce;
+      await this.delayedUpdate(index);
+    },
     async solveNonce(index) {
       const startTime = new Date().getTime();
       const block = this.blocks[index];

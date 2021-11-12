@@ -3,11 +3,11 @@
     <full-page id="fullpage" :options="fullpageOptions" >
 
       <IntroPage :contents="contents" />
-
       <TermsPage/>
       <Blockchain/>
       <PowBlockchainPage/>
       <TimeChainPage/>
+      <HistoricalTimechainPage/>
       <ResourcesPage/>
 
     </full-page>
@@ -15,17 +15,19 @@
 </template>
 
 <script>
-import Blockchain from '@/components/pages/BlockchainPage.vue';
+import Blockchain from '@/components/pages/chains/BlockchainPage.vue';
+import HistoricalTimechainPage from '@/components/pages/chains/HistoricalTimechainPage.vue';
 import IntroPage from '@/components/pages/IntroPage.vue';
-import PowBlockchainPage from '@/components/pages/PowBlockchainPage.vue';
+import PowBlockchainPage from '@/components/pages/chains/PowBlockchainPage.vue';
 import ResourcesPage from '@/components/pages/ResourcesPage.vue';
-import TermsPage from '@/components/pages/TermsPage.vue';
-import TimeChainPage from '@/components/pages/TimeChainPage.vue';
+import TermsPage from '@/components/pages/terms/TermsPage.vue';
+import TimeChainPage from '@/components/pages/chains/TimeChainPage.vue';
 
 export default {
   name: 'app',
   components: {
     Blockchain,
+    HistoricalTimechainPage,
     IntroPage,
     PowBlockchainPage,
     ResourcesPage,
@@ -55,7 +57,7 @@ export default {
           anchor: 'blockchain',
           color: '#0798ec',
           slides: [
-            { anchor: 'simple' },
+            { anchor: 'simple_blockchain' },
           ],
         },
         {
@@ -64,7 +66,6 @@ export default {
           slides: [
             { anchor: 'target' },
             { anchor: 'pow_blockchain' },
-            { anchor: 'complexity' },
           ],
         },
         {
@@ -76,6 +77,7 @@ export default {
             { anchor: 'probability' },
           ],
         },
+        { anchor: 'historical_timechain', color: '#ee1a59' },
         { anchor: 'resources', color: '#ee1a59' },
       ],
     };

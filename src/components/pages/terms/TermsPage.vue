@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import HashPage from '@/components/pages/HashPage.vue';
-import HexNotationPage from '@/components/pages/HexNotationPage.vue';
+import HashPage from '@/components/pages/terms/HashPage.vue';
+import HexNotationPage from '@/components/pages/terms/HexNotationPage.vue';
 import Page from '@/components/pages/Page.vue';
 
 export default {

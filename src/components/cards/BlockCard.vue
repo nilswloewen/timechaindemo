@@ -9,13 +9,13 @@
     <b-card no-body class="text-left">
       <!-- Height -->
       <b-card-header>
-        Block #{{ this.block.height }}
+        Block #{{ block.height }}
         <template v-if="showBlockHeightInput">
           <b-button-toolbar>
             <b-button-group>
-              <b-form-input @change="onBlockHeightChange" :value="this.block.height"
-                            :max="this.blockHeightMax" :min="0" type="number" />
-              <b-button @click="onLatest" variant="primary">Latest</b-button>
+              <b-form-input @change="onBlockHeightChange" :value="block.height"
+                            :max="blockHeightMax" :min="0" type="number" />
+              <b-button @click="getLatestBlock" variant="primary">Latest</b-button>
             </b-button-group>
           </b-button-toolbar>
         </template>
@@ -151,22 +151,10 @@ export default {
     async finalizeBlock() {
       this.$emit('finalizeBlock', this.index);
     },
-
-    async getBlock(height) {
-      const id = await this.mempool.getBlockIdFromHeight(height);
-      this.block = await this.mempool.getBlockById(id);
-
-      this.$emit('updateBlock', this.block);
+    getLatestBlock() {
     },
-
-    async onBlockHeightChange(height) {
-      await this.getBlock(height);
-    },
-
-    async onLatest() {
-      const height = await this.mempool.getHeightOfLatestBlock();
-      this.blockHeightMax = height;
-      await this.getBlock(height);
+    onBlockHeightChange(newHeight) {
+      this.$emit('update-block-height', newHeight);
     },
   },
 };

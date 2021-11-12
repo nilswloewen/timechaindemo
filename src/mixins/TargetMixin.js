@@ -1,4 +1,11 @@
 export default {
+  data() {
+    return {
+      initialTarget: 32,
+      target: 32,
+      targetMax: 256,
+    };
+  },
   methods: {
     updateTarget(newTarget) {
       this.target = newTarget;

@@ -2,9 +2,28 @@ import BlockHeader from '@/services/block/DemoBlockHeader';
 import Block from '@/services/block/DemoBlock';
 
 export default {
-  data: () => ({ blocks: [], newBlockData: '', disableAddBlockBtn: true }),
+  data() {
+    return {
+      colors: [
+        '#61e294',
+        '#7bcdba',
+        '#9799ca',
+        '#b47aea',
+        '#bd93d8',
+      ],
+      blocks: [],
+      disableAddBlockBtn: true,
+      hexDigits: 2,
+      newBlockData: '',
+    };
+  },
   async mounted() {
     await this.resetBlocks();
+  },
+  watch: {
+    hexDigits() {
+      this.targetMax = 2 ** (this.hexDigits * 4);
+    },
   },
   methods: {
     async addBlock() {
@@ -58,5 +77,9 @@ export default {
       }, 500);
     },
 
+    getColor() {
+      const i = this.index % this.colors.length;
+      return this.colors[i];
+    },
   },
 };

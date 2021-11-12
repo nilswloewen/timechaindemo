@@ -32,21 +32,6 @@
         - <a href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</a>
       </p>
       <Algorithm/>
-      <Difficulty :hps-of-this-device="hpsOfThisDevice" :avg-hashes="avgHashes()"
-                  v-on:calibrate-hps="calibrateHps"/>
-    </Page>
-    <Page data-anchor="simpleTest" slide>
-      <h1>SimpleTest</h1>
-      <AddBlockButton :disable-add-block-btn="false"
-                      v-on:add-block="addBlock"
-                      v-on:reset-blocks="resetBlocks"/>
-      <BlockCard v-for="(block, index) in this.blocks" :key="index"
-                 :block="block"
-                 :index="index"
-                 :hex-digits="2"
-                 showData
-                 v-on:finalizeBlock="finalizeBlock"
-                 v-on:updateData="updateData" />
     </Page>
 
     <Page data-anchor="target" slide >
@@ -77,82 +62,35 @@
                    v-on:solveNonce="solveNonce" />
       </div>
     </Page>
-
-    <Page data-anchor="timechain" slide>
-      <h1>Timechain</h1>
-      <p>
-        So far the demo has only shown the first two digits of the hash. Change
-        the slider to see more digits of the hash and see how the difficulty grows...
-      </p>
-      <Complexity :initial-hex-digits="2" v-on:update-hex-digits="updateHexDigits"/>
-    </Page>
   </div>
 </template>
 
 <script>
-import AddBlockButton from '@/components/AddBlockButton.vue';
+import AddBlockButton from '@/components/controls/AddBlockButton.vue';
 import Algorithm from '@/components/cards/Algorithm.vue';
 import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
-import Complexity from '@/components/controls/Complexity.vue';
-import Difficulty from '@/components/controls/Difficulty.vue';
-import HashesPerSecondMixin from '@/mixins/HashesPerSecondMixin';
+import NonceMixin from '@/mixins/NonceMixin';
 import Page from '@/components/pages/Page.vue';
-import SolveNonceMixin from '@/mixins/SolveNonceMixin';
 import Target from '@/components/controls/Target.vue';
 import UpdateDataMixin from '@/mixins/UpdateDataMixin';
 import UpdateHexDigitsMixin from '@/mixins/UpdateHexDigitsMixin';
-import UpdateNonceMixin from '@/mixins/UpdateNonceMixin';
-import UpdateTargetMixin from '@/mixins/UpdateTargetMixin';
+import UpdateTargetMixin from '@/mixins/TargetMixin';
 
 export default {
   mixins: [
     BlockchainMixin,
-    HashesPerSecondMixin,
-    SolveNonceMixin,
+    NonceMixin,
     UpdateDataMixin,
     UpdateHexDigitsMixin,
-    UpdateNonceMixin,
     UpdateTargetMixin,
   ],
   components: {
     AddBlockButton,
     Algorithm,
     BlockCard,
-    Complexity,
-    Difficulty,
     Page,
     Target,
-  },
-  data() {
-    return {
-      colors: [
-        '#61e294',
-        '#7bcdba',
-        '#9799ca',
-        '#b47aea',
-        '#bd93d8',
-      ],
-      disableAddBlockBtn: true,
-      hexDigits: 2,
-      initialTarget: 32,
-      target: 32,
-      targetMax: 256,
-    };
-  },
-
-  watch: {
-    hexDigits() {
-      this.targetMax = 2 ** (this.hexDigits * 4);
-    },
-  },
-
-  methods: {
-    getColor() {
-      const i = this.index % this.colors.length;
-      return this.colors[i];
-    },
-
   },
 };
 </script>

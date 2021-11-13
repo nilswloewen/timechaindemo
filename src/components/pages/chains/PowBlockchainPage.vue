@@ -25,13 +25,32 @@
         shorthand for 'a number used only once'. If the output hash does not meet the
         target criteria, we can change the nonce and try again.
       </p>
+
       <p>
         <q>The only way to find a valid proof-of-work is by making a lot of guesses,
           and making a single guess takes a little bit of time. The probabilistic
           sum of these guesses is what builds up the timechain that is Bitcoin.</q>
         - <a href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</a>
       </p>
-      <Algorithm/>
+
+      <b-card no-body class="mb-4">
+        <b-card-header>
+          Mining Algorithm
+        </b-card-header>
+
+        <b-card-body>
+          <p>A. Prepare Block Header (data) </p>
+          <p> 1. Pick a random Nonce (number used only once)</p>
+          <p> 2. Calculate Hash: sha256d ( Block Header + Nonce ) </p>
+
+          3. If Hash is less than Target then the block is considered valid and
+          will be propagated to the network. The miner is awarded the mining
+          reward + transaction fees
+          (currently <em style="color: orange; font-weight: bolder">~6.25₿</em>)!
+          <br/>
+          &nbsp;&nbsp;&nbsp;If not - go back to step 1 try again!
+        </b-card-body>
+      </b-card>
     </Page>
 
     <Page data-anchor="target" slide >
@@ -67,7 +86,6 @@
 
 <script>
 import AddBlockButton from '@/components/controls/AddBlockButton.vue';
-import Algorithm from '@/components/cards/Algorithm.vue';
 import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
 import NonceMixin from '@/mixins/NonceMixin';
@@ -87,7 +105,6 @@ export default {
   ],
   components: {
     AddBlockButton,
-    Algorithm,
     BlockCard,
     Page,
     Target,

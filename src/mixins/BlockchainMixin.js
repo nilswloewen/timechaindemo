@@ -26,8 +26,8 @@ export default {
     },
   },
   methods: {
-    async addBlock() {
-      const header = new BlockHeader(this.newBlockData, 0, this.blocks[0].hash);
+    async addBlock(newData) {
+      const header = new BlockHeader(newData, 0, this.blocks[0].hash);
       const height = this.blocks.length;
       const color = this.colors[this.blocks.length % this.colors.length];
       const prevColor = this.colors[(this.blocks.length - 1) % this.colors.length];
@@ -76,7 +76,6 @@ export default {
         await this.delayedUpdate(index - 1);
       }, 500);
     },
-
     getColor() {
       const i = this.index % this.colors.length;
       return this.colors[i];

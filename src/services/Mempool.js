@@ -11,41 +11,24 @@ class Mempool {
   async getBlockById(hash) {
     const block = await this.api.getBlock({ hash });
 
-    // In case of Genesis block returning prev hash as null.
-    block.previousBlockHash = block.previousblockhash || ''.padStart(64, '0');
-    delete block.previousblockhash;
+    const header = new BlockHeader(
+      block.bits,
+      block.merkle_root,
+      block.nonce,
+      block.previousblockhash || ''.padStart(64, '0'),
+      block.timestamp,
+      block.version,
+    );
 
-    const props = [
-      'bits',
-      'merkleRoot',
-      'nonce',
-      'previousBlockHash',
-      'timestamp',
-      'version',
-    ];
-
-    const header = new BlockHeader();
-    props.forEach((prop) => {
-      header[prop] = block[prop];
-    });
-
-    return new Block(header);
+    return new Block(block.id, header, block.height);
   }
 
   async getLatestBlockHash() {
     return this.api.getBlocksTipHash();
   }
 
-  async getLastTenBlocksFrom(height) {
-    return this.api.getBlocks({ start_height: height });
-  }
-
   async getBlockIdFromHeight(height) {
     return this.api.getBlockHeight({ height });
-  }
-
-  async getHeightOfLatestBlock() {
-    return this.api.getBlocksTipHeight();
   }
 }
 

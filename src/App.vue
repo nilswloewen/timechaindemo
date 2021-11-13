@@ -7,7 +7,7 @@
       <Blockchain/>
       <PowBlockchainPage/>
       <TimeChainPage/>
-      <HistoricalTimechainPage/>
+      <HistoricalBlocksPage/>
       <ResourcesPage/>
 
     </full-page>
@@ -16,7 +16,7 @@
 
 <script>
 import Blockchain from '@/components/pages/chains/BlockchainPage.vue';
-import HistoricalTimechainPage from '@/components/pages/chains/HistoricalTimechainPage.vue';
+import HistoricalBlocksPage from '@/components/pages/chains/HistoricalBlocksPage.vue';
 import IntroPage from '@/components/pages/IntroPage.vue';
 import PowBlockchainPage from '@/components/pages/chains/PowBlockchainPage.vue';
 import ResourcesPage from '@/components/pages/ResourcesPage.vue';
@@ -27,7 +27,7 @@ export default {
   name: 'app',
   components: {
     Blockchain,
-    HistoricalTimechainPage,
+    HistoricalBlocksPage,
     IntroPage,
     PowBlockchainPage,
     ResourcesPage,
@@ -77,7 +77,7 @@ export default {
             { anchor: 'probability' },
           ],
         },
-        { anchor: 'historical_timechain', color: '#ee1a59' },
+        { anchor: 'historical_blocks', color: '#ee1a59' },
         { anchor: 'resources', color: '#ee1a59' },
       ],
     };
@@ -103,8 +103,26 @@ export default {
 </script>
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Fira%20Code:wght@300..700&display=swap');
+  #app {
+    background-color: #15202b;
+    font-size: 16px;
+    font-family: 'Fira Code', monospace;
+    text-align: justify;
+    color: white;
+  }
+  .list-field {
+    padding-top: 7px;
+  }
+  .list-value {
+    font-size: 0.875rem;
+    padding-bottom: 7px;
+  }
   .card {
+    margin-left: auto;
+    margin-right: auto;
     background-color: #f9f9fb;
+    max-width: 625px;
     color: #15202b;
   }
   .card-header {

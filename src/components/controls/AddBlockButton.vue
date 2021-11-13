@@ -1,12 +1,14 @@
 <template>
   <b-card no-body class="mb-4">
-    <b-input-group prepend="Data">
-      <b-form-input :value="newBlockData" :disabled="disableAddBlockBtn"/>
-      <b-button @click="$emit('add-block', newBlockData)" variant="primary"
+    <b-input-group prepend="Data" size="sm">
+      <b-form-input v-model="newBlockData" :disabled="disableAddBlockBtn" size="sm"/>
+      <b-button @click="addBlock" variant="primary" size="sm"
                 :disabled="disableAddBlockBtn">
         Add Block
       </b-button>
-      <b-button @click="$emit('reset-blocks')">Reset</b-button>
+      <b-button @click="$emit('reset-blocks')" size="sm">
+        <b-icon-trash/>
+      </b-button>
     </b-input-group>
   </b-card>
 </template>
@@ -20,6 +22,11 @@ export default {
     return {
       newBlockData: '',
     };
+  },
+  methods: {
+    addBlock() {
+      this.$emit('add-block', this.newBlockData);
+    },
   },
 };
 </script>

@@ -9,16 +9,15 @@
     <b-card no-body class="text-left">
       <!-- Height -->
       <b-card-header>
-        Block #{{ block.height }}
+        Block #
         <template v-if="showBlockHeightInput">
-          <b-button-toolbar>
-            <b-button-group>
-              <b-form-input @change="onBlockHeightChange" :value="block.height"
-                            :max="blockHeightMax" :min="0" type="number" />
-              <b-button @click="getLatestBlock" variant="primary">Latest</b-button>
-            </b-button-group>
-          </b-button-toolbar>
+          <b-input-group size="sm">
+            <b-form-input @change="onBlockHeightChange" :value="block.height"
+                          :max="blockHeightMax" :min="0" type="number" size="sm"/>
+            <b-button @click="getLatestBlock" variant="primary" size="sm">Latest</b-button>
+          </b-input-group>
         </template>
+        <template v-else>{{ block.height }}</template>
       </b-card-header>
 
       <!--Hash-->
@@ -57,7 +56,7 @@
           <b-input-group>
             <b-form-input class="nonce_input" @change="onNonceChange"
                           :value="block.header.nonce" :state="isHashValid"
-                          type="number" size="sm"/>
+                          type="number" :min="0" :max="4294967295" size="sm"/>
             <b-button-group>
               <b-button size="sm" @click="incrementNonce" :disabled="isHashValid">
                 + 1
@@ -84,8 +83,7 @@
 </template>
 
 <script>
-import Block from '@/services/block/DemoBlock';
-import Mempool from '@/services/Mempool';
+import Block from '@/services/block/Block';
 
 export default {
   props: {
@@ -94,7 +92,10 @@ export default {
       type: Number,
       required: false,
     },
-    index: Number,
+    index: {
+      type: Number,
+      required: false,
+    },
     showBlockHeightInput: Boolean,
     showData: Boolean,
     showMerkle: Boolean,
@@ -104,7 +105,6 @@ export default {
   data() {
     return {
       blockHeightMax: 706894,
-      memPool: new Mempool(),
     };
   },
 
@@ -152,6 +152,7 @@ export default {
       this.$emit('finalizeBlock', this.index);
     },
     getLatestBlock() {
+      this.$emit('update-block-height-latest');
     },
     onBlockHeightChange(newHeight) {
       this.$emit('update-block-height', newHeight);
@@ -159,12 +160,3 @@ export default {
   },
 };
 </script>
-
-<style>
-  .table.block tr {
-    line-height: 31px;
-  }
-  .table.block td {
-    text-align: left;
-  }
-</style>

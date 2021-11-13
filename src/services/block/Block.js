@@ -5,6 +5,11 @@ class Block {
     this.hash = hash;
     this.header = header;
     this.height = height;
+
+    this.color = '';
+    this.isHashValid = false;
+    this.prevColor = '';
+    this.stats = [];
   }
 
   async calcHash() {

@@ -1,21 +1,15 @@
 <template>
   <b-card no-body class="mb-2">
-
     <b-card-header>
-      Target
-      <b-input-group prepend="Min 1" size="sm" append="Max">
-        <b-form-input :title="target" v-model.number="target" type="range"
-                      min="1" :max="max - 1" size="sm"/>
-      </b-input-group>
+      Target = {{ target }}<sub>10</sub>
     </b-card-header>
+    <b-input-group prepend="Min 1" size="sm" append="Max">
+      <b-form-input :title="target" v-model.number="target" type="range"
+                    min="1" :max="max - 1" size="sm"/>
+    </b-input-group>
 
     <b-list-group-item class="list-field">Max</b-list-group-item>
     <b-list-group-item class="list-value">{{ max }}<sub>10</sub></b-list-group-item>
-
-    <b-list-group-item class="list-field">Value</b-list-group-item>
-    <b-list-group-item class="list-value">
-      {{ target.toString() }}<sub>10</sub>
-    </b-list-group-item>
 
     <template v-if="full">
       <b-list-group-item class="list-field">Probability</b-list-group-item>

@@ -1,9 +1,10 @@
 <template>
   <Page data-anchor="intro">
     <h1 class="text-center">
-      How Bitcoin Mining Works
+      Bitcoin Timechain
     </h1>
-    Welcome to an interactive demo of what bitcoin miners are technically upto.
+
+    Welcome to an interactive demo of what it means to 'mine' Bitcoin.
 
     <TableOfContents class="fade-in" :contents="contents"/>
   </Page>

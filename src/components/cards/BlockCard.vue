@@ -38,11 +38,15 @@
       <template v-if="showMerkle">
         <!--Version-->
         <b-list-group-item class="list-field">Version</b-list-group-item>
-        <b-list-group-item class="list-value">{{ block.header.version }}</b-list-group-item>
+        <b-list-group-item class="list-value">
+          {{ block.header.version.toString(16).padStart(8, '0') }}
+        </b-list-group-item>
 
         <!--Bits-->
         <b-list-group-item class="list-field">Bits</b-list-group-item>
-        <b-list-group-item class="list-value">{{ block.header.bits }}</b-list-group-item>
+        <b-list-group-item class="list-value">
+          {{ block.header.bits.toString(16).padStart(8, '0')}}
+        </b-list-group-item>
 
         <!--Merkle Root-->
         <b-list-group-item class="list-field">Merkle Root</b-list-group-item>

@@ -7,7 +7,7 @@ class Block {
     this.height = height;
 
     this.color = '';
-    this.isHashValid = false;
+    this.isHashValid = true;
     this.prevColor = '';
     this.stats = [];
   }

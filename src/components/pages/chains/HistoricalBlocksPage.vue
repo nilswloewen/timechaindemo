@@ -60,9 +60,9 @@ export default {
     },
 
     async updateBlockHeightLatest() {
-      const height = await this.mempool.getHeightOfLatestBlock();
-      this.blockHeightMax = height;
-      await this.updateBlockHeight(height);
+      const id = await this.mempool.getLatestBlockHash();
+      this.block = await this.mempool.getBlockById(id);
+      this.blockHeightMax = this.block.height;
     },
   },
 };

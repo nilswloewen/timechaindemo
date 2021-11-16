@@ -17,10 +17,10 @@
                  :index="index"
                  showData
                  showNonce
-                 v-on:finalizeBlock="finalizeBlock"
-                 v-on:solveNonce="solveNonce"
-                 v-on:updateData="updateData"
-                 v-on:updateNonce="updateNonce" />
+                 v-on:finalize-block="finalizeBlock"
+                 v-on:solve-nonce="solveNonce"
+                 v-on:update-data="updateData"
+                 v-on:update-nonce="updateNonce" />
     </Page>
     <Page data-anchor="complexity" slide>
       <h1>Complexity</h1>

@@ -40,6 +40,9 @@ export default {
       // Reset 'Add Block' input.
       this.disableAddBlockBtn = true;
       this.newBlockData = '';
+
+      // Rebuild fullpage so scrolling works.
+      window.fullpage_api.reBuild();
     },
     resetAddBlockBtn() {
       this.disableAddBlockBtn = false;
@@ -53,6 +56,9 @@ export default {
       const block = new Block('', BlockHeader.genesis, 0, this.colors[0], 'inherit');
       await block.calcHash();
       this.blocks = [block];
+
+      // Rebuild fullpage so scrolling works.
+      window.fullpage_api.reBuild();
     },
 
     async finalizeBlock(index) {

@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div class="text-center">
+
     <!-- Chain-link icon -->
-    <b-iconstack font-scale="3" v-if="index > 0" class="m-2">
+    <b-iconstack font-scale="3" v-if="index > 0" class="mb-4">
       <b-icon-link stacked rotate="90" :style="getLinkColor" />
       <b-icon stacked icon="slash" variant="danger" v-if="!isHashValid"></b-icon>
     </b-iconstack>
@@ -18,6 +19,9 @@
           </b-input-group>
         </template>
         <template v-else>{{ block.height }}</template>
+        <b-button class="float-right">
+          <b-icon-bar-chart-steps/>
+        </b-button>
       </b-card-header>
 
       <!--Hash-->
@@ -35,7 +39,7 @@
         </b-list-group-item>
       </template>
 
-      <template v-if="showMerkle">
+      <template v-if="showReal">
         <!--Version-->
         <b-list-group-item class="list-field">Version</b-list-group-item>
         <b-list-group-item class="list-value">
@@ -102,7 +106,7 @@ export default {
     },
     showBlockHeightInput: Boolean,
     showData: Boolean,
-    showMerkle: Boolean,
+    showReal: Boolean,
     showNonce: Boolean,
   },
 
@@ -123,8 +127,7 @@ export default {
       return `color: ${this.block.color};`;
     },
     getHash() {
-      const hex = this.block.hash.substr(0, this.hexDigits);
-      return `${hex}₁₆`;
+      return this.block.hash.substr(0, this.hexDigits);
     },
     getPrevHash() {
       return this.block.header.prevHash.substr(0, this.hexDigits);
@@ -141,19 +144,19 @@ export default {
 
   methods: {
     solveNonce() {
-      this.$emit('solveNonce', this.index);
+      this.$emit('solve-nonce', this.index);
     },
     incrementNonce() {
-      this.$emit('updateNonce', this.block.header.nonce + 1, this.index);
+      this.$emit('update-nonce', this.block.header.nonce + 1, this.index);
     },
     onDataChange(newData) {
-      this.$emit('updateData', newData, this.index);
+      this.$emit('update-data', newData, this.index);
     },
     onNonceChange(nonce) {
-      this.$emit('updateNonce', Number(nonce), this.index);
+      this.$emit('update-nonce', Number(nonce), this.index);
     },
     async finalizeBlock() {
-      this.$emit('finalizeBlock', this.index);
+      this.$emit('finalize-block', this.index);
     },
     getLatestBlock() {
       this.$emit('update-block-height-latest');

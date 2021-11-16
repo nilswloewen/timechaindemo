@@ -2,7 +2,7 @@
   <Page slide data-anchor="hexadecimal_notation">
     <h1>Hex Notation</h1>
 
-    <b-card class="mb-4">
+    <b-card>
       <h4 class="text-left"><a href="https://www.etymonline.com/word/hexadecimal">hexadecimal (adj.)</a></h4>
       <hr>
       1952, in reference to a numeral system based on 16, not 10; from hexa- + decimal.
@@ -24,25 +24,21 @@
       <b-table-simple outlined striped hover class="border-1" small>
         <b-thead head-variant="dark">
           <b-tr>
-            <b-th class="text-right">Decimal</b-th>
-            <b-th class="text-center">Binary</b-th>
+            <b-th>Decimal</b-th>
+            <b-th>Binary</b-th>
             <b-th>Hexadecimal</b-th>
           </b-tr>
         </b-thead>
         <b-tbody>
           <b-tr v-for="(row, index) in rows" :key="index">
-            <b-td class="text-right"> {{row['d']}}<sub>10</sub></b-td>
-            <b-td class="text-center">{{row['b']}}<sub>2</sub></b-td>
+            <b-td>{{row['d']}}</b-td>
+            <b-td>{{row['b']}}<sub>2</sub></b-td>
             <b-td><b>{{row['h']}}</b><sub>16</sub></b-td>
           </b-tr>
         </b-tbody>
-        <caption>
-
-          * A-F can be upper or lowercase
-        </caption>
+        <caption> * A-F can be upper or lowercase </caption>
       </b-table-simple>
     </b-card>
-
 
   </Page>
 </template>

@@ -33,7 +33,7 @@
         - <a href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</a>
       </p>
 
-      <b-card no-body class="mb-4">
+      <b-card no-body>
         <b-card-header>
           Mining Algorithm
         </b-card-header>
@@ -75,12 +75,17 @@
                    :index="index"
                    showData
                    showNonce
-                   v-on:finalizeBlock="finalizeBlock"
-                   v-on:updateData="updateData"
-                   v-on:updateNonce="updateNonce"
-                   v-on:solveNonce="solveNonce" />
+                   v-on:finalize-block="finalizeBlock"
+                   v-on:update-data="updateData"
+                   v-on:update-nonce="updateNonce"
+                   v-on:solve-nonce="solveNonce" />
       </div>
     </Page>
+
+    <div class="slide">
+      <Graph :guesses="this.guesses" :target="this.target" :encoding="this.encoding"/>
+    </div>
+
   </div>
 </template>
 
@@ -88,6 +93,7 @@
 import AddBlockButton from '@/components/controls/AddBlockButton.vue';
 import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
+import Graph from '@/components/Graph.vue';
 import NonceMixin from '@/mixins/NonceMixin';
 import Page from '@/components/pages/Page.vue';
 import Target from '@/components/controls/Target.vue';
@@ -106,6 +112,7 @@ export default {
   components: {
     AddBlockButton,
     BlockCard,
+    Graph,
     Page,
     Target,
   },

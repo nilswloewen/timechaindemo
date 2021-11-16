@@ -1,5 +1,5 @@
 <template>
-  <b-card no-body header="Complexity" class="mb-4">
+  <b-card no-body header="Complexity">
     <b-input-group prepend="Min 2" append="Max 64" size="sm">
       <b-form-input :title="hexDigits" type="range" size="sm" :min="2" :max="64"
                     :value="hexDigits" @change="updateHexDigits"/>

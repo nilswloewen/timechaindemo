@@ -38,10 +38,19 @@ export default {
     return {
       fullpageOptions: {
         anchors: [],
-        licenseKey: '75EC2C59-580B47EA-8CE07EC3-BFC00055',
+        licenseKey: '2C8168FC-415648B7-B94C4003-80F51EAC',
         navigation: true,
+        slidesNavigation: true,
+        scrollingSpeed: 1000,
         scrollBar: false,
         scrollOverflow: true,
+        parallax: true,
+        parallaxKey: '75EC2C59-580B47EA-8CE07EC3-BFC00055',
+        parallaxOptions: {
+          type: 'reveal',
+          percentage: 62,
+          property: 'translate',
+        },
       },
       contents: [
         { anchor: 'intro', color: '#15202b' },
@@ -111,6 +120,9 @@ export default {
     text-align: justify;
     color: white;
   }
+  .col {
+    padding-bottom: 300px;
+  }
   .list-field {
     padding-top: 7px;
   }
@@ -121,6 +133,7 @@ export default {
   .card {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 1em;
     background-color: #f9f9fb;
     max-width: 625px;
     color: #15202b;

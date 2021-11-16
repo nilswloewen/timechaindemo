@@ -1,7 +1,7 @@
 <template>
   <b-card no-body class="mb-2">
-    <b-card-header>
-      Target = {{ target }}<sub>10</sub>
+    <b-card-header class="text-center">
+      <span class="float-left"> Target</span> <span>{{ target }}</span>
     </b-card-header>
     <b-input-group prepend="Min 1" size="sm" append="Max">
       <b-form-input :title="target" v-model.number="target" type="range"
@@ -9,7 +9,7 @@
     </b-input-group>
 
     <b-list-group-item class="list-field">Max</b-list-group-item>
-    <b-list-group-item class="list-value">{{ max }}<sub>10</sub></b-list-group-item>
+    <b-list-group-item class="list-value">{{ max }}</b-list-group-item>
 
     <template v-if="full">
       <b-list-group-item class="list-field">Probability</b-list-group-item>
@@ -45,8 +45,8 @@ export default {
 
   data() {
     return {
-      denominator: Number,
       avgHashes: Number,
+      denominator: Number,
       numerator: Number,
       probability: Number,
       target: 1,

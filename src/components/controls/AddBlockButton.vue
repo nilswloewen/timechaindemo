@@ -1,5 +1,5 @@
 <template>
-  <b-card no-body class="mb-4">
+  <b-card no-body>
     <b-input-group prepend="Data" size="sm">
       <b-form-input v-model="newBlockData" :disabled="disableAddBlockBtn" size="sm"/>
       <b-button @click="addBlock" variant="primary" size="sm"

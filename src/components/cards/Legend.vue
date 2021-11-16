@@ -1,39 +1,34 @@
 <template>
-  <b-collapse id="collapse_legend">
-    <b-card id="legend" no-body>
-      <b-card-header style="float: right;">
-        <span v-b-toggle.collapse_legend >
-          <b-icon-chevron-compact-up />
-          Legend
-        </span>
+  <b-card id="legend" no-body>
+    <b-card-header style="float: right;">
+      Legend
 
-        <b-button @click="onClickEncoding" variant="info" size="sm"
-                  class="d-inline-block" style="min-width: 132px; float: right;" >
-          {{ this.encoding[0].replace(/^\w/, c => c.toUpperCase()) }}
-        </b-button>
-      </b-card-header>
+      <b-button @click="onClickEncoding" variant="info" size="sm"
+                class="d-inline-block" style="min-width: 132px; float: right;" >
+        {{ this.encoding[0].replace(/^\w/, c => c.toUpperCase()) }}
+      </b-button>
+    </b-card-header>
 
-      <!--  Max -->
-      <b-list-group-item class="list-field"> Max </b-list-group-item>
-      <b-list-group-item class="list-value">
-        {{ this.hashMax[this.encoding[0]] }}
-      </b-list-group-item>
+    <!--  Max -->
+    <b-list-group-item class="list-field"> Max </b-list-group-item>
+    <b-list-group-item class="list-value">
+      {{ this.hashMax[this.encoding[0]] }}
+    </b-list-group-item>
 
-      <!-- Target -->
-      <b-list-group-item class="list-field" style="color: green;">
-        TARGET &nbsp;{{ this.targetOdds }}% of Max
-      </b-list-group-item>
-      <b-list-group-item class="list-value" style="color: green;">
-        {{ this.target[this.encoding[0]] }}
-      </b-list-group-item>
+    <!-- Target -->
+    <b-list-group-item class="list-field" style="color: green;">
+      TARGET &nbsp;{{ this.targetOdds }}% of Max
+    </b-list-group-item>
+    <b-list-group-item class="list-value" style="color: green;">
+      {{ this.target[this.encoding[0]] }}
+    </b-list-group-item>
 
-      <!-- Hash -->
-      <b-list-group-item class="list-field">
-        HASH &nbsp;&nbsp;{{ this.hashOdds }}% of Max
-      </b-list-group-item>
-      <b-list-group-item class="list-value">{{ this.hash[this.encoding[0]] }} </b-list-group-item>
-    </b-card>
-  </b-collapse>
+    <!-- Hash -->
+    <b-list-group-item class="list-field">
+      HASH &nbsp;&nbsp;{{ this.hashOdds }}% of Max
+    </b-list-group-item>
+    <b-list-group-item class="list-value">{{ this.hash[this.encoding[0]] }} </b-list-group-item>
+  </b-card>
 </template>
 
 <script>

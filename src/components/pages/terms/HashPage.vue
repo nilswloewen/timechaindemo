@@ -1,7 +1,7 @@
 <template>
   <Page slide data-anchor="hash_functions">
     <h1>Hash Function</h1>
-    <b-card class="mb-4">
+    <b-card>
       <h4 class="text-left"><a href="https://www.etymonline.com/word/hash">hash (v.)</a></h4>
       <hr>
       1650s, "to hack, chop into small pieces," from French hacher "chop up"
@@ -23,13 +23,13 @@
       The only way to find a hash is to take the time to put in the work of calculating it.
     </p>
 
-    <b-card no-body class="mb-4 mt-4" header="SHA-256 Calculator">
+    <b-card no-body class="mt-4" header="SHA-256 Calculator">
       <b-list-group-item class="list-field">
         Input
       </b-list-group-item>
       <b-list-group-item class="list-value">
         <b-input-group prepend="Data" size="sm">
-          <b-form-input @change="updateHash" :value="data" size="sm"/>
+          <b-form-input @keyup="updateHash" :value="data" size="sm"/>
         </b-input-group>
       </b-list-group-item>
       <b-list-group-item class="list-field">
@@ -90,8 +90,8 @@ export default {
     };
   },
   methods: {
-    async updateHash(newData) {
-      this.data = newData;
+    async updateHash(event) {
+      this.data = event.target.value;
       this.hash = await sha256dFromText(this.data);
     },
   },

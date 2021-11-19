@@ -82,9 +82,9 @@
       </div>
     </Page>
 
-    <div class="slide">
-      <Graph :guesses="this.guesses" :target="this.target" :encoding="this.encoding"/>
-    </div>
+<!--    <div class="slide">-->
+<!--      <Graph :guesses="this.guesses" :target="this.target" :encoding="this.encoding"/>-->
+<!--    </div>-->
 
   </div>
 </template>

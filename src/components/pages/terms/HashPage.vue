@@ -12,18 +12,53 @@
       In computer science, a hash is the output of a function that yields a short,
       unique output for each unique input of arbitrary length. In the process the
       input data is scrambled and mixed around, 'hashed' if you will, to derive
-      the output. A hash is a one-way function because the input data can never be
-      recovered from the output data.
+      the output.
     </p>
 
     <p>
       A hash can be thought of as the digital fingerprint of a piece of data. If
-      even one bit in the input data is changed the entire hash becomes wildly different.
-      While the output of a hash may look random it is not, it is simply unpredictable.
-      The only way to find a hash is to take the time to put in the work of calculating it.
+      even one bit in the input data is changed the entire output hash becomes wildly different.
+      While the output of a hash may look random, it is not, it is simply unpredictable.
     </p>
 
-    <b-card no-body class="mt-4" header="SHA-256 Calculator">
+    <p><b>
+      The only way to find a hash is to take the time to put in the work of calculating it.
+    </b></p>
+
+    <p>
+      A hash can sometimes be misunderstood as a compression or as an encryption. However both
+      compression and encryption are meant to be reversible; you can decompress a file
+      back to its original size and you can decrypt a message back to its original meaning.
+    </p>
+
+    <p>
+      A hash is called a 'one-way function' because the input data can never be
+      recovered from the output data. You cannot un-hash a hash.
+    </p>
+
+    <h2>SHA-256</h2>
+    <p>
+      Bitcoin mining uses a particular hash function called SHA-256, which
+      means <a href="https://en.wikipedia.org/wiki/Secure_Hash_Algorithms">
+      Secure Hash Algorithm</a> with an output length of 256 bits. The
+      output is usually encoded in hexadecimal notation as a string
+      of 64 characters.
+    </p>
+
+    <b-card>
+        For more details of how SHA-256 works watch this utter maniac calculate
+        round 1/64 of SHA-256 BY HAND!
+      <hr>
+        <a href="https://youtu.be/y3dqhixzGVo">
+          <img src="/assets/mine_by_hand.webp" alt="Mining Bitcoin by Hand" width="100%"
+               style="border: 1px solid gray"/>
+        </a>
+    </b-card>
+
+    <b-card no-body class="mt-4">
+      <b-card-header header-bg-variant="info">
+        <b-icon-wrench/> SHA-256 Calculator
+      </b-card-header>
       <b-list-group-item class="list-field">
         Input
       </b-list-group-item>
@@ -39,23 +74,6 @@
         {{ hash }}
       </b-list-group-item>
     </b-card>
-
-    <p>
-      <b-row>
-        <b-col cols="8">
-          Bitcoin mining uses a particular hash function called SHA-256, which
-          means <a href="https://en.wikipedia.org/wiki/Secure_Hash_Algorithms">
-          Secure Hash Algorithm</a> with an output length of 256 bits. The
-          output is usually encoded in hexadecimal notation as a string
-          of 64 characters. Watch this utter maniac calculate round 1/64 of SHA-256 BY HAND!
-        </b-col>
-        <b-col>
-          <a href="https://youtu.be/y3dqhixzGVo">
-            <img src="/assets/mine_by_hand.webp" alt="Mining Bitcoin by Hand" width="100%"/>
-          </a>
-        </b-col>
-      </b-row>
-    </p>
 
     <div>
       In mining the hash is used in two ways:

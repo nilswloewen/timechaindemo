@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center">
+  <div :id="`card_${block.height}`">
 
     <!-- Chain-link icon -->
     <b-iconstack font-scale="3" v-if="index > 0" class="mb-4">
@@ -10,25 +10,25 @@
     <b-card no-body class="text-left">
       <!-- Height -->
       <b-card-header>
-        Block #
         <template v-if="showBlockHeightInput">
-          <b-input-group size="sm">
+          <b-input-group size="sm" prepend="Block #">
             <b-form-input @change="onBlockHeightChange" :value="block.height"
                           :max="blockHeightMax" :min="0" type="number" size="sm"/>
             <b-button @click="getLatestBlock" variant="primary" size="sm">Latest</b-button>
           </b-input-group>
         </template>
-        <template v-else>{{ block.height }}</template>
-        <b-button class="float-right">
-          <b-icon-bar-chart-steps/>
-        </b-button>
+        <template v-else> Block #{{ block.height }}</template>
+
+<!--        <b-button class="float-right" size="sm">-->
+<!--          <b-icon-bar-chart-steps size="sm"/>-->
+<!--        </b-button>-->
       </b-card-header>
 
       <!--Hash-->
       <b-list-group-item class="list-field">Hash (ID) </b-list-group-item>
       <b-list-group-item class="list-value">
-        <b-form-input title="Hash" size="sm" :style="getColor"
-                      :value="getHash" :disabled="true" :state="isHashValid"/>
+        <b-form-input title="Hash" size="sm" :style="getColor" :id="`hash_input_${block.height}`"
+                      :value="getHash" :disabled="false" :state="isHashValid" />
       </b-list-group-item>
 
       <template v-if="showData">

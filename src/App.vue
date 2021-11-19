@@ -44,6 +44,7 @@ export default {
         scrollingSpeed: 1000,
         scrollBar: false,
         scrollOverflow: true,
+        normalScrollElements: '.blockchain_wrapper',
         parallax: true,
         parallaxKey: '75EC2C59-580B47EA-8CE07EC3-BFC00055',
         parallaxOptions: {
@@ -120,8 +121,17 @@ export default {
     text-align: justify;
     color: white;
   }
+  .blockchain_wrapper {
+    text-align: center;
+    max-height: 60vh;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding-right: 20px;
+  }
   .col {
-    padding-bottom: 300px;
+    max-width: 625px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .list-field {
     padding-top: 7px;

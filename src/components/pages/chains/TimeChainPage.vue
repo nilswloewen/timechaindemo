@@ -2,6 +2,7 @@
   <div class="section">
     <Page data-anchor="timechain" slide>
       <h1>Timechain</h1>
+      Mining is the process of adding recent transactions to the blockchain.
       <Complexity :initial-hex-digits="2" v-on:update-hex-digits="updateHexDigits"/>
 
       <Target :initial-target="initialTarget" :max="this.targetMax"

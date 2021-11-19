@@ -63,6 +63,8 @@ export default {
 
     async finalizeBlock(index) {
       const block = this.blocks[index];
+      block.header.timestamp = new Date().getTime() / 1000;
+
       await block.calcHash();
 
       const hash = parseInt(block.hash.substr(0, this.hexDigits), 16);
@@ -71,9 +73,14 @@ export default {
       if (index > 0) {
         this.blocks[index - 1].header.prevHash = block.hash;
       }
+
       this.resetAddBlockBtn();
     },
     async delayedUpdate(index) {
+      const wrapper = document.getElementsByClassName('blockchain_wrapper')[0];
+      const element = document.getElementById(`card_${this.blocks[index].height}`);
+      this.scrollToElm(wrapper, element, 2);
+
       await this.finalizeBlock(index);
       if (index === 0) {
         return;

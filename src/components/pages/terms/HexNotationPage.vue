@@ -1,6 +1,6 @@
 <template>
   <Page slide data-anchor="hexadecimal_notation">
-    <h1>Hex Notation</h1>
+    <h1>Hexadecimal Notation</h1>
 
     <b-card>
       <h4 class="text-left"><a href="https://www.etymonline.com/word/hexadecimal">hexadecimal (adj.)</a></h4>
@@ -10,7 +10,7 @@
     </b-card>
 
     <p>
-      The hash function about to be discussed uses hexadecimal notation (hex) as a compact and human
+      The hash function about to be discussed uses hexadecimal notation as a compact and human
       readable way to represent the binary hash output.
     </p>
 
@@ -40,6 +40,34 @@
       </b-table-simple>
     </b-card>
 
+    <b-card no-body>
+      <b-card-header header-bg-variant="info">
+        <b-icon-wrench/> Hex <b-icon-arrow-left-right/> Decimal Converter
+      </b-card-header>
+
+      <b-card-body>
+        <table>
+          <tr>
+            <td>Hex</td>
+            <td></td>
+            <td>Decimal</td>
+          </tr>
+          <tr>
+            <td>
+              <b-form-input @keyup="onHex" :value="Number(val).toString(16)" />
+            </td>
+            <td style="min-width: 60px; text-align: center;">
+              <b-icon-arrow-left-right/>
+            </td>
+            <td>
+              <b-form-input v-model="val" type="number"/>
+            </td>
+          </tr>
+        </table>
+      </b-card-body>
+    </b-card>
+    <!--    TODO: interactive Hex <-> Decimal calculator-->
+
   </Page>
 </template>
 
@@ -52,6 +80,7 @@ export default {
   },
   data() {
     return {
+      val: 48879,
       columns: ['Decimal', 'Binary', 'Hexadecimal'],
       rows: [
         { d: 0, b: '0000', h: '0' },
@@ -73,6 +102,19 @@ export default {
       ],
     };
   },
+  methods: {
+    onHex(e) {
+      let hexVal = e.target.value;
+      console.log(hexVal);
+      hexVal = hexVal.replace(/[^a-fA-F0-9]/g, '');
+
+      console.log(hexVal);
+      if (hexVal.length === 0) {
+        hexVal = 0;
+      }
+      this.val = parseInt(hexVal, 16);
+    },
+  },
 };
 </script>
 
@@ -81,5 +123,14 @@ export default {
     margin-left: auto;
     margin-right: auto;
     max-width: 315px;
+  }
+  #hex_table th:nth-child(1),
+  #hex_table td:nth-child(1)
+  {
+    text-align: right;
+  }
+  #hex_table th:nth-child(2),
+  #hex_table td:nth-child(2) {
+    text-align: center;
   }
 </style>

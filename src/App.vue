@@ -39,12 +39,16 @@ export default {
       fullpageOptions: {
         anchors: [],
         licenseKey: '2C8168FC-415648B7-B94C4003-80F51EAC',
-        navigation: true,
-        slidesNavigation: true,
         scrollingSpeed: 1000,
         scrollBar: false,
         scrollOverflow: true,
+        scrollOverflowReset: true,
+
+        scrollHorizontally: true,
+        slidesNavigation: true,
+        navigation: true,
         normalScrollElements: '.blockchain_wrapper',
+
         parallax: true,
         parallaxKey: '75EC2C59-580B47EA-8CE07EC3-BFC00055',
         parallaxOptions: {
@@ -120,18 +124,42 @@ export default {
     font-family: 'Fira Code', monospace;
     text-align: justify;
     color: white;
+    text-shadow: #000 0 0 2px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a {
+    color: white;
+    text-decoration: underline;
   }
   .blockchain_wrapper {
     text-align: center;
     max-height: 60vh;
     overflow-y: auto;
     scroll-behavior: smooth;
-    padding-right: 20px;
+    padding: 0 10px;
   }
+
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+  *::-webkit-scrollbar-track {
+    background: #15202b;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #17a2b8;
+    border-radius: 20px;
+    border: 3px solid #17a2b8;
+  }
+
   .col {
     max-width: 625px;
     margin-left: auto;
     margin-right: auto;
+  }
+  .list-group-item {
+    background-color: inherit;
+    border: none;
   }
   .list-field {
     padding-top: 7px;
@@ -139,19 +167,20 @@ export default {
   .list-value {
     font-size: 0.875rem;
     padding-bottom: 7px;
+    border-bottom: 1px solid gray;
   }
+
   .card {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1em;
-    background-color: #f9f9fb;
+    margin: 0 auto 1em auto;
+    background-color: #15202b;
     max-width: 625px;
-    color: #15202b;
+    box-shadow: 0 0 4px 2px gray;
   }
   .card-header {
     background-color: #343a40;
-    color: #f9f9fb;
+    color: white;
   }
+
   .table {
     margin-bottom: 0;
   }
@@ -161,6 +190,12 @@ export default {
 
   hr {
     margin: .5em 0;
+  }
+  .form-control,
+  .form-control:disabled, .form-control[readonly],
+  .input-group-text {
+    background-color: inherit;
+    color: inherit;
   }
 
   h1 {
@@ -184,6 +219,58 @@ export default {
   }
   #fp-nav ul li a span, .fp-slidesNav ul li a span {
     background-color: #f9f9fb;
+  }
+  .fp-slidesNav {
+    transform: translate(50%,-50%);
+  }
+
+  .section:nth-of-type(2):before,
+  .section:nth-of-type(4):before {
+    content: '';
+    position: absolute;
+    display: block;
+    background: rgba(173, 173, 173, 0.2);
+    top:0;
+    bottom:0;
+    height: 100%;
+    width: 100%;
+  }
+  .section {
+    background-size: cover;
+    transform: translate3d(0,0,0);
+    -webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
+    backface-visibility: hidden;
+    background-position: center;
+  }
+  /* Intro */
+  .section:nth-of-type(2) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/assets/backgrounds/small_brain.jpg');
+  }
+  /* Terms */
+  .section:nth-of-type(3) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/assets/backgrounds/neurons_heating_up.jpg');
+  }
+  /* Blockchain */
+  .section:nth-of-type(4) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/assets/backgrounds/brain_black.webp');
+  }
+  /* Proof-of-work */
+  .section:nth-of-type(5) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/assets/backgrounds/brain_mushrooms.jpg');
+  }
+  /* Timechain */
+  .section:nth-of-type(6) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/assets/backgrounds/brain_man.jpg');
+  }
+  /* Real Blocks */
+  .section:nth-of-type(7) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/assets/backgrounds/ultimate.jpg');
   }
 
 </style>

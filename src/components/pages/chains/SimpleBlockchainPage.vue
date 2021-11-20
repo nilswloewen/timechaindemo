@@ -8,6 +8,7 @@
     <AddBlockButton :disable-add-block-btn="false"
                     v-on:add-block="addBlock"
                     v-on:reset-blocks="resetBlocks"/>
+
     <div class="blockchain_wrapper">
       <BlockCard v-for="(block, index) in this.blocks" :key="index"
                  :block="block"
@@ -17,6 +18,7 @@
                  v-on:finalize-block="finalizeBlock"
                  v-on:update-data="updateData" />
     </div>
+
   </Page>
 </template>
 

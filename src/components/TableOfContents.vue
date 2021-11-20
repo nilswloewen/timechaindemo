@@ -19,7 +19,7 @@
                   :data-menuanchor="slide"
                   @click="moveTo(section.anchor, index + 1)">
               <b-td>
-                <a class="slide_link" :href="`#${slide.anchor}`">
+                <a class="ml-4" :href="`#${slide.anchor}`">
                   {{ formatTitle(slide.anchor) }}
                 </a>
               </b-td>
@@ -54,24 +54,11 @@ export default {
     margin-right: auto;
     max-width: 300px;
   }
-  #table_of_contents .card-header {
-    font-weight: bold;
-  }
-  .slide_link {
-    margin-left: 1em;
-  }
-
   #table_of_contents a {
     padding-left: 1rem;
-    color: black;
     text-decoration: none;
   }
   #table_of_contents tr {
     cursor: pointer;
   }
-
-  ul {
-    list-style-type: none;
-  }
-
 </style>

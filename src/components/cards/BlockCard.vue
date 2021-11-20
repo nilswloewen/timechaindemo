@@ -9,7 +9,7 @@
 
     <b-card no-body class="text-left">
       <!-- Height -->
-      <b-card-header>
+      <b-card-header :style="getColor" >
         <template v-if="showBlockHeightInput">
           <b-input-group size="sm" prepend="Block #">
             <b-form-input @change="onBlockHeightChange" :value="block.height"
@@ -19,15 +19,15 @@
         </template>
         <template v-else> Block #{{ block.height }}</template>
 
-<!--        <b-button class="float-right" size="sm">-->
-<!--          <b-icon-bar-chart-steps size="sm"/>-->
-<!--        </b-button>-->
+        <!--        <b-button class="float-right" size="sm">-->
+        <!--          <b-icon-bar-chart-steps size="sm"/>-->
+        <!--        </b-button>-->
       </b-card-header>
 
       <!--Hash-->
       <b-list-group-item class="list-field">Hash (ID) </b-list-group-item>
       <b-list-group-item class="list-value">
-        <b-form-input title="Hash" size="sm" :style="getColor" :id="`hash_input_${block.height}`"
+        <b-form-input title="Hash" size="sm" :id="`hash_input_${block.height}`"
                       :value="getHash" :disabled="false" :state="isHashValid" />
       </b-list-group-item>
 

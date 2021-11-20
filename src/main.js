@@ -19,9 +19,27 @@ Vue.use(CardPlugin);
 Vue.use(VueFullPage);
 
 Vue.mixin({
+  data() {
+    return {
+      encoding: ['hexadecimal', 'decimal', 'exponential', 'binary'],
+    };
+  },
   methods: {
     moveTo(anchor, index) {
       window.fullpage_api.moveTo(anchor, index);
+    },
+    encode(bigInt) {
+      return {
+        bigInt,
+        binary: bigInt.toString(2).padStart(256, '0'),
+        decimal: bigInt.toLocaleString('en-US').padStart(103, '000,'),
+        // @TODO: Figure out exponential for bigInt.
+        exponential: bigInt.toLocaleString('en-US').padStart(103, '000,'),
+        hexadecimal: bigInt.toString(16).padStart(64, '0'),
+      };
+    },
+    rotateEncoding() {
+      this.encoding.push(this.encoding.shift());
     },
 
     scrollToElm(wrapper, element, duration) {

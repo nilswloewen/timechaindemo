@@ -15,6 +15,7 @@ export default {
       disableAddBlockBtn: true,
       hexDigits: 2,
       newBlockData: '',
+      guesses: [],
     };
   },
   async mounted() {
@@ -22,7 +23,7 @@ export default {
   },
   watch: {
     hexDigits() {
-      this.targetMax = 2 ** (this.hexDigits * 4);
+      this.targetMax = this.encode(BigInt(2 ** (this.hexDigits * 4)));
     },
   },
   methods: {

@@ -11,7 +11,7 @@ class DemoBlock extends Block {
   }
 
   async calcHash() {
-    this.hash = await sha256dFromText(this.header.serialize());
+    this.hash = this.encode(await sha256dFromText(this.header.serialize()));
   }
 }
 

@@ -13,7 +13,8 @@ class Block {
   }
 
   async calcHash() {
-    this.hash = await sha256dFromHex(this.header.serialize());
+    const hex = await sha256dFromHex(this.header.serialize());
+    this.hash = this.encode(BigInt(`0x${hex}`));
   }
 }
 

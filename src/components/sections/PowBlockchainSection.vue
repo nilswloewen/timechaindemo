@@ -5,13 +5,13 @@
         Proof-of-Work Blockchain
       </h1>
 
-      <p>
+      <b-card>
         <q>We propose a solution to the double-spending problem using a
           peer-to-peer network. The network timestamps transactions by hashing
           them into an ongoing chain of hash-based proof-of-work, forming a
           record that cannot be changed without redoing the proof-of-work.</q>
         - <a href="https://bitcoin.org/bitcoin.pdf">Bitcoin Whitepaper</a>
-      </p>
+      </b-card>
 
       <p>
         The block hash is now required to meet a certain criteria: we will
@@ -54,14 +54,14 @@
     </Page>
 
     <Page data-anchor="target" slide fp_bg>
-      <Target full :initial-target="initialTarget" :max="this.targetMax"
+      <Target full :initial-target="initialTarget" :target-max="targetMax"
               v-on:updateTarget="updateTarget"/>
     </Page>
 
     <Page data-anchor="pow_blockchain" slide fp_bg>
       <h1>Proof-of-work Blockchain</h1>
 
-      <Target :initial-target="initialTarget" :max="this.targetMax"
+      <Target :initial-target="initialTarget" targetMax="this.targetMax"
               v-on:updateTarget="updateTarget"/>
 
       <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
@@ -81,11 +81,6 @@
                    v-on:solve-nonce="solveNonce" />
       </div>
     </Page>
-
-<!--    <div class="slide">-->
-<!--      <Graph :guesses="this.guesses" :target="this.target" :encoding="this.encoding"/>-->
-<!--    </div>-->
-
   </div>
 </template>
 
@@ -93,7 +88,6 @@
 import AddBlockButton from '@/components/controls/AddBlockButton.vue';
 import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
-import Graph from '@/components/Graph.vue';
 import NonceMixin from '@/mixins/NonceMixin';
 import Page from '@/components/Page.vue';
 import Target from '@/components/controls/Target.vue';
@@ -112,9 +106,14 @@ export default {
   components: {
     AddBlockButton,
     BlockCard,
-    Graph,
     Page,
     Target,
+  },
+  data() {
+    return {
+      guesses: [],
+      target: { yRatio: 0.3 },
+    };
   },
 };
 </script>

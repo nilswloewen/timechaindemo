@@ -5,7 +5,7 @@
       Mining is the process of adding recent transactions to the blockchain.
       <Complexity :initial-hex-digits="2" v-on:update-hex-digits="updateHexDigits"/>
 
-      <Target :initial-target="initialTarget" :max="this.targetMax"
+      <Target :initial-target="initialTarget" targetMax="this.targetMax"
               v-on:updateTarget="updateTarget"/>
       <Difficulty :hps-of-this-device="hpsOfThisDevice" :avg-hashes="avgHashes()"
                   v-on:calibrate-hps="calibrateHps"/>
@@ -23,6 +23,11 @@
                  v-on:update-data="updateData"
                  v-on:update-nonce="updateNonce" />
     </Page>
+
+    <Page slide data-anchor="pow_graph">
+      <Graph :guesses="this.guesses" :target="this.target"/>
+    </Page>
+
   </div>
 </template>
 
@@ -33,6 +38,7 @@ import BlockchainMixin from '@/mixins/BlockchainMixin';
 import Complexity from '@/components/controls/Complexity.vue';
 import Difficulty from '@/components/controls/Difficulty.vue';
 import HashesPerSecondMixin from '@/mixins/HashesPerSecondMixin';
+import Graph from '@/components/Graph.vue';
 import Page from '@/components/Page.vue';
 import NonceMixin from '@/mixins/NonceMixin';
 import Target from '@/components/controls/Target.vue';
@@ -54,6 +60,7 @@ export default {
     BlockCard,
     Complexity,
     Difficulty,
+    Graph,
     Page,
     Target,
   },

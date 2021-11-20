@@ -174,7 +174,6 @@ export default {
     },
 
     encode(val) {
-      // eslint-disable-next-line no-undef
       const bigInt = BigInt(val);
       return {
         bigInt,

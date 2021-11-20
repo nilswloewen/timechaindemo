@@ -1,15 +1,15 @@
 <template>
   <b-card no-body class="mb-2">
     <b-card-header class="text-center">
-      <span class="float-left"> Target</span> <span>{{ target }}</span>
+      <span class="float-left"> Target</span> <span>{{ target[encoding] }}</span>
     </b-card-header>
     <b-input-group prepend="Min 1" size="sm" append="Max">
-      <b-form-input :title="target" v-model.number="target" type="range"
-                    min="1" :max="max - 1" size="sm"/>
+      <b-form-input :title="target[encoding]" v-model.number="target.bigInt" type="range"
+                    min="1" :max="targetMax.bigInt - 1" size="sm"/>
     </b-input-group>
 
     <b-list-group-item class="list-field">Max</b-list-group-item>
-    <b-list-group-item class="list-value">{{ max }}</b-list-group-item>
+    <b-list-group-item class="list-value">{{ targetMax[encoding] }}</b-list-group-item>
 
     <template v-if="full">
       <b-list-group-item class="list-field">Probability</b-list-group-item>
@@ -39,8 +39,8 @@ export default {
   props: {
     full: Boolean,
     hexDigits: Number,
-    initialTarget: Number,
-    max: Number,
+    initialTarget: BigInt,
+    targetMax: Object,
   },
 
   data() {
@@ -49,12 +49,12 @@ export default {
       denominator: Number,
       numerator: Number,
       probability: Number,
-      target: 1,
+      target: { bigInt: 0 },
     };
   },
 
   mounted() {
-    this.target = this.initialTarget;
+    this.target = this.encode(this.initialTarget);
     this.$emit('updateTarget', this.target);
     this.calcStats();
   },
@@ -68,11 +68,12 @@ export default {
 
   methods: {
     calcStats() {
-      this.probability = (((this.target) / this.max) * 100).toFixed(2).padStart(5, '0');
+      this.probability = (((this.target.bigInt) / this.targetMax.bigInt) * 100)
+        .toFixed(2).padStart(5, '0');
 
-      const gcd = this.gcd(this.target, this.max);
-      this.numerator = this.target / gcd;
-      this.denominator = this.max / gcd;
+      const gcd = this.gcd(this.target.bigInt, this.targetMax.bigInt);
+      this.numerator = this.target.bigInt / gcd;
+      this.denominator = this.targetMax.bigInt / gcd;
       this.avgHashes = ((1 / this.probability) * 100).toFixed(0);
     },
 

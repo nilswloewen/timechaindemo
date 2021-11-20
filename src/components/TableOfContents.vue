@@ -10,7 +10,7 @@
           <b-tr @click="moveTo(section.anchor, 0)"
                 :key="section.anchor" :data-menuanchor="section.anchor">
             <b-td>
-              <a :href="`#${section.anchor}`"> {{ formatTitle(section.anchor) }} </a>
+              <a :href="`#${section.anchor}`"> {{ section.label }} </a>
             </b-td>
           </b-tr>
 
@@ -20,7 +20,7 @@
                   @click="moveTo(section.anchor, index + 1)">
               <b-td>
                 <a class="ml-4" :href="`#${slide.anchor}`">
-                  {{ formatTitle(slide.anchor) }}
+                  {{ slide.label }}
                 </a>
               </b-td>
             </b-tr>
@@ -37,12 +37,6 @@ export default {
   props: {
     contents: {
       type: Array,
-    },
-  },
-  methods: {
-    formatTitle(text) {
-      const noUnderscore = text.replace(/_/g, ' ');
-      return noUnderscore.replace(/(\w+)/g, (word) => word[0].toUpperCase() + word.slice(1));
     },
   },
 };

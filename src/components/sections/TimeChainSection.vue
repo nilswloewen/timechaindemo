@@ -1,5 +1,5 @@
 <template>
-  <div class="section">
+  <div id="timechain_section" class="section">
     <Page data-anchor="timechain" slide>
       <h1>Timechain</h1>
       Mining is the process of adding recent transactions to the blockchain.
@@ -41,7 +41,7 @@ import BlockchainMixin from '@/mixins/BlockchainMixin';
 import Complexity from '@/components/controls/Complexity.vue';
 import Difficulty from '@/components/controls/Difficulty.vue';
 import HashesPerSecondMixin from '@/mixins/HashesPerSecondMixin';
-import Page from '@/components/pages/Page.vue';
+import Page from '@/components/Page.vue';
 import NonceMixin from '@/mixins/NonceMixin';
 import Target from '@/components/controls/Target.vue';
 import UpdateDataMixin from '@/mixins/UpdateDataMixin';

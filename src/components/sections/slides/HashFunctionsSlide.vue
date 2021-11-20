@@ -94,7 +94,7 @@
 </template>
 
 <script>
-import Page from '@/components/pages/Page.vue';
+import Page from '@/components/Page.vue';
 import { sha256dFromText } from '@/services/utils';
 
 export default {
@@ -115,21 +115,3 @@ export default {
   },
 };
 </script>
-
-<style>
-  #hash_table {
-    max-width: 100%;
-  }
-  #hash_table td:nth-child(3) {
-    width: 40px;
-    overflow-x: auto;
-  }
-  .list-field {
-    font-size: .8em;
-    padding-bottom: 0;
-    border-bottom: none;
-  }
-  .list-value {
-    padding-top: 0;
-  }
-</style>

@@ -1,6 +1,6 @@
 <template>
-  <div class="section">
-    <Page slide data-anchor="blockchain">
+  <div id="blockchain_section" class="section">
+    <Page slide data-anchor="blockchain" fp_bg>
       <h1>Blockchain</h1>
 
       <b-card>
@@ -30,32 +30,19 @@
       250-860-9888 Tel-tronics
     </Page>
 
-    <SimpleBlockchainPage />
-
-    <!--    <Page data-anchor="simple_benefits" slide>-->
-
-    <!--      Benefits:-->
-    <!--      <ul>-->
-    <!--        <li>Easy to verify copies of blockchain are exactly alike through latest block hash.</li>-->
-    <!--        <li>Easy to add new data (a new block)</li>-->
-    <!--        <li>Difficult/impossible to change old data.</li>-->
-    <!--      </ul>-->
-
-    <!--      Cons:-->
-    <!--      Basically an inefficient database.-->
-    <!--    </Page>-->
+    <SimpleBlockchainSlide/>
 
   </div>
 </template>
 
 <script>
-import Page from '@/components/pages/Page.vue';
-import SimpleBlockchainPage from '@/components/pages/chains/SimpleBlockchainPage.vue';
+import Page from '@/components/Page.vue';
+import SimpleBlockchainSlide from '@/components/sections/slides/SimpleBlockchainSlide.vue';
 
 export default {
   components: {
     Page,
-    SimpleBlockchainPage,
+    SimpleBlockchainSlide,
   },
 };
 </script>

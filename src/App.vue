@@ -2,54 +2,54 @@
   <div id="app">
     <full-page id="fullpage" :options="fullpageOptions" >
 
-      <IntroPage :contents="contents" />
-      <TermsPage/>
-      <Blockchain/>
-      <PowBlockchainPage/>
-      <TimeChainPage/>
-      <HistoricalBlocksPage/>
-      <ResourcesPage/>
+      <IntroSection :contents="table_of_contents" />
+      <TermsSection/>
+      <BlockchainSection/>
+      <PowBlockchainSection/>
+      <TimeChainSection/>
+      <HistoricalBlocksSection/>
+      <ResourcesSection/>
 
     </full-page>
   </div>
 </template>
 
 <script>
-import Blockchain from '@/components/pages/chains/BlockchainPage.vue';
-import HistoricalBlocksPage from '@/components/pages/chains/HistoricalBlocksPage.vue';
-import IntroPage from '@/components/pages/IntroPage.vue';
-import PowBlockchainPage from '@/components/pages/chains/PowBlockchainPage.vue';
-import ResourcesPage from '@/components/pages/ResourcesPage.vue';
-import TermsPage from '@/components/pages/terms/TermsPage.vue';
-import TimeChainPage from '@/components/pages/chains/TimeChainPage.vue';
+import BlockchainSection from '@/components/sections/BlockchainSection.vue';
+import HistoricalBlocksSection from '@/components/sections/HistoricalBlocksSection.vue';
+import IntroSection from '@/components/sections/IntroSection.vue';
+import PowBlockchainSection from '@/components/sections/PowBlockchainSection.vue';
+import ResourcesSection from '@/components/sections/ResourcesSection.vue';
+import TermsSection from '@/components/sections/TermsSection.vue';
+import TimeChainSection from '@/components/sections/TimeChainSection.vue';
 
 export default {
   name: 'app',
   components: {
-    Blockchain,
-    HistoricalBlocksPage,
-    IntroPage,
-    PowBlockchainPage,
-    ResourcesPage,
-    TermsPage,
-    TimeChainPage,
+    BlockchainSection,
+    HistoricalBlocksSection,
+    IntroSection,
+    PowBlockchainSection,
+    ResourcesSection,
+    TermsSection,
+    TimeChainSection,
   },
   data() {
     return {
       fullpageOptions: {
         anchors: [],
         licenseKey: '2C8168FC-415648B7-B94C4003-80F51EAC',
+
         scrollingSpeed: 1000,
         scrollBar: false,
         scrollOverflow: true,
         scrollOverflowReset: true,
 
         scrollHorizontally: true,
-        slidesNavigation: true,
         navigation: true,
         normalScrollElements: '.blockchain_wrapper',
 
-        parallax: true,
+        parallax: 'sections',
         parallaxKey: '75EC2C59-580B47EA-8CE07EC3-BFC00055',
         parallaxOptions: {
           type: 'reveal',
@@ -57,42 +57,42 @@ export default {
           property: 'translate',
         },
       },
-      contents: [
-        { anchor: 'intro', color: '#15202b' },
+      table_of_contents: [
+        { anchor: 'intro', label: 'Intro' },
         {
           anchor: 'terms',
-          color: '#ff5f45',
+          label: 'Terms',
           slides: [
-            { anchor: 'hexadecimal_notation' },
-            { anchor: 'hash_functions' },
+            { anchor: 'hexadecimal_notation', label: 'Hexadecimal Notation' },
+            { anchor: 'hash_functions', label: 'Hash Functions (SHA-256)' },
           ],
         },
         {
           anchor: 'blockchain',
-          color: '#0798ec',
+          label: 'Blockchain',
           slides: [
-            { anchor: 'simple_blockchain' },
+            { anchor: 'simple_blockchain', label: 'Non-Proof-of-Work' },
           ],
         },
         {
-          anchor: 'proof-of-work',
-          color: '#fec401',
+          anchor: 'pow',
+          label: 'Proof-of-Work',
           slides: [
-            { anchor: 'target' },
-            { anchor: 'pow_blockchain' },
+            { anchor: 'target', label: 'Target' },
+            { anchor: 'pow_blockchain', label: 'Proof-of-Work Blockchain' },
           ],
         },
         {
           anchor: 'timechain',
-          color: '#1bcee6',
+          label: 'Timechain',
           slides: [
-            { anchor: 'difficulty' },
-            { anchor: 'hash_rate' },
-            { anchor: 'probability' },
+            { anchor: 'difficulty', label: 'Difficulty' },
+            { anchor: 'hash_rate', label: 'Hash Rate' },
+            { anchor: 'probability', label: 'Probability' },
           ],
         },
-        { anchor: 'historical_blocks', color: '#ee1a59' },
-        { anchor: 'resources', color: '#ee1a59' },
+        { anchor: 'historical_blocks', label: 'Real Blocks' },
+        { anchor: 'resources', label: 'Resources' },
       ],
     };
   },
@@ -102,7 +102,7 @@ export default {
   },
   methods: {
     addAnchorsToFullpage() {
-      this.contents.forEach((section) => {
+      this.table_of_contents.forEach((section) => {
         this.fullpageOptions.anchors.push(section.anchor);
       });
     },
@@ -156,6 +156,7 @@ export default {
     max-width: 625px;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 30vh;
   }
   .list-group-item {
     background-color: inherit;
@@ -223,52 +224,32 @@ export default {
   .fp-slidesNav {
     transform: translate(50%,-50%);
   }
-
-  .section:nth-of-type(2):before,
-  .section:nth-of-type(4):before {
-    content: '';
-    position: absolute;
-    display: block;
-    background: rgba(173, 173, 173, 0.2);
-    top:0;
-    bottom:0;
-    height: 100%;
-    width: 100%;
-  }
-  .section {
+  .fp-bg {
     background-size: cover;
-    transform: translate3d(0,0,0);
-    -webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
-    backface-visibility: hidden;
-    background-position: center;
+    background-position: center 80%;
   }
-  /* Intro */
-  .section:nth-of-type(2) {
+
+  #terms_section .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url('/assets/backgrounds/small_brain.jpg');
   }
-  /* Terms */
-  .section:nth-of-type(3) {
+  #blockchain_section .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url('/assets/backgrounds/neurons_heating_up.jpg');
   }
-  /* Blockchain */
-  .section:nth-of-type(4) {
+  #pow_section .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url('/assets/backgrounds/brain_black.webp');
   }
-  /* Proof-of-work */
-  .section:nth-of-type(5) {
+  #timechain_section .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url('/assets/backgrounds/brain_mushrooms.jpg');
   }
-  /* Timechain */
-  .section:nth-of-type(6) {
+  #historical_blocks_section .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url('/assets/backgrounds/brain_man.jpg');
   }
-  /* Real Blocks */
-  .section:nth-of-type(7) {
+  #resources_section .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url('/assets/backgrounds/ultimate.jpg');
   }

@@ -1,6 +1,8 @@
 <template>
-  <div class="section">
-    <Page data-anchor="proof-of-work" slide>
+  <div id="pow_section" class="section">
+    <div class="fp-bg"/>
+
+    <Page data-anchor="pow" slide>
       <h1>
         Proof-of-Work Blockchain
       </h1>
@@ -95,7 +97,7 @@ import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
 import Graph from '@/components/Graph.vue';
 import NonceMixin from '@/mixins/NonceMixin';
-import Page from '@/components/pages/Page.vue';
+import Page from '@/components/Page.vue';
 import Target from '@/components/controls/Target.vue';
 import UpdateDataMixin from '@/mixins/UpdateDataMixin';
 import UpdateHexDigitsMixin from '@/mixins/UpdateHexDigitsMixin';

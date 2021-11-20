@@ -27,7 +27,7 @@ import BlockHeader from '@/services/block/BlockHeader';
 import HashesPerSecondMixin from '@/mixins/HashesPerSecondMixin';
 import Mempool from '@/services/Mempool';
 import NonceMixin from '@/mixins/NonceMixin';
-import Page from '@/components/pages/Page.vue';
+import Page from '@/components/Page.vue';
 import TargetMixin from '@/mixins/TargetMixin';
 import UpdateDataMixin from '@/mixins/UpdateDataMixin';
 import UpdateHexDigitsMixin from '@/mixins/UpdateHexDigitsMixin';

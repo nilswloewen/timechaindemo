@@ -1,6 +1,6 @@
 <template>
-  <div class="section">
-    <Page slide data-anchor="terms">
+  <div id="terms_section" class="section">
+    <Page slide data-anchor="terms" fp_bg>
       <h1>Terms</h1>
 
       <p>
@@ -23,30 +23,22 @@
       </p>
     </Page>
 
-    <HexNotationPage/>
-    <HashPage/>
+    <HexNotationSlide/>
+    <HashFunctionsSlide/>
 
   </div>
 </template>
 
 <script>
-import HashPage from '@/components/pages/terms/HashPage.vue';
-import HexNotationPage from '@/components/pages/terms/HexNotationPage.vue';
-import Page from '@/components/pages/Page.vue';
+import HashFunctionsSlide from '@/components/sections/slides/HashFunctionsSlide.vue';
+import HexNotationSlide from '@/components/sections/slides/HexNotationSlide.vue';
+import Page from '@/components/Page.vue';
 
 export default {
   components: {
-    HashPage,
-    HexNotationPage,
+    HashFunctionsSlide,
+    HexNotationSlide,
     Page,
   },
 };
 </script>
-
-<style>
-  #hash_table {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
-</style>

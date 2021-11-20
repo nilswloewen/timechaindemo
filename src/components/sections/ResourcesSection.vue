@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import Page from '@/components/pages/Page.vue';
+import Page from '@/components/Page.vue';
 
 export default {
   components: {

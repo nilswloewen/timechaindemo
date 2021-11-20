@@ -26,7 +26,7 @@
 import AddBlockButton from '@/components/controls/AddBlockButton.vue';
 import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
-import Page from '@/components/pages/Page.vue';
+import Page from '@/components/Page.vue';
 import UpdateDataMixin from '@/mixins/UpdateDataMixin';
 
 export default {

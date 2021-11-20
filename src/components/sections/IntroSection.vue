@@ -1,5 +1,6 @@
 <template>
-  <Page data-anchor="intro">
+  <Page data-anchor="intro" fp_bg>
+
     <h1 class="text-center">
       Bitcoin Timechain
     </h1>
@@ -11,7 +12,7 @@
 </template>
 
 <script>
-import Page from '@/components/pages/Page.vue';
+import Page from '@/components/Page.vue';
 import TableOfContents from '@/components/TableOfContents.vue';
 
 export default {

@@ -18,12 +18,13 @@
     <p>
       A hash can be thought of as the digital fingerprint of a piece of data. If
       even one bit in the input data is changed the entire output hash becomes wildly different.
-      While the output of a hash may look random, it is not, it is simply unpredictable.
     </p>
-
-    <p><b>
-      The only way to find a hash is to take the time to put in the work of calculating it.
-    </b></p>
+    <p>
+      While the output of a hash may look random, it is not, it is simply unpredictable.
+      <b>
+        The only way to find a hash is to take the time to put in the work of calculating it.
+      </b>
+    </p>
 
     <p>
       A hash can sometimes be misunderstood as a compression or as an encryption. However both
@@ -46,13 +47,12 @@
     </p>
 
     <b-card>
-        For more details of how SHA-256 works watch this utter maniac calculate
-        round 1/64 of SHA-256 BY HAND!
+      For more details of how SHA-256 works watch this utter maniac calculate
+      round 1/64 of SHA-256 BY HAND!
       <hr>
-        <a href="https://youtu.be/y3dqhixzGVo">
-          <img src="/assets/mine_by_hand.webp" alt="Mining Bitcoin by Hand" width="100%"
-               style="border: 1px solid gray"/>
-        </a>
+      <div class="text-center">
+        <iframe style="margin-right: auto; margin-left: auto;" width="auto" height="auto" src="https://www.youtube.com/embed/y3dqhixzGVo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/>
+      </div>
     </b-card>
 
     <b-card no-body class="mt-4">

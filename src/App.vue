@@ -124,7 +124,7 @@ export default {
     font-family: 'Fira Code', monospace;
     text-align: justify;
     color: white;
-    text-shadow: #000 0 0 2px;
+    text-shadow: #000 0 0 3px;
     -webkit-font-smoothing: antialiased;
   }
   a {
@@ -160,26 +160,29 @@ export default {
   }
   .list-group-item {
     background-color: inherit;
+    font-size: 0.875rem;
     border: none;
   }
   .list-field {
     padding-top: 7px;
+    padding-bottom: 0;
   }
   .list-value {
-    font-size: 0.875rem;
     padding-bottom: 7px;
+    padding-top: 2px;
     border-bottom: 1px solid gray;
   }
 
   .card {
     margin: 0 auto 1em auto;
-    background-color: #15202b;
+    background-color: rgba(0, 0, 0, 0.3);
     max-width: 625px;
-    box-shadow: -2px 3px 4px 2px gray;
+    box-shadow: -2px 2px 5px 3px gray;
   }
   .card-header {
     background-color: #343a40;
     color: white;
+    text-shadow: #000 0 0 5px;
   }
 
   .table {
@@ -190,12 +193,14 @@ export default {
   }
 
   hr {
+    border-top: 1px solid gray;
     margin: .5em 0;
   }
   .form-control,
   .form-control:disabled, .form-control[readonly],
   .input-group-text {
     background-color: inherit;
+    text-shadow: #000 0 0 5px;
     color: inherit;
   }
 
@@ -230,51 +235,51 @@ export default {
   }
 
   #intro_section .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/small_brain.jpg');
   }
   #terms_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/neurons2.jpg');
   }
   #hexadecimal_notation_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/neurons_heating_up.jpg');
   }
   #hash_functions_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/neurons3.jpg');
   }
   #blockchain_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/brain_black.webp');
   }
   #simple_blockchain_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/blue_brain.jpg');
   }
   #pow_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/orange_brain.jpg');
   }
   #target_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/brain_mushrooms.jpg');
   }
   #pow_blockchain_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/transcending_forward.jpg');
   }
   #timechain_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/brain_man.jpg');
   }
   #historical_blocks_section .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/ascension.jpg');
   }
   #resources_section .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/ultimate.jpg');
   }
 

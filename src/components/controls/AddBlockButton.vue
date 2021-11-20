@@ -17,8 +17,8 @@
                   variant="warning">
           <b-icon-trash/>
         </b-button>
-
       </b-input-group>
+      {{ now }}
     </b-card-body>
   </b-card>
 </template>
@@ -31,11 +31,19 @@ export default {
   data() {
     return {
       newBlockData: 'Try adding a block...',
+      now: new Date().toUTCString(),
     };
+  },
+  mounted() {
+    this.getTime();
   },
   methods: {
     addBlock() {
       this.$emit('add-block', this.newBlockData);
+    },
+    getTime() {
+      this.now = new Date().toUTCString();
+      setTimeout(this.getTime, 1000);
     },
   },
 };

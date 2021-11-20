@@ -32,27 +32,26 @@ Vue.mixin({
         const now = performance.now();
         const elapsed = (now - startTime) / 1000;
         const t = elapsed / duration;
-        console.log(`t: ${t}`);
         const quad = t < 0.5
           ? 2 * t * t
           : -1 + (4 - 2 * t) * t;
 
         const elementPos = element.getBoundingClientRect();
         const relativePos = elementPos.top - wrapperPos.top + wrapper.scrollTop;
+        console.log(`\nquad: ${quad}`);
+        console.log(`relativePos: ${relativePos}`);
 
-        const change = relativePos - wrapper.scrollTop;
-        const distance = wrapper.scrollTop + change * quad;
+        const distance = relativePos * quad;
 
+        console.log(`t: ${t}`);
         console.log(`Current Wrapper scrollTop: ${wrapper.scrollTop}`);
-        console.log(`Change: ${change}`);
         console.log(`Distance: ${distance}`);
 
         // eslint-disable-next-line no-param-reassign
         wrapper.scrollTop = distance;
 
-        // setTimeout(() => { animateScroll(); }, 50);
         if (t < 1) {
-          window.requestAnimationFrame(animateScroll);
+          // window.requestAnimationFrame(animateScroll);
         }
       }
 

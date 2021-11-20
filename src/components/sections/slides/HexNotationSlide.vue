@@ -10,8 +10,8 @@
     </b-card>
 
     <p>
-      The hash function about to be discussed uses hexadecimal notation as a compact and human
-      readable way to represent the binary hash output.
+      The hash function about to be discussed uses hexadecimal notation as a compact and (more)
+      human readable way to represent the binary hash output.
     </p>
 
     <p>
@@ -54,7 +54,7 @@
           </tr>
           <tr>
             <td>
-              <b-form-input @keyup="onHex" :value="Number(val).toString(16)" />
+              <b-form-input @keyup="onHex" :value="Number(val).toString(16)"/>
             </td>
             <td style="min-width: 60px; text-align: center;">
               <b-icon-arrow-left-right/>

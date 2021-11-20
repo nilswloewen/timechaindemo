@@ -13,7 +13,7 @@
 
 <script>
 import Page from '@/components/Page.vue';
-import TableOfContents from '@/components/TableOfContents.vue';
+import TableOfContents from '@/components/controls/TableOfContents.vue';
 
 export default {
   props: {

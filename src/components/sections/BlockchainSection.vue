@@ -7,27 +7,18 @@
         <h4 class="text-left">blockchain (n.)</h4>
         <hr>
         <q>A blockchain is a chain of blocks.</q>
-        &nbsp;&mdash;<a href="https://t.co/HQwDRlKKx9" target="_blank"> Peter Todd</a>
+        &nbsp;&mdash;&nbsp;<a href="https://t.co/HQwDRlKKx9" target="_blank">Peter Todd</a>
       </b-card>
 
       <p>
-        A block is simply a set of data. In Bitcoin a block is a batch of recent transactions and
-        some metadata about the block, such as the current time.
-      </p>
-
-      <p>
         A blockchain is a data structure that uses hashes to prove that previous
-        blocks existed before following blocks.
+        blocks existed before following blocks, therefore establishing an <b>Order of Events</b>.
       </p>
 
       <p>
-        The most important takeaway about a blockchain is that it establishes an <b>
-        Order of Events</b>.
-
-        Previous hash <b>must have</b> existed before following hash.
+        In Bitcoin a block is a batch of recent transactions and some metadata
+        about the block, such as the current time.
       </p>
-
-      250-860-9888 Tel-tronics
     </Page>
 
     <SimpleBlockchainSlide/>

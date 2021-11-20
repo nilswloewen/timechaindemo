@@ -1,8 +1,6 @@
 <template>
   <div id="pow_section" class="section">
-    <div class="fp-bg"/>
-
-    <Page data-anchor="pow" slide>
+    <Page data-anchor="pow" slide fp_bg>
       <h1>
         Proof-of-Work Blockchain
       </h1>
@@ -55,12 +53,12 @@
       </b-card>
     </Page>
 
-    <Page data-anchor="target" slide >
+    <Page data-anchor="target" slide fp_bg>
       <Target full :initial-target="initialTarget" :max="this.targetMax"
               v-on:updateTarget="updateTarget"/>
     </Page>
 
-    <Page data-anchor="pow_blockchain" slide>
+    <Page data-anchor="pow_blockchain" slide fp_bg>
       <h1>Proof-of-work Blockchain</h1>
 
       <Target :initial-target="initialTarget" :max="this.targetMax"

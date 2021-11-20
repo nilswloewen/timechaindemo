@@ -1,5 +1,5 @@
 <template>
-  <Page data-anchor="historical_blocks">
+  <Page data-anchor="historical_blocks" fp_bg>
     <h1>Historical Blocks</h1>
     <p>
       The 'data' in real Bitcoin blocks consists of the <b>Version</b> of the

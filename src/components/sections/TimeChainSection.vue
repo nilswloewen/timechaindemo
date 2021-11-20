@@ -1,6 +1,6 @@
 <template>
   <div id="timechain_section" class="section">
-    <Page data-anchor="timechain" slide>
+    <Page data-anchor="timechain" slide fp_bg>
       <h1>Timechain</h1>
       Mining is the process of adding recent transactions to the blockchain.
       <Complexity :initial-hex-digits="2" v-on:update-hex-digits="updateHexDigits"/>
@@ -22,14 +22,6 @@
                  v-on:solve-nonce="solveNonce"
                  v-on:update-data="updateData"
                  v-on:update-nonce="updateNonce" />
-    </Page>
-    <Page data-anchor="complexity" slide>
-      <h1>Complexity</h1>
-      <p>
-        So far the demo has only shown the first two digits of the hash. Change
-        the slider to see more digits of the hash and see how the difficulty grows...
-      </p>
-      <Complexity :initial-hex-digits="2" v-on:update-hex-digits="updateHexDigits"/>
     </Page>
   </div>
 </template>

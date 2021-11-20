@@ -1,5 +1,5 @@
 <template>
-  <Page slide data-anchor="hash_functions">
+  <Page slide data-anchor="hash_functions" fp_bg>
     <h1>Hash Function</h1>
     <b-card>
       <h4 class="text-left"><a href="https://www.etymonline.com/word/hash">hash (v.)</a></h4>
@@ -59,20 +59,14 @@
       <b-card-header header-bg-variant="info">
         <b-icon-wrench/> SHA-256 Calculator
       </b-card-header>
-      <b-list-group-item class="list-field">
-        Input
-      </b-list-group-item>
+      <b-list-group-item class="list-field"> Input </b-list-group-item>
       <b-list-group-item class="list-value">
         <b-input-group prepend="Data" size="sm">
           <b-form-input @keyup="updateHash" :value="data" size="sm"/>
         </b-input-group>
       </b-list-group-item>
-      <b-list-group-item class="list-field">
-        Output Hash
-      </b-list-group-item>
-      <b-list-group-item class="list-value">
-        {{ hash }}
-      </b-list-group-item>
+      <b-list-group-item class="list-field"> Output Hash </b-list-group-item>
+      <b-list-group-item class="list-value"> {{ hash }} </b-list-group-item>
     </b-card>
 
     <div>

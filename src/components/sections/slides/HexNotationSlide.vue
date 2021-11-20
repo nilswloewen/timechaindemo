@@ -1,5 +1,5 @@
 <template>
-  <Page slide data-anchor="hexadecimal_notation">
+  <Page slide data-anchor="hexadecimal_notation" fp_bg>
     <h1>Hexadecimal Notation</h1>
 
     <b-card>
@@ -105,10 +105,7 @@ export default {
   methods: {
     onHex(e) {
       let hexVal = e.target.value;
-      console.log(hexVal);
       hexVal = hexVal.replace(/[^a-fA-F0-9]/g, '');
-
-      console.log(hexVal);
       if (hexVal.length === 0) {
         hexVal = 0;
       }
@@ -123,6 +120,9 @@ export default {
     margin-left: auto;
     margin-right: auto;
     max-width: 315px;
+  }
+  #hex_table table {
+    color: white;
   }
   #hex_table th:nth-child(1),
   #hex_table td:nth-child(1)

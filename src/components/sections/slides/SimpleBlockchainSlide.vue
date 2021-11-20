@@ -1,5 +1,5 @@
 <template>
-  <Page data-anchor="simple_blockchain" slide>
+  <Page data-anchor="simple_blockchain" slide fp_bg>
     <h1>Example: Non-Proof-of-Work Blockchain</h1>
     <p>
       This is a simplified version of a blockchain.

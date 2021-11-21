@@ -11,7 +11,7 @@ export default {
         '#b47aea',
         '#bd93d8',
       ],
-      blocks: [],
+      blocks: [new Block('', BlockHeader.genesis, 0, '#61e294', 'inherit')],
       disableAddBlockBtn: true,
       hexDigits: 2,
       newBlockData: '',
@@ -20,11 +20,6 @@ export default {
   },
   async mounted() {
     await this.resetBlocks();
-  },
-  watch: {
-    hexDigits() {
-      this.targetMax = this.encode(BigInt(2 ** (this.hexDigits * 4)));
-    },
   },
   methods: {
     async addBlock(newData) {
@@ -55,7 +50,7 @@ export default {
     },
     async resetBlocks() {
       const block = new Block('', BlockHeader.genesis, 0, this.colors[0], 'inherit');
-      await block.calcHash();
+      await block.calcHash(this.hexDigits);
       this.blocks = [block];
 
       // Rebuild fullpage so scrolling works.
@@ -65,11 +60,16 @@ export default {
     async finalizeBlock(index) {
       const block = this.blocks[index];
       block.header.timestamp = new Date().getTime() / 1000;
+      await block.calcHash(this.hexDigits);
 
-      await block.calcHash();
+      block.isHashValid = block.hash.bigInt < this.target.bigInt;
+      this.guesses.push({
+        xRatio: 0,
+        yRatio: block.hash.num / this.hashMax.num,
+        hash: block.hash,
+        isHashValid: block.isHashValid,
+      });
 
-      const hash = parseInt(block.hash.substr(0, this.hexDigits), 16);
-      block.isHashValid = hash < this.target;
 
       if (index > 0) {
         this.blocks[index - 1].header.prevHash = block.hash;

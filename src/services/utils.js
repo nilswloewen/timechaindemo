@@ -62,8 +62,21 @@ async function sha256dFromHex(data) {
   return swapEndian(pass2);
 }
 
+function encode(bigInt) {
+  return {
+    bigInt,
+    num: Number(bigInt),
+    binary: bigInt.toString(2).padStart(256, '0'),
+    decimal: bigInt.toLocaleString('en-US').padStart(103, '000,'),
+    // @TODO: Figure out exponential for bigInt.
+    exponential: bigInt.toLocaleString('en-US').padStart(103, '000,'),
+    hexadecimal: bigInt.toString(16).padStart(64, '0'),
+  };
+}
+
 export {
   intToHex,
+  encode,
   serializeBlockHeader,
   sha256dFromHex,
   sha256dFromText,

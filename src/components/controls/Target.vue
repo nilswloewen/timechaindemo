@@ -1,32 +1,32 @@
 <template>
   <b-card no-body class="mb-2">
     <b-card-header class="text-center">
-      <span class="float-left"> Target</span> <span>{{ target[encoding] }}</span>
+      <span class="float-left">Target</span> <span>{{ target[localEncoding] }}</span>
     </b-card-header>
     <b-input-group prepend="Min 1" size="sm" append="Max">
-      <b-form-input :title="target[encoding]" v-model.number="target.bigInt" type="range"
-                    min="1" :max="targetMax.bigInt - 1" size="sm"/>
+      <b-form-input :title="target[localEncoding]" :value="target.num" @change="onTargetChange" type="range"
+                    min="1" :max="getMax" size="sm"/>
     </b-input-group>
 
     <b-list-group-item class="list-field">Max</b-list-group-item>
-    <b-list-group-item class="list-value">{{ targetMax[encoding] }}</b-list-group-item>
+    <b-list-group-item class="list-value">{{ targetMax[localEncoding] }}</b-list-group-item>
 
     <template v-if="full">
       <b-list-group-item class="list-field">Probability</b-list-group-item>
       <b-list-group-item class="list-value">
-        Only <div class="stat probability">{{ this.probability }}%</div>
+        Only <div class="stat probability">{{ getProbability }}%</div>
         of possible hashes will be accepted.
       </b-list-group-item>
 
       <b-list-group-item class="list-field">Odds</b-list-group-item>
       <b-list-group-item class="list-value">
-        Each try has a <div class="stat odds">{{ this.numerator }}</div> out of
-        <div class="stat odds">{{ this.denominator }}</div> chance of winning.
+        Each try has a <div class="stat odds">{{ numerator.toLocaleString('en-US') }}</div> out of
+        <div class="stat odds">{{ denominator.toLocaleString('en-US') }}</div> chance of winning.
       </b-list-group-item>
 
       <b-list-group-item class="list-field">Average</b-list-group-item>
       <b-list-group-item class="list-value">
-        On average it will take <div class="stat odds">~{{ this.avgHashes }}</div>
+        On average it will take <div class="stat odds">~{{ avgHashes.toFixed(0) }}</div>
         tries to find a valid hash.
       </b-list-group-item>
     </template>
@@ -35,61 +35,32 @@
 </template>
 
 <script>
+import Num from '@/services/Num';
+
 export default {
   props: {
     full: Boolean,
-    hexDigits: Number,
-    initialTarget: BigInt,
-    targetMax: Object,
+    target: Num,
+    targetMax: Num,
+    avgHashes: null,
+    denominator: null,
+    numerator: null,
+    probability: null,
+    localEncoding: String,
   },
-
-  data() {
-    return {
-      avgHashes: Number,
-      denominator: Number,
-      numerator: Number,
-      probability: Number,
-      target: { bigInt: 0 },
-    };
-  },
-
-  mounted() {
-    this.target = this.encode(this.initialTarget);
-    this.$emit('updateTarget', this.target);
-    this.calcStats();
-  },
-
-  watch: {
-    target() {
-      this.calcStats();
-      this.$emit('updateTarget', this.target);
+  computed: {
+    getProbability() {
+      return (this.probability * 100).toFixed(2).padStart(5, '0');
+    },
+    getMax() {
+      return Number(this.targetMax.bigInt - 1n);
     },
   },
-
   methods: {
-    calcStats() {
-      this.probability = (((this.target.bigInt) / this.targetMax.bigInt) * 100)
-        .toFixed(2).padStart(5, '0');
-
-      const gcd = this.gcd(this.target.bigInt, this.targetMax.bigInt);
-      this.numerator = this.target.bigInt / gcd;
-      this.denominator = this.targetMax.bigInt / gcd;
-      this.avgHashes = ((1 / this.probability) * 100).toFixed(0);
+    onTargetChange(newTarget) {
+      this.$emit('updateTarget', new Num(BigInt(Number(newTarget))));
     },
-
-    gcd(first, second) {
-      let a = first;
-      let b = second;
-
-      // eslint-disable-next-line no-constant-condition
-      while (true) {
-        if (b === 0) return a;
-        a %= b;
-        if (a === 0) return b;
-        b %= a;
-      }
-    },
-  },
+  }
 };
 </script>
 

@@ -1,5 +1,6 @@
 import Block from './Block';
 import { sha256dFromText } from '@/services/utils';
+import Num from '@/services/Num';
 
 class DemoBlock extends Block {
   constructor(hash, header, height, color, prevColor) {
@@ -10,8 +11,10 @@ class DemoBlock extends Block {
     this.stats = [];
   }
 
-  async calcHash() {
-    this.hash = this.encode(await sha256dFromText(this.header.serialize()));
+  async calcHash(hexDigits = 64) {
+    let hex = await sha256dFromText(this.header.serialize());
+    hex = hex.substr(0, hexDigits);
+    this.hash = new Num(BigInt(`0x${hex}`));
   }
 }
 

@@ -108,6 +108,7 @@ export default {
     showData: Boolean,
     showReal: Boolean,
     showNonce: Boolean,
+    localEncoding: String,
   },
 
   data() {
@@ -127,10 +128,10 @@ export default {
       return `color: ${this.block.color};`;
     },
     getHash() {
-      return this.block.hash.substr(0, this.hexDigits);
+      return this.block.hash[this.localEncoding];
     },
     getPrevHash() {
-      return this.block.header.prevHash.substr(0, this.hexDigits);
+      return this.block.header.prevHash[this.localEncoding];
     },
     getTime() {
       const date = new Date(this.block.header.timestamp * 1000);

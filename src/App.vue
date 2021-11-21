@@ -2,12 +2,12 @@
   <div id="app">
     <full-page id="fullpage" :options="fullpageOptions" >
 
-      <IntroSection :contents="table_of_contents" />
-      <TermsSection/>
-      <BlockchainSection/>
-      <PowBlockchainSection/>
+<!--      <IntroSection :contents="table_of_contents" />-->
+<!--      <TermsSection/>-->
+<!--      <BlockchainSection/>-->
+<!--      <PowBlockchainSection/>-->
       <TimeChainSection/>
-      <HistoricalBlocksSection/>
+<!--      <HistoricalBlocksSection/>-->
       <ResourcesSection/>
 
     </full-page>
@@ -160,11 +160,11 @@ export default {
   }
   .list-group-item {
     background-color: inherit;
-    font-size: 0.875rem;
     border: none;
   }
   .list-field {
     padding-top: 7px;
+    font-size: 0.875rem;
     padding-bottom: 0;
   }
   .list-value {
@@ -267,6 +267,10 @@ export default {
     url('/assets/backgrounds/brain_mushrooms.jpg');
   }
   #pow_blockchain_slide .fp-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('/assets/backgrounds/transcending_forward.jpg');
+  }
+  #pow_graph_slide .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/transcending_forward.jpg');
   }

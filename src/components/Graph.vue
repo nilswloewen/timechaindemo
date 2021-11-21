@@ -4,39 +4,37 @@
 
 <script>
 
+import Num from '@/services/Num';
+
 export default {
   props: {
     guesses: { type: Array },
-    target: Object,
-    encoding: { type: Array },
+    target: Num,
+    localEncoding: String,
   },
 
   mounted() {
-    this.bgColor = '#f9f9fb';
-
-    const canvasHeight = document.documentElement.clientHeight;
-    const canvasWidth = document.documentElement.clientWidth;
+    this.screenHeight = document.documentElement.clientHeight;
+    this.screenWidth = document.documentElement.clientWidth;
 
     const canvas = document.getElementById('graph');
-    canvas.height = canvasHeight;
-    canvas.width = canvasWidth;
+    canvas.height = this.screenHeight;
+    canvas.width = this.screenWidth;
     canvas.style.backgroundColor = this.bgColor;
 
     this.ctx = canvas.getContext('2d');
     this.ctx.globalCompositeOperation = 'source-over';
     this.ctx.font = '16px Fira Code';
 
-    this.xPad = canvasWidth * 0.1;
-    this.yPad = canvasHeight * 0.05;
+    this.xPad = this.screenWidth * 0.1;
+    this.yPad = this.screenHeight * 0.05;
 
-    this.width = canvasWidth - (this.xPad * 2);
-    this.height = canvasHeight - (this.yPad * 2);
+    this.width = this.screenWidth - (this.xPad * 2);
+    this.height = this.screenHeight - (this.yPad * 2);
 
     // Shortcut for bottom right of graph where axis meet.
-    this.zero = { x: this.width + this.xPad + this.xPad, y: this.height + this.yPad };
+    this.zero = { x: this.screenWidth - this.xPad, y: this.screenHeight - this.yPad };
 
-    this.tickSpeed = 1 / 1280;
-    this.ticks = [];
     this.setTicks(16);
 
     this.calcGraph();
@@ -45,11 +43,16 @@ export default {
   data() {
     return {
       ctx: Object,
-      bgColor: '#f9f9fb',
+      bgColor: 'rgba(0, 0, 0, 0.2)',
+      lineColor: 'white',
+      textColor: 'white',
+      winningColor: 'rgba(247, 148, 19, 1)',
       xPad: Number,
       yPad: Number,
       width: Number,
       height: Number,
+      screenWidth: Number,
+      screenHeight: Number,
       zero: Object,
       tickSpeed: 1 / 1280,
       ticks: [],
@@ -65,31 +68,53 @@ export default {
     },
 
     clear() {
-      this.ctx.clearRect(0, 0, this.width + this.xPad * 2, this.height + this.yPad * 2);
+      this.ctx.clearRect(0, 0, this.screenWidth, this.screenHeight);
     },
 
     drawXAxis() {
-      const xGrd = this.ctx.createLinearGradient(this.xPad, this.zero.y, this.width, this.zero.y);
+      const xGrd = this.ctx.createLinearGradient(this.xPad, this.zero.y, this.zero.x, this.zero.y);
       xGrd.addColorStop(0, this.bgColor);
-      xGrd.addColorStop(1, 'black');
+      xGrd.addColorStop(1, this.lineColor);
 
       // X-axis.
       this.ctx.beginPath();
       this.ctx.strokeStyle = xGrd;
-      this.ctx.moveTo(0, this.zero.y);
-      this.ctx.lineTo(this.xPad + this.width + this.xPad, this.zero.y);
+      this.ctx.moveTo(this.xPad, this.zero.y);
+      this.ctx.lineTo(this.zero.x, this.zero.y);
       this.ctx.stroke();
       this.ctx.closePath();
     },
     drawYAxis() {
-      this.drawVerticalLine(0);
+      const grd = this.ctx.createLinearGradient(this.zero.x, this.zero.y, this.zero.x, this.yPad);
+      grd.addColorStop(1, this.bgColor);
+      grd.addColorStop(0, 'white');
+
+      this.ctx.beginPath();
+      this.ctx.strokeStyle = grd;
+      this.ctx.moveTo(this.zero.x, this.zero.y);
+      this.ctx.lineTo(this.zero.x, this.zero.y - this.height);
+      this.ctx.stroke();
+      this.ctx.closePath();
     },
 
     drawTarget(yRatio) {
+      const y = this.zero.y - (this.height * yRatio);
+
+      const xGrd = this.ctx.createLinearGradient(this.xPad, y, this.zero.x, y);
+      xGrd.addColorStop(0, this.bgColor);
+      xGrd.addColorStop(1, this.winningColor);
+
+      this.ctx.beginPath();
+      this.ctx.strokeStyle = xGrd;
+      this.ctx.moveTo(this.xPad, y);
+      this.ctx.lineTo(this.zero.x - 80, y);
+      this.ctx.stroke();
+      this.ctx.closePath();
+
       this.ctx.direction = 'ltr';
-      this.ctx.fillStyle = 'green';
+      this.ctx.fillStyle = this.winningColor;
       this.ctx.fillText(
-        '🠔Target',
+        'Target',
         this.zero.x - 80,
         this.zero.y - (this.height * yRatio) + 4,
       );
@@ -116,38 +141,49 @@ export default {
 
     drawTicks() {
       for (let i = 0; i < this.ticks.length; i += 1) {
-        this.drawVerticalLine(this.ticks[i], 'gray');
+        const xRatio = this.ticks[i];
+        const x = this.width - (this.width * xRatio);
+
+        const grd = this.ctx.createLinearGradient(this.zero.x, this.zero.y, this.zero.x, this.yPad);
+        grd.addColorStop(1, this.bgColor);
+        grd.addColorStop(0, `rgba(255, 255, 255, ${0.5 - xRatio})`);
+
+        this.ctx.beginPath();
+        this.ctx.strokeStyle = grd;
+        this.ctx.moveTo(this.xPad + x, this.zero.y);
+        this.ctx.lineTo(this.xPad + x, this.zero.y - this.height);
+        this.ctx.stroke();
+        this.ctx.closePath();
       }
     },
 
     drawGuesses(guesses) {
       for (let i = 0; i < guesses.length; i += 1) {
-        let opacity = 1;
-        if (guesses.length > 5) {
-          opacity = (i / guesses.length) + 0.1;
-        }
         const guess = guesses[i];
-        this.drawHorizontalLine(guess.xRatio, guess.yRatio, guess.hash[this.encoding[0]], opacity);
+
+        // Fade out older guesses.
+        let opacity = i / guesses.length;
+
+        // Min val.
+        opacity = opacity < 0.6 ? 0.6 : opacity;
+
+        // Fade out all guess at edge of graph.
+        if (guess.xRatio > 0.9) {
+          opacity -= 1 - guess.xRatio;
+        }
+
+        this.drawGuess(
+          guess.xRatio,
+          guess.yRatio,
+          guess.hash[this.localEncoding],
+          opacity,
+          guess.isHashValid
+        );
       }
     },
 
-    drawVerticalLine(xRatio) {
-      const x = (this.width + this.xPad + this.xPad)
-        - (this.width + this.xPad + this.xPad) * xRatio;
-
-      const grd = this.ctx.createLinearGradient(this.zero.x, this.zero.y, this.zero.x, this.yPad);
-      grd.addColorStop(1, this.bgColor);
-      grd.addColorStop(0, `rgba(0, 0, 0, ${0.5 - xRatio})`);
-
-      this.ctx.beginPath();
-      this.ctx.strokeStyle = grd;
-      this.ctx.moveTo(x, this.zero.y);
-      this.ctx.lineTo(x, this.zero.y - this.height);
-      this.ctx.stroke();
-      this.ctx.closePath();
-    },
-
-    drawHorizontalLine(xRatio, yRatio, label, opacity = 1) {
+    drawGuess(xRatio, yRatio, label, opacity = 1, isHashValid = false) {
+      this.ctx.font = isHashValid ? '20px Fira Code' : '16px Fira Code';
       const arrowLabel = `${label}`;
 
       const x = this.zero.x - (this.width * xRatio);
@@ -155,7 +191,7 @@ export default {
 
       // Background
       const labelMetrics = this.ctx.measureText(arrowLabel);
-      this.ctx.fillStyle = 'rgba(249, 249, 251, 0.8)';
+      this.ctx.fillStyle = this.bgColor;
       this.ctx.fillRect(
         x - 2, y - 12,
         labelMetrics.width + 5, 20,
@@ -163,19 +199,12 @@ export default {
 
       // Label
       this.ctx.direction = 'ltr';
-      this.ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`;
+      this.ctx.fillStyle = isHashValid ? `rgba(247, 148, 19, ${opacity})` : `rgba(255, 255, 255, ${opacity})`;
       this.ctx.fillText(arrowLabel, x, y + 4);
     },
 
+
     drawEndCaps() {
-      const leftGrd = this.ctx.createLinearGradient(100, 0, 300, 0);
-      leftGrd.addColorStop(0, this.bgColor);
-      leftGrd.addColorStop(1, 'rgba(249,249,251,0)');
-
-      this.ctx.fillStyle = leftGrd;
-      this.ctx.fillRect(0, this.yPad, this.xPad + this.width, this.height + 5);
-
-      // Right
       this.ctx.fillStyle = this.bgColor;
       this.ctx.fillRect(
         this.xPad + this.width,
@@ -196,7 +225,7 @@ export default {
 
       this.drawGuesses(this.guesses);
       this.drawTicks();
-      // this.drawEndCaps();
+      this.drawEndCaps();
 
       this.drawTarget(this.target.yRatio);
       this.drawYAxis();

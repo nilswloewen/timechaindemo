@@ -3,11 +3,12 @@
     <b-card-header>
       Difficulty
     </b-card-header>
-    <p>
-      <q>In other words, the difficulty-adjustment is about keeping a constant
-        time, not a constant level of security, difficulty, or energy expenditure.</q>
-      - DerGigi</p>
     <b-card-body>
+      <p>
+        <q>In other words, the difficulty-adjustment is about keeping a constant
+          time, not a constant level of security, difficulty, or energy expenditure.</q>
+        - DerGigi
+      </p>
       <div>
         This device can calculate <b>~{{ hpsOfThisDevice.toFixed(0) }}</b> Hashes per Second
         <b-button @click="$emit('calibrate-hps')">Calibrate</b-button>
@@ -22,7 +23,7 @@
 <script>
 export default {
   props: {
-    avgHashes: Number,
+    avgHashes: null,
     hpsOfThisDevice: Number,
   },
   data() {

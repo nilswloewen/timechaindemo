@@ -1,4 +1,5 @@
 import { sha256dFromHex } from '@/services/utils';
+import Num from '@/services/Num';
 
 class Block {
   constructor(hash, header, height) {
@@ -12,9 +13,10 @@ class Block {
     this.stats = [];
   }
 
-  async calcHash() {
-    const hex = await sha256dFromHex(this.header.serialize());
-    this.hash = this.encode(BigInt(`0x${hex}`));
+  async calcHash(hexDigits = 64) {
+    let hex = await sha256dFromHex(this.header.serialize());
+    hex = hex.substr(0, hexDigits);
+    this.hash = new Num(BigInt(`0x${hex}`));
   }
 }
 

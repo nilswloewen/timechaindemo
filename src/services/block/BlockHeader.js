@@ -1,4 +1,5 @@
 import { intToHex, swapEndian } from '@/services/utils';
+import Num from '@/services/Num';
 
 class BlockHeader {
   constructor(bits, merkleRoot, nonce, prevHash, timestamp, version) {
@@ -24,7 +25,7 @@ class BlockHeader {
       486604799,
       '4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b',
       2083236893,
-      ''.padStart(64, '0'),
+      new Num(0n),
       1231006505,
       1,
     );

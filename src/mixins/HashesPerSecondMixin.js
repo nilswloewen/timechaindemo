@@ -18,7 +18,7 @@ export default {
       this.blocks[0].header.nonce = 0;
       await this.finalizeBlock(0);
     },
-    avgHashes() {
+    calcAvgHashes() {
       return 1 / (this.target / this.targetMax);
     },
   },

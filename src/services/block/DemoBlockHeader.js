@@ -1,4 +1,5 @@
 import BlockHeader from './BlockHeader';
+import Num from '@/services/Num';
 
 class DemoBlockHeader extends BlockHeader {
   constructor(data, nonce, prevHash) {
@@ -8,7 +9,7 @@ class DemoBlockHeader extends BlockHeader {
   }
 
   static get genesis() {
-    return new DemoBlockHeader('Alice sent Bob 5$', 0, ''.padStart(64, '0'));
+    return new DemoBlockHeader('Alice sent Bob 5$', 0, new Num(BigInt(0)));
   }
 
   serialize() {

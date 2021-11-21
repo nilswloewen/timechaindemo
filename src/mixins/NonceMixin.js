@@ -15,11 +15,13 @@ export default {
         await this.finalizeBlock(index);
       }
 
-      while (!block.isHashValid) {
+      while (!block.isHashValid && this.isMining) {
         block.header.nonce += 1;
         // eslint-disable-next-line no-await-in-loop
         await this.finalizeBlock(index);
       }
+
+      this.isMining = false;
 
       await this.delayedUpdate(index);
       block.stats.push({

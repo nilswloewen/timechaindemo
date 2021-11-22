@@ -18,6 +18,8 @@
 
       <Difficulty :hps-of-this-device="hpsOfThisDevice" :avg-hashes="calcAvgHashes()"
                   :difficulty="difficulty"
+                  :hash-max="hashMax"
+                  :local-encoding="encoding[activeEncoding]"
                   v-on:calibrate-hps="calibrateHps"
                   v-on:update-hex-digits="updateHexDigits"/>
 

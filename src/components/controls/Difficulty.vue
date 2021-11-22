@@ -9,29 +9,34 @@
         <b-button @click="$emit('calibrate-hps')" size="sm">Calibrate</b-button>
       </p>
 
-      <p>Average number of hashes to find valid block: ~{{ avgHashes.toLocaleString('en-US') }}</p>
+      <p>Average number of hashes to find valid block: ~{{ Math.ceil(avgHashes).toLocaleString('en-US') }}</p>
 
-      <p>Average time to find valid block: {{ avgTime }} </p>
+      <p>Average time to find valid block: ~{{ avgTime }} </p>
     </b-card-body>
 
-    <b-input-group prepend="hexDigits Min 2" append="Max 64" size="sm">
-      <b-form-input :title="hexDigits" type="range" size="sm" :min="2" :max="64" step="1"
-                    :value="hexDigits" @change="updateHexDigits"/>
-    </b-input-group>
-    {{ difficulty }}
+    <b-list-group-item class="list-field">Hash Max {{ hexDigits }}</b-list-group-item>
+    <b-list-group-item class="list-value">
+      <b-input-group prepend="hexDigits Min 2" append="Max 64" size="sm">
+        <b-form-input :title="hexDigits" type="range" size="sm" :min="2" :max="64" step="1"
+                      :value="hexDigits" @change="updateHexDigits"/>
+      </b-input-group>
+      {{ hashMax[localEncoding] }}
+    </b-list-group-item>
+
+    <b-list-group-item class="list-field">Difficulty</b-list-group-item>
+    <b-list-group-item class="list-value"> {{ difficulty }} </b-list-group-item>
+
   </b-card>
 </template>
 
 <script>
-import TimeAgo from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en.json'
-TimeAgo.addDefaultLocale(en)
-
 export default {
   props: {
     avgHashes: null,
-    hpsOfThisDevice: Number,
     difficulty: Number,
+    hashMax: null,
+    hpsOfThisDevice: Number,
+    localEncoding: String,
   },
   data() {
     return {
@@ -53,26 +58,45 @@ export default {
   },
   methods: {
     calcAvgTime() {
-      const timeAgo = new TimeAgo('en-US')
+      const seconds = Math.ceil((1 / this.hpsOfThisDevice) * this.avgHashes);
+      this.avgTime = this.secondsToTime(seconds);
+    },
+    secondsToTime(seconds) {
+      const minute = 60;
+      if (seconds < minute) {
+        return `${seconds} Seconds`;
+      }
 
-      const seconds = ((1 / this.hpsOfThisDevice) * this.avgHashes).toFixed(0);
-      console.log(`\nSeconds: ${seconds}`);
-      const now = new Date().getTime() / 1000;
+      const hour = minute * 60;
+      if (seconds < hour) {
+        return `${Math.floor(seconds / minute)} Minutes`;
+      }
 
-      console.log(now);
+      const day = hour * 24;
+      if (seconds < day) {
+        return `${Math.floor(seconds / hour)} Hours`;
+      }
 
-      // Seconds
-      // Minutes
-      // Hours
-      // Days
-      // Weeks
-      // Months
-      // Years
-      // Decades
-      // Centuries
-      // Millenia
+      const week = day * 7;
+      if (seconds < week) {
+        return `${Math.floor(seconds / day)} Days`;
+      }
 
-      this.avgTime = timeAgo.format((now + seconds) * 1000, {now: 0, future: true});
+      const month = day * 30;
+      if (seconds < month) {
+        return `${Math.floor(seconds / week)} Weeks`;
+      }
+
+      const year = day * 365;
+      if (seconds < year) {
+        return `${Math.floor(seconds / month)} Months`;
+      }
+
+      const years = Math.floor(seconds / year);
+      if (years < 1_000_000_000) {
+        return `${years.toLocaleString('en-US')} Years`;
+      }
+      return `${years.toExponential(2)} Years`;
     },
     updateHexDigits(newHexDigits) {
       this.hexDigits = Number(newHexDigits);

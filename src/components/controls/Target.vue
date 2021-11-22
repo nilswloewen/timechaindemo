@@ -28,8 +28,8 @@
 
           <b-list-group-item class="list-field">Odds</b-list-group-item>
           <b-list-group-item class="list-value">
-            Each try has a <div class="stat odds">{{ numerator.toLocaleString('en-US') }}</div> out of
-            <div class="stat odds">{{ denominator.toLocaleString('en-US') }}</div> chance of winning.
+            Each try has a <div class="stat odds">{{ getNumerator }}</div> out of
+            <div class="stat odds">{{ getDenominator }}</div> chance of winning.
           </b-list-group-item>
 
           <b-list-group-item class="list-field">Average</b-list-group-item>
@@ -68,6 +68,18 @@ export default {
     getMax() {
       return Number(this.targetMax.bigInt - 1n);
     },
+    getNumerator() {
+      if (this.numerator > 1_000_000n) {
+        return Number(this.numerator).toExponential(2);
+      }
+      return this.numerator.toLocaleString('en-US');
+    },
+    getDenominator() {
+      if (this.denominator > 1_000_000n) {
+        return Number(this.denominator).toExponential(2);
+      }
+      return this.denominator.toLocaleString('en-US');
+    }
   },
   methods: {
     onTargetChange(newTarget) {

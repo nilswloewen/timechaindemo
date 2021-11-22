@@ -1,5 +1,5 @@
 export default {
-  data: () => ({ hpsOfThisDevice: 0 }),
+  data: () => ({ hpsOfThisDevice: 1 }),
   methods: {
     async calibrateHps() {
       const start = new Date().getTime();

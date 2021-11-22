@@ -16,12 +16,19 @@ export default {
       hexDigits: 2,
       newBlockData: '',
       guesses: [],
+      activeEncoding: 2,
+      encoding: ['binary', 'decimal', 'hexadecimal',  'exponential'],
     };
   },
   async mounted() {
     await this.resetBlocks();
   },
   methods: {
+    rotateEncoding() {
+      this.activeEncoding += 1;
+      this.activeEncoding %= this.encoding.length;
+    },
+
     async addBlock(newData) {
       const header = new BlockHeader(newData, 0, this.blocks[0].hash);
       const height = this.blocks.length;

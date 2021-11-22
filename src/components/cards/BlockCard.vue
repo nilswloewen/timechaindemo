@@ -19,9 +19,12 @@
         </template>
         <template v-else> Block #{{ block.height }}</template>
 
-        <!--        <b-button class="float-right" size="sm">-->
-        <!--          <b-icon-bar-chart-steps size="sm"/>-->
-        <!--        </b-button>-->
+        <b-collapse :visible="!isHashValid" class="d-inline">
+          <b-button @click="$emit('mine-this-block', index)" class="float-right"
+                    size="sm" variant="danger">
+            <b-icon-hammer size="sm" animation="fade"/>
+          </b-button>
+        </b-collapse>
       </b-card-header>
 
       <!--Hash-->

@@ -16,7 +16,7 @@ class Block {
   async calcHash(hexDigits = 64) {
     let hex = await sha256dFromHex(this.header.serialize());
     hex = hex.substr(0, hexDigits);
-    this.hash = new Num(BigInt(`0x${hex}`));
+    this.hash = new Num(BigInt(`0x${hex}`), hexDigits);
   }
 }
 

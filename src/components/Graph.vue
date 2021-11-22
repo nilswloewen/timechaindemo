@@ -72,11 +72,24 @@ export default {
     },
 
     drawXAxis() {
-      const xGrd = this.ctx.createLinearGradient(this.xPad, this.zero.y, this.zero.x, this.zero.y);
+      let xGrd = this.ctx.createLinearGradient(this.xPad, this.zero.y, this.zero.x, this.zero.y);
+      xGrd.addColorStop(0, this.bgColor);
+      xGrd.addColorStop(0.5, 'rgba(255, 255, 255, 0.2)');
+      xGrd.addColorStop(1, this.bgColor);
+
+      // Top.
+      this.ctx.beginPath();
+      this.ctx.strokeStyle = xGrd;
+      this.ctx.moveTo(this.xPad, this.yPad);
+      this.ctx.lineTo(this.zero.x, this.yPad);
+      this.ctx.stroke();
+      this.ctx.closePath();
+
+      // Bottom.
+      xGrd = this.ctx.createLinearGradient(this.xPad, this.zero.y, this.zero.x, this.zero.y);
       xGrd.addColorStop(0, this.bgColor);
       xGrd.addColorStop(1, this.lineColor);
 
-      // X-axis.
       this.ctx.beginPath();
       this.ctx.strokeStyle = xGrd;
       this.ctx.moveTo(this.xPad, this.zero.y);
@@ -107,7 +120,7 @@ export default {
       this.ctx.beginPath();
       this.ctx.strokeStyle = xGrd;
       this.ctx.moveTo(this.xPad, y);
-      this.ctx.lineTo(this.zero.x - 80, y);
+      this.ctx.lineTo(this.zero.x - 74, y);
       this.ctx.stroke();
       this.ctx.closePath();
 
@@ -115,8 +128,8 @@ export default {
       this.ctx.fillStyle = this.winningColor;
       this.ctx.fillText(
         'Target',
-        this.zero.x - 80,
-        this.zero.y - (this.height * yRatio) + 4,
+        this.zero.x - 64,
+        y + 6,
       );
     },
 

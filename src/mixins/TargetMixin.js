@@ -5,11 +5,11 @@ export default {
     return {
       avgHashes: 0,
       denominator: 1n,
-      hashMax: new Num(256n),
+      hashMax: new Num(255n),
       numerator: 0n,
       probability: 0.2,
       target: new Num(32n),
-      targetMax: new Num(256n),
+      targetMax: new Num(255n),
     };
   },
   mounted() {

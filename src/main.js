@@ -21,7 +21,7 @@ Vue.use(VueFullPage);
 Vue.mixin({
   data() {
     return {
-      encoding: [ 'hexadecimal', 'decimal', 'exponential', 'binary'],
+
     };
   },
   methods: {
@@ -29,9 +29,6 @@ Vue.mixin({
       window.fullpage_api.moveTo(anchor, index);
     },
 
-    rotateEncoding() {
-      this.encoding.push(this.encoding.shift());
-    },
 
     scrollToElm(wrapper, element, duration) {
       // const startTime = performance.now();

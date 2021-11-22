@@ -50,5 +50,18 @@ Difficulty
 
 Throughput / Transactions per Second
 
-TODO:
-Integrate Graph
+Outline:
+
+Simple Blockchain
+ - Prove Order of Events.
+ - Prove changes propagate up.
+
+POW Blockchain
+ - Target
+ - Nonce
+ - Numberline
+
+Timechain
+ - Hash Rate
+ - Difficulty
+ - Animate numberline

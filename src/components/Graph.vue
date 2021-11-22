@@ -124,6 +124,7 @@ export default {
       this.ctx.stroke();
       this.ctx.closePath();
 
+      this.ctx.font = '16px Fira Code';
       this.ctx.direction = 'ltr';
       this.ctx.fillStyle = this.winningColor;
       this.ctx.fillText(

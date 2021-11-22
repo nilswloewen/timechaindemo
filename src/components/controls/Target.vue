@@ -10,16 +10,14 @@
     <template v-else>
       <b-card no-body class="mb-2">
         <b-card-header class="text-center">
-          <span class="float-left">Target</span> <span>{{ target[localEncoding] }}</span>
+          <div>Target</div>
+            {{ target[localEncoding] }}
         </b-card-header>
 
         <b-input-group prepend="Min 1" size="sm" append="Max">
           <b-form-input :title="target[localEncoding]" :value="target.num" @change="onTargetChange" type="range"
                         min="1" :max="getMax" size="sm"/>
         </b-input-group>
-
-        <b-list-group-item class="list-field">Max</b-list-group-item>
-        <b-list-group-item class="list-value">{{ targetMax[localEncoding] }}</b-list-group-item>
 
         <template v-if="full">
           <b-list-group-item class="list-field">Probability</b-list-group-item>

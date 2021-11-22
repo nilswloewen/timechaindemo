@@ -2,12 +2,16 @@ import Num from '@/services/Num';
 
 export default {
   methods: {
-    updateHexDigits(newLimit) {
-      this.hexDigits = newLimit;
-      const hex = '0x'.padEnd(newLimit + 2, 'f');
-      const max = new Num(BigInt(hex), newLimit);
-      this.targetMax = max;
-      this.hashMax = max;
+    updateHexDigits(newHexDigits) {
+      this.hexDigits = newHexDigits;
+
+      const hex = '0x'.padEnd(this.hexDigits + 2, 'f');
+      const max = BigInt(hex);
+
+      this.targetMax = new Num(max - 1n, this.hexDigits);
+      this.hashMax = new Num(max, this.hexDigits);
+
+      // Reset guesses so they are not still painted on graph.
       this.guesses = [];
     },
   },

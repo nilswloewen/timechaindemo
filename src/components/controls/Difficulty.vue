@@ -17,6 +17,11 @@
 
       <div>Average time to find valid block: {{avgTime}} Seconds</div>
     </b-card-body>
+
+    <b-input-group prepend="hexDigits Min 2" append="Max 64" size="sm">
+      <b-form-input :title="hexDigits" type="range" size="sm" :min="2" :max="64"
+                    :value="hexDigits" @change="updateHexDigits"/>
+    </b-input-group>
   </b-card>
 </template>
 
@@ -29,6 +34,7 @@ export default {
   data() {
     return {
       avgTime: 0,
+      hexDigits: 2,
     };
   },
   mounted() {
@@ -43,6 +49,10 @@ export default {
     calcAvgTime() {
       const avgSeconds = (1 / this.hpsOfThisDevice) * this.avgHashes;
       this.avgTime = avgSeconds.toFixed(2);
+    },
+    updateHexDigits(newLimit) {
+      this.hexDigits = Number(newLimit);
+      this.$emit('update-hex-digits', this.hexDigits);
     },
   },
 };

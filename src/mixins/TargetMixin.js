@@ -9,7 +9,7 @@ export default {
       numerator: 0n,
       probability: 0.2,
       target: new Num(32n),
-      targetMax: new Num(255n),
+      targetMax: new Num(254n),
     };
   },
   mounted() {
@@ -28,9 +28,14 @@ export default {
       this.target.yRatio = this.target.num / this.hashMax.num;
 
       // Check if all blocks are still under the target.
-      for (let i = 0; i < this.blocks.length; i += 1) {
-        this.blocks[i].isHashValid = this.blocks[i].hash.bigInt < this.target.bigInt;
-      }
+      this.blocks.forEach((block) => {
+        block.isHashValid = block.hash.bigInt < this.target.bigInt;
+      })
+
+      // Check if each guess is still under target.
+      this.guesses.forEach((guess) => {
+        guess.isHashValid = guess.hash.bigInt < this.target.bigInt;
+      });
     },
 
     calcStats() {

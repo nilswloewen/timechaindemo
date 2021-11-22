@@ -16,19 +16,12 @@ export default {
       hexDigits: 2,
       newBlockData: '',
       guesses: [],
-      activeEncoding: 2,
-      encoding: ['binary', 'decimal', 'hexadecimal',  'exponential'],
     };
   },
   async mounted() {
     await this.resetBlocks();
   },
   methods: {
-    rotateEncoding() {
-      this.activeEncoding += 1;
-      this.activeEncoding %= this.encoding.length;
-    },
-
     async addBlock(newData) {
       const header = new BlockHeader(newData, 0, this.blocks[0].hash);
       const height = this.blocks.length;
@@ -101,5 +94,11 @@ export default {
       const i = this.index % this.colors.length;
       return this.colors[i];
     },
+    checkGuesses() {
+      console.log('checkG')
+      this.guesses.forEach((guess) => {
+        guess.isHashValid = guess.hash.bigInt < this.target.bigInt;
+      });
+    }
   },
 };

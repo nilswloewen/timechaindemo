@@ -19,16 +19,10 @@ Vue.use(CardPlugin);
 Vue.use(VueFullPage);
 
 Vue.mixin({
-  data() {
-    return {
-
-    };
-  },
   methods: {
     moveTo(anchor, index) {
       window.fullpage_api.moveTo(anchor, index);
     },
-
 
     scrollToElm(wrapper, element, duration) {
       // const startTime = performance.now();

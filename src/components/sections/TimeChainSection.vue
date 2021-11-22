@@ -1,27 +1,30 @@
 <template>
   <div id="timechain_section" class="section">
+    <EncodingButton :active-encoding="activeEncoding" :encoding="encoding"
+                    v-on:update-active-encoding="updateActiveEncoding"
+                    v-on:rotate-encoding="rotateEncoding" />
 
-    <!--    <Page data-anchor="timechain" slide fp_bg>-->
-    <!--      <h1>Timechain</h1>-->
-    <!--      <p>-->
-    <!--        Mining is the process of adding recent transactions to the blockchain.-->
-    <!--      </p>-->
+        <Page data-anchor="timechain" slide fp_bg>
+          <h1>Timechain</h1>
+          <p>
+            Mining is the process of adding recent transactions to the blockchain.
+          </p>
 
-
-    <!--      <Target v-on:updateTarget="updateTarget" full-->
-    <!--              :targetMax="targetMax"-->
-    <!--              :target="target"-->
-    <!--              :avgHashes="avgHashes"-->
-    <!--              :probability="probability"-->
-    <!--              :denominator="denominator"-->
-    <!--              :numerator="numerator"-->
-    <!--              :localEncoding="encoding[activeEncoding]"/>-->
-    <!--      <Difficulty :hps-of-this-device="hpsOfThisDevice" :avg-hashes="calcAvgHashes()"-->
-    <!--                  v-on:calibrate-hps="calibrateHps"/>-->
-    <!--    </Page>-->
+          <Difficulty :hps-of-this-device="hpsOfThisDevice" :avg-hashes="calcAvgHashes()"
+                      v-on:calibrate-hps="calibrateHps"
+                      v-on:update-hex-digits="updateHexDigits"
+          />
+          <Target v-on:updateTarget="updateTarget" full
+                  :targetMax="targetMax"
+                  :target="target"
+                  :avgHashes="avgHashes"
+                  :probability="probability"
+                  :denominator="denominator"
+                  :numerator="numerator"
+                  :localEncoding="encoding[activeEncoding]"/>
+        </Page>
 
     <Page data-anchor="timechain_blocks" slide fp_bg>
-      <Complexity :initial-hex-digits="2" v-on:update-hex-digits="updateHexDigits"/>
       <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
                       v-on:add-block="addBlock"
                       v-on:reset-blocks="resetBlocks"/>
@@ -47,18 +50,6 @@
       <b-card class="overlay" no-body>
         <b-card-header>
           Mining for Block #{{ blocks[blockToMine].height }}
-
-          <b-dropdown id="encoding" text="Notation" @click="rotateEncoding" size="sm"
-                      split
-                      split-variant="outline-info"
-                      variant="info">
-            <template v-for="(item, index) in encoding">
-              <b-dropdown-item :id="item" :key="item" :active="index === activeEncoding" @click="selectEncoding">
-                {{ item.charAt(0).toUpperCase() + item.slice(1) }}
-              </b-dropdown-item>
-            </template>
-          </b-dropdown>
-
         </b-card-header>
 
         <!--  Max -->
@@ -111,31 +102,33 @@
 import AddBlockButton from '@/components/controls/AddBlockButton.vue';
 import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
-import Complexity from '@/components/controls/Complexity.vue';
 import Difficulty from '@/components/controls/Difficulty.vue';
-import HashesPerSecondMixin from '@/mixins/HashesPerSecondMixin';
+import EncodingButton from '@/components/controls/EncodingButton.vue';
+import EncodingMixin from '@/mixins/EncodingMixin';
 import Graph from '@/components/Graph.vue';
-import Page from '@/components/Page.vue';
+import HashesPerSecondMixin from '@/mixins/HashesPerSecondMixin';
 import NonceMixin from '@/mixins/NonceMixin';
+import Page from '@/components/Page.vue';
 import Target from '@/components/controls/Target.vue';
+import TargetMixin from '@/mixins/TargetMixin';
 import UpdateDataMixin from '@/mixins/UpdateDataMixin';
 import UpdateHexDigitsMixin from '@/mixins/UpdateHexDigitsMixin';
-import TargetMixin from '@/mixins/TargetMixin';
 
 export default {
   mixins: [
     BlockchainMixin,
+    EncodingMixin,
     HashesPerSecondMixin,
     NonceMixin,
+    TargetMixin,
     UpdateDataMixin,
     UpdateHexDigitsMixin,
-    TargetMixin,
   ],
   components: {
     AddBlockButton,
     BlockCard,
-    Complexity,
     Difficulty,
+    EncodingButton,
     Graph,
     Page,
     Target,
@@ -166,19 +159,7 @@ export default {
       this.blockToMine = index;
       fullpage_api.moveSlideRight();
     },
-    selectEncoding(e) {
-      this.activeEncoding = this.encoding.indexOf(e.target.id)
-    },
-    async updateTarget(newTarget) {
-      this.target = newTarget;
-      this.calcStats();
-      this.target.yRatio = this.target.num / this.hashMax.num;
 
-      // Check if all blocks are still under the target.
-      for (let i = 0; i < this.blocks.length; i += 1) {
-        this.blocks[i].isHashValid = this.blocks[i].hash.bigInt < this.target.bigInt;
-      }
-    },
   },
 };
 </script>

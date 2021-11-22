@@ -9,10 +9,21 @@
         <b-button @click="$emit('calibrate-hps')" size="sm">Calibrate</b-button>
       </p>
 
-      <p>Average number of hashes to find valid block: ~{{ Math.ceil(avgHashes).toLocaleString('en-US') }}</p>
+      <p>
+        Average number of hashes to find valid block:
+        ~{{ Math.ceil(avgHashes).toLocaleString('en-US') }}
+      </p>
 
       <p>Average time to find valid block: ~{{ avgTime }} </p>
     </b-card-body>
+
+    <b-list-group-item class="list-field">Block Time</b-list-group-item>
+    <b-list-group-item class="list-value">
+      <b-input-group prepend="Min 1" append="Max 20" size="sm">
+        <b-form-input :title="blockTime" type="range" size="sm" :min="1" :max="20" step="1"
+                      :value="blockTime" @change="updateBlockTime"/>
+      </b-input-group>
+    </b-list-group-item>
 
     <b-list-group-item class="list-field">Hash Max {{ hexDigits }}</b-list-group-item>
     <b-list-group-item class="list-value">
@@ -42,6 +53,7 @@ export default {
     return {
       avgTime: 0,
       hexDigits: 2,
+      blockTime: 10,
     };
   },
   mounted() {
@@ -57,6 +69,9 @@ export default {
     },
   },
   methods: {
+    updateBlockTime(newTime) {
+      this.blockTime = Number(newTime);
+    },
     calcAvgTime() {
       const seconds = Math.ceil((1 / this.hpsOfThisDevice) * this.avgHashes);
       this.avgTime = this.secondsToTime(seconds);

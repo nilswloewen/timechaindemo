@@ -17,6 +17,7 @@ export default {
       // Reset block.
       this.blocks[0].header.nonce = 0;
       await this.finalizeBlock(0);
+      this.guesses = [];
     },
     calcAvgHashes() {
       return 1 / (this.target.num / this.targetMax.num);

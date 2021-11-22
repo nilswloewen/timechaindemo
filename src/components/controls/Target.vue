@@ -9,9 +9,9 @@
 
     <template v-else>
       <b-card no-body class="mb-2">
-        <b-card-header class="text-center">
+        <b-card-header>
           <div>Target</div>
-            {{ target[localEncoding] }}
+          {{ target[localEncoding] }}
         </b-card-header>
 
         <b-input-group prepend="Min 1" size="sm" append="Max">
@@ -22,7 +22,7 @@
         <template v-if="full">
           <b-list-group-item class="list-field">Probability</b-list-group-item>
           <b-list-group-item class="list-value">
-            Only <div class="stat probability">{{ getProbability }}%</div>
+            Only <div class="stat probability">~{{ getProbability }}%</div>
             of possible hashes will be accepted.
           </b-list-group-item>
 
@@ -37,6 +37,7 @@
             On average it will take <div class="stat odds">~{{ avgHashes.toFixed(0) }}</div>
             tries to find a valid hash.
           </b-list-group-item>
+          <b-button size="sm" @click="$emit('real-target-max')"><b-icon-book/></b-button>
         </template>
       </b-card>
     </template>
@@ -49,15 +50,16 @@ import Num from '@/services/Num';
 
 export default {
   props: {
+    avgHashes: null,
+    denominator: null,
     full: Boolean,
+    localEncoding: String,
+    numerator: null,
+    probability: null,
     range: Boolean,
     target: Num,
     targetMax: Num,
-    avgHashes: null,
-    denominator: null,
-    numerator: null,
-    probability: null,
-    localEncoding: String,
+    hashMax: Num,
   },
   computed: {
     getProbability() {

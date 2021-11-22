@@ -94,11 +94,5 @@ export default {
       const i = this.index % this.colors.length;
       return this.colors[i];
     },
-    checkGuesses() {
-      console.log('checkG')
-      this.guesses.forEach((guess) => {
-        guess.isHashValid = guess.hash.bigInt < this.target.bigInt;
-      });
-    }
   },
 };

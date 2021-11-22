@@ -4,25 +4,34 @@
                     v-on:update-active-encoding="updateActiveEncoding"
                     v-on:rotate-encoding="rotateEncoding" />
 
-        <Page data-anchor="timechain" slide fp_bg>
-          <h1>Timechain</h1>
-          <p>
-            Mining is the process of adding recent transactions to the blockchain.
-          </p>
+    <Page data-anchor="timechain" slide fp_bg>
+      <h1>Timechain</h1>
+      <p>
+        Mining is the process of adding recent transactions to the blockchain.
+      </p>
 
-          <Difficulty :hps-of-this-device="hpsOfThisDevice" :avg-hashes="calcAvgHashes()"
-                      v-on:calibrate-hps="calibrateHps"
-                      v-on:update-hex-digits="updateHexDigits"
-          />
-          <Target v-on:updateTarget="updateTarget" full
-                  :targetMax="targetMax"
-                  :target="target"
-                  :avgHashes="avgHashes"
-                  :probability="probability"
-                  :denominator="denominator"
-                  :numerator="numerator"
-                  :localEncoding="encoding[activeEncoding]"/>
-        </Page>
+      <p>
+        <q>In other words, the difficulty-adjustment is about keeping a constant
+          time, not a constant level of security, difficulty, or energy expenditure.</q>
+        - DerGigi
+      </p>
+
+      <Difficulty :hps-of-this-device="hpsOfThisDevice" :avg-hashes="calcAvgHashes()"
+                  :difficulty="difficulty"
+                  v-on:calibrate-hps="calibrateHps"
+                  v-on:update-hex-digits="updateHexDigits"/>
+
+      <Target v-on:updateTarget="updateTarget" full
+              v-on:real-target-max="realTargetMax"
+              :avgHashes="avgHashes"
+              :denominator="denominator"
+              :hash-max="hashMax"
+              :localEncoding="encoding[activeEncoding]"
+              :numerator="numerator"
+              :probability="probability"
+              :target="target"
+              :targetMax="targetMax"/>
+    </Page>
 
     <Page data-anchor="timechain_blocks" slide fp_bg>
       <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"

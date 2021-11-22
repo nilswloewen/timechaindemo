@@ -5,8 +5,7 @@ export default {
     updateHexDigits(newHexDigits) {
       this.hexDigits = newHexDigits;
 
-      const hex = '0x'.padEnd(this.hexDigits + 2, 'f');
-      const max = BigInt(hex);
+      const max = BigInt(`0x${''.padEnd(this.hexDigits, 'f')}`);
 
       this.targetMax = new Num(max - 1n, this.hexDigits);
       this.hashMax = new Num(max, this.hexDigits);

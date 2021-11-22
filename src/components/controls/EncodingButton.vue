@@ -1,20 +1,19 @@
 <template>
-  <b-dropdown id="encoding_btn" text="&#x1f522;" @click="$emit('rotate-encoding')" size="sm"
+  <b-dropdown id="encoding_btn" @click="$emit('rotate-encoding')" size="sm"
               split
               split-variant="outline-info"
               dropleft
               variant="info">
     <template #button-content>
-      <b-icon-vector-pen/>
+      {{ cap(encoding[activeEncoding]).substr(0, 3) }}
     </template>
 
     <template v-for="(item, index) in encoding">
       <b-dropdown-item :id="item" :key="item" :active="index === activeEncoding" @click="onSelectEncoding">
-        {{ item.charAt(0).toUpperCase() + item.slice(1) }}
+        {{ cap(item) }}
       </b-dropdown-item>
     </template>
   </b-dropdown>
-
 </template>
 
 <script>
@@ -27,6 +26,9 @@ export default {
     onSelectEncoding(e) {
       this.$emit('update-active-encoding', this.encoding.indexOf(e.target.id));
     },
+    cap(word) {
+      return this.capitalize(word)
+    }
   }
 }
 </script>

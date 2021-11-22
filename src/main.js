@@ -23,6 +23,9 @@ Vue.mixin({
     moveTo(anchor, index) {
       window.fullpage_api.moveTo(anchor, index);
     },
+    capitalize(word) {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    },
 
     scrollToElm(wrapper, element, duration) {
       // const startTime = performance.now();

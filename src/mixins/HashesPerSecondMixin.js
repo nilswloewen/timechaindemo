@@ -19,7 +19,7 @@ export default {
       await this.finalizeBlock(0);
     },
     calcAvgHashes() {
-      return 1 / (this.target / this.targetMax);
+      return 1 / (this.target.num / this.targetMax.num);
     },
   },
 };

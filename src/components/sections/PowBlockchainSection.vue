@@ -89,7 +89,16 @@
     </Page>
     <div class="slide" data-anchor="pow_graph" id="pow_graph_slide">
       <div class="fp-bg"/>
-      <Graph :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
+      <Graph id="pow_canvas" :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
+      <MiningControls
+        :block="blocks[blockToMine]"
+        :hash-max="hashMax"
+        :index="blockToMine"
+        :is-mining="isMining"
+        :local-encoding="encoding[activeEncoding]"
+        :target="target"
+        v-on:start-mining="startMining"
+        v-on:update-nonce="updateNonce" />
     </div>
   </div>
 </template>
@@ -101,6 +110,7 @@ import BlockchainMixin from '@/mixins/BlockchainMixin';
 import EncodingButton from '@/components/controls/EncodingButton.vue';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import Graph from '@/components/Graph';
+import MiningControls from '@/components/controls/MiningControls.vue';
 import NonceMixin from '@/mixins/NonceMixin';
 import Page from '@/components/Page.vue';
 import Target from '@/components/controls/Target.vue';
@@ -122,23 +132,16 @@ export default {
     BlockCard,
     EncodingButton,
     Graph,
+    MiningControls,
     Page,
     Target,
   },
   data() {
     return {
       guesses: [],
+      blockToMine: 0,
+      isMining: false,
     };
   },
 };
 </script>
-
-<style>
-  #target_table th {
-    text-align: center;
-  }
-  #target_table td {
-    text-align: center;
-    min-width: 5em;
-  }
-</style>

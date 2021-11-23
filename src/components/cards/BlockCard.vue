@@ -141,9 +141,6 @@ export default {
     onDataChange(newData) {
       this.$emit('update-data', newData, this.index);
     },
-    async finalizeBlock() {
-      this.$emit('finalize-block', this.index);
-    },
     getLatestBlock() {
       this.$emit('update-block-height-latest');
     },

@@ -47,62 +47,24 @@
                    :local-encoding="encoding[activeEncoding]"
                    showData
                    showNonce
-                   v-on:finalize-block="finalizeBlock"
                    v-on:mine-this-block="mineThisBlock"
-                   v-on:update-data="updateData"
-                   v-on:update-nonce="updateNonce" />
+                   v-on:update-data="updateData" />
       </div>
     </Page>
 
-    <div class="slide" data-anchor="pow_graph" id="pow_graph_slide">
+    <div class="slide" data-anchor="timechain_graph" id="timechain_graph_slide">
       <div class="fp-bg"/>
-      <Graph :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
-      <b-card class="overlay" no-body>
-        <b-card-header>
-          Mining for Block #{{ blocks[blockToMine].height }}
-        </b-card-header>
+      <Graph id="timechain_canvas" :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
 
-        <!--  Max -->
-        <b-list-group-item class="list-field"> Max </b-list-group-item>
-        <b-list-group-item class="list-value">
-          {{ hashMax[encoding[activeEncoding]] }}
-        </b-list-group-item>
-
-        <!-- Target -->
-        <b-list-group-item class="list-field" style="color: #f79413;"> Target </b-list-group-item>
-        <b-list-group-item class="list-value" style="color: #f79413;">
-          {{ target[encoding[activeEncoding]] }}
-
-          <Target v-on:updateTarget="updateTarget" range
-                  :targetMax="targetMax"
-                  :target="target"
-                  :avgHashes="avgHashes"
-                  :probability="probability"
-                  :denominator="denominator"
-                  :numerator="numerator"
-                  :localEncoding="encoding[activeEncoding]"/>
-        </b-list-group-item>
-
-        <!-- Hash -->
-        <b-list-group-item class="list-field"> Hash </b-list-group-item>
-        <b-list-group-item class="list-value">{{ blocks[blockToMine].hash[encoding[activeEncoding]] }} </b-list-group-item>
-
-        <!--Nonce-->
-        <b-list-group-item class="list-field">Nonce</b-list-group-item>
-        <b-list-group-item class="list-value">
-          <b-input-group size="sm">
-            <b-form-input class="nonce_input" @change="onNonceChange"
-                          :value="blocks[blockToMine].header.nonce" :state="blocks[blockToMine].isHashValid"
-                          type="number" :min="0" :max="4294967295" size="sm"/>
-            <b-button-group>
-              <b-button size="sm" @click="minerIncNonce" :disabled="blocks[blockToMine].isHashValid">
-                +1
-              </b-button>
-            </b-button-group>
-          </b-input-group>
-          <b-form-checkbox v-model="isMining" switch size="lg"> Go Brrr</b-form-checkbox>
-        </b-list-group-item>
-      </b-card>
+      <MiningControls
+        :block="blocks[blockToMine]"
+        :hash-max="hashMax"
+        :index="blockToMine"
+        :is-mining="isMining"
+        :local-encoding="encoding[activeEncoding]"
+        :target="target"
+        v-on:start-mining="startMining"
+        v-on:update-nonce="updateNonce" />
     </div>
 
   </div>
@@ -117,6 +79,7 @@ import EncodingButton from '@/components/controls/EncodingButton.vue';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import Graph from '@/components/Graph.vue';
 import HashesPerSecondMixin from '@/mixins/HashesPerSecondMixin';
+import MiningControls from '@/components/controls/MiningControls.vue';
 import NonceMixin from '@/mixins/NonceMixin';
 import Page from '@/components/Page.vue';
 import Target from '@/components/controls/Target.vue';
@@ -140,6 +103,7 @@ export default {
     Difficulty,
     EncodingButton,
     Graph,
+    MiningControls,
     Page,
     Target,
   },
@@ -149,13 +113,7 @@ export default {
       isMining: false,
     };
   },
-  watch: {
-    isMining(state) {
-      if (state) {
-        this.solveNonce(this.blockToMine)
-      }
-    }
-  },
+
   methods: {
     onNonceChange(nonce) {
       this.blocks[this.blockToMine].header.nonce = Number(nonce);
@@ -173,11 +131,3 @@ export default {
   },
 };
 </script>
-
-<style>
-  .overlay {
-    position: fixed;
-    top: 40px;
-    left: 40px;
-  }
-</style>

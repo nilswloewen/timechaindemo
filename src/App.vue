@@ -89,6 +89,7 @@ export default {
             { anchor: 'difficulty', label: 'Difficulty' },
             { anchor: 'hash_rate', label: 'Hash Rate' },
             { anchor: 'probability', label: 'Probability' },
+            { anchor: 'timechain_graph', label: 'Timechain Graph' },
           ],
         },
         { anchor: 'historical_blocks', label: 'Real Blocks' },
@@ -270,7 +271,7 @@ export default {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/transcending_forward.jpg');
   }
-  #pow_graph_slide .fp-bg {
+  #timechain_graph_slide .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/transcending_forward.jpg');
   }

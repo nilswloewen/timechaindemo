@@ -4,6 +4,10 @@ export default {
       this.blocks[index].header.nonce = nonce;
       await this.delayedUpdate(index);
     },
+    async startMining(index) {
+      this.isMining = true;
+      await this.solveNonce(index);
+    },
     async solveNonce(index) {
       const startTime = new Date().getTime();
       const block = this.blocks[index];

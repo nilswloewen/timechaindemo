@@ -1,23 +1,23 @@
 <template>
-  <canvas id="graph"/>
+  <canvas :id="id"/>
 </template>
 
 <script>
-
 import Num from '@/services/Num';
 
 export default {
   props: {
     guesses: { type: Array },
-    target: Num,
+    id: String,
     localEncoding: String,
+    target: Num,
   },
 
   mounted() {
     this.screenHeight = document.documentElement.clientHeight;
     this.screenWidth = document.documentElement.clientWidth;
 
-    const canvas = document.getElementById('graph');
+    const canvas = document.getElementById(this.id);
     canvas.height = this.screenHeight;
     canvas.width = this.screenWidth;
     canvas.style.backgroundColor = this.bgColor;

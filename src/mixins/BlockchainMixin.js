@@ -61,14 +61,16 @@ export default {
       const block = this.blocks[index];
       block.header.timestamp = new Date().getTime() / 1000;
       await block.calcHash(this.hexDigits);
-
       block.isHashValid = block.hash.bigInt < this.target.bigInt;
+
       this.guesses.push({
         xRatio: 0,
         yRatio: block.hash.num / this.hashMax.num,
         hash: block.hash,
         isHashValid: block.isHashValid,
       });
+
+      // Performance governor.
       if (this.guesses.length > 100) {
         this.guesses.shift();
       }

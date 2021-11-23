@@ -263,6 +263,10 @@ export default {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/orange_brain.jpg');
   }
+  #pow_graph_slide .fp-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('/assets/backgrounds/transcending_forward.jpg');
+  }
   #target_slide .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/brain_mushrooms.jpg');

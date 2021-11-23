@@ -54,7 +54,7 @@
 
     <div class="slide" data-anchor="timechain_graph" id="timechain_graph_slide">
       <div class="fp-bg"/>
-      <Graph id="timechain_canvas" :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
+      <Graph id="timechain_canvas" animate :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
 
       <MiningControls
         :block="blocks[blockToMine]"
@@ -119,15 +119,6 @@ export default {
       this.blocks[this.blockToMine].header.nonce = Number(nonce);
       this.finalizeBlock(this.blockToMine)
     },
-    minerIncNonce() {
-      this.blocks[this.blockToMine].header.nonce += 1;
-      this.finalizeBlock(this.blockToMine)
-    },
-    mineThisBlock(index) {
-      this.blockToMine = index;
-      fullpage_api.moveSlideRight();
-    },
-
   },
 };
 </script>

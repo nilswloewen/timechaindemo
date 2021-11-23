@@ -98,5 +98,9 @@ export default {
       const i = this.index % this.colors.length;
       return this.colors[i];
     },
+    mineThisBlock(index) {
+      this.blockToMine = index;
+      fullpage_api.moveSlideRight();
+    },
   },
 };

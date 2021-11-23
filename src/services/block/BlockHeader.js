@@ -13,7 +13,7 @@ class BlockHeader {
 
   serialize() {
     return swapEndian(intToHex(this.version))
-      + swapEndian(this.prevHash)
+      + swapEndian(this.prevHash.hexadecimal)
       + swapEndian(this.merkleRoot)
       + swapEndian(intToHex(this.timestamp))
       + swapEndian(intToHex(this.bits))
@@ -25,7 +25,7 @@ class BlockHeader {
       486604799,
       '4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b',
       2083236893,
-      new Num(0n),
+      new Num(0n, 64),
       1231006505,
       1,
     );

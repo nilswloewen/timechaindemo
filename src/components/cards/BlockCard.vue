@@ -34,8 +34,8 @@
                       :value="getHash" :disabled="true" :state="isHashValid" />
       </b-list-group-item>
 
+      <!--Data-->
       <template v-if="showData">
-        <!--Data-->
         <b-list-group-item class="list-field">Data</b-list-group-item>
         <b-list-group-item class="list-value">
           <b-form-input @keyup="onDataChange" :value="block.header.data" size="sm"/>
@@ -57,11 +57,11 @@
 
         <!--Merkle Root-->
         <b-list-group-item class="list-field">Merkle Root</b-list-group-item>
-        <b-list-group-item class="list-value">{{ block.header.merkleRoot }}</b-list-group-item>
+        <b-list-group-item class="list-value merkle_root">{{ block.header.merkleRoot }}</b-list-group-item>
       </template>
 
+      <!--Nonce-->
       <template v-if="showNonce">
-        <!--Nonce-->
         <b-list-group-item class="list-field">Nonce</b-list-group-item>
         <b-list-group-item class="list-value">
           <b-form-input :value="block.header.nonce" :state="isHashValid" :disabled="true"
@@ -150,3 +150,9 @@ export default {
   },
 };
 </script>
+
+<style>
+  .merkle_root {
+    font-size: 0.875rem;
+  }
+</style>

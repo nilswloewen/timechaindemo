@@ -9,9 +9,7 @@ export default {
       await this.solveNonce(index);
     },
     async solveNonce(index) {
-      const startTime = new Date().getTime();
       const block = this.blocks[index];
-      const startingNonce = block.header.nonce;
 
       // Allow Solve btn to be clicked even when hash is valid.
       if (block.isHashValid) {
@@ -27,11 +25,9 @@ export default {
 
       this.isMining = false;
 
-      await this.delayedUpdate(index);
-      block.stats.push({
-        tries: block.header.nonce - startingNonce,
-        elapsed: new Date().getTime() - startTime,
-      });
+      if (index > 0) {
+        await this.delayedUpdate(index - 1);
+      }
     },
   },
 };

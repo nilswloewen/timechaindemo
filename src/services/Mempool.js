@@ -1,6 +1,7 @@
 import mempoolJS from '@mempool/mempool.js';
 import Block from '@/services/block/Block';
 import BlockHeader from '@/services/block/BlockHeader';
+import Num from '@/services/Num';
 
 class Mempool {
   constructor() {
@@ -9,18 +10,21 @@ class Mempool {
   }
 
   async getBlockById(hash) {
-    const block = await this.api.getBlock({ hash });
+    const memBlock = await this.api.getBlock({ hash });
+    let prevHash = memBlock.previousblockhash || ''.padStart(64, '0');
+    prevHash = new Num(BigInt(`0x${prevHash}`), 64)
 
     const header = new BlockHeader(
-      block.bits,
-      block.merkle_root,
-      block.nonce,
-      block.previousblockhash || ''.padStart(64, '0'),
-      block.timestamp,
-      block.version,
+      memBlock.bits,
+      memBlock.merkle_root,
+      memBlock.nonce,
+      prevHash,
+      memBlock.timestamp,
+      memBlock.version,
     );
 
-    return new Block(block.id, header, block.height);
+    const id = new Num(BigInt(`0x${memBlock.id}`), 64);
+    return new Block(id, header, memBlock.height);
   }
 
   async getLatestBlockHash() {

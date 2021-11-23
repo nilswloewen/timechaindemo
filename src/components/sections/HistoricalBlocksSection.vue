@@ -19,6 +19,7 @@
                showNonce
                v-on:update-block-height="updateBlockHeight"
                v-on:update-block-height-latest="updateBlockHeightLatest"/>
+
   </Page>
 </template>
 
@@ -63,9 +64,6 @@ export default {
     async updateNonce(nonce) {
       this.block.header.nonce = nonce;
     },
-    async solveNonce() {
-      await this.block.calcHash();
-    },
     async updateBlockHeight(height) {
       const id = await this.mempool.getBlockIdFromHeight(height);
       this.block = await this.mempool.getBlockById(id);
@@ -74,6 +72,7 @@ export default {
     async updateBlockHeightLatest() {
       const id = await this.mempool.getLatestBlockHash();
       this.block = await this.mempool.getBlockById(id);
+      await this.block.calcHash();
       this.blockHeightMax = this.block.height;
     },
   },

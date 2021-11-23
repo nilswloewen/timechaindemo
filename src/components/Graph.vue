@@ -7,6 +7,7 @@ import Num from '@/services/Num';
 
 export default {
   props: {
+    animate: Boolean,
     guesses: { type: Array },
     id: String,
     localEncoding: String,
@@ -35,9 +36,13 @@ export default {
     // Shortcut for bottom right of graph where axis meet.
     this.zero = { x: this.screenWidth - this.xPad, y: this.screenHeight - this.yPad };
 
-    this.setTicks(16);
+    if (this.animate) {
+      this.setTicks(16);
+      this.calcGraph();
+      this.drawGraph();
+      return;
+    }
 
-    this.calcGraph();
     this.drawGraph();
   },
   data() {
@@ -200,8 +205,13 @@ export default {
       this.ctx.font = isHashValid ? '20px Fira Code' : '16px Fira Code';
       const arrowLabel = `${label}`;
 
-      const x = this.zero.x - (this.width * xRatio);
+      let x = this.zero.x - (this.width * xRatio);
       const y = this.zero.y - (this.height * yRatio);
+
+      if (!this.animate) {
+        x -= 30;
+        opacity = 1;
+      }
 
       // Background
       const labelMetrics = this.ctx.measureText(arrowLabel);
@@ -236,13 +246,13 @@ export default {
     drawGraph() {
       this.clear();
       this.drawXAxis();
+      this.drawYAxis();
 
+      this.drawTarget(this.target.yRatio);
       this.drawGuesses(this.guesses);
       this.drawTicks();
       this.drawEndCaps();
 
-      this.drawTarget(this.target.yRatio);
-      this.drawYAxis();
 
       window.requestAnimationFrame(this.drawGraph);
     },

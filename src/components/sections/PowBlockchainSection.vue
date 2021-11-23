@@ -84,12 +84,13 @@
                    :local-encoding="encoding[activeEncoding]"
                    showData
                    showNonce
+                   v-on:mine-this-block="mineThisBlock"
                    v-on:update-data="updateData" />
       </div>
     </Page>
     <div class="slide" data-anchor="pow_graph" id="pow_graph_slide">
       <div class="fp-bg"/>
-      <Graph id="pow_canvas" :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
+      <Graph id="pow_canvas" :guesses="getGuesses()" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
       <MiningControls
         :block="blocks[blockToMine]"
         :hash-max="hashMax"
@@ -143,5 +144,13 @@ export default {
       isMining: false,
     };
   },
+  methods: {
+    getGuesses() {
+      // Only show one guess at a time.
+      return this.guesses.length > 0
+        ? [this.guesses[this.guesses.length - 1]]
+        : [];
+    }
+  }
 };
 </script>

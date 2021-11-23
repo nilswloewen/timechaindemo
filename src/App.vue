@@ -2,12 +2,12 @@
   <div id="app">
     <full-page id="fullpage" :options="fullpageOptions" >
 
-<!--      <IntroSection :contents="table_of_contents" />-->
-<!--      <TermsSection/>-->
-<!--      <BlockchainSection/>-->
-<!--      <PowBlockchainSection/>-->
+      <IntroSection :contents="table_of_contents" />
+      <TermsSection/>
+      <BlockchainSection/>
+      <PowBlockchainSection/>
       <TimeChainSection/>
-<!--      <HistoricalBlocksSection/>-->
+      <HistoricalBlocksSection/>
       <ResourcesSection/>
 
     </full-page>

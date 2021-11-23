@@ -19,19 +19,19 @@
         </template>
         <template v-else> Block #{{ block.height }}</template>
 
-        <b-collapse :visible="!isHashValid" class="d-inline">
+        <template v-if="!isHashValid">
           <b-button @click="$emit('mine-this-block', index)" class="float-right"
                     size="sm" variant="danger">
             <b-icon-hammer size="sm" animation="fade"/>
           </b-button>
-        </b-collapse>
+        </template>
       </b-card-header>
 
       <!--Hash-->
       <b-list-group-item class="list-field">Hash (ID) </b-list-group-item>
       <b-list-group-item class="list-value">
         <b-form-input title="Hash" size="sm" :id="`hash_input_${block.height}`"
-                      :value="getHash" :disabled="false" :state="isHashValid" />
+                      :value="getHash" :disabled="true" :state="isHashValid" />
       </b-list-group-item>
 
       <template v-if="showData">
@@ -64,17 +64,8 @@
         <!--Nonce-->
         <b-list-group-item class="list-field">Nonce</b-list-group-item>
         <b-list-group-item class="list-value">
-          <b-input-group>
-            <b-form-input class="nonce_input" @change="onNonceChange"
-                          :value="block.header.nonce" :state="isHashValid"
-                          type="number" :min="0" :max="4294967295" size="sm"/>
-            <b-button-group>
-              <b-button size="sm" @click="incrementNonce" :disabled="isHashValid">
-                + 1
-              </b-button>
-              <b-button size="sm" @click="solveNonce" variant="warning">Solve</b-button>
-            </b-button-group>
-          </b-input-group>
+          <b-form-input :value="block.header.nonce" :state="isHashValid" :disabled="true"
+                        type="number" :min="0" :max="4294967295" size="sm"/>
         </b-list-group-item>
       </template>
 
@@ -147,17 +138,8 @@ export default {
   },
 
   methods: {
-    solveNonce() {
-      this.$emit('solve-nonce', this.index);
-    },
-    incrementNonce() {
-      this.$emit('update-nonce', this.block.header.nonce + 1, this.index);
-    },
     onDataChange(newData) {
       this.$emit('update-data', newData, this.index);
-    },
-    onNonceChange(nonce) {
-      this.$emit('update-nonce', Number(nonce), this.index);
     },
     async finalizeBlock() {
       this.$emit('finalize-block', this.index);

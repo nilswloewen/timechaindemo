@@ -1,6 +1,9 @@
 <template>
   <div id="blockchain_section" class="section">
     <Page slide data-anchor="blockchain" fp_bg>
+      <EncodingButton :active-encoding="activeEncoding" :encoding="encoding"
+                      v-on:update-active-encoding="updateActiveEncoding"
+                      v-on:rotate-encoding="rotateEncoding" />
       <h1>Blockchain</h1>
 
       <b-card>
@@ -36,8 +39,8 @@
                    :block="block"
                    :hex-digits="2"
                    :index="index"
+                   :local-encoding="encoding[activeEncoding]"
                    showData
-                   v-on:finalize-block="finalizeBlock"
                    v-on:update-data="updateData" />
       </div>
     </Page>
@@ -48,17 +51,23 @@
 import AddBlockButton from '@/components/controls/AddBlockButton.vue';
 import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
+import TargetMixin from '@/mixins/TargetMixin';
 import Page from '@/components/Page.vue';
 import UpdateDataMixin from '@/mixins/UpdateDataMixin';
+import EncodingButton from '@/components/controls/EncodingButton';
+import EncodingMixin from '@/mixins/EncodingMixin';
 
 export default {
   mixins: [
     BlockchainMixin,
+    EncodingMixin,
+    TargetMixin,
     UpdateDataMixin,
   ],
   components: {
     AddBlockButton,
     BlockCard,
+    EncodingButton,
     Page,
   },
 };

@@ -69,7 +69,9 @@ export default {
         hash: block.hash,
         isHashValid: block.isHashValid,
       });
-
+      if (this.guesses.length > 100) {
+        this.guesses.shift();
+      }
 
       if (index > 0) {
         this.blocks[index - 1].header.prevHash = block.hash;
@@ -78,9 +80,9 @@ export default {
       this.resetAddBlockBtn();
     },
     async delayedUpdate(index) {
-      const wrapper = document.getElementsByClassName('blockchain_wrapper')[0];
-      const element = document.getElementById(`card_${this.blocks[index].height}`);
-      this.scrollToElm(wrapper, element, 2);
+      // const wrapper = document.getElementsByClassName('blockchain_wrapper')[0];
+      // const element = document.getElementById(`card_${this.blocks[index].height}`);
+      // this.scrollToElm(wrapper, element, 2);
 
       await this.finalizeBlock(index);
       if (index === 0) {

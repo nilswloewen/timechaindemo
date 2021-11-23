@@ -1,6 +1,9 @@
 <template>
   <div id="pow_section" class="section">
     <Page data-anchor="pow" slide fp_bg>
+      <EncodingButton :active-encoding="activeEncoding" :encoding="encoding"
+                      v-on:update-active-encoding="updateActiveEncoding"
+                      v-on:rotate-encoding="rotateEncoding" />
       <h1>
         Proof-of-Work Blockchain
       </h1>
@@ -54,15 +57,20 @@
     </Page>
 
     <Page data-anchor="target" slide fp_bg>
-      <Target full :initial-target="initialTarget" :target-max="targetMax"
-              v-on:updateTarget="updateTarget"/>
+      <Target v-on:updateTarget="updateTarget" full
+              v-on:real-target-max="realTargetMax"
+              :avgHashes="avgHashes"
+              :denominator="denominator"
+              :hash-max="hashMax"
+              :localEncoding="encoding[activeEncoding]"
+              :numerator="numerator"
+              :probability="probability"
+              :target="target"
+              :targetMax="targetMax"/>
     </Page>
 
     <Page data-anchor="pow_blockchain" slide fp_bg>
       <h1>Proof-of-work Blockchain</h1>
-
-      <Target :initial-target="initialTarget" targetMax="this.targetMax"
-              v-on:updateTarget="updateTarget"/>
 
       <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
                       v-on:add-block="addBlock"
@@ -73,14 +81,16 @@
                    :block="block"
                    :hex-digits="hexDigits"
                    :index="index"
+                   :local-encoding="encoding[activeEncoding]"
                    showData
                    showNonce
-                   v-on:finalize-block="finalizeBlock"
-                   v-on:update-data="updateData"
-                   v-on:update-nonce="updateNonce"
-                   v-on:solve-nonce="solveNonce" />
+                   v-on:update-data="updateData" />
       </div>
     </Page>
+    <div class="slide" data-anchor="pow_graph" id="pow_graph_slide">
+      <div class="fp-bg"/>
+      <Graph :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
+    </div>
   </div>
 </template>
 
@@ -88,31 +98,36 @@
 import AddBlockButton from '@/components/controls/AddBlockButton.vue';
 import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
+import EncodingButton from '@/components/controls/EncodingButton.vue';
+import EncodingMixin from '@/mixins/EncodingMixin';
+import Graph from '@/components/Graph';
 import NonceMixin from '@/mixins/NonceMixin';
 import Page from '@/components/Page.vue';
 import Target from '@/components/controls/Target.vue';
+import TargetMixin from '@/mixins/TargetMixin';
 import UpdateDataMixin from '@/mixins/UpdateDataMixin';
 import UpdateHexDigitsMixin from '@/mixins/UpdateHexDigitsMixin';
-import UpdateTargetMixin from '@/mixins/TargetMixin';
 
 export default {
   mixins: [
     BlockchainMixin,
+    EncodingMixin,
     NonceMixin,
+    TargetMixin,
     UpdateDataMixin,
     UpdateHexDigitsMixin,
-    UpdateTargetMixin,
   ],
   components: {
     AddBlockButton,
     BlockCard,
+    EncodingButton,
+    Graph,
     Page,
     Target,
   },
   data() {
     return {
       guesses: [],
-      target: { yRatio: 0.3 },
     };
   },
 };

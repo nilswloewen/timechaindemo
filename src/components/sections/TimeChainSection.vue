@@ -48,7 +48,6 @@
                    showData
                    showNonce
                    v-on:finalize-block="finalizeBlock"
-                   v-on:solve-nonce="solveNonce"
                    v-on:mine-this-block="mineThisBlock"
                    v-on:update-data="updateData"
                    v-on:update-nonce="updateNonce" />

@@ -1,5 +1,5 @@
 <template>
-  <Page data-anchor="resources" fp_bg>
+  <Page data-anchor="resources">
     <h1>Resources</h1>
 
     This tool was made possible by the inspiration and insight of the following resources:

@@ -1,5 +1,5 @@
 <template>
-  <Page slide data-anchor="hash_functions" fp_bg>
+  <Page slide data-anchor="hash_functions">
     <h1>Hash Function</h1>
     <b-card>
       <h4 class="text-left"><a href="https://www.etymonline.com/word/hash">hash (v.)</a></h4>

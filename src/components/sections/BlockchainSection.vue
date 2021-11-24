@@ -1,9 +1,6 @@
 <template>
   <div id="blockchain_section" class="section">
-    <Page slide data-anchor="blockchain" fp_bg>
-      <EncodingButton :active-encoding="activeEncoding" :encoding="encoding"
-                      v-on:update-active-encoding="updateActiveEncoding"
-                      v-on:rotate-encoding="rotateEncoding" />
+    <Page slide data-anchor="blockchain">
       <h1>Blockchain</h1>
 
       <b-card>
@@ -67,7 +64,7 @@
       </div>
     </Page>
 
-    <Page data-anchor="simple_blockchain" slide fp_bg>
+    <Page data-anchor="simple_blockchain" slide encoding-btn v-on:rotate-encoding="rotateEncoding" v-on:update-active-encoding="updateActiveEncoding">
       <h1>Example: Non-Proof-of-Work Blockchain</h1>
       <p>
         This is a simplified version of a blockchain.
@@ -98,12 +95,10 @@ import TargetMixin from '@/mixins/TargetMixin';
 import Page from '@/components/Page.vue';
 import UpdateDataMixin from '@/mixins/UpdateDataMixin';
 import EncodingButton from '@/components/controls/EncodingButton';
-import EncodingMixin from '@/mixins/EncodingMixin';
 
 export default {
   mixins: [
     BlockchainMixin,
-    EncodingMixin,
     TargetMixin,
     UpdateDataMixin,
   ],

@@ -1,5 +1,5 @@
 <template>
-  <Page data-anchor="intro" fp_bg>
+  <Page data-anchor="intro">
 
     <h1 class="text-center">
       Bitcoin Timechain

@@ -1,11 +1,11 @@
 <template>
-  <b-dropdown id="encoding_btn" @click="$emit('rotate-encoding')" size="sm"
+  <b-dropdown class="encoding_btn" @click="onRotateEncoding" size="sm"
               split
               split-variant="outline-info"
               dropleft
               variant="info">
     <template #button-content>
-      {{ cap(encoding[activeEncoding]).substr(0, 3) }}
+      {{ header.substr(0, 3) }}
     </template>
 
     <template v-for="(item, index) in encoding">
@@ -18,26 +18,48 @@
 
 <script>
 export default {
-  props: {
-    activeEncoding: Number,
-    encoding: {type: Array},
+  watch: {
+    activeEncoding() {
+      this.header = this.cap(this.encoding[this.activeEncoding]);
+    }
   },
   methods: {
+    onRotateEncoding() {
+      this.$emit('rotate-encoding');
+      this.activeEncoding += 1;
+      this.activeEncoding %= this.encoding.length;
+      this.header = this.cap(this.encoding[this.activeEncoding]);
+    },
     onSelectEncoding(e) {
       this.$emit('update-active-encoding', this.encoding.indexOf(e.target.id));
+      this.header = this.cap(this.encoding[this.encoding.indexOf(e.target.id)]);
     },
     cap(word) {
-      return this.capitalize(word)
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    }
+  },
+  data() {
+    return {
+      activeEncoding: 2,
+      header: 'Hex',
     }
   }
 }
 </script>
 
 <style>
-  #encoding_btn {
-    position: fixed;
-    right: 15px;
-    top: 25%;
-    z-index: 101;
+  .slide.active .encoding_btn {
+    display: inline;
+    position: relative;
+    left: 90%;
+  }
+  .encoding_btn {
+    display: none;
+  }
+  .encoding_btn ul {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  .encoding_btn ul a {
+    color: white;
   }
 </style>

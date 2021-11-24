@@ -133,14 +133,6 @@ export default {
     color: white;
     text-decoration: underline;
   }
-  .blockchain_wrapper {
-    margin-top: 2em;
-    text-align: center;
-    max-height: 60vh;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    padding: 0 4px;
-  }
 
   /* Works on Chrome, Edge, and Safari */
   *::-webkit-scrollbar {
@@ -162,8 +154,36 @@ export default {
     padding-top: 3em;
     padding-bottom: 30vh;
   }
+
+  .card {
+    margin: 0 auto 1em auto;
+    background-color: rgba(0, 0, 0, 0.3);
+    max-width: 625px;
+    box-shadow:  -1px 2px 5px 0 gray;
+    text-align: left;
+  }
+  .card-header {
+    background-color: #343a40;
+    color: white;
+    text-shadow: black 0 0 5px;
+  }
+  .card-header svg {
+    filter: drop-shadow( 0px 0px 1px black);
+  }
+  .blockchain_wrapper {
+    margin-top: 2em;
+    text-align: center;
+    max-height: 60vh;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
+  .add_block_card,
+  .blockchain_wrapper {
+    padding: 0 4px;
+  }
+
   .list-group-item {
-    background-color: inherit;
+    background-color: transparent;
     border: none;
     font-size: 0.875rem;
     padding: 0 .5em;
@@ -175,20 +195,10 @@ export default {
   .list-value {
     padding-bottom: 7px;
     padding-top: 2px;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid darkgray;
   }
-
-  .card {
-    margin: 0 auto 1em auto;
-    background-color: rgba(0, 0, 0, 0.3);
-    max-width: 625px;
-    box-shadow: -2px 2px 5px 3px gray;
-    text-align: left;
-  }
-  .card-header {
-    background-color: #343a40;
-    color: white;
-    text-shadow: #000 0 0 5px;
+  .card .list-value:last-child {
+    border-bottom: none;
   }
 
   .table {
@@ -202,12 +212,17 @@ export default {
     border-top: 1px solid gray;
     margin: .5em 0;
   }
+
   .form-control,
   .form-control:disabled, .form-control[readonly],
   .input-group-text {
     background-color: inherit;
     text-shadow: #000 0 0 5px;
     color: inherit;
+  }
+  .form-control:focus {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
   }
 
   h1 {
@@ -244,18 +259,24 @@ export default {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/small_brain.jpg');
   }
+
   #terms_slide .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/neurons2.jpg');
+    url('/assets/backgrounds/neurons_heating_up.jpg');
   }
   #hexadecimal_notation_slide .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/neurons_heating_up.jpg');
+    url('/assets/backgrounds/neurons2.jpg');
   }
   #hash_functions_slide .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/neurons3.jpg');
   }
+  #sha256_slide .fp-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('/assets/backgrounds/Brain-image-by-pitju.jpg');
+  }
+
   #blockchain_slide .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/brain_black.webp');
@@ -264,31 +285,46 @@ export default {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/blue_brain.jpg');
   }
+
   #pow_slide .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/orange_brain.jpg');
-  }
-  #pow_graph_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/transcending_forward.jpg');
   }
   #target_slide .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/brain_mushrooms.jpg');
   }
+  #nonce_slide .fp-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('/assets/backgrounds/brain_mushrooms.jpg');
+  }
+  #mining_algorithm_slide .fp-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('/assets/backgrounds/transcending_forward.jpg');
+  }
   #pow_blockchain_slide .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/transcending_forward.jpg');
+  }
+  #pow_graph_slide .fp-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('/assets/backgrounds/transcending_forward.jpg');
+  }
+
+  #timechain_slide .fp-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('/assets/backgrounds/brain_man.jpg');
+  }
+  #timechain_blocks_slide .fp-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('/assets/backgrounds/brain_man.jpg');
   }
   #timechain_graph_slide .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/transcending_forward.jpg');
   }
-  #timechain_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/brain_man.jpg');
-  }
-  #historical_blocks_section .fp-bg {
+
+  #historical_blocks_slide .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/ascension.jpg');
   }

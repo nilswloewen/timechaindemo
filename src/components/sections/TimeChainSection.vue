@@ -1,10 +1,6 @@
 <template>
   <div id="timechain_section" class="section">
-    <EncodingButton :active-encoding="activeEncoding" :encoding="encoding"
-                    v-on:update-active-encoding="updateActiveEncoding"
-                    v-on:rotate-encoding="rotateEncoding" />
-
-    <Page data-anchor="timechain" slide fp_bg>
+    <Page data-anchor="timechain" slide encoding-btn v-on:rotate-encoding="rotateEncoding" v-on:update-active-encoding="updateActiveEncoding">
       <h1>Timechain</h1>
       <p>
         <q>In other words, the difficulty-adjustment is about keeping a constant
@@ -38,7 +34,7 @@
               :targetMax="targetMax"/>
     </Page>
 
-    <Page data-anchor="timechain_blocks" slide fp_bg>
+    <Page data-anchor="timechain_blocks" slide encoding-btn v-on:rotate-encoding="rotateEncoding" v-on:update-active-encoding="updateActiveEncoding">
       <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
                       v-on:add-block="addBlock"
                       v-on:reset-blocks="resetBlocks"/>
@@ -57,7 +53,12 @@
 
     <div class="slide" data-anchor="timechain_graph" id="timechain_graph_slide">
       <div class="fp-bg"/>
-      <Graph id="timechain_canvas" animate :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
+      <EncodingButton :active-encoding="activeEncoding" :encoding="encoding"
+                      v-on:update-active-encoding="updateActiveEncoding"
+                      v-on:rotate-encoding="rotateEncoding" />
+
+      <Graph id="timechain_canvas" animate
+             :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
 
       <MiningControls
         :block="blocks[blockToMine]"
@@ -79,7 +80,6 @@ import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
 import Difficulty from '@/components/controls/Difficulty.vue';
 import EncodingButton from '@/components/controls/EncodingButton.vue';
-import EncodingMixin from '@/mixins/EncodingMixin';
 import Graph from '@/components/Graph.vue';
 import HashesPerSecondMixin from '@/mixins/HashesPerSecondMixin';
 import MiningControls from '@/components/controls/MiningControls.vue';
@@ -93,7 +93,6 @@ import UpdateHexDigitsMixin from '@/mixins/UpdateHexDigitsMixin';
 export default {
   mixins: [
     BlockchainMixin,
-    EncodingMixin,
     HashesPerSecondMixin,
     NonceMixin,
     TargetMixin,

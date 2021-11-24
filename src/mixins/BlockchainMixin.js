@@ -5,11 +5,16 @@ export default {
   data() {
     return {
       colors: [
-        '#61e294',
-        '#7bcdba',
-        '#9799ca',
-        '#b47aea',
-        '#bd93d8',
+        '#B983FF',
+        '#94DAFF',
+        '#94B3FD',
+        '#99FEFF',
+        '#14E3FD',
+        '#3CAFAA',
+        '#6471F7',
+        '#7855F5',
+        '#99FEFF',
+        '#A01CF2',
       ],
       blocks: [new Block('', BlockHeader.genesis, 0, '#61e294', 'inherit')],
       disableAddBlockBtn: true,
@@ -33,7 +38,7 @@ export default {
       const prevColor = this.colors[(this.blocks.length - 1) % this.colors.length];
 
       const block = new Block('', header, height, color, prevColor);
-      await block.calcHash();
+      await block.calcHash(this.hexDigits);
 
       this.blocks.unshift(block);
 

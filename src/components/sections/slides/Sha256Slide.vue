@@ -1,5 +1,5 @@
 <template>
-  <Page slide data-anchor="sha256" fp_bg>
+  <Page slide data-anchor="sha256" encoding-btn v-on:rotate-encoding="rotateEncoding" v-on:update-active-encoding="updateActiveEncoding">
     <h1>SHA-256</h1>
     <p>
       Bitcoin mining uses a particular hash function called SHA-256, which
@@ -26,7 +26,7 @@
       </b-list-group-item>
 
       <b-list-group-item class="list-field">Output Hash</b-list-group-item>
-      <b-list-group-item class="list-value">{{ hash }}</b-list-group-item>
+      <b-list-group-item class="list-value">{{ hash[encoding[activeEncoding]] }}</b-list-group-item>
     </b-card>
 
     <p>
@@ -34,8 +34,10 @@
       round 1/64 of SHA-256 BY HAND!
     </p>
 
-    <div class="text-center">
-      <iframe width="350px" height="197px" style="margin-right: auto; margin-left: auto;" src="https://www.youtube.com/embed/y3dqhixzGVo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/>
+    <div style="width: 350px; margin-right: auto; margin-left: auto;">
+      <b-card no-body>
+        <iframe width="auto" height="197px" src="https://www.youtube.com/embed/y3dqhixzGVo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/>
+      </b-card>
     </div>
   </Page>
 </template>
@@ -43,6 +45,7 @@
 <script>
 import Page from '@/components/Page.vue';
 import { sha256dFromText } from '@/services/sha256_utils';
+import Num from '@/services/Num';
 
 export default {
   components: {
@@ -51,13 +54,18 @@ export default {
   data() {
     return {
       data: 'Try changing this data...',
-      hash: '60759d1ab05baf2c79e281d8fbff268f559328dc45bd46b12114bbbe40197271',
+      hash: { hexadecimal: '60759d1ab05baf2c79e281d8fbff268f559328dc45bd46b12114bbbe40197271' },
     };
+  },
+  async mounted() {
+    const hash = await sha256dFromText(this.data);
+    this.hash = new Num(BigInt(`0x${hash}`));
   },
   methods: {
     async updateHash(event) {
       this.data = event.target.value;
-      this.hash = await sha256dFromText(this.data);
+      const hash = await sha256dFromText(this.data);
+      this.hash = new Num(BigInt(`0x${hash}`));
     },
   },
 };

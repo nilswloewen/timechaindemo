@@ -1,27 +1,29 @@
 <template>
-  <b-card no-body>
-    <b-card-header header-bg-variant="info">
-      <b-icon-wrench/> Add block
-    </b-card-header>
+  <div class="add_block_card">
+    <b-card no-body>
+      <b-card-header header-bg-variant="info">
+        <b-icon-wrench/> Add block
+      </b-card-header>
 
-    <b-list-group-item class="list-field">{{ now }}</b-list-group-item>
-    <b-list-group-item class="list-value border-0">
+      <b-list-group-item class="list-field">{{ now }}</b-list-group-item>
+      <b-list-group-item class="list-value border-0">
 
-      <b-input-group prepend="Data" size="sm">
-        <b-form-input v-model="newBlockData" :disabled="disableAddBlockBtn" size="sm"/>
+        <b-input-group prepend="Data" size="sm">
+          <b-form-input v-model="newBlockData" :disabled="disableAddBlockBtn" size="sm"/>
 
-        <b-button @click="addBlock" variant="primary" size="sm" :disabled="disableAddBlockBtn"
-                  style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
-          Add Block
-        </b-button>
+          <b-button @click="addBlock" variant="primary" size="sm" :disabled="disableAddBlockBtn"
+                    style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+            Add Block
+          </b-button>
 
-        <b-button title="Reset" @click="$emit('reset-blocks')" size="sm" class="ml-2"
-                  variant="warning">
-          <b-icon-trash/>
-        </b-button>
-      </b-input-group>
-    </b-list-group-item>
-  </b-card>
+          <b-button title="Reset" @click="$emit('reset-blocks')" size="sm" class="ml-2"
+                    variant="warning">
+            <b-icon-trash/>
+          </b-button>
+        </b-input-group>
+      </b-list-group-item>
+    </b-card>
+  </div>
 </template>
 
 <script>

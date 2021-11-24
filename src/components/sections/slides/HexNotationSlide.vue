@@ -1,6 +1,6 @@
 <template>
-  <Page slide data-anchor="hexadecimal_notation" fp_bg>
-    <h1>Hexadecimal Notation</h1>
+  <Page slide data-anchor="hexadecimal_notation">
+    <h1>Numerical Notation</h1>
 
     <b-card>
       <h4 class="text-left"><a href="https://www.etymonline.com/word/hexadecimal">hexadecimal (adj.)</a></h4>
@@ -16,57 +16,55 @@
 
     <p>
       As you can see in the following table these values are equivalent yet notated differently.
-      To distinguish which notation system is being used numbers will be presented in base format:
-      Value <sub>(base)</sub>.
     </p>
 
-    <b-card id="hex_table" no-body class="mt-4">
-      <b-table-simple outlined striped hover class="border-1" small>
-        <b-thead head-variant="dark">
-          <b-tr>
-            <b-th>Decimal</b-th>
-            <b-th>Binary</b-th>
-            <b-th>Hexadecimal</b-th>
-          </b-tr>
-        </b-thead>
-        <b-tbody>
-          <b-tr v-for="(row, index) in rows" :key="index">
-            <b-td>{{row['d']}}</b-td>
-            <b-td>{{row['b']}}<sub>2</sub></b-td>
-            <b-td><b>{{row['h']}}</b><sub>16</sub></b-td>
-          </b-tr>
-        </b-tbody>
-        <caption> * A-F can be upper or lowercase </caption>
-      </b-table-simple>
-    </b-card>
+    <b-row>
+      <b-col class="hex_col">
+        <b-card id="hex_table" no-body>
+          <b-table-simple class="border-1" small>
+            <b-thead head-variant="dark">
+              <b-tr>
+                <b-th>Decimal</b-th>
+                <b-th>Binary</b-th>
+                <b-th>Hexadecimal</b-th>
+              </b-tr>
+            </b-thead>
+            <b-tbody>
+              <b-tr v-for="(row, index) in rows" :key="index">
+                <b-td>{{row['d']}}</b-td>
+                <b-td>{{row['b']}}</b-td>
+                <b-td><b>{{row['h']}}</b></b-td>
+              </b-tr>
+            </b-tbody>
+            <caption> * A-F can be upper or lowercase </caption>
+          </b-table-simple>
+        </b-card>
 
-    <b-card no-body>
-      <b-card-header header-bg-variant="info">
-        <b-icon-wrench/> Hex <b-icon-arrow-left-right/> Decimal Converter
-      </b-card-header>
+      </b-col>
+      <b-col class="hex_col">
+        <b-card no-body id="hex_converter">
+          <b-card-header header-bg-variant="info">
+            <b-icon-wrench/> Notation <b-icon-arrow-left-right/> Converter
+          </b-card-header>
 
-      <b-card-body>
-        <table>
-          <tr>
-            <td>Hex</td>
-            <td></td>
-            <td>Decimal</td>
-          </tr>
-          <tr>
-            <td>
-              <b-form-input @keyup="onHex" :value="Number(val).toString(16)"/>
-            </td>
-            <td style="min-width: 60px; text-align: center;">
-              <b-icon-arrow-left-right/>
-            </td>
-            <td>
-              <b-form-input v-model="val" type="number"/>
-            </td>
-          </tr>
-        </table>
-      </b-card-body>
-    </b-card>
-    <!--    TODO: interactive Hex <-> Decimal calculator-->
+          <b-list-group-item class="list-field">Hexadecimal (base 16)</b-list-group-item>
+          <b-list-group-item class="list-value">
+            <b-form-input @keyup="onHex" :value="Number(val).toString(16)"/>
+          </b-list-group-item>
+
+          <b-list-group-item class="list-field">Decimal (base 10)</b-list-group-item>
+          <b-list-group-item class="list-value">
+            <b-form-input v-model="val" type="number"/>
+          </b-list-group-item>
+
+          <b-list-group-item class="list-field">Binary (base 2)</b-list-group-item>
+            <b-list-group-item class="list-value">
+              <b-form-input :value="Number(val).toString(2)" @keyup="onBin"/>
+            </b-list-group-item>
+        </b-card>
+
+      </b-col>
+    </b-row>
 
   </Page>
 </template>
@@ -111,6 +109,14 @@ export default {
       }
       this.val = parseInt(hexVal, 16);
     },
+    onBin(e) {
+      let binVal = e.target.value;
+      binVal = binVal.replace(/[^01]/g, '');
+      if (binVal.length === 0) {
+        binVal = 0;
+      }
+      this.val = parseInt(binVal, 2);
+    },
   },
 };
 </script>
@@ -133,4 +139,17 @@ export default {
   #hex_table td:nth-child(2) {
     text-align: center;
   }
+
+  #hex_converter {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 315px;
+  }
+  .col.hex_col {
+    max-width: 100%;
+    min-width: 264px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
 </style>

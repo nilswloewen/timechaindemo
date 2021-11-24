@@ -1,6 +1,12 @@
 <template>
   <div :id="id" :data-anchor="dataAnchor" :class="type">
-    <div class="fp-bg" v-if="fp_bg"/>
+    <div class="fp-bg"/>
+    <EncodingButton v-if="encodingBtn"
+                    :active-encoding="activeEncoding"
+                    :encoding="encoding"
+                    v-on:update-active-encoding="updateActiveEncoding"
+                    v-on:rotate-encoding="rotateEncoding" />
+
     <b-container>
       <b-row>
         <b-col>
@@ -12,11 +18,15 @@
 </template>
 
 <script>
+import EncodingButton from '@/components/controls/EncodingButton';
 export default {
   props: {
     dataAnchor: String,
+    encodingBtn: Boolean,
     slide: Boolean,
-    fp_bg: Boolean,
+  },
+  components: {
+    EncodingButton
   },
   computed: {
     id() {
@@ -28,5 +38,13 @@ export default {
       return 'section';
     },
   },
+  methods: {
+    rotateEncoding() {
+      this.$emit('rotate-encoding');
+    },
+    updateActiveEncoding(newEncoding) {
+      this.$emit('update-active-encoding', newEncoding);
+    },
+  }
 };
 </script>

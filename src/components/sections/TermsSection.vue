@@ -14,24 +14,21 @@
       </p>
 
       <p>
-        <a href="#hash_functions" @click="moveTo('terms', 2);">
-         Hash Functions
-        </a>
-         are the backbone to the blockchain and to mining. The result of these functions
-        are represented with <a href="#hexadecimal_notation" @click="moveTo('terms', 1);">
-        Hexadecimal Notation</a>.
+        <b>Hash Functions</b> are the backbone to the blockchain and to mining.
+        The result of these functions are represented with <b>Hexadecimal Notation</b>.
       </p>
     </Page>
 
     <HexNotationSlide/>
     <HashFunctionsSlide/>
-
+    <Sha256Slide/>
   </div>
 </template>
 
 <script>
 import HashFunctionsSlide from '@/components/sections/slides/HashFunctionsSlide.vue';
 import HexNotationSlide from '@/components/sections/slides/HexNotationSlide.vue';
+import Sha256Slide from '@/components/sections/slides/Sha256Slide.vue';
 import Page from '@/components/Page.vue';
 
 export default {
@@ -39,6 +36,7 @@ export default {
     HashFunctionsSlide,
     HexNotationSlide,
     Page,
+    Sha256Slide,
   },
 };
 </script>

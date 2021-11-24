@@ -4,7 +4,9 @@
       <b-icon-wrench/> Add block
     </b-card-header>
 
-    <b-card-body>
+    <b-list-group-item class="list-field">{{ now }}</b-list-group-item>
+    <b-list-group-item class="list-value border-0">
+
       <b-input-group prepend="Data" size="sm">
         <b-form-input v-model="newBlockData" :disabled="disableAddBlockBtn" size="sm"/>
 
@@ -18,8 +20,7 @@
           <b-icon-trash/>
         </b-button>
       </b-input-group>
-      {{ now }}
-    </b-card-body>
+    </b-list-group-item>
   </b-card>
 </template>
 

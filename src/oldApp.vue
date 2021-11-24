@@ -72,7 +72,7 @@ import Graph from './components/Graph.vue';
 import Hash from '@/components/cards/Hash.vue';
 import Legend from './components/cards/Legend.vue';
 import Welcome from '@/components/cards/Welcome.vue';
-import { serializeBlockHeader, sha256dFromHex } from '@/services/utils';
+import { serializeBlockHeader, sha256dFromHex } from '@/services/sha256_utils';
 
 // Not sure why this didn't work in vue object. It was updating far too often.
 let tries = 0;

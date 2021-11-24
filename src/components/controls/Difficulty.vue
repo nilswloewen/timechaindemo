@@ -6,7 +6,7 @@
     <b-card-body>
       <p>
         This device can calculate <b>~{{ hpsOfThisDevice.toFixed(0) }}</b> Hashes per Second
-        <b-button @click="$emit('calibrate-hps')" size="sm">Calibrate</b-button>
+        <!--        <b-button @click="$emit('calibrate-hps')" size="sm">Calibrate</b-button>-->
       </p>
 
       <p>
@@ -14,7 +14,7 @@
         ~{{ Math.ceil(avgHashes).toLocaleString('en-US') }}
       </p>
 
-      <p>Average time to find valid block: ~{{ avgTime }} </p>
+      Average time to find valid block: ~{{ avgTime }}
     </b-card-body>
 
     <b-list-group-item class="list-field">Block Time</b-list-group-item>

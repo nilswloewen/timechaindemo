@@ -64,7 +64,8 @@ export default {
           label: 'Terms',
           slides: [
             { anchor: 'hexadecimal_notation', label: 'Hexadecimal Notation' },
-            { anchor: 'hash_functions', label: 'Hash Functions (SHA-256)' },
+            { anchor: 'hash_functions', label: 'Hash Functions' },
+            { anchor: 'sha256', label: 'SHA-256' },
           ],
         },
         {
@@ -76,7 +77,7 @@ export default {
         },
         {
           anchor: 'pow',
-          label: 'Proof-of-Work',
+          label: 'Mining',
           slides: [
             { anchor: 'target', label: 'Target' },
             { anchor: 'pow_blockchain', label: 'Proof-of-Work Blockchain' },
@@ -133,16 +134,17 @@ export default {
     text-decoration: underline;
   }
   .blockchain_wrapper {
+    margin-top: 2em;
     text-align: center;
     max-height: 60vh;
     overflow-y: auto;
     scroll-behavior: smooth;
-    padding: 0 10px;
+    padding: 0 4px;
   }
 
   /* Works on Chrome, Edge, and Safari */
   *::-webkit-scrollbar {
-    width: 12px;
+    width: 4px;
   }
   *::-webkit-scrollbar-track {
     background: #15202b;
@@ -154,18 +156,20 @@ export default {
   }
 
   .col {
-    max-width: 625px;
+    max-width: 593px;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 3em;
     padding-bottom: 30vh;
   }
   .list-group-item {
     background-color: inherit;
     border: none;
+    font-size: 0.875rem;
+    padding: 0 .5em;
   }
   .list-field {
     padding-top: 7px;
-    font-size: 0.875rem;
     padding-bottom: 0;
   }
   .list-value {
@@ -179,6 +183,7 @@ export default {
     background-color: rgba(0, 0, 0, 0.3);
     max-width: 625px;
     box-shadow: -2px 2px 5px 3px gray;
+    text-align: left;
   }
   .card-header {
     background-color: #343a40;

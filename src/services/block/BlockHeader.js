@@ -1,4 +1,4 @@
-import { intToHex, swapEndian } from '@/services/utils';
+import { intToHex, swapEndian } from '@/services/sha256_utils';
 import Num from '@/services/Num';
 
 class BlockHeader {

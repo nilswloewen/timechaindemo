@@ -23,7 +23,11 @@ export default {
   },
   methods: {
     async addBlock(newData) {
-      const header = new BlockHeader(newData, 0, this.blocks[0].hash);
+      let data = newData === 'Try adding a block...'
+        ? 'Try changing this data...'
+        : newData ;
+
+      const header = new BlockHeader(data, 0, this.blocks[0].hash);
       const height = this.blocks.length;
       const color = this.colors[this.blocks.length % this.colors.length];
       const prevColor = this.colors[(this.blocks.length - 1) % this.colors.length];

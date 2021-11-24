@@ -1,4 +1,4 @@
-import { sha256dFromHex } from '@/services/utils';
+import { sha256dFromHex } from '@/services/sha256_utils';
 import Num from '@/services/Num';
 
 class Block {
@@ -7,10 +7,9 @@ class Block {
     this.header = header;
     this.height = height;
 
-    this.color = '';
+    this.color = '#61e294';
     this.isHashValid = true;
     this.prevColor = '';
-    this.stats = [];
   }
 
   async calcHash(hexDigits = 64) {

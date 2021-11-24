@@ -16,18 +16,6 @@ function swapEndian(val) {
   return result.join('');
 }
 
-function serializeBlockHeader(block, nonce) {
-  // In case of Genesis block returning prev hash as null.
-  const prevBlockhash = block.previousBlockHash || ''.padStart(64, '0');
-
-  return swapEndian(intToHex(block.version))
-    + swapEndian(prevBlockhash)
-    + swapEndian(block.merkle_root)
-    + swapEndian(intToHex(block.timestamp))
-    + swapEndian(intToHex(block.bits))
-    + swapEndian(intToHex(nonce));
-}
-
 async function sha256FromUint8Array(arr) {
   const hashBuffer = await crypto.subtle.digest('SHA-256', arr);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
@@ -40,8 +28,8 @@ function textToUint8Array(text) {
 async function sha256FromText(text) {
   return sha256FromUint8Array(textToUint8Array(text));
 }
-async function sha256dFromText(data) {
-  const pass1 = await sha256FromText(data);
+async function sha256dFromText(text) {
+  const pass1 = await sha256FromText(text);
   const pass2 = await sha256FromText(pass1);
   return swapEndian(pass2);
 }
@@ -62,22 +50,8 @@ async function sha256dFromHex(data) {
   return swapEndian(pass2);
 }
 
-function encode(bigInt) {
-  return {
-    bigInt,
-    num: Number(bigInt),
-    binary: bigInt.toString(2).padStart(256, '0'),
-    decimal: bigInt.toLocaleString('en-US').padStart(103, '000,'),
-    // @TODO: Figure out exponential for bigInt.
-    exponential: bigInt.toLocaleString('en-US').padStart(103, '000,'),
-    hexadecimal: bigInt.toString(16).padStart(64, '0'),
-  };
-}
-
 export {
   intToHex,
-  encode,
-  serializeBlockHeader,
   sha256dFromHex,
   sha256dFromText,
   swapEndian,

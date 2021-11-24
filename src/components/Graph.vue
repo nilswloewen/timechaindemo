@@ -202,7 +202,6 @@ export default {
     },
 
     drawGuess(xRatio, yRatio, label, opacity = 1, isHashValid = false) {
-      this.ctx.font = isHashValid ? '20px Fira Code' : '16px Fira Code';
       const arrowLabel = `${label}`;
 
       let x = this.zero.x - (this.width * xRatio);

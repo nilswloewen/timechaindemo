@@ -7,13 +7,16 @@
     <Page data-anchor="timechain" slide fp_bg>
       <h1>Timechain</h1>
       <p>
-        Mining is the process of adding recent transactions to the blockchain.
-      </p>
-
-      <p>
         <q>In other words, the difficulty-adjustment is about keeping a constant
           time, not a constant level of security, difficulty, or energy expenditure.</q>
         - DerGigi
+      </p>
+
+      <p>
+        <q>The only way to find a valid proof-of-work is by making a lot of guesses,
+          and making a single guess takes a little bit of time. The probabilistic
+          sum of these guesses is what builds up the timechain that is Bitcoin.</q>
+        - <a href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</a>
       </p>
 
       <Difficulty :hps-of-this-device="hpsOfThisDevice" :avg-hashes="calcAvgHashes()"

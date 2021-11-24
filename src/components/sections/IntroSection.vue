@@ -5,7 +5,14 @@
       Bitcoin Timechain
     </h1>
 
-    Welcome to an interactive demo of what it means to 'mine' Bitcoin.
+    <p>
+      Welcome to an interactive demo of what it means to 'mine' Bitcoin.
+    </p>
+
+    <p>
+      'Mining' is the process of recording transactions on the Bitcoin network.
+      A successful miner is rewarded with newly minted bitcoin as a reward for their time and effort.
+    </p>
 
     <TableOfContents class="fade-in" :contents="contents"/>
   </Page>

@@ -1,5 +1,5 @@
 import Block from './Block';
-import { sha256dFromText } from '@/services/utils';
+import { sha256dFromText } from '@/services/sha256_utils';
 import Num from '@/services/Num';
 
 class DemoBlock extends Block {

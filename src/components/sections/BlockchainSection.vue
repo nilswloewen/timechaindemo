@@ -18,10 +18,53 @@
         blocks existed before following blocks, therefore establishing an <b>Order of Events</b>.
       </p>
 
-      <p>
-        In Bitcoin a block is a batch of recent transactions and some metadata
-        about the block, such as the current time.
-      </p>
+      <b-card>
+        <h4 class="text-left">block (n.)</h4>
+        <hr>
+        <p>
+          A block is a set of data with a hash that 'locks' the data in place.
+        </p>
+
+        <h6>Example</h6>
+        <b-card no-body>
+          <b-card-header>
+            Block Hash or ID - The hash of the blocks' data
+          </b-card-header>
+
+          <!--Hash-->
+          <b-list-group-item class="list-field">Number / Height</b-list-group-item>
+          <b-list-group-item class="list-value">Also known as length</b-list-group-item>
+
+          <!--Data-->
+          <b-list-group-item class="list-field">Data</b-list-group-item>
+          <b-list-group-item class="list-value">Any arbitrary data</b-list-group-item>
+
+          <!--Time-->
+          <b-list-group-item class="list-field">Timestamp</b-list-group-item>
+          <b-list-group-item class="list-value">
+            The time the block was added to the blockchain
+          </b-list-group-item>
+
+          <!--Previous Hash-->
+          <b-list-group-item class="list-field">Previous Hash</b-list-group-item>
+          <b-list-group-item class="list-value">The hash of the previous block</b-list-group-item>
+        </b-card>
+      </b-card>
+
+      <div>
+        In mining the hash is used in two ways:
+        <ol>
+          <li>To uniquely identify each block
+            <br> - The successful hash of the block header becomes the block ID.
+            This is embedded in the next block header as the previous block hash.
+          </li>
+          <li>As a random number generator
+            <br> - A hash is neither random nor a number; a hash is simply a string of bits.
+            However, in order to make bitcoin mining difficult, a block hash is interpreted
+            as a number that must be less than an arbitrary target.
+          </li>
+        </ol>
+      </div>
     </Page>
 
     <Page data-anchor="simple_blockchain" slide fp_bg>

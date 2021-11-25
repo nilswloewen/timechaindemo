@@ -8,7 +8,7 @@
 
     <b-card no-body class="block" :style="`box-shadow: -1px 2px 5px 0 ${block.color};`">
       <!--Hash-->
-      <b-list-group class="header update_box_shadow" :style="`background-color: ${block.color};`" :key="block.hash">
+      <b-list-group class="header update_box_shadow" :style="`background-color: ${block.color};`" :key="getHash">
         <b-list-group-item class="list-field">
           <span class="block_hash">Block Hash
             <template v-if="block.height === 0">(Genesis Block)</template>
@@ -16,7 +16,7 @@
           <span class="block_number">#{{ block.height }}</span>
         </b-list-group-item>
         <b-list-group-item class="list-value border-0">
-          {{ block.hash[localEncoding] }}
+          {{ getHash }}
         </b-list-group-item>
       </b-list-group>
 
@@ -135,6 +135,9 @@ export default {
       if (!this.showNonce) return true;
       return this.block.isHashValid;
     },
+    getHash() {
+      return this.block.hash[this.localEncoding];
+    }
   },
 
   methods: {

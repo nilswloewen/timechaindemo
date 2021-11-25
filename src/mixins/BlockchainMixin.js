@@ -85,6 +85,9 @@ export default {
       if (this.guesses.length > 100) {
         this.guesses.shift();
       }
+      if (index > 0) {
+        this.blocks[index - 1].header.prevHash = block.hash;
+      }
 
       this.resetAddBlockBtn();
     },
@@ -94,21 +97,16 @@ export default {
       if (index === 0) {
         return;
       }
-      this.blocks[index - 1].header.prevHash = this.blocks[index].hash;
+
       await this.instantUpdate(index - 1);
     },
 
     async delayedUpdate(index) {
-      // const wrapper = document.getElementsByClassName('blockchain_wrapper')[0];
-      // const element = document.getElementById(`card_${this.blocks[index].height}`);
-      // this.scrollToElm(wrapper, element, 2);
-
       await this.finalizeBlock(index);
+
       if (index === 0) {
         return;
       }
-
-      this.blocks[index - 1].header.prevHash = this.blocks[index].hash;
 
       setTimeout(async () => {
         await this.delayedUpdate(index - 1);
@@ -125,6 +123,10 @@ export default {
     async updateNonce(nonce, index) {
       this.blocks[index].header.nonce = nonce;
       await this.finalizeBlock(index);
+    },
+    async updateData(event, index) {
+      this.blocks[index].header.data = event.target.value;
+      await this.delayedUpdate(index);
     },
     async startMining(index) {
       this.isMining = true;
@@ -144,10 +146,6 @@ export default {
       }
 
       this.isMining = false;
-    },
-    async updateData(event, index) {
-      this.blocks[index].header.data = event.target.value;
-      await this.delayedUpdate(index);
     },
     updateHexDigits(newHexDigits) {
       this.hexDigits = newHexDigits;

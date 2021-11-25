@@ -2,17 +2,23 @@
   <Page slide data-anchor="hexadecimal_notation">
     <h1>Numerical Notation</h1>
 
+    <p>
+      Notation styles are chosen for different use cases. While computers think in 1's and 0's,
+      binary notation is not easy for humans to read. While decimal notation is easy to read,
+      it is not the most compact way to store values.
+    </p>
+
+    <p>
+      The hash function about to be discussed uses hexadecimal notation as a compact and (more)
+      human readable way to represent the binary hash output.
+    </p>
+
     <b-card>
       <h4 class="text-left"><a href="https://www.etymonline.com/word/hexadecimal">hexadecimal (adj.)</a></h4>
       <hr>
       1952, in reference to a numeral system based on 16, not 10; from hexa- + decimal.
       From 1970 as a noun. Greek hexa-, combining form of hex "six".
     </b-card>
-
-    <p>
-      The hash function about to be discussed uses hexadecimal notation as a compact and (more)
-      human readable way to represent the binary hash output.
-    </p>
 
     <p>
       As you can see in the following table these values are equivalent yet notated differently.
@@ -31,16 +37,22 @@
             </b-thead>
             <b-tbody>
               <b-tr v-for="(row, index) in rows" :key="index">
-                <b-td>{{row['d']}}</b-td>
-                <b-td>{{row['b']}}</b-td>
-                <b-td><b>{{row['h']}}</b></b-td>
+                <b-td>{{ row['d'] }}</b-td>
+                <b-td>{{ row['b'] }}</b-td>
+                <b-td>
+                  <template v-if="parseInt(row['h'], 16) > 9">
+                    <b >{{ row['h'] }}</b>
+                  </template>
+                  <template v-else>
+                    {{ row['h'] }}
+                  </template>
+                </b-td>
               </b-tr>
             </b-tbody>
-            <caption> * A-F can be upper or lowercase </caption>
           </b-table-simple>
         </b-card>
-
       </b-col>
+
       <b-col class="hex_col">
         <b-card no-body id="hex_converter">
           <b-card-header header-bg-variant="info">
@@ -81,22 +93,22 @@ export default {
       val: 48879,
       columns: ['Decimal', 'Binary', 'Hexadecimal'],
       rows: [
-        { d: 0, b: '0000', h: '0' },
-        { d: 1, b: '0001', h: '1' },
-        { d: 2, b: '0010', h: '2' },
-        { d: 3, b: '0011', h: '3' },
-        { d: 4, b: '0100', h: '4' },
-        { d: 5, b: '0101', h: '5' },
-        { d: 6, b: '0110', h: '6' },
-        { d: 7, b: '0111', h: '7' },
-        { d: 8, b: '1000', h: '8' },
+        { d: 15, b: '1111', h: 'f' },
+        { d: 14, b: '1110', h: 'e' },
+        { d: 13, b: '1101', h: 'd' },
+        { d: 12, b: '1100', h: 'c' },
+        { d: 11, b: '1011', h: 'b' },
+        { d: 10, b: '1010', h: 'a' },
         { d: 9, b: '1001', h: '9' },
-        { d: 10, b: '1010', h: 'A' },
-        { d: 11, b: '1011', h: 'B' },
-        { d: 12, b: '1100', h: 'C' },
-        { d: 13, b: '1101', h: 'D' },
-        { d: 14, b: '1110', h: 'E' },
-        { d: 15, b: '1111', h: 'F' },
+        { d: 8, b: '1000', h: '8' },
+        { d: 7, b: '0111', h: '7' },
+        { d: 6, b: '0110', h: '6' },
+        { d: 5, b: '0101', h: '5' },
+        { d: 4, b: '0100', h: '4' },
+        { d: 3, b: '0011', h: '3' },
+        { d: 2, b: '0010', h: '2' },
+        { d: 1, b: '0001', h: '1' },
+        { d: 0, b: '0000', h: '0' },
       ],
     };
   },

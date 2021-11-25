@@ -84,12 +84,18 @@ export default {
         this.guesses.shift();
       }
 
-      if (index > 0) {
-        this.blocks[index - 1].header.prevHash = block.hash;
-      }
-
       this.resetAddBlockBtn();
     },
+
+    async instantUpdate(index) {
+      await this.finalizeBlock(index);
+      if (index === 0) {
+        return;
+      }
+      this.blocks[index - 1].header.prevHash = this.blocks[index].hash;
+      await this.instantUpdate(index - 1);
+    },
+
     async delayedUpdate(index) {
       // const wrapper = document.getElementsByClassName('blockchain_wrapper')[0];
       // const element = document.getElementById(`card_${this.blocks[index].height}`);
@@ -99,9 +105,12 @@ export default {
       if (index === 0) {
         return;
       }
+
+      this.blocks[index - 1].header.prevHash = this.blocks[index].hash;
+
       setTimeout(async () => {
         await this.delayedUpdate(index - 1);
-      }, 500);
+      }, 1000);
     },
     getColor() {
       const i = this.index % this.colors.length;

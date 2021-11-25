@@ -1,21 +1,23 @@
 <template>
-  <div>
+  <div :ref="`block_${block.height}`">
     <!-- Chain-link icon -->
     <b-iconstack font-scale="3" v-if="index > 0" class="mb-4">
       <b-icon-link stacked rotate="90" :style="getLinkColor" />
       <b-icon stacked icon="slash" variant="danger" v-if="!isHashValid"></b-icon>
     </b-iconstack>
 
-    <b-card no-body :class="`block_${block.height} block`" :style="`box-shadow: -1px 2px 5px 0 ${block.color};`">
+    <b-card no-body class="block" :style="`box-shadow: -1px 2px 5px 0 ${block.color};`">
       <!--Hash-->
-      <b-list-group class="header" :style="`background-color: ${block.color};`">
+      <b-list-group class="header update_box_shadow" :style="`background-color: ${block.color};`" :key="block.hash">
         <b-list-group-item class="list-field">
           <span class="block_hash">Block Hash
             <template v-if="block.height === 0">(Genesis Block)</template>
           </span>
           <span class="block_number">#{{ block.height }}</span>
         </b-list-group-item>
-        <b-list-group-item class="list-value border-0">{{ block.hash[localEncoding] }}</b-list-group-item>
+        <b-list-group-item class="list-value border-0">
+          {{ block.hash[localEncoding] }}
+        </b-list-group-item>
       </b-list-group>
 
       <template v-if="showBlockHeightInput">
@@ -75,7 +77,10 @@
       <!--Previous Hash-->
       <b-list-group-item class="list-field">Previous Hash</b-list-group-item>
       <b-list-group-item class="list-value">
-        <div class="rounded prev_block" :style="getPrevColor">{{ block.header.prevHash[localEncoding]}}</div>
+        <div class="rounded prev_block update_box_shadow" :style="getPrevColor"
+             :key="block.header.prevHash">
+          {{ block.header.prevHash[localEncoding]}}
+        </div>
       </b-list-group-item>
 
     </b-card>
@@ -168,9 +173,16 @@ export default {
   .block_number {
     float: right;
   }
-  .mine_block_btn {
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
+
+  .update_box_shadow {
+    animation: box_shadow 2s;
+  }
+  @keyframes box_shadow {
+    from {
+      box-shadow: 0 0 4px 4px white;
+    }
+    to {
+      box-shadow: none;
+    }
   }
 </style>

@@ -10,13 +10,42 @@
     </p>
 
     <p>
-      In this demo all hashes are calculated as double SHA-256 or sha256d,
-      exactly as bitcoin-core does it.
+      An output of 256 bits means there are 2<sup>256</sup>-1 possible output values.
+      If interpreted as a number, the maximum value of a hash is also the number of possible values.
     </p>
-    <p>swapEndian( sha256( sha256( data ) ) )</p>
 
     <b-card no-body>
-      <b-card-header header-bg-variant="info"> <b-icon-wrench/> SHA-256 Calculator </b-card-header>
+      <b-list-group-item class="list-field">Max value</b-list-group-item>
+      <b-list-group-item class="list-value">
+        {{ hashMax[encoding[activeEncoding]] }}
+      </b-list-group-item>
+    </b-card>
+
+    <p>
+      For some context, it is estimated that there are 10<sup>78</sup> to
+      10<sup>82</sup>
+      <a href="https://www.liverpoolmuseums.org.uk/stories/which-greater-number-of-atoms-universe-or-number-of-chess-moves">atoms in the observable universe</a>.
+    </p>
+
+    <p>
+      It is theoretically possible for two inputs or more to have the same hash output. However,
+      because of the massive possible values, this is infinitesimally unlikely to occur, and currently
+      unfeasible to do on purpose.
+    </p>
+
+    <b-card no-body class="mt-4">
+      <b-card-header header-bg-variant="info">
+        <span class="float-left"><b-icon-wrench/> SHA-256 Calculator</span>
+        <b-icon-info-circle class="float-right" v-b-toggle.collapse_note/>
+      </b-card-header>
+
+      <b-collapse id="collapse_note">
+        <b-card-body class="border-bottom pb-0">
+          In this demo all hashes are calculated as double SHA-256 or sha256d,
+          exactly as bitcoin-core does it.
+        <p>swapEndian( sha256( sha256( data ) ) )</p>
+        </b-card-body>
+      </b-collapse>
 
       <b-list-group-item class="list-field">Input</b-list-group-item>
       <b-list-group-item class="list-value">
@@ -55,6 +84,8 @@ export default {
     return {
       data: 'Try changing this data...',
       hash: { hexadecimal: '60759d1ab05baf2c79e281d8fbff268f559328dc45bd46b12114bbbe40197271' },
+      hashMax: new Num(BigInt(`0x${''.padEnd(64, 'f')}`), 64),
+
     };
   },
   async mounted() {

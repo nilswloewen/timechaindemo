@@ -2,7 +2,7 @@ export default {
   methods: {
     async updateNonce(nonce, index) {
       this.blocks[index].header.nonce = nonce;
-      await this.delayedUpdate(index);
+      await this.instantUpdate(index);
     },
     async startMining(index) {
       this.isMining = true;
@@ -26,7 +26,7 @@ export default {
       this.isMining = false;
 
       if (index > 0) {
-        await this.delayedUpdate(index - 1);
+        await this.instantUpdate(index - 1);
       }
     },
   },

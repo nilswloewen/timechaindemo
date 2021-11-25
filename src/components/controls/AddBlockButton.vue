@@ -13,7 +13,7 @@
 
           <b-button @click="addBlock" variant="primary" size="sm" :disabled="disableAddBlockBtn"
                     style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
-            Add Block
+            Add
           </b-button>
 
           <b-button title="Reset" @click="$emit('reset-blocks')" size="sm" class="ml-2"

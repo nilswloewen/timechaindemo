@@ -63,7 +63,7 @@ export default {
           anchor: 'terms',
           label: 'Terms',
           slides: [
-            { anchor: 'hexadecimal_notation', label: 'Hexadecimal Notation' },
+            { anchor: 'hexadecimal_notation', label: 'Numerical Notation' },
             { anchor: 'hash_functions', label: 'Hash Functions' },
             { anchor: 'sha256', label: 'SHA-256' },
           ],
@@ -137,6 +137,7 @@ export default {
   /* Works on Chrome, Edge, and Safari */
   *::-webkit-scrollbar {
     width: 4px;
+    height: 4px;
   }
   *::-webkit-scrollbar-track {
     background: #15202b;
@@ -193,6 +194,8 @@ export default {
     padding-bottom: 0;
   }
   .list-value {
+    overflow-y: auto;
+    overflow-wrap: normal;
     padding-bottom: 7px;
     padding-top: 2px;
     border-bottom: 1px solid darkgray;

@@ -15,14 +15,18 @@
         blocks existed before following blocks, therefore establishing an <b>Order of Events</b>.
       </p>
 
-      <b-card>
-        <h4 class="text-left">block (n.)</h4>
-        <hr>
-        <p>
-          A block is a set of data with a hash that 'locks' the data in place.
-        </p>
+      <b-card no-body>
+        <b-card-body>
+          <h4 class="text-left">block (n.)</h4>
 
-        <h6>Example</h6>
+          <hr>
+          <p>
+            A set of data with a hash that 'locks' the data in place. You cannot
+            change the data without changing the hash.
+          </p>
+          <h6>Example</h6>
+        </b-card-body>
+
         <b-card no-body>
           <b-card-header>
             Block Hash or ID - The hash of the blocks' data
@@ -30,7 +34,7 @@
 
           <!--Hash-->
           <b-list-group-item class="list-field">Number / Height</b-list-group-item>
-          <b-list-group-item class="list-value">Also known as length</b-list-group-item>
+          <b-list-group-item class="list-value">Also known as length (of the chain)</b-list-group-item>
 
           <!--Data-->
           <b-list-group-item class="list-field">Data</b-list-group-item>
@@ -47,27 +51,13 @@
           <b-list-group-item class="list-value">The hash of the previous block</b-list-group-item>
         </b-card>
       </b-card>
-
-      <div>
-        In mining the hash is used in two ways:
-        <ol>
-          <li>To uniquely identify each block
-            <br> - The successful hash of the block header becomes the block ID.
-            This is embedded in the next block header as the previous block hash.
-          </li>
-          <li>As a random number generator
-            <br> - A hash is neither random nor a number; a hash is simply a string of bits.
-            However, in order to make bitcoin mining difficult, a block hash is interpreted
-            as a number that must be less than an arbitrary target.
-          </li>
-        </ol>
-      </div>
     </Page>
 
     <Page data-anchor="simple_blockchain" slide encoding-btn v-on:rotate-encoding="rotateEncoding" v-on:update-active-encoding="updateActiveEncoding">
-      <h1>Example: Non-Proof-of-Work Blockchain</h1>
+      <h1>Example: Simplified Blockchain</h1>
       <p>
-        This is a simplified version of a blockchain.
+        This is a non-proof-of-work version of a blockchain. Add a few blocks and
+        then watch as you change an old block the change is propagated up the chain.
       </p>
 
       <AddBlockButton :disable-add-block-btn="false"

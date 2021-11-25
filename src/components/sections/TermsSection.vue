@@ -9,13 +9,13 @@
 
       <p>
         Due to the technical nature of Bitcoin, there are some aspects of the system that look like
-        gibberish to humans. Notably a Bitcoin address, transaction id, or block id. The following
-        pages will show that while this gibberish is not very human-readable, it is not random.
+        gibberish to humans. The following pages will show that while this gibberish is not very
+        human-readable, it is not non-sense.
       </p>
 
       <p>
-        <b>Hash Functions</b> are the backbone to the blockchain and to mining.
-        The result of these functions are represented with <b>Hexadecimal Notation</b>.
+        <b>Hash functions</b> are the backbone to the blockchain and to mining.
+        The output of these functions are represented with <b>Hexadecimal Notation</b>.
       </p>
     </Page>
 

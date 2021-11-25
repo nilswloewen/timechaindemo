@@ -83,14 +83,12 @@ import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
 import TargetMixin from '@/mixins/TargetMixin';
 import Page from '@/components/Page.vue';
-import UpdateDataMixin from '@/mixins/UpdateDataMixin';
 import EncodingButton from '@/components/controls/EncodingButton';
 
 export default {
   mixins: [
     BlockchainMixin,
     TargetMixin,
-    UpdateDataMixin,
   ],
   components: {
     AddBlockButton,

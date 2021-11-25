@@ -1,5 +1,6 @@
 import BlockHeader from '@/services/block/DemoBlockHeader';
 import Block from '@/services/block/DemoBlock';
+import Num from '@/services/Num';
 
 export default {
   data() {
@@ -19,6 +20,7 @@ export default {
       blocks: [new Block('', BlockHeader.genesis, 0, '#61e294', 'inherit')],
       disableAddBlockBtn: true,
       hexDigits: 2,
+      hpsOfThisDevice: 1,
       newBlockData: '',
       guesses: [],
     };
@@ -119,6 +121,65 @@ export default {
     mineThisBlock(index) {
       this.blockToMine = index;
       fullpage_api.moveSlideRight();
+    },
+    async updateNonce(nonce, index) {
+      this.blocks[index].header.nonce = nonce;
+      await this.finalizeBlock(index);
+    },
+    async startMining(index) {
+      this.isMining = true;
+
+      const block = this.blocks[index];
+
+      // Allow Solve btn to be clicked even when hash is valid.
+      // if (block.isHashValid) {
+      //   block.header.nonce += 1;
+      //   await this.finalizeBlock(index);
+      // }
+
+      while (!block.isHashValid) {
+        block.header.nonce += 1;
+        // eslint-disable-next-line no-await-in-loop
+        await this.finalizeBlock(index);
+      }
+
+      this.isMining = false;
+    },
+    async updateData(event, index) {
+      this.blocks[index].header.data = event.target.value;
+      await this.delayedUpdate(index);
+    },
+    updateHexDigits(newHexDigits) {
+      this.hexDigits = newHexDigits;
+
+      const max = BigInt(`0x${''.padEnd(this.hexDigits, 'f')}`);
+
+      this.targetMax = new Num(max - 1n, this.hexDigits);
+      this.hashMax = new Num(max, this.hexDigits);
+
+      // Reset guesses so they are not still painted on graph.
+      this.guesses = [];
+    },
+    async calibrateHps() {
+      const start = new Date().getTime();
+      let elapsed = 0;
+
+      while (elapsed < 3000) {
+        this.blocks[0].header.nonce += 1;
+        // eslint-disable-next-line no-await-in-loop
+        await this.finalizeBlock(0);
+        elapsed = new Date().getTime() - start;
+      }
+
+      this.hpsOfThisDevice = this.blocks[0].header.nonce / (elapsed / 1000);
+
+      // Reset block.
+      this.blocks[0].header.nonce = 0;
+      await this.finalizeBlock(0);
+      this.guesses = [];
+    },
+    calcAvgHashes() {
+      return 1 / (this.target.num / this.targetMax.num);
     },
   },
 };

@@ -111,7 +111,7 @@
                       v-on:update-active-encoding="updateActiveEncoding"
                       v-on:rotate-encoding="rotateEncoding" />
 
-      <Graph id="pow_canvas" :guesses="getGuesses()" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
+      <Graph id="pow_canvas" :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
       <MiningControls
         :block="blocks[blockToMine]"
         :hash-max="hashMax"
@@ -132,20 +132,14 @@ import BlockchainMixin from '@/mixins/BlockchainMixin';
 import EncodingButton from '@/components/controls/EncodingButton.vue';
 import Graph from '@/components/Graph';
 import MiningControls from '@/components/controls/MiningControls.vue';
-import NonceMixin from '@/mixins/NonceMixin';
 import Page from '@/components/Page.vue';
 import Target from '@/components/controls/Target.vue';
 import TargetMixin from '@/mixins/TargetMixin';
-import UpdateDataMixin from '@/mixins/UpdateDataMixin';
-import UpdateHexDigitsMixin from '@/mixins/UpdateHexDigitsMixin';
 
 export default {
   mixins: [
     BlockchainMixin,
-    NonceMixin,
     TargetMixin,
-    UpdateDataMixin,
-    UpdateHexDigitsMixin,
   ],
   components: {
     AddBlockButton,
@@ -163,14 +157,5 @@ export default {
       isMining: false,
     };
   },
-  methods: {
-    getGuesses() {
-      // Only show one guess at a time.
-      if (this.guesses.length > 0) {
-        this.guesses = [this.guesses[this.guesses.length - 1]];
-      }
-      return this.guesses;
-    }
-  }
 };
 </script>

@@ -14,7 +14,6 @@
     <b-list-group-item class="list-field" style="color: #f79413;"> Target </b-list-group-item>
     <b-list-group-item class="list-value" style="color: #f79413;">
       {{ target[localEncoding] }}
-
     </b-list-group-item>
 
     <!-- Hash -->
@@ -25,7 +24,7 @@
     <b-list-group-item class="list-field">Nonce</b-list-group-item>
     <b-list-group-item class="list-value">
       <b-input-group size="sm">
-        <b-form-input class="nonce_input" @change="onNonceChange"
+        <b-form-input @change="onNonceChange"
                       :value="block.header.nonce" :state="block.isHashValid"
                       type="number" :min="0" :max="4294967295" size="sm"/>
         <b-button-group>
@@ -71,7 +70,7 @@ export default {
 <style>
   .overlay {
     position: fixed;
-    top: 40px;
-    right: 10%;
+    top: 7vh;
+    right: 50%;
   }
 </style>

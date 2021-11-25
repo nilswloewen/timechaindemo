@@ -81,23 +81,15 @@ import BlockchainMixin from '@/mixins/BlockchainMixin';
 import Difficulty from '@/components/controls/Difficulty.vue';
 import EncodingButton from '@/components/controls/EncodingButton.vue';
 import Graph from '@/components/Graph.vue';
-import HashesPerSecondMixin from '@/mixins/HashesPerSecondMixin';
 import MiningControls from '@/components/controls/MiningControls.vue';
-import NonceMixin from '@/mixins/NonceMixin';
 import Page from '@/components/Page.vue';
 import Target from '@/components/controls/Target.vue';
 import TargetMixin from '@/mixins/TargetMixin';
-import UpdateDataMixin from '@/mixins/UpdateDataMixin';
-import UpdateHexDigitsMixin from '@/mixins/UpdateHexDigitsMixin';
 
 export default {
   mixins: [
     BlockchainMixin,
-    HashesPerSecondMixin,
-    NonceMixin,
     TargetMixin,
-    UpdateDataMixin,
-    UpdateHexDigitsMixin,
   ],
   components: {
     AddBlockButton,

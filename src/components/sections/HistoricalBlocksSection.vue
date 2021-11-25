@@ -29,21 +29,13 @@ import Block from '@/services/block/Block';
 import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockHeader from '@/services/block/BlockHeader';
 import EncodingButton from '@/components/controls/EncodingButton';
-import HashesPerSecondMixin from '@/mixins/HashesPerSecondMixin';
 import Mempool from '@/services/Mempool';
-import NonceMixin from '@/mixins/NonceMixin';
 import Page from '@/components/Page.vue';
 import TargetMixin from '@/mixins/TargetMixin';
-import UpdateDataMixin from '@/mixins/UpdateDataMixin';
-import UpdateHexDigitsMixin from '@/mixins/UpdateHexDigitsMixin';
 
 export default {
   mixins: [
-    HashesPerSecondMixin,
-    NonceMixin,
     TargetMixin,
-    UpdateDataMixin,
-    UpdateHexDigitsMixin,
   ],
   components: {
     BlockCard,

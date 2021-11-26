@@ -1,5 +1,10 @@
 <template>
-  <Page slide data-anchor="sha256" encoding-btn v-on:rotate-encoding="rotateEncoding" v-on:update-active-encoding="updateActiveEncoding">
+  <Page slide data-anchor="sha256"
+        encoding-btn
+        :active-encoding="activeEncoding"
+        :encoding="encoding"
+        v-on:rotate-encoding="rotateEncoding"
+        v-on:update-active-encoding="updateActiveEncoding">
     <h1>SHA-256</h1>
     <p>
       Bitcoin mining uses a particular hash function called SHA-256, which
@@ -23,8 +28,7 @@
 
     <p>
       For some context, it is estimated that there are 10<sup>78</sup> to
-      10<sup>82</sup>
-      <a href="https://www.liverpoolmuseums.org.uk/stories/which-greater-number-of-atoms-universe-or-number-of-chess-moves">atoms in the observable universe</a>.
+      10<sup>82</sup> <a href="https://www.liverpoolmuseums.org.uk/stories/which-greater-number-of-atoms-universe-or-number-of-chess-moves">atoms in the observable universe</a>.
     </p>
 
     <p>
@@ -72,11 +76,15 @@
 </template>
 
 <script>
+import EncodingMixin from '@/mixins/EncodingMixin';
 import Page from '@/components/Page.vue';
 import { sha256dFromText } from '@/services/sha256_utils';
 import Num from '@/services/Num';
 
 export default {
+  mixins: [
+    EncodingMixin
+  ],
   components: {
     Page,
   },
@@ -85,12 +93,11 @@ export default {
       data: 'Try changing this data...',
       hash: { hexadecimal: '60759d1ab05baf2c79e281d8fbff268f559328dc45bd46b12114bbbe40197271' },
       hashMax: new Num(BigInt(`0x${''.padEnd(64, 'f')}`), 64),
-
     };
   },
   async mounted() {
     const hash = await sha256dFromText(this.data);
-    this.hash = new Num(BigInt(`0x${hash}`));
+    this.hash = new Num(BigInt(`0x${hash}`), 64);
   },
   methods: {
     async updateHash(event) {

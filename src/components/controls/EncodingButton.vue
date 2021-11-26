@@ -10,7 +10,7 @@
 
     <template v-for="(item, index) in encoding">
       <b-dropdown-item :id="item" :key="item" :active="index === activeEncoding" @click="onSelectEncoding">
-        {{ cap(item) }}
+        {{ capitalize(item) }}
       </b-dropdown-item>
     </template>
   </b-dropdown>
@@ -18,23 +18,30 @@
 
 <script>
 export default {
+  props: {
+    encoding: {type: Array, default: ['binary', 'decimal', 'hexadecimal']},
+    activeEncoding: {type: Number, default: 2},
+  },
   watch: {
     activeEncoding() {
-      this.header = this.cap(this.encoding[this.activeEncoding]);
+      this.header = this.capitalize(this.encoding[this.activeEncoding]);
     }
+  },
+  mounted() {
+    this.header = this.capitalize(this.encoding[this.activeEncoding]);
   },
   methods: {
     onRotateEncoding() {
       this.$emit('rotate-encoding');
       this.activeEncoding += 1;
       this.activeEncoding %= this.encoding.length;
-      this.header = this.cap(this.encoding[this.activeEncoding]);
+      this.header = this.capitalize(this.encoding[this.activeEncoding]);
     },
     onSelectEncoding(e) {
       this.$emit('update-active-encoding', this.encoding.indexOf(e.target.id));
-      this.header = this.cap(this.encoding[this.encoding.indexOf(e.target.id)]);
+      this.header = this.capitalize(this.encoding[this.encoding.indexOf(e.target.id)]);
     },
-    cap(word) {
+    capitalize(word) {
       return word.charAt(0).toUpperCase() + word.slice(1);
     }
   },

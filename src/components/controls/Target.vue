@@ -37,7 +37,6 @@
             On average it will take <div class="stat odds">~{{ avgHashes.toFixed(0) }}</div>
             tries to find a valid hash.
           </b-list-group-item>
-          <b-button size="sm" @click="$emit('real-target-max')"><b-icon-book/></b-button>
         </template>
       </b-card>
     </template>

@@ -9,7 +9,7 @@ class DemoBlockHeader extends BlockHeader {
   }
 
   static get genesis() {
-    return new DemoBlockHeader('Alice sent Bob 5$', 0, new Num(BigInt(0)));
+    return new DemoBlockHeader('Alice sent Bob 5₿', 0, new Num(BigInt(0)));
   }
 
   serialize() {

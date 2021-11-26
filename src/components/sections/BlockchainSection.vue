@@ -53,9 +53,15 @@
       </b-card>
     </Page>
 
-    <Page data-anchor="simple_blockchain" slide encoding-btn v-on:rotate-encoding="rotateEncoding" v-on:update-active-encoding="updateActiveEncoding">
+    <Page data-anchor="simple_blockchain" slide
+          encoding-btn
+          :active-encoding="activeEncoding"
+          :encoding="encoding"
+          v-on:rotate-encoding="rotateEncoding"
+          v-on:update-active-encoding="updateActiveEncoding">
       <h1>Example: Simplified Blockchain</h1>
       <p>
+        For this demo we will start by only looking at the first 2 digits of the hash of each block.
         This is a non-proof-of-work version of a blockchain. Add a few blocks and
         then watch as you change an old block the change is propagated up the chain.
       </p>
@@ -81,6 +87,7 @@
 import AddBlockButton from '@/components/controls/AddBlockButton.vue';
 import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
+import EncodingMixin from '@/mixins/EncodingMixin';
 import TargetMixin from '@/mixins/TargetMixin';
 import Page from '@/components/Page.vue';
 import EncodingButton from '@/components/controls/EncodingButton';
@@ -88,6 +95,7 @@ import EncodingButton from '@/components/controls/EncodingButton';
 export default {
   mixins: [
     BlockchainMixin,
+    EncodingMixin,
     TargetMixin,
   ],
   components: {
@@ -96,5 +104,10 @@ export default {
     EncodingButton,
     Page,
   },
+  data() {
+    return {
+      encoding: ['binary', 'decimal', 'hexadecimal'],
+    };
+  }
 };
 </script>

@@ -112,40 +112,30 @@ export default {
         await this.delayedUpdate(index - 1);
       }, 1000);
     },
-    getColor() {
-      const i = this.index % this.colors.length;
-      return this.colors[i];
-    },
+
     mineThisBlock(index) {
       this.blockToMine = index;
+      this.guesses = [];
       fullpage_api.moveSlideRight();
-    },
-    async updateNonce(nonce, index) {
-      this.blocks[index].header.nonce = nonce;
-      await this.finalizeBlock(index);
-    },
-    async updateData(event, index) {
-      this.blocks[index].header.data = event.target.value;
-      await this.delayedUpdate(index);
     },
     async startMining(index) {
       this.isMining = true;
-
       const block = this.blocks[index];
-
-      // Allow Solve btn to be clicked even when hash is valid.
-      // if (block.isHashValid) {
-      //   block.header.nonce += 1;
-      //   await this.finalizeBlock(index);
-      // }
 
       while (!block.isHashValid) {
         block.header.nonce += 1;
-        // eslint-disable-next-line no-await-in-loop
         await this.finalizeBlock(index);
       }
 
       this.isMining = false;
+    },
+    async updateNonce(nonce, index) {
+      this.blocks[index].header.nonce = nonce;
+      await this.instantUpdate(index);
+    },
+    async updateData(event, index) {
+      this.blocks[index].header.data = event.target.value;
+      await this.delayedUpdate(index);
     },
     updateHexDigits(newHexDigits) {
       this.hexDigits = newHexDigits;

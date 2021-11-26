@@ -81,6 +81,7 @@ export default {
           slides: [
             { anchor: 'target', label: 'Target' },
             { anchor: 'pow_blockchain', label: 'Proof-of-Work Blockchain' },
+            { anchor: 'pow_mining', label: 'Proof-of-Work Mining' },
           ],
         },
         {
@@ -309,7 +310,7 @@ export default {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/transcending_forward.jpg');
   }
-  #pow_graph_slide .fp-bg {
+  #pow_mining_slide .fp-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('/assets/backgrounds/transcending_forward.jpg');
   }

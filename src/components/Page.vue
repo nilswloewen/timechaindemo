@@ -23,6 +23,8 @@ export default {
   props: {
     dataAnchor: String,
     encodingBtn: Boolean,
+    encoding:  Array,
+    activeEncoding: Number,
     slide: Boolean,
   },
   components: {

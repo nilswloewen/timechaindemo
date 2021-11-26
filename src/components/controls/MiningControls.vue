@@ -33,7 +33,7 @@
           </b-button>
         </b-button-group>
       </b-input-group>
-      <b-form-checkbox @change="onStartMining" switch :checked="isMining" size="lg">
+      <b-form-checkbox @change="onStartMining" switch :checked="isMining" size="lg" :disabled="block.isHashValid">
         Go Brrr
       </b-form-checkbox>
     </b-list-group-item>

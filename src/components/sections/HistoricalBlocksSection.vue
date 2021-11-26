@@ -1,6 +1,9 @@
 <template>
   <div class="section">
-    <Page data-anchor="historical_blocks" slide encoding-btn
+    <Page data-anchor="historical_blocks" slide
+          encoding-btn
+          :active-encoding="activeEncoding"
+          :encoding="encoding"
           v-on:rotate-encoding="rotateEncoding"
           v-on:update-active-encoding="updateActiveEncoding">
       <h1>Historical Blocks</h1>
@@ -29,12 +32,14 @@ import Block from '@/services/block/Block';
 import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockHeader from '@/services/block/BlockHeader';
 import EncodingButton from '@/components/controls/EncodingButton';
+import EncodingMixin from '@/mixins/EncodingMixin';
 import Mempool from '@/services/Mempool';
 import Page from '@/components/Page.vue';
 import TargetMixin from '@/mixins/TargetMixin';
 
 export default {
   mixins: [
+    EncodingMixin,
     TargetMixin,
   ],
   components: {
@@ -46,6 +51,7 @@ export default {
     return {
       block: new Block('', BlockHeader.genesis, 0),
       mempool: new Mempool(),
+      encoding: ['binary', 'decimal', 'hexadecimal', 'exponential'],
     };
   },
   async mounted() {

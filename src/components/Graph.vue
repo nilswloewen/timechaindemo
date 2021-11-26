@@ -8,7 +8,7 @@ import Num from '@/services/Num';
 export default {
   props: {
     animate: Boolean,
-    guesses: { type: Array },
+    guesses: Array,
     id: String,
     localEncoding: String,
     target: Num,
@@ -202,18 +202,16 @@ export default {
     },
 
     drawGuess(xRatio, yRatio, label, opacity = 1, isHashValid = false) {
-      const arrowLabel = `${label}`;
-
       let x = this.zero.x - (this.width * xRatio);
       const y = this.zero.y - (this.height * yRatio);
 
       if (!this.animate) {
-        x -= 30;
+        x -= 34;
         opacity = 1;
       }
 
       // Background
-      const labelMetrics = this.ctx.measureText(arrowLabel);
+      const labelMetrics = this.ctx.measureText(label);
       this.ctx.fillStyle = this.bgColor;
       this.ctx.fillRect(
         x - 2, y - 12,
@@ -223,7 +221,7 @@ export default {
       // Label
       this.ctx.direction = 'ltr';
       this.ctx.fillStyle = isHashValid ? `rgba(247, 148, 19, ${opacity})` : `rgba(255, 255, 255, ${opacity})`;
-      this.ctx.fillText(arrowLabel, x, y + 4);
+      this.ctx.fillText(label, x, y + 4);
     },
 
 

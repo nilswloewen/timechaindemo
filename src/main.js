@@ -19,20 +19,8 @@ Vue.use(CardPlugin);
 Vue.use(VueFullPage);
 
 Vue.mixin({
-  data() {
-    return {
-      activeEncoding: 2,
-      encoding: ['binary', 'decimal', 'hexadecimal',  'exponential'],
-    };
-  },
   methods: {
-    rotateEncoding() {
-      this.activeEncoding += 1;
-      this.activeEncoding %= this.encoding.length;
-    },
-    updateActiveEncoding(newEncoding) {
-      this.activeEncoding = newEncoding;
-    },
+
     moveTo(anchor, index) {
       window.fullpage_api.moveTo(anchor, index);
     },

@@ -25,9 +25,11 @@ async function sha256FromUint8Array(arr) {
 function textToUint8Array(text) {
   return new TextEncoder().encode(text);
 }
+
 async function sha256FromText(text) {
   return sha256FromUint8Array(textToUint8Array(text));
 }
+
 async function sha256dFromText(text) {
   const pass1 = await sha256FromText(text);
   const pass2 = await sha256FromText(pass1);
@@ -41,9 +43,11 @@ function hexToUint8Array(hexStr) {
 
   return new Uint8Array(hexStr.match(/.{1,2}/g).map((pair) => parseInt(pair, 16)));
 }
+
 async function sha256FromHex(hexStr) {
   return sha256FromUint8Array(hexToUint8Array(hexStr));
 }
+
 async function sha256dFromHex(data) {
   const pass1 = await sha256FromHex(data);
   const pass2 = await sha256FromHex(pass1);
@@ -54,5 +58,5 @@ export {
   intToHex,
   sha256dFromHex,
   sha256dFromText,
-  swapEndian,
+  swapEndian
 };

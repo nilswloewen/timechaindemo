@@ -5,14 +5,14 @@ import Num from '@/services/Num';
 
 class Mempool {
   constructor() {
-    const { bitcoin: { blocks } } = mempoolJS({ hostname: 'mempool.space' });
+    const {bitcoin: {blocks}} = mempoolJS({hostname: 'mempool.space'});
     this.api = blocks;
   }
 
   async getBlockById(hash) {
-    const memBlock = await this.api.getBlock({ hash });
+    const memBlock = await this.api.getBlock({hash});
     let prevHash = memBlock.previousblockhash || ''.padStart(64, '0');
-    prevHash = new Num(BigInt(`0x${prevHash}`), 64)
+    prevHash = new Num(BigInt(`0x${ prevHash }`), 64);
 
     const header = new BlockHeader(
       memBlock.bits,
@@ -20,10 +20,10 @@ class Mempool {
       memBlock.nonce,
       prevHash,
       memBlock.timestamp,
-      memBlock.version,
+      memBlock.version
     );
 
-    const id = new Num(BigInt(`0x${memBlock.id}`), 64);
+    const id = new Num(BigInt(`0x${ memBlock.id }`), 64);
     return new Block(id, header, memBlock.height);
   }
 
@@ -32,7 +32,7 @@ class Mempool {
   }
 
   async getBlockIdFromHeight(height) {
-    return this.api.getBlockHeight({ height });
+    return this.api.getBlockHeight({height});
   }
 }
 

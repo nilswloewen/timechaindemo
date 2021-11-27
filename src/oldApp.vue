@@ -1,67 +1,67 @@
 <template>
-  <div id="app">
+<div id="app">
 
-    <Graph :guesses="this.guesses" :target="this.target" :encoding="this.encoding"/>
+  <Graph :guesses="this.guesses" :target="this.target" :encoding="this.encoding"/>
 
-    <b-container id="overlay" class="fixed-top vh-100 pt-3">
-      <b-row>
-        <b-col>
+  <b-container id="overlay" class="fixed-top vh-100 pt-3">
+    <b-row>
+      <b-col>
 
-            <b-button-toolbar size="sm" class="justify-content-center">
+        <b-button-toolbar size="sm" class="justify-content-center">
 
-              <!-- Down Arrow -->
-              <b-dd style="background-color: rgba(0, 0, 0, 0.03); color: black; max-width: 42px;"
-                    class="border-0 float-start">
-                <b-dd-item-btn v-b-toggle="['collapse_algorithm']">Algorithm</b-dd-item-btn>
-                <b-dd-item-btn v-b-toggle="['collapse_block_header']">Block Header</b-dd-item-btn>
-                <b-dd-item-btn v-b-toggle="['collapse_block_chain_overview']">
-                  Blockchain
-                </b-dd-item-btn>
-                <b-dd-item-btn v-b-toggle="['collapse_controls']">Controls</b-dd-item-btn>
-                <b-dd-item-btn v-b-toggle="['collapse_hash']">Hash</b-dd-item-btn>
-                <b-dd-item-btn v-b-toggle="['collapse_legend']">Legend</b-dd-item-btn>
-                <b-dd-item-btn v-b-toggle="['collapse_welcome']">Welcome</b-dd-item-btn>
-              </b-dd>
+          <!-- Down Arrow -->
+          <b-dd style="background-color: rgba(0, 0, 0, 0.03); color: black; max-width: 42px;"
+                class="border-0 float-start">
+            <b-dd-item-btn v-b-toggle="['collapse_algorithm']">Algorithm</b-dd-item-btn>
+            <b-dd-item-btn v-b-toggle="['collapse_block_header']">Block Header</b-dd-item-btn>
+            <b-dd-item-btn v-b-toggle="['collapse_block_chain_overview']">
+              Blockchain
+            </b-dd-item-btn>
+            <b-dd-item-btn v-b-toggle="['collapse_controls']">Controls</b-dd-item-btn>
+            <b-dd-item-btn v-b-toggle="['collapse_hash']">Hash</b-dd-item-btn>
+            <b-dd-item-btn v-b-toggle="['collapse_legend']">Legend</b-dd-item-btn>
+            <b-dd-item-btn v-b-toggle="['collapse_welcome']">Welcome</b-dd-item-btn>
+          </b-dd>
 
-              <b-collapse id="collapse_controls">
-                <b-input-group prepend="Nonce">
-                  <b-form-input @change="tryNonce" v-model.number="nonce" type="number"
-                                pattern="[0-9]*" min="0" max="4294967295"
-                                style="max-width: 140px; text-align: right;" />
+          <b-collapse id="collapse_controls">
+            <b-input-group prepend="Nonce">
+              <b-form-input @change="tryNonce" v-model.number="nonce" type="number"
+                            pattern="[0-9]*" min="0" max="4294967295"
+                            style="max-width: 140px; text-align: right;"/>
 
-                  <b-button @click="onIncrementNonce" variant="secondary">
-                    + 1
-                  </b-button>
+              <b-button @click="onIncrementNonce" variant="secondary">
+                + 1
+              </b-button>
 
-                  <b-button @click="onShowNonce" variant="warning">
-                    Solve
-                  </b-button>
-                </b-input-group>
-              </b-collapse>
+              <b-button @click="onShowNonce" variant="warning">
+                Solve
+              </b-button>
+            </b-input-group>
+          </b-collapse>
 
-            </b-button-toolbar>
+        </b-button-toolbar>
 
-          <Algorithm />
-          <BlockHeader v-on:updateBlock="updateBlock"/>
-          <BlockchainOverview/>
-          <Hash/>
-          <Legend :target="this.target" :encoding="this.encoding" :hash="this.hash"
-                  v-on:rotateEncoding="rotateEncoding" :hashMax="this.hashMax"/>
-          <Welcome/>
+        <Algorithm/>
+        <BlockHeader v-on:updateBlock="updateBlock"/>
+        <BlockchainOverview/>
+        <Hash/>
+        <Legend :target="this.target" :encoding="this.encoding" :hash="this.hash"
+                v-on:rotateEncoding="rotateEncoding" :hashMax="this.hashMax"/>
+        <Welcome/>
 
-        </b-col>
-      </b-row>
-    </b-container>
+      </b-col>
+    </b-row>
+  </b-container>
 
-    <b-container class="fixed-bottom text-center pb-3">
-      <b-row >
-        <b-col >
-          <span id="hps"/> Hashes per Second
-        </b-col>
-      </b-row>
-    </b-container>
+  <b-container class="fixed-bottom text-center pb-3">
+    <b-row>
+      <b-col>
+        <span id="hps"/> Hashes per Second
+      </b-col>
+    </b-row>
+  </b-container>
 
-  </div>
+</div>
 </template>
 
 <script>
@@ -77,6 +77,7 @@ import { serializeBlockHeader, sha256dFromHex } from '@/services/sha256_utils';
 // Not sure why this didn't work in vue object. It was updating far too often.
 let tries = 0;
 const startTime = new Date().getTime();
+
 function calcHashesPerSecond() {
   const hpsSpan = document.getElementById('hps');
   if (hpsSpan) {
@@ -85,6 +86,7 @@ function calcHashesPerSecond() {
   }
   setTimeout(calcHashesPerSecond, 1000);
 }
+
 calcHashesPerSecond();
 
 export default {
@@ -95,21 +97,21 @@ export default {
     Graph,
     Hash,
     Legend,
-    Welcome,
+    Welcome
   },
   data() {
     return {
-      block: { difficulty: 1 },
+      block: {difficulty: 1},
 
       nonce: 0,
       hash: {
-        decimal: 0, binary: 0, hexadecimal: 0, exponential: 0, xRatio: 0, yRatio: 0,
+        decimal: 0, binary: 0, hexadecimal: 0, exponential: 0, xRatio: 0, yRatio: 0
       },
       guesses: [],
 
       hashMax: Object,
-      target: { yRatio: 0 },
-      encoding: ['hexadecimal', 'decimal', 'exponential', 'binary'],
+      target: {yRatio: 0},
+      encoding: ['hexadecimal', 'decimal', 'exponential', 'binary']
     };
   },
 
@@ -121,7 +123,7 @@ export default {
   methods: {
     setHashMax() {
       this.hashMax = this.encode(
-        0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffn,
+        0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffn
       );
       this.hashMax.binary = ''.padStart(256, '1');
       this.hashMax.hexadecimal = ''.padStart(64, 'f');
@@ -142,14 +144,14 @@ export default {
       // Calculate hash.
       const serializedHeader = serializeBlockHeader(this.block, this.nonce);
       let hash = await sha256dFromHex(serializedHeader);
-      hash = this.encode(`0x${hash}`);
+      hash = this.encode(`0x${ hash }`);
       this.hash = hash;
 
       // Add yRatio for Legend.
       const yRatio = parseInt(this.hash.hexadecimal, 16) / Number(this.hashMax.bigInt);
       this.hash.yRatio = yRatio;
 
-      this.guesses.push({ xRatio: 0, yRatio, hash });
+      this.guesses.push({xRatio: 0, yRatio, hash});
 
       if (this.hash.bigInt < this.target.bigInt) {
         // eslint-disable-next-line no-alert
@@ -180,40 +182,44 @@ export default {
         binary: bigInt.toString(2).padStart(256, '0'),
         decimal: bigInt.toLocaleString('en-US').padStart(103, '000,'),
         exponential: Number(val).toExponential(),
-        hexadecimal: bigInt.toString(16).padStart(64, '0'),
+        hexadecimal: bigInt.toString(16).padStart(64, '0')
       };
     },
     rotateEncoding() {
       this.encoding.push(this.encoding.shift());
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fira%20Code:wght@300..700&display=swap');
-  body{
-    overflow: hidden;
-  }
-  #app {
-    font-size: 16px;
-    font-family: 'Fira Code', monospace;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Fira%20Code:wght@300..700&display=swap');
 
-  .card {
-    /*min-width: 660px;*/
-    max-width: 660px;
-  }
-  .card-body {
-    overflow-y: auto;
-    max-height: 90vh;
-  }
-  .card
-  {
-    margin-top: .5em;
-    /*margin-bottom: .5em;*/
-  }
-  .list-field {
-    border-bottom: none;
-  }
+body {
+  overflow: hidden;
+}
+
+#app {
+  font-size: 16px;
+  font-family: 'Fira Code', monospace;
+}
+
+.card {
+  /*min-width: 660px;*/
+  max-width: 660px;
+}
+
+.card-body {
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+.card {
+  margin-top: .5em;
+  /*margin-bottom: .5em;*/
+}
+
+.list-field {
+  border-bottom: none;
+}
 </style>

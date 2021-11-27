@@ -1,5 +1,5 @@
 <template>
-  <canvas :id="id"/>
+<canvas :id="id"/>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
     guesses: Array,
     id: String,
     localEncoding: String,
-    target: Num,
+    target: Num
   },
 
   mounted() {
@@ -34,7 +34,7 @@ export default {
     this.height = this.screenHeight - (this.yPad * 2);
 
     // Shortcut for bottom right of graph where axis meet.
-    this.zero = { x: this.screenWidth - this.xPad, y: this.screenHeight - this.yPad };
+    this.zero = {x: this.screenWidth - this.xPad, y: this.screenHeight - this.yPad};
 
     if (this.animate) {
       this.setTicks(16);
@@ -60,7 +60,7 @@ export default {
       screenHeight: Number,
       zero: Object,
       tickSpeed: 1 / 1280,
-      ticks: [],
+      ticks: []
     };
   },
 
@@ -135,7 +135,7 @@ export default {
       this.ctx.fillText(
         'Target',
         this.zero.x - 64,
-        y + 6,
+        y + 6
       );
     },
 
@@ -165,7 +165,7 @@ export default {
 
         const grd = this.ctx.createLinearGradient(this.zero.x, this.zero.y, this.zero.x, this.yPad);
         grd.addColorStop(1, this.bgColor);
-        grd.addColorStop(0, `rgba(255, 255, 255, ${0.5 - xRatio})`);
+        grd.addColorStop(0, `rgba(255, 255, 255, ${ 0.5 - xRatio })`);
 
         this.ctx.beginPath();
         this.ctx.strokeStyle = grd;
@@ -215,12 +215,12 @@ export default {
       this.ctx.fillStyle = this.bgColor;
       this.ctx.fillRect(
         x - 2, y - 12,
-        labelMetrics.width + 5, 20,
+        labelMetrics.width + 5, 20
       );
 
       // Label
       this.ctx.direction = 'ltr';
-      this.ctx.fillStyle = isHashValid ? `rgba(247, 148, 19, ${opacity})` : `rgba(255, 255, 255, ${opacity})`;
+      this.ctx.fillStyle = isHashValid ? `rgba(247, 148, 19, ${ opacity })` : `rgba(255, 255, 255, ${ opacity })`;
       this.ctx.fillText(label, x, y + 4);
     },
 
@@ -231,7 +231,7 @@ export default {
         this.xPad + this.width,
         0,
         this.xPad * 2 + this.width,
-        this.height + this.yPad * 2,
+        this.height + this.yPad * 2
       );
     },
 
@@ -252,7 +252,7 @@ export default {
 
 
       window.requestAnimationFrame(this.drawGraph);
-    },
-  },
+    }
+  }
 };
 </script>

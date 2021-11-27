@@ -10,7 +10,7 @@ export default {
       numerator: 0n,
       probability: 0.2,
       target: new Num(32n),
-      targetMax: new Num(255n),
+      targetMax: new Num(255n)
     };
   },
   mounted() {
@@ -25,7 +25,7 @@ export default {
   methods: {
     realTargetMax() {
       this.targetMax = new Num(
-        BigInt( 0x00000000ffff0000000000000000000000000000000000000000000000000000n),
+        BigInt(0x00000000ffff0000000000000000000000000000000000000000000000000000n),
         64
       );
       this.calcStats();
@@ -41,7 +41,7 @@ export default {
       // Check if all blocks are still under the target.
       this.blocks.forEach((block) => {
         block.isHashValid = block.hash.bigInt < this.target.bigInt;
-      })
+      });
 
       // Check if each guess is still under target.
       this.guesses.forEach((guess) => {
@@ -69,6 +69,6 @@ export default {
         if (a === BigInt(0)) return b;
         b %= a;
       }
-    },
-  },
+    }
+  }
 };

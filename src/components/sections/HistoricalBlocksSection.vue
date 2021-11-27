@@ -1,30 +1,30 @@
 <template>
-  <div class="section">
-    <Page data-anchor="historical_blocks" slide
-          encoding-btn
-          :active-encoding="activeEncoding"
-          :encoding="encoding"
-          v-on:rotate-encoding="rotateEncoding"
-          v-on:update-active-encoding="updateActiveEncoding">
-      <h1>Historical Blocks</h1>
-      <p>
-        The 'data' in real Bitcoin blocks consists of the <b>Version</b> of the
-        software used to create the block, a recording of the target called
-        <b>Bits</b>, and a record of the transactions in the block called a <b>Merkle Root</b>.
-        For more information on each field, see <a href="https://developer.bitcoin.org/reference/block_chain.html">developer.bitcoin.org/reference/block_chain.html</a>
-      </p>
+<div class="section">
+  <Page data-anchor="historical_blocks" slide
+        encoding-btn
+        :active-encoding="activeEncoding"
+        :encoding="encoding"
+        v-on:rotate-encoding="rotateEncoding"
+        v-on:update-active-encoding="updateActiveEncoding">
+    <h1>Historical Blocks</h1>
+    <p>
+      The 'data' in real Bitcoin blocks consists of the <b>Version</b> of the
+      software used to create the block, a recording of the target called
+      <b>Bits</b>, and a record of the transactions in the block called a <b>Merkle Root</b>.
+      For more information on each field, see <a href="https://developer.bitcoin.org/reference/block_chain.html">developer.bitcoin.org/reference/block_chain.html</a>
+    </p>
 
-      <BlockCard :block="block"
-                 :hex-digits="64"
-                 :local-encoding="encoding[activeEncoding]"
-                 showBlockHeightInput
-                 showReal
-                 showNonce
-                 v-on:update-block-height="updateBlockHeight"
-                 v-on:update-block-height-latest="updateBlockHeightLatest"/>
+    <BlockCard :block="block"
+               :hex-digits="64"
+               :local-encoding="encoding[activeEncoding]"
+               showBlockHeightInput
+               showReal
+               showNonce
+               v-on:update-block-height="updateBlockHeight"
+               v-on:update-block-height-latest="updateBlockHeightLatest"/>
 
-    </Page>
-  </div>
+  </Page>
+</div>
 </template>
 
 <script>
@@ -40,18 +40,18 @@ import TargetMixin from '@/mixins/TargetMixin';
 export default {
   mixins: [
     EncodingMixin,
-    TargetMixin,
+    TargetMixin
   ],
   components: {
     BlockCard,
     EncodingButton,
-    Page,
+    Page
   },
   data() {
     return {
       block: new Block('', BlockHeader.genesis, 0),
       mempool: new Mempool(),
-      encoding: ['binary', 'decimal', 'hexadecimal', 'exponential'],
+      encoding: ['binary', 'decimal', 'hexadecimal', 'exponential']
     };
   },
   async mounted() {
@@ -71,7 +71,7 @@ export default {
       this.block = await this.mempool.getBlockById(id);
       await this.block.calcHash();
       this.blockHeightMax = this.block.height;
-    },
-  },
+    }
+  }
 };
 </script>

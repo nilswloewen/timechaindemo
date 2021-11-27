@@ -2,8 +2,8 @@ export default {
   data() {
     return {
       activeEncoding: 2,
-      encoding: ['binary', 'decimal', 'hexadecimal', 'exponential'],
-    }
+      encoding: ['binary', 'decimal', 'hexadecimal', 'exponential']
+    };
   },
   methods: {
     rotateEncoding() {
@@ -12,6 +12,6 @@ export default {
     },
     updateActiveEncoding(newEncoding) {
       this.activeEncoding = newEncoding;
-    },
+    }
   }
-}
+};

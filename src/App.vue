@@ -1,17 +1,17 @@
 <template>
-  <div id="app">
-    <full-page id="fullpage" :options="fullpageOptions" >
+<div id="app">
+  <full-page id="fullpage" :options="fullpageOptions">
 
-      <IntroSection :contents="table_of_contents" />
-      <TermsSection/>
-      <BlockchainSection/>
-      <PowBlockchainSection/>
-      <TimeChainSection/>
-      <HistoricalBlocksSection/>
-      <ResourcesSection/>
+    <IntroSection :contents="table_of_contents"/>
+    <TermsSection/>
+    <BlockchainSection/>
+    <PowBlockchainSection/>
+    <TimeChainSection/>
+    <HistoricalBlocksSection/>
+    <ResourcesSection/>
 
-    </full-page>
-  </div>
+  </full-page>
+</div>
 </template>
 
 <script>
@@ -32,7 +32,7 @@ export default {
     PowBlockchainSection,
     ResourcesSection,
     TermsSection,
-    TimeChainSection,
+    TimeChainSection
   },
   data() {
     return {
@@ -54,49 +54,49 @@ export default {
         parallaxOptions: {
           type: 'reveal',
           percentage: 62,
-          property: 'translate',
-        },
+          property: 'translate'
+        }
       },
       table_of_contents: [
-        { anchor: 'intro', label: 'Intro' },
+        {anchor: 'intro', label: 'Intro'},
         {
           anchor: 'terms',
           label: 'Terms',
           slides: [
-            { anchor: 'hexadecimal_notation', label: 'Numerical Notation' },
-            { anchor: 'hash_functions', label: 'Hash Functions' },
-            { anchor: 'sha256', label: 'SHA-256' },
-          ],
+            {anchor: 'hexadecimal_notation', label: 'Numerical Notation'},
+            {anchor: 'hash_functions', label: 'Hash Functions'},
+            {anchor: 'sha256', label: 'SHA-256'}
+          ]
         },
         {
           anchor: 'blockchain',
           label: 'Blockchain',
           slides: [
-            { anchor: 'simple_blockchain', label: 'Non-Proof-of-Work' },
-          ],
+            {anchor: 'simple_blockchain', label: 'Non-Proof-of-Work'}
+          ]
         },
         {
           anchor: 'pow',
           label: 'Mining',
           slides: [
-            { anchor: 'target', label: 'Target' },
-            { anchor: 'pow_blockchain', label: 'Proof-of-Work Blockchain' },
-            { anchor: 'pow_mining', label: 'Proof-of-Work Mining' },
-          ],
+            {anchor: 'target', label: 'Target'},
+            {anchor: 'pow_blockchain', label: 'Proof-of-Work Blockchain'},
+            {anchor: 'pow_mining', label: 'Proof-of-Work Mining'}
+          ]
         },
         {
           anchor: 'timechain',
           label: 'Timechain',
           slides: [
-            { anchor: 'difficulty', label: 'Difficulty' },
-            { anchor: 'hash_rate', label: 'Hash Rate' },
-            { anchor: 'probability', label: 'Probability' },
-            { anchor: 'timechain_graph', label: 'Timechain Graph' },
-          ],
+            {anchor: 'difficulty', label: 'Difficulty'},
+            {anchor: 'hash_rate', label: 'Hash Rate'},
+            {anchor: 'probability', label: 'Probability'},
+            {anchor: 'timechain_graph', label: 'Timechain Graph'}
+          ]
         },
-        { anchor: 'historical_blocks', label: 'Real Blocks' },
-        { anchor: 'resources', label: 'Resources' },
-      ],
+        {anchor: 'historical_blocks', label: 'Real Blocks'},
+        {anchor: 'resources', label: 'Resources'}
+      ]
     };
   },
   mounted() {
@@ -114,227 +114,258 @@ export default {
       if (anchors.length > 0) {
         this.moveTo(anchors.pop());
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fira%20Code:wght@300..700&display=swap');
-  #app {
-    background-color: #15202b;
-    font-size: 16px;
-    font-family: 'Fira Code', monospace;
-    text-align: justify;
-    color: white;
-    text-shadow: #000 0 0 3px;
-    -webkit-font-smoothing: antialiased;
-  }
-  a {
-    color: white;
-    text-decoration: underline;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Fira%20Code:wght@300..700&display=swap');
 
-  /* Works on Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-  }
-  *::-webkit-scrollbar-track {
-    background: #15202b;
-  }
-  *::-webkit-scrollbar-thumb {
-    background-color: #17a2b8;
-    border-radius: 20px;
-    border: 3px solid #17a2b8;
-  }
+#app {
+  background-color: #15202b;
+  font-size: 16px;
+  font-family: 'Fira Code', monospace;
+  text-align: justify;
+  color: white;
+  text-shadow: #000 0 0 3px;
+  -webkit-font-smoothing: antialiased;
+}
 
-  .col {
-    max-width: 593px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 3em;
-    padding-bottom: 30vh;
-  }
+a {
+  color: white;
+  text-decoration: underline;
+}
 
-  .card {
-    margin: 0 auto 1em auto;
-    background-color: rgba(0, 0, 0, 0.3);
-    max-width: 625px;
-    box-shadow:  -1px 2px 5px 0 gray;
-    text-align: left;
-  }
-  .card-header {
-    background-color: #343a40;
-    color: white;
-    text-shadow: black 0 0 5px;
-  }
-  .card-header svg {
-    filter: drop-shadow( 0px 0px 1px black);
-  }
-  .blockchain_wrapper {
-    margin-top: 2em;
-    text-align: center;
-    max-height: 60vh;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-  }
-  .add_block_card,
-  .blockchain_wrapper {
-    padding: 0 4px;
-  }
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
 
-  .list-group-item {
-    background-color: transparent;
-    border: none;
-    font-size: 0.875rem;
-    padding: 0 .5em;
-  }
-  .list-field {
-    padding-top: 7px;
-    padding-bottom: 0;
-  }
-  .list-value {
-    overflow-y: auto;
-    overflow-wrap: normal;
-    padding-bottom: 7px;
-    padding-top: 2px;
-    border-bottom: 1px solid darkgray;
-  }
-  .card .list-value:last-child {
-    border-bottom: none;
-  }
+*::-webkit-scrollbar-track {
+  background: #15202b;
+}
 
-  .table {
-    margin-bottom: 0;
-  }
-  tr {
-    background-color: transparent;
-  }
+*::-webkit-scrollbar-thumb {
+  background-color: #17a2b8;
+  border-radius: 20px;
+  border: 3px solid #17a2b8;
+}
 
-  hr {
-    border-top: 1px solid gray;
-    margin: .5em 0;
-  }
+.col {
+  max-width: 593px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 3em;
+  padding-bottom: 30vh;
+}
 
-  .form-control,
-  .form-control:disabled, .form-control[readonly],
-  .input-group-text {
-    background-color: inherit;
-    text-shadow: #000 0 0 5px;
-    color: inherit;
-  }
-  .form-control:focus {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.3);
-  }
+.card {
+  margin: 0 auto 1em auto;
+  background-color: rgba(0, 0, 0, 0.3);
+  max-width: 625px;
+  box-shadow: -1px 2px 5px 0 gray;
+  text-align: left;
+}
 
-  h1 {
-    margin-bottom: 1em;
-    text-align: center;
-    color: #f9f9fb;
-  }
+.card-header {
+  background-color: #343a40;
+  color: white;
+  text-shadow: black 0 0 5px;
+}
 
-  /* FullPage Controls */
-  #fp-nav {
-    top: 33%;
-  }
-  .fp-controlArrow {
-    top: 66%;
-  }
-  .fp-controlArrow.fp-prev{
-    border-width: 16px 16px 16px 0;
-  }
-  .fp-controlArrow.fp-next {
-    border-width: 16px 0 16px 16px;
-  }
-  #fp-nav ul li a span, .fp-slidesNav ul li a span {
-    background-color: #f9f9fb;
-  }
-  .fp-slidesNav {
-    transform: translate(50%,-50%);
-  }
-  .fp-bg {
-    background-size: cover;
-    background-position: center;
-  }
+.card-header svg {
+  filter: drop-shadow(0px 0px 1px black);
+}
 
-  #intro_section .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/small_brain.jpg');
-  }
+.blockchain_wrapper {
+  margin-top: 2em;
+  text-align: center;
+  max-height: 60vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
 
-  #terms_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/neurons_heating_up.jpg');
-  }
-  #hexadecimal_notation_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/neurons2.jpg');
-  }
-  #hash_functions_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/neurons3.jpg');
-  }
-  #sha256_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/Brain-image-by-pitju.jpg');
-  }
+.add_block_card,
+.blockchain_wrapper {
+  padding: 0 4px;
+}
 
-  #blockchain_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/brain_black.webp');
-  }
-  #simple_blockchain_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/blue_brain.jpg');
-  }
+.list-group-item {
+  background-color: transparent;
+  border: none;
+  font-size: 0.875rem;
+  padding: 0 .5em;
+}
 
-  #pow_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/orange_brain.jpg');
-  }
-  #target_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/brain_mushrooms.jpg');
-  }
-  #nonce_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/brain_mushrooms.jpg');
-  }
-  #mining_algorithm_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/transcending_forward.jpg');
-  }
-  #pow_blockchain_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/transcending_forward.jpg');
-  }
-  #pow_mining_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/transcending_forward.jpg');
-  }
+.list-field {
+  padding-top: 7px;
+  padding-bottom: 0;
+}
 
-  #timechain_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/brain_man.jpg');
-  }
-  #timechain_blocks_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/brain_man.jpg');
-  }
-  #timechain_graph_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/transcending_forward.jpg');
-  }
+.list-value {
+  overflow-y: auto;
+  overflow-wrap: normal;
+  padding-bottom: 7px;
+  padding-top: 2px;
+  border-bottom: 1px solid darkgray;
+}
 
-  #historical_blocks_slide .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/ascension.jpg');
-  }
-  #resources_section .fp-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/ultimate.jpg');
-  }
+.card .list-value:last-child {
+  border-bottom: none;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+tr {
+  background-color: transparent;
+}
+
+hr {
+  border-top: 1px solid gray;
+  margin: .5em 0;
+}
+
+.form-control,
+.form-control:disabled, .form-control[readonly],
+.input-group-text {
+  background-color: inherit;
+  text-shadow: #000 0 0 5px;
+  color: inherit;
+}
+
+.form-control:focus {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  margin-bottom: 1em;
+  text-align: center;
+  color: #f9f9fb;
+}
+
+/* FullPage Controls */
+#fp-nav {
+  top: 33%;
+}
+
+.fp-controlArrow {
+  top: 66%;
+}
+
+.fp-controlArrow.fp-prev {
+  border-width: 16px 16px 16px 0;
+}
+
+.fp-controlArrow.fp-next {
+  border-width: 16px 0 16px 16px;
+}
+
+#fp-nav ul li a span, .fp-slidesNav ul li a span {
+  background-color: #f9f9fb;
+}
+
+.fp-slidesNav {
+  transform: translate(50%, -50%);
+}
+
+.fp-bg {
+  background-size: cover;
+  background-position: center;
+}
+
+#intro_section .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/small_brain.jpg');
+}
+
+#terms_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/neurons_heating_up.jpg');
+}
+
+#hexadecimal_notation_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/neurons2.jpg');
+}
+
+#hash_functions_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/neurons3.jpg');
+}
+
+#sha256_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/Brain-image-by-pitju.jpg');
+}
+
+#blockchain_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/brain_black.webp');
+}
+
+#simple_blockchain_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/blue_brain.jpg');
+}
+
+#pow_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/orange_brain.jpg');
+}
+
+#target_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/brain_mushrooms.jpg');
+}
+
+#nonce_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/brain_mushrooms.jpg');
+}
+
+#mining_algorithm_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/transcending_forward.jpg');
+}
+
+#pow_blockchain_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/transcending_forward.jpg');
+}
+
+#pow_mining_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/transcending_forward.jpg');
+}
+
+#timechain_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/brain_man.jpg');
+}
+
+#timechain_blocks_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/brain_man.jpg');
+}
+
+#timechain_graph_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/transcending_forward.jpg');
+}
+
+#historical_blocks_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/ascension.jpg');
+}
+
+#resources_section .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/ultimate.jpg');
+}
 
 </style>

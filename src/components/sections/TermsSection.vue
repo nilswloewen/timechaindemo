@@ -1,28 +1,28 @@
 <template>
-  <div id="terms_section" class="section">
-    <Page slide data-anchor="terms">
-      <h1>Terms</h1>
+<div id="terms_section" class="section">
+  <Page slide data-anchor="terms">
+    <h1>Terms</h1>
 
-      <p>
-        Before we begin, a few key concepts must first be understood.
-      </p>
+    <p>
+      Before we begin, a few key concepts must first be understood.
+    </p>
 
-      <p>
-        Due to the technical nature of Bitcoin, there are some aspects of the system that look like
-        gibberish to humans. The following pages will show that while this gibberish is not very
-        human-readable, it is not non-sense.
-      </p>
+    <p>
+      Due to the technical nature of Bitcoin, there are some aspects of the system that look like
+      gibberish to humans. The following pages will show that while this gibberish is not very
+      human-readable, it is not non-sense.
+    </p>
 
-      <p>
-        <b>Hash functions</b> are the backbone to the blockchain and to mining.
-        The output of these functions are represented with <b>Hexadecimal Notation</b>.
-      </p>
-    </Page>
+    <p>
+      <b>Hash functions</b> are the backbone to the blockchain and to mining.
+      The output of these functions are represented with <b>Hexadecimal Notation</b>.
+    </p>
+  </Page>
 
-    <HexNotationSlide/>
-    <HashFunctionsSlide/>
-    <Sha256Slide/>
-  </div>
+  <HexNotationSlide/>
+  <HashFunctionsSlide/>
+  <Sha256Slide/>
+</div>
 </template>
 
 <script>
@@ -36,7 +36,7 @@ export default {
     HashFunctionsSlide,
     HexNotationSlide,
     Page,
-    Sha256Slide,
-  },
+    Sha256Slide
+  }
 };
 </script>

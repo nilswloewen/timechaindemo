@@ -15,14 +15,14 @@ export default {
         '#6471F7',
         '#7855F5',
         '#99FEFF',
-        '#A01CF2',
+        '#A01CF2'
       ],
       blocks: [new Block('', BlockHeader.genesis, 0, '#61e294', 'inherit')],
       disableAddBlockBtn: true,
       hexDigits: 2,
       hpsOfThisDevice: 1,
       newBlockData: '',
-      guesses: [],
+      guesses: []
     };
   },
   async mounted() {
@@ -32,7 +32,7 @@ export default {
     async addBlock(newData) {
       let data = newData === 'Try adding a block...'
         ? 'Try changing this data...'
-        : newData ;
+        : newData;
 
       const header = new BlockHeader(data, 0, this.blocks[0].hash);
       const height = this.blocks.length;
@@ -78,7 +78,7 @@ export default {
         xRatio: 0,
         yRatio: block.hash.num / this.hashMax.num,
         hash: block.hash,
-        isHashValid: block.isHashValid,
+        isHashValid: block.isHashValid
       });
 
       // Performance governor.
@@ -140,7 +140,7 @@ export default {
     updateHexDigits(newHexDigits) {
       this.hexDigits = newHexDigits;
 
-      const max = BigInt(`0x${''.padEnd(this.hexDigits, 'f')}`);
+      const max = BigInt(`0x${ ''.padEnd(this.hexDigits, 'f') }`);
 
       this.targetMax = new Num(max - 1n, this.hexDigits);
       this.hashMax = new Num(max, this.hexDigits);
@@ -168,6 +168,6 @@ export default {
     },
     calcAvgHashes() {
       return 1 / (this.target.num / this.targetMax.num);
-    },
-  },
+    }
+  }
 };

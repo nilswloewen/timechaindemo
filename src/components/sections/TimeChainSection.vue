@@ -1,50 +1,73 @@
 <template>
 <div id="timechain_section" class="section">
-  <!--  <Page data-anchor="timechain" slide>-->
-  <!--    <h1>Timechain</h1>-->
+  <Page data-anchor="timechain" slide>
+    <h1>Timechain</h1>
 
-  <!--    <b-card>-->
-  <!--      <q>The only way to find a valid proof-of-work is by making a lot of guesses,-->
-  <!--        and making a single guess takes a little bit of time. The probabilistic-->
-  <!--        sum of these guesses is what builds up the timechain that is Bitcoin.</q>-->
-  <!--      - <a href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</a>-->
-  <!--    </b-card>-->
+    <b-card>
+      <q>The only way to find a valid proof-of-work is by making a lot of guesses,
+        and making a single guess takes a little bit of time. The probabilistic
+        sum of these guesses is what builds up the timechain that is Bitcoin.</q>
+      - <a href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</a>
+    </b-card>
 
-  <!--    <p>-->
-  <!--      We've shown that by adjusting the target it becomes more difficult to-->
-  <!--      find a valid hash. More tries requires more <b>time</b>.-->
-  <!--    </p>-->
+    <p>
+      We've shown that by adjusting the target it becomes more difficult to
+      find a valid hash. More tries requires more <b>time</b>.
+    </p>
 
-  <!--    <p>-->
-  <!--      Mining hardware is rated by how many hashes it can find per second, this-->
-  <!--      is known as the <b>hashrate</b> or H/s (hashes per second).-->
-  <!--    </p>-->
+    <p>
+      Remember, if a miner finds a valid hash they are rewarded with btc, so the incentive is
+      to mine as many blocks as possible to increase their profits. Not only are their miners running 24/7,
+      to increase their chance of success they find ways to increase their computing power.
+    </p>
 
-  <!--    <p>-->
-  <!--      This demo on this device has a hashrate of ~<b>{{ hpsOfThisDevice.toFixed(0) }}<sub>H/s</sub></b>.-->
-  <!--    </p>-->
+    <p>
+      This leads to a global arms race as Bitcoin mining is open to anyone, anywhere. As each miner upgrades their
+      hardware and increases their mining capacity, every other miner must do the same to keep up or else the
+      probability of their success dwindles.
+    </p>
 
-  <!--    <b-card header="Hashrate comparison" header-bg-variant="info">-->
-  <!--      <table id="hashrate_table">-->
-  <!--        <tr>-->
-  <!--          <td> This device</td>-->
-  <!--          <td> ~{{ hpsOfThisDevice.toFixed(0) }}<sub>H/s</sub></td>-->
-  <!--        </tr>-->
-  <!--        <tr>-->
-  <!--          <td>-->
-  <!--            <a href="https://shop.bitmain.com/product/detail?pid=00020211108151254046rPQ0VCqe069D">-->
-  <!--              Antminer S19j Pro-->
-  <!--            </a>-->
-  <!--          </td>-->
-  <!--          <td> ~104,000,000,000,000<sub>H/s</sub></td>-->
-  <!--        </tr>-->
-  <!--        <tr>-->
-  <!--          <td><a href="https://www.blockchain.com/charts/hash-rate">Global</a></td>-->
-  <!--          <td> ~{{ globalHashRate }}<sub>H/s</sub></td>-->
-  <!--        </tr>-->
-  <!--      </table>-->
-  <!--    </b-card>-->
-  <!--  </Page>-->
+    <p>
+      The longest chain is considered to be the truth because the most work went into calculating it.
+      If miners could find more blocks per minute than other, the could create the longest chain and
+      then control the ledger.
+    </p>
+
+    <p>
+      To prevent this, the Bitcoin network self-adjusts the target required for each block to ensure that
+      blocks are always added to the chain at 10 minute intervals.
+    </p>
+
+    <p>
+      Mining capacity is rated by how many hashes a miner can find per second, this
+      is known as the <b>hashrate</b> or H/s (hashes per second).
+    </p>
+
+    <p>
+      This demo on this device has a max hashrate of ~<b>{{ hpsOfThisDevice.toFixed(0) }}<sub>H/s</sub></b>.
+    </p>
+
+    <b-card header="Hashrate comparison" header-bg-variant="info">
+      <table id="hashrate_table">
+        <tr>
+          <td> This device</td>
+          <td> ~{{ hpsOfThisDevice.toFixed(0) }}<sub>H/s</sub></td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://shop.bitmain.com/product/detail?pid=00020211108151254046rPQ0VCqe069D">
+              Antminer S19j Pro
+            </a>
+          </td>
+          <td> ~104,000,000,000,000<sub>H/s</sub></td>
+        </tr>
+        <tr>
+          <td><a href="https://www.blockchain.com/charts/hash-rate">Global</a></td>
+          <td> ~{{ globalHashRate }}<sub>H/s</sub></td>
+        </tr>
+      </table>
+    </b-card>
+  </Page>
 
   <Page data-anchor="difficulty_adjustment" slide encoding-btn
         :active-encoding="activeEncoding"
@@ -77,6 +100,11 @@
           <b-button @click="calibrateHps" size="sm"> <b-icon-wrench/> </b-button>
         </p>
 
+        <b-input-group id="hashrate_picker" class="d-inline-block">
+          <b-form-input id="hashrate_input" type="number" size="sm"
+                        style="text-align: right;" :value="hashrate" :min="1" @change="updateHashrate"/>
+          <b-form-select id="hashrate_units_select" size="sm" @change="updateHashrateUnit" :value="hashrateUnit" :options="hashrateUnits"/>
+        </b-input-group>
         <p>
           Average time to find valid block:
         </p>
@@ -186,6 +214,9 @@ export default {
       encoding: ['binary', 'decimal', 'hexadecimal', 'exponential'],
       globalHashRate: '143,146,528,833,000,000,000',
       hexDigits: 2,
+      hashrate: 42,
+      hashrateUnit: 'Hash',
+      hashrateUnits: ['Hash', 'GigaHash', 'TeraHash'],
       isMining: false,
       time: 30,
       timeUnit: 'Seconds',
@@ -212,6 +243,12 @@ export default {
     onNonceChange(nonce) {
       this.blocks[this.blockToMine].header.nonce = Number(nonce);
       this.finalizeBlock(this.blockToMine);
+    },
+    updateHashrate(newHashrate) {
+      this.hashrate = newHashrate;
+    },
+    updateHashrateUnit(newHashrateUnit) {
+      this.hashrateUnit = newHashrateUnit;
     },
     updateTime(newTime) {
       this.time = Number(newTime);
@@ -350,12 +387,13 @@ export default {
 #hashrate_table tr td:last-child {
   text-align: right;
 }
-#time_picker {
+#time_picker,
+#hashrate_picker {
   display: inline-block;
 }
 
-#time_input,
-#time_units_select {
+#time_input, #hashrate_input,
+#time_units_select, #hashrate_units_select {
   display: inline;
   width: 96px;
   max-width: 96px;

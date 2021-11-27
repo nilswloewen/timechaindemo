@@ -51,12 +51,41 @@
         <b-list-group-item class="list-value">The hash of the previous block</b-list-group-item>
       </b-card>
     </b-card>
+
+    <h2>Why does Bitcoin use a blockchain?</h2>
+
+    <p>
+      A physical coin or asset requires no history, it exists in only location at a time.
+      Ownership is proven simply by who controls the coin.
+    </p>
+
+    <p>
+      Bitcoin is not a physical asset, it is pure information. A ledger is used to keep track of
+      who controls how much bitcoin.
+    </p>
+
+    If Alice starts with 0₿, how much does Bob hold after this sequence?
+    <ol>
+      <li>Alice earned 50₿ for mining the first block.</li>
+      <li>Alice sent Bob 20₿</li>
+    </ol>
+
+    <ol>
+      <li>Alice sent Bob 20₿ - ERROR! Alice does not have ₿ to send!</li>
+      <li>Alice earned 50₿ for mining the first block.</li>
+    </ol>
+
+    <p>
+      Bitcoin requires a blockchain to establish an order of events in the ledger to prove that one
+      transaction came before another.
+    </p>
+
   </Page>
 
   <Page data-anchor="simple_blockchain" slide
         encoding-btn
         :active-encoding="activeEncoding"
-        :encoding="encoding"
+
         v-on:rotate-encoding="rotateEncoding"
         v-on:update-active-encoding="updateActiveEncoding">
     <h1>Example: Simplified Blockchain</h1>

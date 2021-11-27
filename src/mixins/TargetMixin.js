@@ -3,7 +3,7 @@ import Num from '@/services/Num';
 export default {
   data() {
     return {
-      avgHashes: 0,
+      avgHashes: 4,
       denominator: 1n,
       difficulty: 0,
       hashMax: new Num(255n),

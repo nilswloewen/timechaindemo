@@ -20,7 +20,7 @@ export default {
       blocks: [new Block('', BlockHeader.genesis, 0, '#61e294', 'inherit')],
       disableAddBlockBtn: true,
       hexDigits: 2,
-      hpsOfThisDevice: 1,
+      hpsOfThisDevice: 42,
       newBlockData: '',
       guesses: []
     };
@@ -154,7 +154,6 @@ export default {
 
       while (elapsed < 3000) {
         this.blocks[0].header.nonce += 1;
-        // eslint-disable-next-line no-await-in-loop
         await this.finalizeBlock(0);
         elapsed = new Date().getTime() - start;
       }

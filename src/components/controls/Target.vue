@@ -20,6 +20,10 @@
       </b-input-group>
 
       <template v-if="full">
+
+        <b-list-group-item class="list-field">Hash Max</b-list-group-item>
+        <b-list-group-item class="list-value">{{ this.hashMax[localEncoding] }} </b-list-group-item>
+
         <b-list-group-item class="list-field">Probability</b-list-group-item>
         <b-list-group-item class="list-value">
           Only

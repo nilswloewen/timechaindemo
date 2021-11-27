@@ -23,18 +23,6 @@
       <b-form-select id="time_units_select" size="sm" @change="updateTimeUnit" :value="timeUnit" :options="timeUnits"/>
     </b-input-group>
   </b-card-body>
-
-  <!--    <b-list-group-item class="list-field">Hash Max {{ hexDigits }}</b-list-group-item>-->
-  <!--    <b-list-group-item class="list-value">-->
-  <!--      <b-input-group prepend="hexDigits Min 2" append="Max 64" size="sm">-->
-  <!--        <b-form-input :title="hexDigits" type="range" size="sm" :min="2" :max="64" step="1"-->
-  <!--                      :value="hexDigits" @change="updateHexDigits"/>-->
-  <!--      </b-input-group>-->
-  <!--      {{ hashMax[localEncoding] }}-->
-  <!--    </b-list-group-item>-->
-
-  <!--    <b-list-group-item class="list-field">Difficulty</b-list-group-item>-->
-  <!--    <b-list-group-item class="list-value"> {{ difficulty }} </b-list-group-item>-->
 </b-card>
 </template>
 

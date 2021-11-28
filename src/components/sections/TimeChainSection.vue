@@ -233,15 +233,15 @@ export default {
         'Yotta',
       ],
       hashrateConversion: {
-        base: { other: '', value: 1n },
-        Kilo: { other: 'Thousand', value: 1_000n },
-        Mega: { other: 'Million',     value: 1_000_000n },
-        Giga: { other: 'Billion',     value: 1_000_000_000n },
-        Tera: { other: 'Trillion',    value: 1_000_000_000_000n },
-        Peta: { other: 'Quadrillion', value: 1_000_000_000_000_000n },
-        Exa:  { other: 'Quintillion', value: 1_000_000_000_000_000_000n },
-        Zeta: { other: 'Sextillion',  value: 1_000_000_000_000_000_000_000n },
-        Yotta: { other: 'Septillion',  value: 1_000_000_000_000_000_000_000_000n },
+        base: { other: '',             value: 1 },
+        Kilo: { other: 'Thousand',     value: 1_000 },
+        Mega: { other: 'Million',      value: 1_000_000 },
+        Giga: { other: 'Billion',      value: 1_000_000_000 },
+        Tera: { other: 'Trillion',     value: 1_000_000_000_000 },
+        Peta: { other: 'Quadrillion',  value: 1_000_000_000_000_000 },
+        Exa:  { other: 'Quintillion',  value: 1_000_000_000_000_000_000 },
+        Zeta: { other: 'Sextillion',   value: 1_000_000_000_000_000_000_000 },
+        Yotta: { other: 'Septillion',  value: 1_000_000_000_000_000_000_000_000 },
       },
       isMining: false,
       time: 10,
@@ -252,7 +252,7 @@ export default {
   },
   computed: {
     getHashrate() {
-      const hashrate = BigInt(this.hashrate) * this.hashrateConversion[this.hashrateUnit].value;
+      const hashrate = this.hashrate * this.hashrateConversion[this.hashrateUnit].value;
       return hashrate.toLocaleString();
     }
   },
@@ -263,81 +263,65 @@ export default {
     // const gigaHashRate = await BlockchainApi.getHashRate();
     // this.globalHashRate = (gigaHashRate * 1_000_000_000).toLocaleString('en-Us');
   },
-  watch: {
-    avgHashes() {
-      if (this.isAdjustingTarget) {
-        return;
-      }
-      // this.calcAvgTime();
-    }
-  },
   methods: {
     onNonceChange(nonce) {
       this.blocks[this.blockToMine].header.nonce = Number(nonce);
       this.finalizeBlock(this.blockToMine);
     },
     updateHashrate(newHashrate) {
-      this.hashrate = BigInt(newHashrate || 1);
-      console.log(this.hashrate)
-      this.calcTargetByHashrate();
+      this.hashrate = newHashrate || 1;
+      this.calcTarget();
     },
     updateHashrateUnit(newHashrateUnit) {
       this.hashrateUnit = newHashrateUnit;
-      this.calcTargetByHashrate();
+      this.calcTarget();
     },
-    calcTargetByHashrate() {
-      const hashrate = BigInt(this.hashrate) * this.hashrateConversion[this.hashrateUnit].value;
+    updateTime(newTime) {
+      this.time = Number(newTime);
+      this.calcTarget();
+    },
+    updateTimeUnit(newTimeUnit) {
+      this.timeUnit = newTimeUnit;
+      this.calcTarget();
+    },
+
+    calcTarget() {
+      const hashrate = this.hashrate * this.hashrateConversion[this.hashrateUnit].value;
       const desiredSeconds = this.timeToSeconds(this.time, this.timeUnit);
-      const desiredAvgHashes = BigInt(desiredSeconds) * BigInt(hashrate);
-      const { hexDigits, target } = this.calcNewTarget(Number(desiredAvgHashes));
+      const desiredAvgHashes = desiredSeconds * hashrate;
+      const { hexDigits, target } = this.findTargetAndMax(Number(desiredAvgHashes));
       this.updateHexDigits(hexDigits);
       this.target = new Num(BigInt(target), this.hexDigits);
       this.calcStats()
     },
 
-    // updateTime(newTime) {
-    //   this.time = Number(newTime);
-    //   this.isAdjustingTarget = true;
-    //   this.calcNewTarget();
-    // },
-    // updateTimeUnit(newTimeUnit) {
-    //   this.timeUnit = newTimeUnit;
-    //   this.isAdjustingTarget = true;
-    //   this.calcNewTarget();
-    // },
-
-
-    calcNewTarget(desiredAvgHashes) {
-      let hexDigits = 2;
+    findTargetAndMax(desiredAvgHashes) {
+      let hexDigits = 1;
 
       // Increase complexity by increasing maximum.
       while (hexDigits <= 64) {
+        hexDigits += 1;
         let max = (16 ** hexDigits) - 1;
-        let target = max / 2;
+        let target = max;
         let avgHashes = 1 / (target / max);
 
-        // Binary search for closest match.
+        // Binary search down for closest match.
         while(target > 1) {
+          target = Math.floor(target / 2);
           avgHashes = 1 / (target / max);
 
           if (desiredAvgHashes < avgHashes) {
-            // Increment to closest match.
+            // Increment up to closest match.
             while (target < max) {
+              target += 1;
               avgHashes = 1 / (target / max);
 
-              // console.log(`avgHashes: ${avgHashes}, desired: ${desiredAvgHashes}, target: ${target}`);
               if (avgHashes < desiredAvgHashes) {
-                // console.log(`avgHashes: ${avgHashes}, desired: ${desiredAvgHashes}, target: ${target}`);
                 return { hexDigits, target: Math.floor(target) };
               }
-              target += 1;
             }
           }
-
-          target = Math.floor(target / 2);
         }
-
-        hexDigits += 1;
       }
     },
 

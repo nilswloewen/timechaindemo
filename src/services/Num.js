@@ -10,11 +10,13 @@ class Num {
     this.hexadecimal = bigInt.toString(16).padStart(hexDigits, '0');
     this.yRatio = 0;
 
+    // @TODO: Should decimal have leading zeros?
     // I don't really like doing this here but it works.
-    const hex = '0x'.padEnd(hexDigits + 2, 'f');
-    const hashMax = BigInt(hex);
-    const hashMaxDec = hashMax.toLocaleString('en-US');
-    this.decimal = bigInt.toLocaleString('en-US').padStart(hashMaxDec.length, '000,');
+    // const hex = '0x'.padEnd(hexDigits + 2, 'f');
+    // const hashMax = BigInt(hex);
+    // const hashMaxDec = hashMax.toLocaleString('en-US');
+    // this.decimal = bigInt.toLocaleString('en-US').padStart(hashMaxDec.length, '000,');
+    this.decimal = bigInt.toLocaleString('en-US');
   }
 }
 

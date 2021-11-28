@@ -2,10 +2,10 @@
 <div id="app">
   <full-page id="fullpage" :options="fullpageOptions">
 
-<!--    <IntroSection :contents="table_of_contents"/>-->
-<!--    <TermsSection/>-->
-<!--    <BlockchainSection/>-->
-<!--    <PowBlockchainSection/>-->
+    <IntroSection :contents="table_of_contents"/>
+    <TermsSection/>
+    <BlockchainSection/>
+    <PowBlockchainSection/>
     <TimeChainSection/>
     <HistoricalBlocksSection/>
     <ResourcesSection/>
@@ -80,6 +80,7 @@ export default {
           label: 'Mining',
           slides: [
             {anchor: 'target', label: 'Target'},
+            {anchor: 'leading_zeros', label: 'Leading Zeros'},
             {anchor: 'pow_blockchain', label: 'Proof-of-Work Blockchain'},
             {anchor: 'pow_mining', label: 'Proof-of-Work Mining'}
           ]
@@ -88,7 +89,7 @@ export default {
           anchor: 'timechain',
           label: 'Timechain',
           slides: [
-            {anchor: 'difficulty', label: 'Difficulty'},
+            {anchor: 'difficulty_adjustment', label: 'Difficulty Adjustment'},
             {anchor: 'hash_rate', label: 'Hash Rate'},
             {anchor: 'probability', label: 'Probability'},
             {anchor: 'timechain_graph', label: 'Timechain Graph'}

@@ -1,73 +1,73 @@
 <template>
 <div id="timechain_section" class="section">
-<!--  <Page data-anchor="timechain" slide>-->
-<!--    <h1>Timechain</h1>-->
+  <Page data-anchor="timechain" slide>
+    <h1>Timechain</h1>
 
-<!--    <b-card>-->
-<!--      <q>The only way to find a valid proof-of-work is by making a lot of guesses,-->
-<!--        and making a single guess takes a little bit of time. The probabilistic-->
-<!--        sum of these guesses is what builds up the timechain that is Bitcoin.</q>-->
-<!--      - <a href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</a>-->
-<!--    </b-card>-->
+    <b-card>
+      <q>The only way to find a valid proof-of-work is by making a lot of guesses,
+        and making a single guess takes a little bit of time. The probabilistic
+        sum of these guesses is what builds up the timechain that is Bitcoin.</q>
+      - <a href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</a>
+    </b-card>
 
-<!--    <p>-->
-<!--      We've shown that by adjusting the target it becomes more difficult to-->
-<!--      find a valid hash. More tries requires more <b>time</b>.-->
-<!--    </p>-->
+    <p>
+      We've shown that by adjusting the target it becomes more difficult to
+      find a valid hash. More tries requires more <b>time</b>.
+    </p>
 
-<!--    <p>-->
-<!--      Remember, if a miner finds a valid hash they are rewarded with btc, so the incentive is-->
-<!--      to mine as many blocks as possible to increase their profits. Not only are their miners running 24/7,-->
-<!--      to increase their chance of success they find ways to increase their computing power.-->
-<!--    </p>-->
+    <p>
+      Remember, if a miner finds a valid hash they are rewarded with btc, so the incentive is
+      to mine as many blocks as possible to increase their profits. Not only are their miners running 24/7,
+      to increase their chance of success they find ways to increase their computing power.
+    </p>
 
-<!--    <p>-->
-<!--      This leads to a global arms race as Bitcoin mining is open to anyone, anywhere. As each miner upgrades their-->
-<!--      hardware and increases their mining capacity, every other miner must do the same to keep up or else the-->
-<!--      probability of their success dwindles.-->
-<!--    </p>-->
+    <p>
+      This leads to a global arms race as Bitcoin mining is open to anyone, anywhere. As each miner upgrades their
+      hardware and increases their mining capacity, every other miner must do the same to keep up or else the
+      probability of their success dwindles.
+    </p>
 
-<!--    <p>-->
-<!--      The longest chain is considered to be the truth because the most work went into calculating it.-->
-<!--      If miners could find more blocks per minute than other, the could create the longest chain and-->
-<!--      then control the ledger.-->
-<!--    </p>-->
+    <p>
+      The longest chain is considered to be the truth because the most work went into calculating it.
+      If miners could find more blocks per minute than other, the could create the longest chain and
+      then control the ledger.
+    </p>
 
-<!--    <p>-->
-<!--      To prevent this, the Bitcoin network self-adjusts the target required for each block to ensure that-->
-<!--      blocks are always added to the chain at 10 minute intervals.-->
-<!--    </p>-->
+    <p>
+      To prevent this, the Bitcoin network self-adjusts the target required for each block to ensure that
+      blocks are always added to the chain at 10 minute intervals.
+    </p>
 
-<!--    <p>-->
-<!--      Mining capacity is rated by how many hashes a miner can find per second, this-->
-<!--      is known as the <b>hashrate</b> or H/s (hashes per second).-->
-<!--    </p>-->
+    <p>
+      Mining capacity is rated by how many hashes a miner can find per second, this
+      is known as the <b>hashrate</b> or H/s (hashes per second).
+    </p>
 
-<!--    <p>-->
-<!--      This demo on this device has a max hashrate of ~<b>{{ hpsOfThisDevice.toFixed(0) }}<sub>H/s</sub></b>.-->
-<!--    </p>-->
+    <p>
+      This demo on this device has a max hashrate of ~<b>{{ hpsOfThisDevice.toFixed(0) }}<sub>H/s</sub></b>.
+    </p>
 
-<!--    <b-card header="Hashrate comparison" header-bg-variant="info">-->
-<!--      <table id="hashrate_table">-->
-<!--        <tr>-->
-<!--          <td> This device</td>-->
-<!--          <td> ~{{ hpsOfThisDevice.toFixed(0) }}<sub>H/s</sub></td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--          <td>-->
-<!--            <a href="https://shop.bitmain.com/product/detail?pid=00020211108151254046rPQ0VCqe069D">-->
-<!--              Antminer S19j Pro-->
-<!--            </a>-->
-<!--          </td>-->
-<!--          <td> ~104,000,000,000,000<sub>H/s</sub></td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--          <td><a href="https://www.blockchain.com/charts/hash-rate">Global</a></td>-->
-<!--          <td> ~{{ globalHashRate }}<sub>H/s</sub></td>-->
-<!--        </tr>-->
-<!--      </table>-->
-<!--    </b-card>-->
-<!--  </Page>-->
+    <b-card header="Hashrate comparison" header-bg-variant="info">
+      <table id="hashrate_table">
+        <tr>
+          <td> This device</td>
+          <td> ~{{ hpsOfThisDevice.toFixed(0) }}<sub>H/s</sub></td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://shop.bitmain.com/product/detail?pid=00020211108151254046rPQ0VCqe069D">
+              Antminer S19j Pro
+            </a>
+          </td>
+          <td> ~104,000,000,000,000<sub>H/s</sub></td>
+        </tr>
+        <tr>
+          <td><a href="https://www.blockchain.com/charts/hash-rate">Global</a></td>
+          <td> ~{{ globalHashRate }}<sub>H/s</sub></td>
+        </tr>
+      </table>
+    </b-card>
+  </Page>
 
   <Page data-anchor="difficulty_adjustment" slide encoding-btn
         :active-encoding="activeEncoding"
@@ -116,13 +116,13 @@
 
         <b-input-group id="time_picker">
           <b-form-input id="time_input" type="number" size="sm"
-                        style="text-align: right;" :value="time" :min="1" @change="updateTime"/>
-          <b-form-select id="time_units_select" size="sm" @change="updateTimeUnit" :value="timeUnit" :options="timeUnits"/>
+                        style="text-align: right;" :value="blockTime" :min="1" @change="updateTime"/>
+          <b-form-select id="time_units_select" size="sm" @change="updateTimeUnit" :value="blockTimeUnit" :options="timeUnits"/>
         </b-input-group>
       </b-card-body>
     </b-card>
 
-    <Target v-on:updateTarget="updateTarget" full
+    <Target v-on:updateTarget="updateTimechainTarget" full
             v-on:real-target-max="realTargetMax"
             :avgHashes="avgHashes"
             :denominator="denominator"
@@ -222,7 +222,7 @@ export default {
       hashrate: 42,
       hashrateUnit: 'base',
       hashrateUnits: [
-        'base',
+        '',
         'Kilo',
         'Mega',
         'Giga',
@@ -244,8 +244,8 @@ export default {
         Yotta: { other: 'Septillion',  value: 1_000_000_000_000_000_000_000_000 },
       },
       isMining: false,
-      time: 10,
-      timeUnit: 'Minutes',
+      blockTime: 10,
+      blockTimeUnit: 'Minutes',
       timeUnits: ['Seconds', 'Minutes', 'Hours', 'Days', 'Weeks', 'Months', 'Years'],
       isAdjustingTarget: false,
     };
@@ -259,7 +259,7 @@ export default {
   async mounted() {
     // await this.calibrateHps();
     // this.calcAvgTime();
-    // Disable until launch
+    // @TODO: Enable at launch.
     // const gigaHashRate = await BlockchainApi.getHashRate();
     // this.globalHashRate = (gigaHashRate * 1_000_000_000).toLocaleString('en-Us');
   },
@@ -273,23 +273,25 @@ export default {
       this.calcTarget();
     },
     updateHashrateUnit(newHashrateUnit) {
-      this.hashrateUnit = newHashrateUnit;
+      this.hashrateUnit = newHashrateUnit || 'base';
       this.calcTarget();
     },
     updateTime(newTime) {
-      this.time = Number(newTime);
+      this.blockTime = Number(newTime);
       this.calcTarget();
     },
     updateTimeUnit(newTimeUnit) {
-      this.timeUnit = newTimeUnit;
+      this.blockTimeUnit = newTimeUnit;
       this.calcTarget();
     },
 
     calcTarget() {
       const hashrate = this.hashrate * this.hashrateConversion[this.hashrateUnit].value;
-      const desiredSeconds = this.timeToSeconds(this.time, this.timeUnit);
+      const desiredSeconds = this.timeToSeconds(this.blockTime, this.blockTimeUnit);
       const desiredAvgHashes = desiredSeconds * hashrate;
+
       const { hexDigits, target } = this.findTargetAndMax(Number(desiredAvgHashes));
+
       this.updateHexDigits(hexDigits);
       this.target = new Num(BigInt(target), this.hexDigits);
       this.calcStats()
@@ -323,17 +325,6 @@ export default {
           }
         }
       }
-    },
-
-    calcAvgTime() {
-      if (this.isAdjustingTarget) {
-        return;
-      }
-      const seconds = Math.ceil((1 / this.hpsOfThisDevice) * this.avgHashes);
-      const { val, unit } = this.secondsToTime(seconds);
-
-      this.time = val;
-      this.timeUnit = unit;
     },
 
     timeToSeconds(time, unit){
@@ -392,7 +383,16 @@ export default {
       return {val: years.toExponential(2), unit: 'Years'};
     },
 
-  }
+    async updateTimechainTarget(newTarget) {
+      await this.updateTarget(newTarget);
+
+      const seconds = Math.ceil((1 / this.hpsOfThisDevice) * this.avgHashes);
+      const { val, unit } = this.secondsToTime(seconds);
+
+      this.blockTime = val;
+      this.blockTimeUnit = unit;
+    },
+  },
 };
 </script>
 

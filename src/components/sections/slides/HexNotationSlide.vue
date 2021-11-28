@@ -1,6 +1,19 @@
 <template>
-<Page slide data-anchor="hexadecimal_notation">
+<Page slide data-anchor="hexadecimal_notation"
+      encoding-btn
+      :active-encoding="activeEncoding"
+      :encoding="encoding"
+      v-on:rotate-encoding="rotateEncoding"
+      v-on:update-active-encoding="updateActiveEncoding">
+
   <h1>Numerical Notation</h1>
+  <p>
+    In the top right corner there is a button to change the notation of some numbers in this demo.
+  </p>
+
+  <p>
+    Example: Bitcoin's maximum supply is {{ num[encoding[activeEncoding]] }}.
+  </p>
 
   <p>
     Notation styles are chosen for different use cases. While computers think in 1's and 0's,
@@ -39,14 +52,7 @@
             <b-tr v-for="(row, index) in rows" :key="index">
               <b-td>{{ row['d'] }}</b-td>
               <b-td>{{ row['b'] }}</b-td>
-              <b-td>
-                <template v-if="parseInt(row['h'], 16) > 9">
-                  <b>{{ row['h'] }}</b>
-                </template>
-                <template v-else>
-                  {{ row['h'] }}
-                </template>
-              </b-td>
+              <b-td>{{ row['h'] }}</b-td>
             </b-tr>
           </b-tbody>
         </b-table-simple>
@@ -72,10 +78,14 @@
           <b-form-input v-model="val" type="number"/>
         </b-list-group-item>
 
+        <b-list-group-item class="list-field">Exponential</b-list-group-item>
+        <b-list-group-item class="list-value">{{ Number(val).toExponential() }}</b-list-group-item>
+
         <b-list-group-item class="list-field">Binary (base 2)</b-list-group-item>
         <b-list-group-item class="list-value">
           <b-form-input :value="Number(val).toString(2)" @keyup="onBin"/>
         </b-list-group-item>
+
       </b-card>
 
     </b-col>
@@ -86,14 +96,22 @@
 
 <script>
 import Page from '@/components/Page.vue';
+import Num from '@/services/Num';
+import EncodingMixin from '@/mixins/EncodingMixin';
+import EncodingButton from '@/components/controls/EncodingButton';
 
 export default {
+  mixins: [
+    EncodingMixin
+  ],
   components: {
+    EncodingButton,
     Page
   },
   data() {
     return {
       val: 48879,
+      num: new Num(21_000_000n, 7),
       columns: ['Decimal', 'Binary', 'Hexadecimal'],
       rows: [
         {d: 15, b: '1111', h: 'f'},

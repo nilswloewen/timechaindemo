@@ -31,12 +31,13 @@ export default {
       this.calcStats();
     },
     async updateTarget(newTarget) {
+      // If hashMax is changed set target to max.
       this.target = newTarget.bigInt > this.hashMax.bigInt
         ? new Num(this.hashMax.bigInt)
         : newTarget;
+      this.target.yRatio = this.target.num / this.hashMax.num;
 
       this.calcStats();
-      this.target.yRatio = this.target.num / this.hashMax.num;
 
       // Check if all blocks are still under the target.
       this.blocks.forEach((block) => {

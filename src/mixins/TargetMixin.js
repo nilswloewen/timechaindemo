@@ -8,8 +8,8 @@ export default {
       difficulty: 0,
       hashMax: new Num(255n),
       numerator: 0n,
-      probability: 0.2,
-      target: new Num(32n),
+      probability: 0.06,
+      target: new Num(15n),
       targetMax: new Num(255n)
     };
   },

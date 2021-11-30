@@ -1,54 +1,32 @@
 <template>
-<div>
-  <template v-if="range">
-    <b-input-group prepend="Min 1" size="sm" append="Max">
-      <b-form-input :title="target[localEncoding]" :value="target.num" @change="onTargetChange" type="range"
-                    min="1" :max="getMax" size="sm"/>
-    </b-input-group>
-  </template>
+<b-card no-body class="target">
+  <b-card-header header-bg-variant="info">
+    <b-icon-wrench/> Target
+  </b-card-header>
 
-  <template v-else>
-    <b-card no-body class="mb-2">
-      <b-card-header>
-        <div>Target</div>
-        {{ target[localEncoding] }}
-      </b-card-header>
+  <b-list-group-item class="list-value pt-2" style="direction: rtl;"> {{ target[localEncoding] }} </b-list-group-item>
 
-      <b-input-group prepend="Min 1" size="sm" append="Max">
-        <b-form-input :title="target[localEncoding]" :value="target.num" @change="onTargetChange" type="range"
-                      min="1" :max="getMax" size="sm"/>
-      </b-input-group>
+  <b-input-group prepend="Min 1" size="sm" append="Max" style="border-radius: 0;">
+    <b-form-input :title="target[localEncoding]" :value="target.num" @change="onTargetChange" type="range"
+                  min="1" :max="hashMax.num" size="sm" />
+  </b-input-group>
 
-      <template v-if="full">
-        <b-list-group-item class="list-field">Hash Max</b-list-group-item>
-        <b-list-group-item class="list-value">{{ this.hashMax[localEncoding] }} </b-list-group-item>
+  <b-list-group-item class="list-field">Max</b-list-group-item>
+  <b-list-group-item class="list-value" style="direction: rtl;">{{ this.hashMax[localEncoding] }} </b-list-group-item>
 
-        <b-list-group-item class="list-field">Probability</b-list-group-item>
-        <b-list-group-item class="list-value">
-          Only
-          <div class="stat probability">~{{ getProbability }}%</div>
-          of possible hashes will be accepted.
-        </b-list-group-item>
+  <b-list-group-item class="list-field">
+    Probability (Only of x% of possible hashes will be accepted).
+  </b-list-group-item>
+  <b-list-group-item class="list-value"> ~{{ getProbability }}% </b-list-group-item>
 
-        <b-list-group-item class="list-field">Odds</b-list-group-item>
-        <b-list-group-item class="list-value">
-          Each try has a
-          <div class="stat odds">{{ getNumerator }}</div>
-          out of
-          <div class="stat odds">{{ getDenominator }}</div>
-          chance of winning.
-        </b-list-group-item>
+  <b-list-group-item class="list-field">Odds</b-list-group-item>
+  <b-list-group-item class="list-value">
+    {{ getNumerator }} out of {{ getDenominator }}
+  </b-list-group-item>
 
-        <b-list-group-item class="list-field">Average</b-list-group-item>
-        <b-list-group-item class="list-value">
-          On average it will take
-          <div class="stat odds">~{{ avgHashes.toFixed(0) }}</div>
-          tries to find a valid hash.
-        </b-list-group-item>
-      </template>
-    </b-card>
-  </template>
-</div>
+  <b-list-group-item class="list-field">Average number of tries</b-list-group-item>
+  <b-list-group-item class="list-value"> ~{{ avgHashes.toFixed(0) }} </b-list-group-item>
+</b-card>
 </template>
 
 <script>
@@ -58,21 +36,23 @@ export default {
   props: {
     avgHashes: null,
     denominator: null,
-    full: Boolean,
     localEncoding: String,
     numerator: null,
     probability: null,
-    range: Boolean,
     target: Num,
     targetMax: Num,
     hashMax: Num
   },
   computed: {
     getProbability() {
-      return (this.probability * 100).toFixed(2).padStart(5, '0');
-    },
-    getMax() {
-      return Number(this.targetMax.bigInt - 1n);
+      const percentage = this.probability * 100;
+      if (percentage < 1) {
+        // Ugly!
+        const exp = percentage.toExponential();
+        const powers = exp.substr(exp.indexOf('e') + 2, exp.length);
+        return percentage.toFixed(Number(powers));
+      }
+      return percentage.toFixed(2);
     },
     getNumerator() {
       if (this.numerator > 1_000_000n) {
@@ -96,16 +76,8 @@ export default {
 </script>
 
 <style>
-.stat {
-  display: inline-block;
-  font-weight: bold;
-}
-
-.odds {
-  min-width: 30px;
-}
-
-.probability {
-  min-width: 68px;
+.target .list-field,
+.target .list-value {
+  text-align: left;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
 <div class="section">
-  <Page data-anchor="historical_blocks" slide
+  <Page data-anchor="real_blocks" slide
         encoding-btn
         :active-encoding="activeEncoding"
         :encoding="encoding"
@@ -11,7 +11,7 @@
       The 'data' in real Bitcoin blocks consists of the <b>Version</b> of the
       software used to create the block, a recording of the target called
       <b>Bits</b>, and a record of the transactions in the block called a <b>Merkle Root</b>.
-      For more information on each field, see <a href="https://developer.bitcoin.org/reference/block_chain.html">developer.bitcoin.org/reference/block_chain.html</a>
+      For more information on each field <a href="https://developer.bitcoin.org/reference/block_chain.html">here</a>.
     </p>
 
     <BlockCard :block="block"
@@ -22,8 +22,9 @@
                showNonce
                v-on:update-block-height="updateBlockHeight"
                v-on:update-block-height-latest="updateBlockHeightLatest"/>
-
   </Page>
+
+
 </div>
 </template>
 
@@ -51,7 +52,6 @@ export default {
     return {
       block: new Block('', BlockHeader.genesis, 0),
       mempool: new Mempool(),
-      encoding: ['binary', 'decimal', 'hexadecimal', 'exponential']
     };
   },
   async mounted() {

@@ -6,19 +6,19 @@
     <b-card>
       <h4 class="text-left">blockchain (n.)</h4>
       <hr>
-      <q>A blockchain is a chain of blocks.</q>
-      &nbsp;&mdash;&nbsp;<a href="https://t.co/HQwDRlKKx9" target="_blank">Peter Todd</a>
+      <p>
+        A data structure that uses hashes to prove that previous blocks existed
+        before following blocks, therefore establishing an <b>Order of Events</b>.
+      </p>
+      <!--      <hr>-->
+      <!--      <q>A blockchain is a chain of blocks.</q>-->
+      <!--      &nbsp;&mdash;&nbsp;<a href="https://t.co/HQwDRlKKx9" target="_blank">Peter Todd</a>-->
     </b-card>
 
-    <p>
-      A blockchain is a data structure that uses hashes to prove that previous
-      blocks existed before following blocks, therefore establishing an <b>Order of Events</b>.
-    </p>
 
     <b-card no-body>
       <b-card-body>
         <h4 class="text-left">block (n.)</h4>
-
         <hr>
         <p>
           A set of data with a hash that 'locks' the data in place. You cannot
@@ -26,7 +26,6 @@
         </p>
         <h6>Example</h6>
       </b-card-body>
-
       <b-card no-body>
         <b-card-header>
           Block Hash or ID - The hash of the blocks' data
@@ -52,47 +51,37 @@
       </b-card>
     </b-card>
 
-    <h2>Why does Bitcoin use a blockchain?</h2>
+    <h4 class="mt-4">Why does Bitcoin use a blockchain?</h4>
 
     <p>
       A physical coin or asset requires no history, it exists in only location at a time.
-      Ownership is proven simply by who controls the coin.
+      Ownership is proven simply by who physically controls the coin.
     </p>
 
     <p>
-      Bitcoin is not a physical asset, it is pure information. A ledger is used to keep track of
+      Because Bitcoin is not a physical asset, a ledger is used to keep track of
       who controls how much bitcoin.
     </p>
-
-    If Alice starts with 0₿, how much does Bob hold after this sequence?
-    <ol>
-      <li>Alice earned 50₿ for mining the first block.</li>
-      <li>Alice sent Bob 20₿</li>
-    </ol>
-
-    <ol>
-      <li>Alice sent Bob 20₿ - ERROR! Alice does not have ₿ to send!</li>
-      <li>Alice earned 50₿ for mining the first block.</li>
-    </ol>
 
     <p>
       Bitcoin requires a blockchain to establish an order of events in the ledger to prove that one
       transaction came before another.
     </p>
-
   </Page>
 
   <Page data-anchor="simple_blockchain" slide
         encoding-btn
         :active-encoding="activeEncoding"
-
         v-on:rotate-encoding="rotateEncoding"
         v-on:update-active-encoding="updateActiveEncoding">
-    <h1>Example: Simplified Blockchain</h1>
+
+    <h1>Simplified Blockchain</h1>
     <p>
       For this demo we will start by only looking at the first 2 digits of the hash of each block.
-      This is a non-proof-of-work version of a blockchain. Add a few blocks and
-      then watch as you change an old block the change is propagated up the chain.
+    </p>
+    <p>
+      Add a few blocks and then watch as you change an old block the change is
+      propagated up the chain.
     </p>
 
     <AddBlockButton :disable-add-block-btn="false"
@@ -133,10 +122,12 @@ export default {
     EncodingButton,
     Page
   },
-  data() {
-    return {
-      encoding: ['binary', 'decimal', 'hexadecimal']
-    };
-  }
 };
 </script>
+
+<style>
+.fp-viewing-blockchain-blockchain .fp-controlArrow.fp-prev,
+.fp-viewing-blockchain-simple_blockchain .fp-controlArrow.fp-next {
+  display: none;
+}
+</style>

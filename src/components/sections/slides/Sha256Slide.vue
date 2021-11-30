@@ -33,12 +33,6 @@
     in the observable universe</a>.
   </p>
 
-  <p>
-    It is theoretically possible for two inputs or more to have the same hash output. However,
-    because of the massive possible values, this is infinitesimally unlikely to occur, and currently
-    unfeasible to do on purpose.
-  </p>
-
   <b-card no-body class="mt-4">
     <b-card-header header-bg-variant="info">
       <span class="float-left"><b-icon-wrench/> SHA-256 Calculator</span>
@@ -97,7 +91,7 @@ export default {
     return {
       data: 'Try changing this data...',
       hash: {hexadecimal: '60759d1ab05baf2c79e281d8fbff268f559328dc45bd46b12114bbbe40197271'},
-      hashMax: new Num(BigInt(`0x${ ''.padEnd(64, 'f') }`), 64)
+      hashMax: new Num(BigInt(`0x${ ''.padEnd(64, 'f') }`), 64),
     };
   },
   async mounted() {

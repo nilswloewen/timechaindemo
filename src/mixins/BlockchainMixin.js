@@ -20,7 +20,6 @@ export default {
       blocks: [new Block('', BlockHeader.genesis, 0, '#61e294', 'inherit')],
       disableAddBlockBtn: true,
       hexDigits: 2,
-      hpsOfThisDevice: 42,
       newBlockData: '',
       guesses: []
     };
@@ -148,25 +147,5 @@ export default {
       // Reset guesses so they are not still painted on graph.
       this.guesses = [];
     },
-    async calibrateHps() {
-      const start = new Date().getTime();
-      let elapsed = 0;
-
-      while (elapsed < 3000) {
-        this.blocks[0].header.nonce += 1;
-        await this.finalizeBlock(0);
-        elapsed = new Date().getTime() - start;
-      }
-
-      this.hpsOfThisDevice = this.blocks[0].header.nonce / (elapsed / 1000);
-
-      // Reset block.
-      this.blocks[0].header.nonce = 0;
-      await this.finalizeBlock(0);
-      this.guesses = [];
-    },
-    calcAvgHashes() {
-      return 1 / (this.target.num / this.targetMax.num);
-    }
   }
 };

@@ -1,29 +1,30 @@
 <template>
 <div id="pow_section" class="section">
   <Page data-anchor="pow" slide>
-    <h1> Mining </h1>
+    <h1> Mining / Proof-of-Work </h1>
 
     <p>
-      In the previous example of a simple, non-proof-of-work blockchain every block hash was considered valid.
+      Mining is the process of adding new blocks to the blockchain. The name comes from the idea that
+      if you search hard enough, you will be rewarded with 'digital gold' aka Bitcoin.
     </p>
     <p>
-      To make mining difficult, a hash will only be considered valid if
-      it is interpreted as a number that is less than a self-adjusting <b>target</b>.
+      Every time a miner successfully adds a block to the blockchain they are given a reward of newly
+      minted bitcoin. The reward amount diminishes over time which is why Bitcoin has a
+      <a href="https://en.bitcoin.it/wiki/Controlled_supply">limited supply</a>.
     </p>
 
-    <b-card>
-      <q>We propose a solution to the double-spending problem using a
-        peer-to-peer network. The network timestamps transactions by hashing
-        them into an ongoing chain of hash-based proof-of-work, forming a
-        record that cannot be changed without redoing the proof-of-work.</q>
-      <br> - <a href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</a>
-    </b-card>
+    <hr>
 
     <p>
-      Because a hash of the data and previous hash will not meet the new criteria
-      we will add one new field to the block called a <b>Nonce</b>.
+      In the previous example of a blockchain, every block hash was considered valid.
+      To make mining difficult, Bitcoin requires that a block hash will only be valid if
+      it is interpreted as a number that is less than a pre-determined <b>target</b>.
     </p>
 
+    <p>
+      Because a hash of our demo block will likely not will not meet the new criteria,
+      we will add one new field to the block called a <b>nonce</b>.
+    </p>
 
     <b-card>
       <h4 class="text-left">nonce (n.)</h4>
@@ -33,6 +34,13 @@
       <hr>
       In cryptography it is said to be shorthand for <br>'A number used only once'
     </b-card>
+
+    <p>
+      If the hash of the
+      (data & previous hash & nonce) is invalid, the hash will be discarded and we will
+      try again with a new nonce. Because this will take many, many tries to find a valid
+      hash, this system is called <b>Proof-of-Work</b>.
+    </p>
 
     <b-card no-body>
       <b-card-header header-bg-variant="info">
@@ -54,13 +62,14 @@
       </b-card-body>
     </b-card>
 
-    <p>
-      The nonce is not a specific number, it is a number within the range of 0 to target - 1.
-    </p>
-    <p>
-      By adding a random nonce to the block we are essentially treating the hash function as a
-      random number generator. However, a hash is neither random nor a number - it is simply a string of bits.
-    </p>
+    <b-card>
+      <q>
+        The network timestamps transactions by hashing
+        them into an ongoing chain of hash-based proof-of-work, forming a
+        record that cannot be changed without redoing the proof-of-work.</q>
+      <br> - <a href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</a>
+    </b-card>
+
   </Page>
 
   <Page data-anchor="target" slide
@@ -84,7 +93,7 @@
       As the target goes down it becomes more difficult to find a winning hash.
     </p>
 
-    <Target v-on:updateTarget="updateTarget" full
+    <Target v-on:updateTarget="updateTarget"
             v-on:real-target-max="realTargetMax"
             :avgHashes="avgHashes"
             :denominator="denominator"
@@ -94,22 +103,6 @@
             :probability="probability"
             :target="target"
             :targetMax="targetMax"/>
-  </Page>
-
-  <Page data-anchor="leading_zeros" slide>
-    <h1>Leading Zeros</h1>
-
-    <p>
-      It is a common misconception that a block has is required to have a certain
-      amount of leading zeros.
-    </p>
-
-    <p>
-      <q>The proof-of-work involves scanning for a value that when hashed, such as with SHA-256, the
-        hash begins with a number of zero bits. The average work required is exponential in the number
-        of zero bits required and can be verified by executing a single hash.</q>
-      <br> - <a href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</a>
-    </p>
   </Page>
 
   <Page data-anchor="pow_blockchain" slide
@@ -190,10 +183,17 @@ export default {
     return {
       activeEncoding: 1,
       blockToMine: 0,
-      encoding: ['binary', 'decimal', 'hexadecimal'],
       guesses: [],
       isMining: false
     };
   }
 };
 </script>
+
+<style>
+/* Hide slide arrows on first and last slide. */
+.fp-viewing-pow-pow .fp-controlArrow.fp-prev,
+.fp-viewing-pow-pow_mining .fp-controlArrow.fp-next {
+  display: none;
+}
+</style>

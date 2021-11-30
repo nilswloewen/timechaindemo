@@ -129,6 +129,15 @@ export default {
       this.ctx.stroke();
       this.ctx.closePath();
 
+      if (y < 20) {
+        this.ctx.beginPath();
+        this.ctx.strokeStyle = 'transparent';
+        this.ctx.moveTo(this.zero.x - 4, this.zero.y);
+        this.ctx.lineTo(this.zero.x - 74, this.zero.y);
+        this.ctx.stroke();
+        this.ctx.closePath();
+      }
+
       this.ctx.font = '16px Fira Code';
       this.ctx.direction = 'ltr';
       this.ctx.fillStyle = this.winningColor;
@@ -211,19 +220,18 @@ export default {
       }
 
       // Background
-      const labelMetrics = this.ctx.measureText(label);
-      this.ctx.fillStyle = this.bgColor;
-      this.ctx.fillRect(
-        x - 2, y - 12,
-        labelMetrics.width + 5, 20
-      );
+      // const labelMetrics = this.ctx.measureText(label);
+      // this.ctx.fillStyle = this.bgColor;
+      // this.ctx.fillRect(
+      //   x - 2, y - 12,
+      //   labelMetrics.width + 5, 20
+      // );
 
       // Label
       this.ctx.direction = 'ltr';
       this.ctx.fillStyle = isHashValid ? `rgba(247, 148, 19, ${ opacity })` : `rgba(255, 255, 255, ${ opacity })`;
       this.ctx.fillText(label, x, y + 4);
     },
-
 
     drawEndCaps() {
       this.ctx.fillStyle = this.bgColor;
@@ -248,8 +256,7 @@ export default {
       this.drawTarget(this.target.yRatio);
       this.drawGuesses(this.guesses);
       this.drawTicks();
-      this.drawEndCaps();
-
+      // this.drawEndCaps();
 
       window.requestAnimationFrame(this.drawGraph);
     }

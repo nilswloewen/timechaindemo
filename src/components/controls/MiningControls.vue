@@ -1,5 +1,5 @@
 <template>
-<b-card class="overlay" no-body>
+<b-card class="overlay mining_controls" no-body>
   <b-card-header>
     Mining for Block #{{ block.height }}
   </b-card-header>
@@ -28,7 +28,8 @@
                     :value="block.header.nonce" :state="block.isHashValid"
                     type="number" :min="0" :max="4294967295" size="sm"/>
       <b-button-group>
-        <b-button size="sm" @click="onIncrementNonce" :disabled="block.isHashValid">
+        <b-button size="sm" @click="onIncrementNonce" :disabled="block.isHashValid"
+                  style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
           +1
         </b-button>
       </b-button-group>
@@ -71,7 +72,11 @@ export default {
 <style>
 .overlay {
   position: fixed;
-  top: 7vh;
-  right: 50%;
+  top: 6em;
+  right: 75%;
+  width: 160px;
+}
+.mining_controls .list-value {
+  text-align: right;
 }
 </style>

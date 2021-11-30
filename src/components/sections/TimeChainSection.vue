@@ -7,7 +7,7 @@
       <q>The only way to find a valid proof-of-work is by making a lot of guesses,
         and making a single guess takes a little bit of time. The probabilistic
         sum of these guesses is what builds up the timechain that is Bitcoin.</q>
-      - <a href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</a>
+      - <a href="https://dergigi.com/2021/01/14/bitcoin-is-time/" target="_blank">DerGigi</a>
     </b-card>
 
     <p>
@@ -22,9 +22,8 @@
     </p>
 
     <p>
-      This leads to a global arms race as Bitcoin mining is open to anyone, anywhere. As each miner upgrades their
-      hardware and increases their mining capacity, every other miner must do the same to keep up or else the
-      probability of their success dwindles.
+      This leads to a global arms race as Bitcoin mining is a competition that is open to anyone, anywhere.
+      As each miner upgrades their hardware to increase their mining capacity, every other miner must do the same to keep up or else the probability of their success diminishes.
     </p>
 
     <p>
@@ -38,35 +37,13 @@
       blocks are always added to the chain at 10 minute intervals.
     </p>
 
-    <p>
-      Mining capacity is rated by how many hashes a miner can find per second, this
-      is known as the <b>hashrate</b> or H/s (hashes per second).
-    </p>
-
-    <p>
-      This demo on this device has a max hashrate of ~<b>{{ hpsOfThisDevice.toFixed(0) }}<sub>H/s</sub></b>.
-    </p>
-
-    <b-card header="Hashrate comparison" header-bg-variant="info">
-      <table id="hashrate_table">
-        <tr>
-          <td> This device</td>
-          <td> ~{{ hpsOfThisDevice.toFixed(0) }}<sub>H/s</sub></td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://shop.bitmain.com/product/detail?pid=00020211108151254046rPQ0VCqe069D">
-              Antminer S19j Pro
-            </a>
-          </td>
-          <td> ~104,000,000,000,000<sub>H/s</sub></td>
-        </tr>
-        <tr>
-          <td><a href="https://www.blockchain.com/charts/hash-rate">Global</a></td>
-          <td> ~{{ globalHashRate }}<sub>H/s</sub></td>
-        </tr>
-      </table>
+    <b-card>
+      <h4>Timechain</h4>
+      <hr>
+      A blockchain that grows at a fixed interval, regardless of computing power.
     </b-card>
+
+
   </Page>
 
   <Page data-anchor="difficulty_adjustment" slide encoding-btn
@@ -78,6 +55,11 @@
     <h1>Difficulty Adjustment</h1>
 
     <p>
+      Mining capacity is rated by how many hashes a miner can find per second, this
+      is known as the <b>hashrate</b> or H/s (hashes per second).
+    </p>
+
+    <p>
       This is the Crème de la crème, cherry-on-top engineering marvel of Bitcoin.
     </p>
 
@@ -85,25 +67,33 @@
       <q>To compensate for increasing hardware speed and varying interest in running nodes over time,
         the proof-of-work difficulty is determined by a moving average targeting an average number of
         blocks per hour. If they're generated too fast, the difficulty increases.</q>
-      <br> - <a href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</a>
+      <br> - <a href="https://bitcoin.org/bitcoin.pdf" target="_blank">Satoshi Nakamoto</a>
+      <hr>
+      <q>In other words, the difficulty-adjustment is about keeping a constant
+        time, not a constant level of security, difficulty, or energy expenditure.</q>
+      <br> - <a href="https://dergigi.com/2021/01/14/bitcoin-is-time/" target="_blank">DerGigi</a>
     </b-card>
+
+    <p>
+
+    </p>
 
     <b-card no-body>
       <b-card-header header-bg-variant="info">
-        <b-icon-wrench/>
-        Difficulty
+        <b-icon-wrench/> Difficulty
       </b-card-header>
 
       <b-card-body class="text-center">
-        <p>
-          This device can calculate <b>~{{ hpsOfThisDevice.toFixed(0) }}</b><sub>H/s</sub>
-          <b-button @click="calibrateHps" size="sm"> <b-icon-wrench/> </b-button>
-        </p>
+<!--        <p>-->
+          <b-button @click="calibrateHps" size="sm"> This Device </b-button>
+<!--          <b-button @click="onAntminer" size="sm"> Antminer S19j Pro </b-button>-->
+<!--          <b-button @click="onGlobal" size="sm"> Global </b-button>-->
+<!--        </p>-->
 
         <p>
           <b-input-group id="hashrate_picker" size="sm" append="H/s">
-            <b-form-input id="hashrate_input" type="number" size="sm"
-                          style="text-align: right;" :value="hashrate" :min="1" @change="updateHashrate"/>
+            <b-form-input id="hashrate_input" type="number" size="sm" step="1"
+                          style="text-align: right;" :value="hashrate.toFixed(0)" :min="1" @change="updateHashrate"/>
             <b-form-select id="hashrate_units_select" size="sm" @change="updateHashrateUnit"
                            :value="hashrateUnit" :options="hashrateUnits"/>
           </b-input-group>
@@ -122,7 +112,7 @@
       </b-card-body>
     </b-card>
 
-    <Target v-on:updateTarget="updateTimechainTarget" full
+    <Target v-on:updateTarget="updateTimechainTarget"
             v-on:real-target-max="realTargetMax"
             :avgHashes="avgHashes"
             :denominator="denominator"
@@ -132,12 +122,6 @@
             :probability="probability"
             :target="target"
             :targetMax="targetMax"/>
-
-    <b-card>
-      <q>In other words, the difficulty-adjustment is about keeping a constant
-        time, not a constant level of security, difficulty, or energy expenditure.</q>
-      - DerGigi
-    </b-card>
   </Page>
 
   <Page data-anchor="timechain_blocks" slide encoding-btn
@@ -162,7 +146,7 @@
     </div>
   </Page>
 
-  <div class="slide" data-anchor="timechain_graph" id="timechain_graph_slide">
+  <div class="slide" data-anchor="timechain_mining" id="timechain_mining_slide">
     <div class="fp-bg"/>
     <EncodingButton :active-encoding="activeEncoding" :encoding="encoding"
                     v-on:update-active-encoding="updateActiveEncoding"
@@ -188,6 +172,7 @@
 <script>
 import AddBlockButton from '@/components/controls/AddBlockButton.vue';
 import BlockCard from '@/components/cards/BlockCard.vue';
+import BlockchainApi from '@/services/BlockchainApi';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
 import EncodingButton from '@/components/controls/EncodingButton.vue';
 import EncodingMixin from '@/mixins/EncodingMixin';
@@ -216,8 +201,7 @@ export default {
   data() {
     return {
       blockToMine: 0,
-      encoding: ['binary', 'decimal', 'hexadecimal', 'exponential'],
-      globalHashRate: '143,146,528,833,000,000,000',
+      activeEncoding: 1,
       hexDigits: 2,
       hashrate: 42,
       hashrateUnit: 'base',
@@ -244,8 +228,8 @@ export default {
         Yotta: { other: 'Septillion',  value: 1_000_000_000_000_000_000_000_000 },
       },
       isMining: false,
-      blockTime: 10,
-      blockTimeUnit: 'Minutes',
+      blockTime: 15,
+      blockTimeUnit: 'Seconds',
       timeUnits: ['Seconds', 'Minutes', 'Hours', 'Days', 'Weeks', 'Months', 'Years'],
       isAdjustingTarget: false,
     };
@@ -260,16 +244,33 @@ export default {
     // await this.calibrateHps();
     // this.calcAvgTime();
     // @TODO: Enable at launch.
-    // const gigaHashRate = await BlockchainApi.getHashRate();
-    // this.globalHashRate = (gigaHashRate * 1_000_000_000).toLocaleString('en-Us');
   },
   methods: {
+    onAntminer() {
+      this.hashrate = 104;
+      this.hashrateUnit = 'Tera';
+      this.calcTarget();
+    },
+    async onGlobal() {
+      const gigaHashrate = await BlockchainApi.getHashRate();
+      this.setHashrate(gigaHashrate * this.hashrateConversion.Giga.value);
+      this.calcTarget();
+    },
+    setHashrate(hashrate) {
+      for (const unit of ['Yotta','Zeta', 'Exa', 'Peta', 'Tera', 'Giga', 'Mega', 'Kilo', 'base']) {
+        if (hashrate > this.hashrateConversion[unit].value) {
+          this.hashrate = hashrate / this.hashrateConversion[unit].value;
+          this.hashrateUnit = unit;
+          return;
+        }
+      }
+    },
     onNonceChange(nonce) {
       this.blocks[this.blockToMine].header.nonce = Number(nonce);
       this.finalizeBlock(this.blockToMine);
     },
     updateHashrate(newHashrate) {
-      this.hashrate = newHashrate || 1;
+      this.hashrate = Number(newHashrate || 1);
       this.calcTarget();
     },
     updateHashrateUnit(newHashrateUnit) {
@@ -290,7 +291,7 @@ export default {
       const desiredSeconds = this.timeToSeconds(this.blockTime, this.blockTimeUnit);
       const desiredAvgHashes = desiredSeconds * hashrate;
 
-      const { hexDigits, target } = this.findTargetAndMax(Number(desiredAvgHashes));
+      const { hexDigits, target } = this.findTargetAndMax(desiredAvgHashes);
 
       this.updateHexDigits(hexDigits);
       this.target = new Num(BigInt(target), this.hexDigits);
@@ -386,28 +387,46 @@ export default {
     async updateTimechainTarget(newTarget) {
       await this.updateTarget(newTarget);
 
-      const seconds = Math.ceil((1 / this.hpsOfThisDevice) * this.avgHashes);
+      const hashrate = this.hashrate * this.hashrateConversion[this.hashrateUnit].value;
+      const seconds = Math.ceil((1 / hashrate) * this.avgHashes);
       const { val, unit } = this.secondsToTime(seconds);
 
       this.blockTime = val;
       this.blockTimeUnit = unit;
+    },
+    async calibrateHps() {
+      const start = new Date().getTime();
+      let elapsed = 0;
+
+      while (elapsed < 1000) {
+        this.blocks[0].header.nonce += 1;
+        await this.finalizeBlock(0);
+        elapsed = new Date().getTime() - start;
+      }
+
+      const hashes = this.blocks[0].header.nonce / (elapsed / 1000);
+      this.setHashrate(hashes.toFixed(0));
+
+      // Reset block.
+      this.blocks[0].header.nonce = 0;
+      await this.finalizeBlock(0);
+      this.guesses = [];
     },
   },
 };
 </script>
 
 <style>
-#hashrate_table {
-  width: 100%;
-}
-
-#hashrate_table tr td:last-child {
-  text-align: right;
-}
-
 #time_input, #hashrate_input,
 #time_units_select, #hashrate_units_select {
   width: 96px;
   max-width: 96px;
 }
+
+/* Hide slide arrows on first and last slide. */
+.fp-viewing-timechain-timechain .fp-controlArrow.fp-prev,
+.fp-viewing-pow-pow_mining .fp-controlArrow.fp-next {
+  display: none;
+}
+
 </style>

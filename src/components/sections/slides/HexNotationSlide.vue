@@ -12,7 +12,9 @@
   </p>
 
   <p>
-    Example: Bitcoin's maximum supply is {{ num[encoding[activeEncoding]] }}.
+    For example, Bitcoin's maximum supply is:
+    <br>
+    {{ num[encoding[activeEncoding]] }}.
   </p>
 
   <p>

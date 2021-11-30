@@ -57,8 +57,9 @@ export default {
 <style>
 .slide.active .encoding_btn {
   display: inline;
-  position: relative;
-  left: 90%;
+  position: fixed;
+  top: 6em;
+  right: 15px;
 }
 
 .encoding_btn {
@@ -66,7 +67,7 @@ export default {
 }
 
 .encoding_btn ul {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: transparent;
 }
 
 .encoding_btn ul a {

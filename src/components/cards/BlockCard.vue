@@ -26,7 +26,7 @@
         <b-input-group size="sm">
           <b-form-input @change="onBlockHeightChange" :value="block.height"
                         :max="blockHeightMax" :min="0" type="number" size="sm"/>
-          <b-button @click="getLatestBlock" variant="primary" size="sm">Latest</b-button>
+          <b-button @click="$emit('update-block-height-latest')" variant="primary" size="sm">Latest</b-button>
         </b-input-group>
       </b-list-group-item>
     </template>
@@ -82,7 +82,6 @@
         {{ block.header.prevHash[localEncoding] }}
       </div>
     </b-list-group-item>
-
   </b-card>
 </div>
 </template>
@@ -119,7 +118,7 @@ export default {
       return `background-color: ${ this.block.color };`;
     },
     getPrevColor() {
-      if (this.block.height === 0) {
+      if (this.block.height === 0 || this.showReal) {
         return 'color: white;';
       }
       return `background-color: ${ this.block.prevColor };`;
@@ -143,9 +142,6 @@ export default {
   methods: {
     onDataChange(newData) {
       this.$emit('update-data', newData, this.index);
-    },
-    getLatestBlock() {
-      this.$emit('update-block-height-latest');
     },
     onBlockHeightChange(newHeight) {
       this.$emit('update-block-height', newHeight);

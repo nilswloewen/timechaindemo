@@ -50,7 +50,7 @@ export default {
         normalScrollElements: '.blockchain_wrapper',
 
         parallax: true,
-        parallaxKey: '75EC2C59-580B47EA-8CE07EC3-BFC00055',
+        parallaxKey: 'bmlsc2xvZXdlbi5jb21fSTQyY0dGeVlXeHNZWGc9ME1T',
         parallaxOptions: {
           type: 'reveal',
           percentage: 62,

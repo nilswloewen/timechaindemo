@@ -11,13 +11,9 @@
   </p>
 
   <p>
-    Bitcoin mining is difficult not because it requires energy and computational
+    'Mining' is the process of recording transactions onto the Bitcoin timechain.
+    Mining is difficult not just because it requires energy and computational
     power, but because it requires <b>time</b>.
-  </p>
-
-  <p>
-    'Mining' is the process of recording transactions on the Bitcoin network.
-    A successful miner is rewarded with newly minted bitcoin as a reward for their time and effort.
   </p>
 
   <TableOfContents class="fade-in" :contents="contents"/>

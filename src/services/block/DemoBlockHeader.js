@@ -13,7 +13,7 @@ class DemoBlockHeader extends BlockHeader {
   }
 
   serialize() {
-    return this.data + this.timestamp + this.prevHash.hexadecimal + this.nonce;
+    return this.data + this.prevHash.hexadecimal + this.nonce;
   }
 }
 

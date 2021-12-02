@@ -227,6 +227,18 @@ export default {
       // Reset guesses so that they are not still painted on graph.
       this.guesses = [];
     },
+    calcTarget() {
+      const hashrate = this.hashrate * this.hashrateConversion[this.hashrateUnit].value;
+      const desiredSeconds = this.timeToSeconds(this.blockTime, this.blockTimeUnit);
+      const desiredAvgHashes = desiredSeconds * hashrate;
+
+      const { hexDigits, target } = this.findTargetAndMax(desiredAvgHashes);
+
+      this.updateHexDigits(hexDigits);
+      this.target = new Num(BigInt(target), this.hexDigits);
+      this.calcStats();
+    },
+
   }
 };
 </script>

@@ -99,19 +99,10 @@ export default {
           }
         }
       }
+      // @TODO: This should never happen!
+      return { hexDigits: 1, target: 1 };
     },
-    calcTarget() {
-      const hashrate = this.hashrate * this.hashrateConversion[this.hashrateUnit].value;
-      const desiredSeconds = this.timeToSeconds(this.blockTime, this.blockTimeUnit);
-      const desiredAvgHashes = desiredSeconds * hashrate;
-      console.log(hashrate)
 
-      const { hexDigits, target } = this.findTargetAndMax(desiredAvgHashes);
-
-      this.updateHexDigits(hexDigits);
-      this.target = new Num(BigInt(target), this.hexDigits);
-      this.calcStats();
-    },
 
     timeToSeconds(time, unit) {
       switch (unit) {

@@ -11,11 +11,11 @@
     In the top right corner there is a button to change the notation of some numbers in this demo.
   </p>
 
-  <p>
-    For example, Bitcoin's maximum supply is:
-    <br>
-    {{ num[encoding[activeEncoding]] }}.
-  </p>
+  <b-card class="text-center">
+    Bitcoin's maximum supply:
+    <hr>
+      <b>{{ num[encoding[activeEncoding]] }}</b>
+  </b-card>
 
   <p>
     Notation styles are chosen for different use cases. While computers think in 1's and 0's,
@@ -39,59 +39,57 @@
     As you can see in the following table these values are equivalent yet notated differently.
   </p>
 
-  <b-row>
-    <b-col class="hex_col">
-      <b-card id="hex_table" no-body>
-        <b-table-simple class="border-1" small>
-          <b-thead head-variant="dark">
-            <b-tr>
-              <b-th>Decimal</b-th>
-              <b-th>Binary</b-th>
-              <b-th>Hexadecimal</b-th>
-            </b-tr>
-          </b-thead>
-          <b-tbody>
-            <b-tr v-for="(row, index) in rows" :key="index">
-              <b-td>{{ row['d'] }}</b-td>
-              <b-td>{{ row['b'] }}</b-td>
-              <b-td>{{ row['h'] }}</b-td>
-            </b-tr>
-          </b-tbody>
-        </b-table-simple>
-      </b-card>
-    </b-col>
+  <b-card id="hex_table" no-body>
+    <b-table-simple class="border-1" small>
+      <b-thead>
+        <tr>
+          <th colspan="3" class="text-center">Ways to notate 0-15</th>
+        </tr>
+      </b-thead>
+      <b-thead head-variant="dark">
+        <b-tr>
+          <b-th>Decimal</b-th>
+          <b-th>Hexadecimal</b-th>
+          <b-th>Binary</b-th>
+        </b-tr>
+      </b-thead>
+      <b-tbody>
+        <b-tr v-for="(row, index) in rows" :key="index">
+          <b-td>{{ row.decimal }}</b-td>
+          <b-td>{{ row.hexadecimal }}</b-td>
+          <b-td>{{ row.binary }}</b-td>
+        </b-tr>
+      </b-tbody>
+    </b-table-simple>
+  </b-card>
 
-    <b-col class="hex_col">
-      <b-card no-body id="hex_converter">
-        <b-card-header header-bg-variant="info">
-          <b-icon-wrench/>
-          Notation
-          <b-icon-arrow-left-right/>
-          Converter
-        </b-card-header>
+  <b-card no-body id="hex_converter">
+    <b-card-header header-bg-variant="info">
+      <b-icon-wrench/>
+      Notation
+      <b-icon-arrow-left-right/>
+      Converter
+    </b-card-header>
 
-        <b-list-group-item class="list-field">Hexadecimal (base 16)</b-list-group-item>
-        <b-list-group-item class="list-value">
-          <b-form-input @keyup="onHex" :value="Number(val).toString(16)"/>
-        </b-list-group-item>
+    <b-list-group-item class="list-field">Hexadecimal (base 16)</b-list-group-item>
+    <b-list-group-item class="list-value">
+      <b-form-input @keyup="onHex" :value="Number(val).toString(16)"/>
+    </b-list-group-item>
 
-        <b-list-group-item class="list-field">Decimal (base 10)</b-list-group-item>
-        <b-list-group-item class="list-value">
-          <b-form-input v-model="val" type="number"/>
-        </b-list-group-item>
+    <b-list-group-item class="list-field">Decimal (base 10)</b-list-group-item>
+    <b-list-group-item class="list-value">
+      <b-form-input v-model="val" type="number"/>
+    </b-list-group-item>
 
-        <b-list-group-item class="list-field">Exponential</b-list-group-item>
-        <b-list-group-item class="list-value">{{ Number(val).toExponential() }}</b-list-group-item>
+    <b-list-group-item class="list-field">Exponential</b-list-group-item>
+    <b-list-group-item class="list-value">{{ Number(val).toExponential() }}</b-list-group-item>
 
-        <b-list-group-item class="list-field">Binary (base 2)</b-list-group-item>
-        <b-list-group-item class="list-value">
-          <b-form-input :value="Number(val).toString(2)" @keyup="onBin"/>
-        </b-list-group-item>
+    <b-list-group-item class="list-field">Binary (base 2)</b-list-group-item>
+    <b-list-group-item class="list-value">
+      <b-form-input :value="Number(val).toString(2)" @keyup="onBin"/>
+    </b-list-group-item>
 
-      </b-card>
-
-    </b-col>
-  </b-row>
+  </b-card>
 
 </Page>
 </template>
@@ -116,22 +114,22 @@ export default {
       num: new Num(21_000_000n, 7),
       columns: ['Decimal', 'Binary', 'Hexadecimal'],
       rows: [
-        { d: 15, b: '1111', h: 'f' },
-        { d: 14, b: '1110', h: 'e' },
-        { d: 13, b: '1101', h: 'd' },
-        { d: 12, b: '1100', h: 'c' },
-        { d: 11, b: '1011', h: 'b' },
-        { d: 10, b: '1010', h: 'a' },
-        { d: 9, b: '1001', h: '9' },
-        { d: 8, b: '1000', h: '8' },
-        { d: 7, b: '0111', h: '7' },
-        { d: 6, b: '0110', h: '6' },
-        { d: 5, b: '0101', h: '5' },
-        { d: 4, b: '0100', h: '4' },
-        { d: 3, b: '0011', h: '3' },
-        { d: 2, b: '0010', h: '2' },
-        { d: 1, b: '0001', h: '1' },
-        { d: 0, b: '0000', h: '0' }
+        { decimal: 15, binary: '1111', hexadecimal: 'f' },
+        { decimal: 14, binary: '1110', hexadecimal: 'e' },
+        { decimal: 13, binary: '1101', hexadecimal: 'd' },
+        { decimal: 12, binary: '1100', hexadecimal: 'c' },
+        { decimal: 11, binary: '1011', hexadecimal: 'b' },
+        { decimal: 10, binary: '1010', hexadecimal: 'a' },
+        { decimal: 9, binary: '1001', hexadecimal: '9' },
+        { decimal: 8, binary: '1000', hexadecimal: '8' },
+        { decimal: 7, binary: '0111', hexadecimal: '7' },
+        { decimal: 6, binary: '0110', hexadecimal: '6' },
+        { decimal: 5, binary: '0101', hexadecimal: '5' },
+        { decimal: 4, binary: '0100', hexadecimal: '4' },
+        { decimal: 3, binary: '0011', hexadecimal: '3' },
+        { decimal: 2, binary: '0010', hexadecimal: '2' },
+        { decimal: 1, binary: '0001', hexadecimal: '1' },
+        { decimal: 0, binary: '0000', hexadecimal: '0' }
       ]
     };
   },
@@ -161,20 +159,11 @@ export default {
   margin-left: auto;
   margin-right: auto;
   max-width: 315px;
+  text-align: center;
 }
 
 #hex_table table {
   color: white;
-}
-
-#hex_table th:nth-child(1),
-#hex_table td:nth-child(1) {
-  text-align: right;
-}
-
-#hex_table th:nth-child(2),
-#hex_table td:nth-child(2) {
-  text-align: center;
 }
 
 #hex_converter {

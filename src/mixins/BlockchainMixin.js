@@ -73,6 +73,10 @@ export default {
       await block.calcHash(this.hexDigits);
       block.isHashValid = block.hash.bigInt < this.target.bigInt;
 
+      if (block.isHashValid) {
+        this.$root.$emit('bv::toggle::collapse', 'collapse_success_msg');
+      }
+
       this.guesses.push({
         xRatio: 0,
         yRatio: block.hash.num / this.hashMax.num,
@@ -136,16 +140,6 @@ export default {
       this.blocks[index].header.data = event.target.value;
       await this.delayedUpdate(index);
     },
-    updateHexDigits(newHexDigits) {
-      this.hexDigits = newHexDigits;
 
-      const max = BigInt(`0x${ ''.padEnd(this.hexDigits, 'f') }`);
-
-      this.targetMax = new Num(max - 1n, this.hexDigits);
-      this.hashMax = new Num(max, this.hexDigits);
-
-      // Reset guesses so they are not still painted on graph.
-      this.guesses = [];
-    }
   }
 };

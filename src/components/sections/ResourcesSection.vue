@@ -16,7 +16,7 @@
     For UX inspiration:
     <ul>
       <li>
-        <a href="https://BlockchainDemo.io" target="_blank">BlockchainDemo.io</a>
+        <a href="https://BlockchainDemo.io" target="_blank">BlockchainDemo.io</a> - Also has a great demo of Bitcoin's Peer-to-Peer (P2P) Network
       </li>
     </ul>
   </div>
@@ -26,6 +26,9 @@
     <ul>
       <li>
         <a href="https://dergigi.com/2021/01/14/bitcoin-is-time" target="_blank">Bitcoin is Time</a>
+      </li>
+      <li>
+        <a href="https://www.amazon.com/dp/1090109911" target="_blank">Bitcoin: Sovereignty through Mathematics</a>
       </li>
     </ul>
   </div>

@@ -77,11 +77,11 @@ export default {
         },
         {
           anchor: 'pow',
-          label: 'Mining',
+          label: 'Mining / Proof-of-Work',
           slides: [
             { anchor: 'target', label: 'Target' },
-            { anchor: 'pow_blockchain', label: 'Proof-of-Work Blockchain' },
-            { anchor: 'pow_mining', label: 'Proof-of-Work Mining' }
+            { anchor: 'pow_blockchain', label: 'POW Blockchain' },
+            { anchor: 'pow_mining', label: 'POW Mining' }
           ]
         },
         {
@@ -89,12 +89,18 @@ export default {
           label: 'Timechain',
           slides: [
             { anchor: 'difficulty_adjustment', label: 'Difficulty Adjustment' },
-            { anchor: 'hash_rate', label: 'Hash Rate' },
-            { anchor: 'probability', label: 'Probability' },
-            { anchor: 'timechain_graph', label: 'Timechain Graph' }
+            { anchor: 'timechain_blockchain', label: 'Timechain' },
+            { anchor: 'timechain_mining', label: 'Timechain Mining' }
           ]
         },
-        { anchor: 'real_blocks', label: 'Real Blocks' },
+        {
+          anchor: 'real_blocks',
+          label: 'Real Blocks',
+          slides: [
+            { anchor: 'global_hash_rate', label: 'Global Hash Rate' },
+            { anchor: 'real_mining', label: 'Real-World Mining' },
+          ]
+        },
         { anchor: 'resources', label: 'Resources' }
       ]
     };
@@ -310,7 +316,6 @@ h1 {
   background-size: cover;
   background-position: center;
 }
-
 #intro_section .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/small_brain.jpg');

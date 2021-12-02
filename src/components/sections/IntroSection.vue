@@ -1,19 +1,14 @@
 <template>
 <Page data-anchor="intro">
 
-  <h1 class="text-center">
+  <h1>
     Bitcoin Timechain
   </h1>
 
   <p>
     The goal of this demo is to show that Bitcoin is backed by not just it's massive computer network, but by time
-    itself.
-  </p>
-
-  <p>
-    'Mining' is the process of recording transactions onto the Bitcoin timechain.
-    Mining is difficult not just because it requires energy and computational
-    power, but because it requires <b>time</b>.
+    itself. The demo will start with underlying concepts such as hash functions and move on to show blocks,
+    blockchain, proof-of-work, mining, and the difficulty-adjustment that regulates the timechain.
   </p>
 
   <TableOfContents class="fade-in" :contents="contents"/>

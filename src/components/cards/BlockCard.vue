@@ -55,7 +55,20 @@
       <!--Merkle Root-->
       <b-list-group-item class="list-field">Merkle Root</b-list-group-item>
       <b-list-group-item class="list-value merkle_root">{{ block.header.merkleRoot }}</b-list-group-item>
+
+      <!--Time-->
+      <b-list-group-item class="list-field">Timestamp</b-list-group-item>
+      <b-list-group-item class="list-value">{{ getTime }}</b-list-group-item>
     </template>
+
+    <!--Previous Hash-->
+    <b-list-group-item class="list-field">Previous Hash</b-list-group-item>
+    <b-list-group-item class="list-value">
+      <div class="rounded prev_block update_box_shadow" :style="getPrevColor"
+           :key="block.header.prevHash">
+        {{ block.header.prevHash[localEncoding] }}
+      </div>
+    </b-list-group-item>
 
     <!--Nonce-->
     <template v-if="showNonce">
@@ -69,19 +82,6 @@
         </template>
       </b-list-group-item>
     </template>
-
-    <!--Time-->
-    <b-list-group-item class="list-field">Timestamp</b-list-group-item>
-    <b-list-group-item class="list-value">{{ getTime }}</b-list-group-item>
-
-    <!--Previous Hash-->
-    <b-list-group-item class="list-field">Previous Hash</b-list-group-item>
-    <b-list-group-item class="list-value">
-      <div class="rounded prev_block update_box_shadow" :style="getPrevColor"
-           :key="block.header.prevHash">
-        {{ block.header.prevHash[localEncoding] }}
-      </div>
-    </b-list-group-item>
   </b-card>
 </div>
 </template>
@@ -128,7 +128,7 @@ export default {
     },
     getTime() {
       const date = new Date(this.block.header.timestamp * 1000);
-      return new Intl.DateTimeFormat('en-US', {dateStyle: 'medium', timeStyle: 'long'}).format(date);
+      return new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeStyle: 'long' }).format(date);
     },
     isHashValid() {
       if (!this.showNonce) return true;

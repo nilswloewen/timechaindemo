@@ -34,9 +34,12 @@
         </b-button>
       </b-button-group>
     </b-input-group>
-    <b-form-checkbox @change="onStartMining" switch :checked="isMining" size="lg" :disabled="block.isHashValid">
-      Go Brrr
-    </b-form-checkbox>
+  </b-list-group-item>
+
+  <b-list-group-item class="list-value text-left">
+    <span class="float-left" style="padding-top: 3px;"> Go Brrr </span>
+    <b-form-checkbox class="float-right" style="padding-top: 1px;"
+                     @change="onStartMining" switch :checked="isMining" :disabled="block.isHashValid"/>
   </b-list-group-item>
 </b-card>
 </template>
@@ -76,6 +79,7 @@ export default {
   right: 75%;
   width: 160px;
 }
+
 .mining_controls .list-value {
   text-align: right;
 }

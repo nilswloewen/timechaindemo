@@ -146,6 +146,6 @@ export default {
 
       // Reset guesses so they are not still painted on graph.
       this.guesses = [];
-    },
+    }
   }
 };

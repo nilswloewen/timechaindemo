@@ -39,12 +39,6 @@
         <b-list-group-item class="list-field">Data</b-list-group-item>
         <b-list-group-item class="list-value">Any arbitrary data</b-list-group-item>
 
-        <!--Time-->
-        <b-list-group-item class="list-field">Timestamp</b-list-group-item>
-        <b-list-group-item class="list-value">
-          The time the block was added to the blockchain
-        </b-list-group-item>
-
         <!--Previous Hash-->
         <b-list-group-item class="list-field">Previous Hash</b-list-group-item>
         <b-list-group-item class="list-value">The hash of the previous block</b-list-group-item>
@@ -121,7 +115,7 @@ export default {
     BlockCard,
     EncodingButton,
     Page
-  },
+  }
 };
 </script>
 

@@ -24,6 +24,14 @@
                v-on:update-block-height-latest="updateBlockHeightLatest"/>
   </Page>
 
+  <Page data-anchor="global_hashrate" slide>
+    <h1>Global Hash Rate</h1>
+  </Page>
+
+  <Page data-anchor="real_mining" slide>
+    <h1>Real Mining</h1>
+    <p>Graph max is targetMax</p>
+  </Page>
 
 </div>
 </template>
@@ -51,7 +59,7 @@ export default {
   data() {
     return {
       block: new Block('', BlockHeader.genesis, 0),
-      mempool: new Mempool(),
+      mempool: new Mempool()
     };
   },
   async mounted() {

@@ -101,7 +101,7 @@ export default {
   },
   data() {
     return {
-      block: {difficulty: 1},
+      block: { difficulty: 1 },
 
       nonce: 0,
       hash: {
@@ -110,7 +110,7 @@ export default {
       guesses: [],
 
       hashMax: Object,
-      target: {yRatio: 0},
+      target: { yRatio: 0 },
       encoding: ['hexadecimal', 'decimal', 'exponential', 'binary']
     };
   },
@@ -151,7 +151,7 @@ export default {
       const yRatio = parseInt(this.hash.hexadecimal, 16) / Number(this.hashMax.bigInt);
       this.hash.yRatio = yRatio;
 
-      this.guesses.push({xRatio: 0, yRatio, hash});
+      this.guesses.push({ xRatio: 0, yRatio, hash });
 
       if (this.hash.bigInt < this.target.bigInt) {
         // eslint-disable-next-line no-alert

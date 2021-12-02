@@ -19,8 +19,8 @@
 <script>
 export default {
   props: {
-    encoding: {type: Array, default: ['binary', 'decimal', 'hexadecimal']},
-    activeEncoding: {type: Number, default: 2}
+    encoding: { type: Array, default: ['binary', 'decimal', 'hexadecimal'] },
+    activeEncoding: { type: Number, default: 2 }
   },
   watch: {
     activeEncoding() {

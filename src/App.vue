@@ -58,44 +58,44 @@ export default {
         }
       },
       table_of_contents: [
-        {anchor: 'intro', label: 'Intro'},
+        { anchor: 'intro', label: 'Intro' },
         {
           anchor: 'terms',
           label: 'Terms',
           slides: [
-            {anchor: 'hexadecimal_notation', label: 'Numerical Notation'},
-            {anchor: 'hash_functions', label: 'Hash Functions'},
-            {anchor: 'sha256', label: 'SHA-256'}
+            { anchor: 'hexadecimal_notation', label: 'Numerical Notation' },
+            { anchor: 'hash_functions', label: 'Hash Functions' },
+            { anchor: 'sha256', label: 'SHA-256' }
           ]
         },
         {
           anchor: 'blockchain',
           label: 'Blockchain',
           slides: [
-            {anchor: 'simple_blockchain', label: 'Simple Example'}
+            { anchor: 'simple_blockchain', label: 'Simple Example' }
           ]
         },
         {
           anchor: 'pow',
           label: 'Mining',
           slides: [
-            {anchor: 'target', label: 'Target'},
-            {anchor: 'pow_blockchain', label: 'Proof-of-Work Blockchain'},
-            {anchor: 'pow_mining', label: 'Proof-of-Work Mining'}
+            { anchor: 'target', label: 'Target' },
+            { anchor: 'pow_blockchain', label: 'Proof-of-Work Blockchain' },
+            { anchor: 'pow_mining', label: 'Proof-of-Work Mining' }
           ]
         },
         {
           anchor: 'timechain',
           label: 'Timechain',
           slides: [
-            {anchor: 'difficulty_adjustment', label: 'Difficulty Adjustment'},
-            {anchor: 'hash_rate', label: 'Hash Rate'},
-            {anchor: 'probability', label: 'Probability'},
-            {anchor: 'timechain_graph', label: 'Timechain Graph'}
+            { anchor: 'difficulty_adjustment', label: 'Difficulty Adjustment' },
+            { anchor: 'hash_rate', label: 'Hash Rate' },
+            { anchor: 'probability', label: 'Probability' },
+            { anchor: 'timechain_graph', label: 'Timechain Graph' }
           ]
         },
-        {anchor: 'real_blocks', label: 'Real Blocks'},
-        {anchor: 'resources', label: 'Resources'}
+        { anchor: 'real_blocks', label: 'Real Blocks' },
+        { anchor: 'resources', label: 'Resources' }
       ]
     };
   },
@@ -247,6 +247,7 @@ hr {
 .input-group > .custom-range:focus {
   background-color: inherit;
 }
+
 .custom-range::-webkit-slider-thumb {
   background-color: #17a2b8;
 }
@@ -259,13 +260,16 @@ hr {
 .dropdown-menu a {
   text-decoration: none;
 }
+
 .dropdown-menu a:hover {
   color: #17a2b8;
 }
-.dropdown-item.active{
+
+.dropdown-item.active {
   background-color: inherit;
   color: #17a2b8;
 }
+
 .dropdown-item:hover {
   background-color: inherit;
   color: white;
@@ -316,14 +320,17 @@ h1 {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/neurons_heating_up.jpg');
 }
+
 #hexadecimal_notation_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/neurons2.jpg');
 }
+
 #hash_functions_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/neurons3.jpg');
 }
+
 #sha256_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/Brain-image-by-pitju.jpg');
@@ -333,6 +340,7 @@ h1 {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/brain_black.webp');
 }
+
 #simple_blockchain_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/blue_brain.jpg');
@@ -342,14 +350,17 @@ h1 {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/orange_brain.jpg');
 }
+
 #difficulty_adjustment_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/orange_brain.jpg');
 }
+
 #target_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/brain_mushrooms.jpg');
 }
+
 #nonce_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/brain_mushrooms.jpg');
@@ -359,10 +370,12 @@ h1 {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/transcending_forward.jpg');
 }
+
 #pow_blockchain_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/transcending_forward.jpg');
 }
+
 #pow_mining_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/transcending_forward.jpg');
@@ -372,10 +385,12 @@ h1 {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/brain_man.jpg');
 }
+
 #timechain_blocks_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/brain_man.jpg');
 }
+
 #timechain_mining_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/transcending_forward.jpg');

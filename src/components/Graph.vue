@@ -34,7 +34,7 @@ export default {
     this.height = this.screenHeight - (this.yPad * 2);
 
     // Shortcut for bottom right of graph where axis meet.
-    this.zero = {x: this.screenWidth - this.xPad, y: this.screenHeight - this.yPad};
+    this.zero = { x: this.screenWidth - this.xPad, y: this.screenHeight - this.yPad };
 
     if (this.animate) {
       this.setTicks(16);

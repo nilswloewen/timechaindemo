@@ -23,7 +23,8 @@
 
     <p>
       This leads to a global arms race as Bitcoin mining is a competition that is open to anyone, anywhere.
-      As each miner upgrades their hardware to increase their mining capacity, every other miner must do the same to keep up or else the probability of their success diminishes.
+      As each miner upgrades their hardware to increase their mining capacity, every other miner must do the same to
+      keep up or else the probability of their success diminishes.
     </p>
 
     <p>
@@ -75,20 +76,21 @@
     </b-card>
 
     <p>
-For this demo
+      For this demo
     </p>
 
     <b-card no-body>
       <b-card-header header-bg-variant="info">
-        <b-icon-wrench/> Difficulty
+        <b-icon-wrench/>
+        Difficulty
       </b-card-header>
 
       <b-card-body class="text-center">
-<!--        <p>-->
-          <b-button @click="calibrateHps" size="sm"> This Device </b-button>
-<!--          <b-button @click="onAntminer" size="sm"> Antminer S19j Pro </b-button>-->
-<!--          <b-button @click="onGlobal" size="sm"> Global </b-button>-->
-<!--        </p>-->
+        <p>
+          <b-button @click="calibrateHps" size="sm"> This Device</b-button>
+          <b-button @click="onAntminer" size="sm"> Antminer S19j Pro</b-button>
+          <b-button @click="onGlobal" size="sm"> Global</b-button>
+        </p>
 
         <p>
           <b-input-group id="hashrate_picker" size="sm" append="H/s">
@@ -107,7 +109,8 @@ For this demo
         <b-input-group id="time_picker">
           <b-form-input id="time_input" type="number" size="sm"
                         style="text-align: right;" :value="blockTime" :min="1" @change="updateTime"/>
-          <b-form-select id="time_units_select" size="sm" @change="updateTimeUnit" :value="blockTimeUnit" :options="timeUnits"/>
+          <b-form-select id="time_units_select" size="sm" @change="updateTimeUnit" :value="blockTimeUnit"
+                         :options="timeUnits"/>
         </b-input-group>
       </b-card-body>
     </b-card>
@@ -214,24 +217,24 @@ export default {
         'Peta',
         'Exa',
         'Zeta',
-        'Yotta',
+        'Yotta'
       ],
       hashrateConversion: {
-        base: { other: '',             value: 1 },
-        Kilo: { other: 'Thousand',     value: 1_000 },
-        Mega: { other: 'Million',      value: 1_000_000 },
-        Giga: { other: 'Billion',      value: 1_000_000_000 },
-        Tera: { other: 'Trillion',     value: 1_000_000_000_000 },
-        Peta: { other: 'Quadrillion',  value: 1_000_000_000_000_000 },
-        Exa:  { other: 'Quintillion',  value: 1_000_000_000_000_000_000 },
-        Zeta: { other: 'Sextillion',   value: 1_000_000_000_000_000_000_000 },
-        Yotta: { other: 'Septillion',  value: 1_000_000_000_000_000_000_000_000 },
+        base: { other: '', value: 1 },
+        Kilo: { other: 'Thousand', value: 1_000 },
+        Mega: { other: 'Million', value: 1_000_000 },
+        Giga: { other: 'Billion', value: 1_000_000_000 },
+        Tera: { other: 'Trillion', value: 1_000_000_000_000 },
+        Peta: { other: 'Quadrillion', value: 1_000_000_000_000_000 },
+        Exa: { other: 'Quintillion', value: 1_000_000_000_000_000_000 },
+        Zeta: { other: 'Sextillion', value: 1_000_000_000_000_000_000_000 },
+        Yotta: { other: 'Septillion', value: 1_000_000_000_000_000_000_000_000 }
       },
       isMining: false,
       blockTime: 15,
       blockTimeUnit: 'Seconds',
       timeUnits: ['Seconds', 'Minutes', 'Hours', 'Days', 'Weeks', 'Months', 'Years'],
-      isAdjustingTarget: false,
+      isAdjustingTarget: false
     };
   },
   computed: {
@@ -257,7 +260,7 @@ export default {
       this.calcTarget();
     },
     setHashrate(hashrate) {
-      for (const unit of ['Yotta','Zeta', 'Exa', 'Peta', 'Tera', 'Giga', 'Mega', 'Kilo', 'base']) {
+      for (const unit of ['Yotta', 'Zeta', 'Exa', 'Peta', 'Tera', 'Giga', 'Mega', 'Kilo', 'base']) {
         if (hashrate > this.hashrateConversion[unit].value) {
           this.hashrate = hashrate / this.hashrateConversion[unit].value;
           this.hashrateUnit = unit;
@@ -295,7 +298,7 @@ export default {
 
       this.updateHexDigits(hexDigits);
       this.target = new Num(BigInt(target), this.hexDigits);
-      this.calcStats()
+      this.calcStats();
     },
 
     findTargetAndMax(desiredAvgHashes) {
@@ -309,7 +312,7 @@ export default {
         let avgHashes = 1 / (target / max);
 
         // Binary search down for closest match.
-        while(target > 1) {
+        while (target > 1) {
           target = Math.floor(target / 2);
           avgHashes = 1 / (target / max);
 
@@ -328,8 +331,8 @@ export default {
       }
     },
 
-    timeToSeconds(time, unit){
-      switch(unit) {
+    timeToSeconds(time, unit) {
+      switch (unit) {
         case 'Seconds':
           return time;
         case 'Minutes':
@@ -349,39 +352,39 @@ export default {
     secondsToTime(seconds) {
       const minute = 60;
       if (seconds < minute) {
-        return {val: seconds, unit: 'Seconds'};
+        return { val: seconds, unit: 'Seconds' };
       }
 
       const hour = minute * 60;
       if (seconds < hour) {
-        return {val: Math.floor(seconds / minute), unit: 'Minutes'};
+        return { val: Math.floor(seconds / minute), unit: 'Minutes' };
       }
 
       const day = hour * 24;
       if (seconds < day) {
-        return {val: Math.floor(seconds / hour), unit: 'Minutes'};
+        return { val: Math.floor(seconds / hour), unit: 'Minutes' };
       }
 
       const week = day * 7;
       if (seconds < week) {
-        return {val: Math.floor(seconds / day), unit: 'Days'};
+        return { val: Math.floor(seconds / day), unit: 'Days' };
       }
 
       const month = day * 30;
       if (seconds < month) {
-        return {val: Math.floor(seconds / week), unit: 'Weeks'};
+        return { val: Math.floor(seconds / week), unit: 'Weeks' };
       }
 
       const year = day * 365;
       if (seconds < year) {
-        return {val: Math.floor(seconds / month), unit: 'Months'};
+        return { val: Math.floor(seconds / month), unit: 'Months' };
       }
 
       const years = Math.floor(seconds / year);
       if (years < 1_000_000_000) {
-        return {val: years.toLocaleString('en-US'), unit: 'Years'};
+        return { val: years.toLocaleString('en-US'), unit: 'Years' };
       }
-      return {val: years.toExponential(2), unit: 'Years'};
+      return { val: years.toExponential(2), unit: 'Years' };
     },
 
     async updateTimechainTarget(newTarget) {
@@ -411,8 +414,8 @@ export default {
       this.blocks[0].header.nonce = 0;
       await this.finalizeBlock(0);
       this.guesses = [];
-    },
-  },
+    }
+  }
 };
 </script>
 

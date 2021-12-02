@@ -44,6 +44,6 @@ export default {
 <style>
 .fp-viewing-terms-terms .fp-controlArrow.fp-prev,
 .fp-viewing-terms-sha256 .fp-controlArrow.fp-next {
- display: none;
+  display: none;
 }
 </style>

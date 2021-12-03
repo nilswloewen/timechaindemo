@@ -42,10 +42,10 @@ export default {
 
         scrollingSpeed: 1000,
         scrollBar: false,
-        scrollOverflow: true,
-        scrollOverflowReset: true,
+        // scrollOverflow: true,
+        // scrollOverflowReset: true,
 
-        scrollHorizontally: true,
+        // scrollHorizontally: true,
         navigation: true,
         normalScrollElements: '.blockchain_wrapper',
 

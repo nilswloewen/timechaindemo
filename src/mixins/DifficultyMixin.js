@@ -20,15 +20,15 @@ export default {
         'Yotta'
       ],
       hashrateConversion: {
-        base: { other: '', value: 1 },
-        Kilo: { other: 'Thousand', value: 1_000 },
-        Mega: { other: 'Million', value: 1_000_000 },
-        Giga: { other: 'Billion', value: 1_000_000_000 },
-        Tera: { other: 'Trillion', value: 1_000_000_000_000 },
-        Peta: { other: 'Quadrillion', value: 1_000_000_000_000_000 },
-        Exa: { other: 'Quintillion', value: 1_000_000_000_000_000_000 },
-        Zeta: { other: 'Sextillion', value: 1_000_000_000_000_000_000_000 },
-        Yotta: { other: 'Septillion', value: 1_000_000_000_000_000_000_000_000 }
+        base: { value: 1 },
+        Kilo: { value: 1_000 },
+        Mega: { value: 1_000_000 },
+        Giga: { value: 1_000_000_000 },
+        Tera: { value: 1_000_000_000_000 },
+        Peta: { value: 1_000_000_000_000_000 },
+        Exa: { value: 1_000_000_000_000_000_000 },
+        Zeta: { value: 1_000_000_000_000_000_000_000 },
+        Yotta: { value: 1_000_000_000_000_000_000_000_000 }
       },
 
     };
@@ -103,7 +103,6 @@ export default {
       return { hexDigits: 1, target: 1 };
     },
 
-
     timeToSeconds(time, unit) {
       switch (unit) {
         case 'Seconds':
@@ -159,6 +158,7 @@ export default {
       }
       return { val: years.toExponential(2), unit: 'Years' };
     },
+
     async calibrateHps() {
       const start = new Date().getTime();
       let elapsed = 0;
@@ -177,10 +177,22 @@ export default {
       await this.finalizeBlock(0);
       this.guesses = [];
     },
+
     getHashrateLong() {
       const hashrate = this.hashrate * this.hashrateConversion[this.hashrateUnit].value;
       return hashrate.toLocaleString();
-    }
+    },
+
+    async updateTargetAndBlocktime(newTarget) {
+      await this.updateTarget(newTarget);
+
+      const hashrate = this.hashrate * this.hashrateConversion[this.hashrateUnit].value;
+      const seconds = Math.ceil((1 / hashrate) * this.avgHashes);
+      const { val, unit } = this.secondsToTime(seconds);
+
+      this.blockTime = val;
+      this.blockTimeUnit = unit;
+    },
   }
 
 }

@@ -35,6 +35,10 @@
   </div>
 
   Site by <a href="https://nilsloewen.com" target="_blank">Nils Loewen</a>
+
+  If you found this demo to be valuable to you, please <a href="https://tippin.me/@nilswloewen">send me some sats!</a>
+
+  Tick tock, next block.
 </Page>
 </template>
 

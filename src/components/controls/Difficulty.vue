@@ -5,8 +5,8 @@
   </b-card-header>
 
   <b-card-body class="text-center">
-    <p v-if="showButtons">
-      <b-button @click="$emit('calibrate-hps')" size="sm"> This Device</b-button>
+    <p>
+      <b-button @click="$emit('calibrate-hps')" size="sm" variant="primary">Your Device</b-button>
       <b-button @click="$emit('show-antminer-hashrate')" size="sm"> Antminer s9 </b-button>
       <b-button @click="$emit('show-global-hashrate')" size="sm"> Global</b-button>
     </p>
@@ -51,7 +51,6 @@ export default {
     hashrateLong: String,
     hashrateUnit: String,
     hashrateUnits: Array,
-    showButtons: Boolean,
   },
   methods: {
     updateHashrate(newHashrate) {

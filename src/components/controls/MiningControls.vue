@@ -41,6 +41,7 @@
     <b-form-checkbox class="float-right" style="padding-top: 1px;"
                      @change="onStartMining" switch :checked="isMining" :disabled="block.isHashValid"/>
   </b-list-group-item>
+  <b-button @click="$emit('show-solution')">Show Winning Nonce</b-button>
 </b-card>
 </template>
 
@@ -76,8 +77,8 @@ export default {
 .overlay {
   position: fixed;
   top: 6em;
-  right: 75%;
-  width: 160px;
+  right: 50%;
+  width: 554px;
 }
 
 .mining_controls .list-value {

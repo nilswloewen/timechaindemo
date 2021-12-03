@@ -6,7 +6,7 @@
 
   <b-list-group-item class="list-value pt-2" style="direction: rtl;"> {{ target[localEncoding] }}</b-list-group-item>
 
-  <b-input-group prepend="Min 1" size="sm" append="Max" style="border-radius: 0;">
+  <b-input-group v-if="!hideRange" prepend="Min 1" size="sm" append="Max" style="border-radius: 0;">
     <b-form-input :title="target[localEncoding]" :value="target.num" @change="onTargetChange" type="range"
                   min="1" :max="hashMax.num" size="sm"/>
   </b-input-group>
@@ -38,6 +38,7 @@ export default {
     denominator: null,
     localEncoding: String,
     numerator: null,
+    hideRange: Boolean,
     probability: null,
     target: Num,
     targetMax: Num,

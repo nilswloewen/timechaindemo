@@ -7,7 +7,7 @@
     <BlockchainSection/>
     <PowBlockchainSection/>
     <TimeChainSection/>
-    <RealBlocksSection/>
+    <HistoricalBlocksSection/>
     <ResourcesSection/>
 
   </full-page>
@@ -16,7 +16,7 @@
 
 <script>
 import BlockchainSection from '@/components/sections/BlockchainSection.vue';
-import RealBlocksSection from '@/components/sections/RealBlocksSection.vue';
+import HistoricalBlocksSection from '@/components/sections/HistoricalBlocksSection.vue';
 import IntroSection from '@/components/sections/IntroSection.vue';
 import PowBlockchainSection from '@/components/sections/PowBlockchainSection.vue';
 import ResourcesSection from '@/components/sections/ResourcesSection.vue';
@@ -27,7 +27,7 @@ export default {
   name: 'app',
   components: {
     BlockchainSection,
-    RealBlocksSection,
+    HistoricalBlocksSection,
     IntroSection,
     PowBlockchainSection,
     ResourcesSection,
@@ -95,9 +95,8 @@ export default {
         },
         {
           anchor: 'real_blocks',
-          label: 'Real Blocks',
+          label: 'Historical Blocks',
           slides: [
-            { anchor: 'global_hash_rate', label: 'Global Hash Rate' },
             { anchor: 'real_mining', label: 'Real-World Mining' }
           ]
         },
@@ -396,6 +395,10 @@ h1 {
 }
 
 #real_blocks_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/ascension.jpg');
+}
+#real_mining_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/ascension.jpg');
 }

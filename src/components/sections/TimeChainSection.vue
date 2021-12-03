@@ -3,6 +3,7 @@
   <Page data-anchor="timechain" slide>
     <h1>Timechain</h1>
 
+
     <b-card>
       <q>The only way to find a valid proof-of-work is by making a lot of guesses,
         and making a single guess takes a little bit of time. The probabilistic
@@ -24,17 +25,13 @@
     <p>
       This leads to a global arms race as Bitcoin mining is a competition that is open to anyone, anywhere.
       As each miner upgrades their hardware to increase their mining capacity, every other miner must do the same to
-      keep up or else the probability of their success diminishes.
+      keep up or else the probability of their success decreases.
     </p>
 
     <p>
-      Not only would the fastest miner earn the most bitcoin, they would also be able to control which transactions
-      are included in each block.
-    </p>
-
-    <p>
-      To prevent blocks from being found , the Bitcoin network self-adjusts the target required for
-      each block to ensure that blocks are always added to the chain at 10 minute intervals.
+      To ensure
+      Every 2,016 blocks (two weeks) Bitcoin network self-adjusts the target to ensure that blocks
+      are always added to the chain at 10 minute intervals.
     </p>
 
     <b-card>
@@ -42,8 +39,6 @@
       <hr>
       A blockchain that grows at a fixed interval, regardless of computing power.
     </b-card>
-
-
   </Page>
 
   <Page data-anchor="difficulty_adjustment" slide encoding-btn
@@ -55,10 +50,8 @@
     <h1>Difficulty Adjustment</h1>
 
     <p>
-      Mining capacity is rated by how many hashes a miner can find per second, this
-      is known as the <b>hashrate</b> or H/s (hashes per second).
+      Mining capacity is rated by the <b>hashrate</b> or how many hashes per second (H/s) that a miner can find.
     </p>
-
     <p>
       This is the Crème de la crème, cherry-on-top engineering marvel of Bitcoin.
     </p>
@@ -74,12 +67,9 @@
       <br> - <a href="https://dergigi.com/2021/01/14/bitcoin-is-time/" target="_blank">DerGigi</a>
     </b-card>
 
-    <p>
-      For this demo
-    </p>
-
     <Difficulty
       :hashrate-long="getHashrateLong()"
+      :hashrate-latin="getHashrateLatin()"
       :hashrate="hashrate"
       :hashrateUnit="hashrateUnit"
       :hashrateUnits="hashrateUnits"
@@ -95,7 +85,7 @@
       v-on:show-global-hashrate="onGlobal"
     />
 
-    <Target v-on:updateTarget="updateTimechainTarget"
+    <Target v-on:updateTarget="updateTargetAndBlocktime"
             v-on:real-target-max="realTargetMax"
             :avgHashes="avgHashes"
             :denominator="denominator"
@@ -197,23 +187,13 @@ export default {
       isAdjustingTarget: false,
     };
   },
-
+  mounted() {
+    this.calibrateHps();
+  },
   methods: {
     updateNonce(nonce) {
       this.blocks[this.blockToMine].header.nonce = Number(nonce);
       this.finalizeBlock(this.blockToMine);
-    },
-
-    // Inherit / Intercept TargetMixin updateTarget...
-    async updateTimechainTarget(newTarget) {
-      await this.updateTarget(newTarget);
-
-      const hashrate = this.hashrate * this.hashrateConversion[this.hashrateUnit].value;
-      const seconds = Math.ceil((1 / hashrate) * this.avgHashes);
-      const { val, unit } = this.secondsToTime(seconds);
-
-      this.blockTime = val;
-      this.blockTimeUnit = unit;
     },
     updateHexDigits(newHexDigits) {
       this.hexDigits = newHexDigits;
@@ -237,7 +217,6 @@ export default {
       this.target = new Num(BigInt(target), this.hexDigits);
       this.calcStats();
     },
-
   }
 };
 </script>

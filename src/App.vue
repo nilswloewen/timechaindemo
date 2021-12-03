@@ -42,7 +42,7 @@ export default {
 
         scrollingSpeed: 1000,
         scrollBar: false,
-        // scrollOverflow: true,
+        scrollOverflow: true,
         // scrollOverflowReset: true,
 
         // scrollHorizontally: true,

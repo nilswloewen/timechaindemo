@@ -49,13 +49,7 @@ export default {
         navigation: true,
         normalScrollElements: '.blockchain_wrapper',
 
-        parallax: false,
-        parallaxKey: 'bmlsc2xvZXdlbi5jb21fSTQyY0dGeVlXeHNZWGc9ME1T',
-        parallaxOptions: {
-          type: 'reveal',
-          percentage: 62,
-          property: 'translate'
-        }
+
       },
       table_of_contents: [
         { anchor: 'intro', label: 'Intro' },

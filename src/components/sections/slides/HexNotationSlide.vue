@@ -9,24 +9,23 @@
   <h1>Numerical Notation</h1>
   <p>
     In the top right corner there is a button to change the notation of some numbers in this demo.
+    Try pressing it a few times to see different ways the following number can be represented.
   </p>
 
   <b-card class="text-center">
     Bitcoin's maximum supply:
     <hr>
-      <b>{{ num[encoding[activeEncoding]] }}</b>
+    <b>{{ num[encoding[activeEncoding]] }}</b>
+    <br>
+    {{ encoding[activeEncoding] }} notation
   </b-card>
 
   <p>
-    Notation styles are chosen for different use cases. While computers think in 1's and 0's,
-    binary notation is not easy for humans to read. While decimal notation is easy to read,
-    it is not the most compact way to store values.
+    <b>Numbers can be written with different notation styles for different use cases.</b> While computers think in 1's and 0's,
+    binary notation is not easy for humans to read. Decimal notation is easy to read, but
+    it might not be the most compact way to store numbers.
   </p>
-
-  <p>
-    The hash function about to be discussed uses hexadecimal notation as a compact and (more)
-    human readable way to represent the binary hash output.
-  </p>
+  <hr>
 
   <b-card>
     <h4 class="text-left"><a href="https://www.etymonline.com/word/hexadecimal">hexadecimal (adj.)</a></h4>
@@ -43,17 +42,16 @@
     <b-table-simple class="border-1" small>
       <b-thead>
         <tr>
-          <th colspan="3" class="text-center">Ways to notate 0-15</th>
+          <th colspan="3" class="text-center h5">Ways to notate 0-15</th>
         </tr>
-      </b-thead>
-      <b-thead head-variant="dark">
-        <b-tr>
-          <b-th>Decimal</b-th>
-          <b-th>Hexadecimal</b-th>
-          <b-th>Binary</b-th>
-        </b-tr>
+
       </b-thead>
       <b-tbody>
+        <b-tr>
+          <b-td>Decimal</b-td>
+          <b-td>Hexadecimal</b-td>
+          <b-td>Binary</b-td>
+        </b-tr>
         <b-tr v-for="(row, index) in rows" :key="index">
           <b-td>{{ row.decimal }}</b-td>
           <b-td>{{ row.hexadecimal }}</b-td>
@@ -63,6 +61,11 @@
     </b-table-simple>
   </b-card>
 
+  <hr>
+
+  <p>
+    Try changing the values in the notation converter and try to predict how the other notations will change...
+  </p>
   <b-card no-body id="hex_converter">
     <b-card-header header-bg-variant="info">
       <b-icon-wrench/>

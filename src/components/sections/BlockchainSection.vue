@@ -3,53 +3,52 @@
   <Page slide data-anchor="blockchain">
     <h1>Blockchain</h1>
 
-    <b-card>
-      <h4 class="text-left">blockchain (n.)</h4>
-      <hr>
-      <p>
-        A data structure that uses hashes to prove that previous blocks existed
-        before following blocks, therefore establishing an <b>Order of Events</b>.
-      </p>
-      <!--      <hr>-->
-      <!--      <q>A blockchain is a chain of blocks.</q>-->
-      <!--      &nbsp;&mdash;&nbsp;<a href="https://t.co/HQwDRlKKx9" target="_blank">Peter Todd</a>-->
-    </b-card>
-
-
     <b-card no-body>
       <b-card-body>
         <h4 class="text-left">block (n.)</h4>
         <hr>
         <p>
-          A set of data with a hash that 'locks' the data in place. You cannot
+          A set of data with a hash that 'locks' the data in place; you cannot
           change the data without changing the hash.
         </p>
-        <h6>Example</h6>
+
       </b-card-body>
-      <b-card no-body>
-        <b-card-header>
-          Block Hash or ID - The hash of the blocks' data
-        </b-card-header>
-
-        <!--Hash-->
-        <b-list-group-item class="list-field">Number / Height</b-list-group-item>
-        <b-list-group-item class="list-value">Also known as length (of the chain)</b-list-group-item>
-
-        <!--Data-->
-        <b-list-group-item class="list-field">Data</b-list-group-item>
-        <b-list-group-item class="list-value">Any arbitrary data</b-list-group-item>
-
-        <!--Previous Hash-->
-        <b-list-group-item class="list-field">Previous Hash</b-list-group-item>
-        <b-list-group-item class="list-value">The hash of the previous block</b-list-group-item>
-      </b-card>
     </b-card>
+
+    <b-card>
+      <h4 class="text-left">blockchain (n.)</h4>
+      <hr>
+      <p>
+        A data structure that embeds the hash of the previous blocks into the following block,
+        therefore proving that the previous block existed before the following which establishes an
+        <b>Order of Events</b>.
+      </p>
+      <hr>
+      <q>A blockchain is a chain of blocks.</q>
+      &nbsp;&mdash;&nbsp;<a href="https://t.co/HQwDRlKKx9" target="_blank">Peter Todd</a>
+    </b-card>
+
+    <h4>A simplified block</h4>
+    <b-card no-body>
+      <b-card-header>
+        <span class="float-left">Block Hash</span> <span class="float-right">Block Number/Height</span>
+      </b-card-header>
+
+      <!--Data-->
+      <b-list-group-item class="list-field">Data</b-list-group-item>
+      <b-list-group-item class="list-value">Any arbitrary data</b-list-group-item>
+
+      <!--Previous Hash-->
+      <b-list-group-item class="list-field">Previous Hash</b-list-group-item>
+      <b-list-group-item class="list-value">The hash of the previous block</b-list-group-item>
+    </b-card>
+
 
     <h4 class="mt-4">Why does Bitcoin use a blockchain?</h4>
 
     <p>
       A physical coin or asset requires no history, it exists in only location at a time.
-      Ownership is proven simply by who physically controls the coin.
+      Ownership is proven by physical control of the coin or asset.
     </p>
 
     <p>
@@ -58,7 +57,7 @@
     </p>
 
     <p>
-      Bitcoin requires a blockchain to establish an order of events in the ledger to prove that one
+      A blockchain is used to establish an order of events in the ledger to prove that one
       transaction came before another.
     </p>
   </Page>
@@ -70,11 +69,18 @@
         v-on:update-active-encoding="updateActiveEncoding">
 
     <h1>Simplified Blockchain</h1>
+
     <p>
       For this demo we will start by only looking at the first 2 digits of the hash of each block.
     </p>
+    <p style="font-size: 0.875rem">
+      <b>XX</b>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    </p>
+
+    <hr>
+
     <p>
-      Add a few blocks and then watch as you change an old block the change is
+      Add a few blocks to the blockchain and then change an old block to see how the change
       propagated up the chain.
     </p>
 

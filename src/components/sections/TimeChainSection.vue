@@ -16,7 +16,7 @@
     </p>
 
     <p>
-      Remember, if a miner finds a valid hash they are rewarded with btc, so the incentive is
+      Remember, if a miner finds a valid hash they are rewarded with bitcoin, so the incentive is
       to mine as many blocks as possible to increase their profits. Not only are their miners running 24/7,
       to increase their chance of success they find ways to increase their computing power.
     </p>
@@ -28,14 +28,13 @@
     </p>
 
     <p>
-      The longest chain is considered to be the truth because the most work went into calculating it.
-      If miners could find more blocks per minute than other, the could create the longest chain and
-      then control the ledger.
+      Not only would the fastest miner earn the most bitcoin, they would also be able to control which transactions
+      are included in each block.
     </p>
 
     <p>
-      To prevent this, the Bitcoin network self-adjusts the target required for each block to ensure that
-      blocks are always added to the chain at 10 minute intervals.
+      To prevent blocks from being found , the Bitcoin network self-adjusts the target required for
+      each block to ensure that blocks are always added to the chain at 10 minute intervals.
     </p>
 
     <b-card>
@@ -149,7 +148,7 @@
       v-on:start-mining="startMining"
       v-on:update-nonce="updateNonce"/>
 
-    <SuccessMsg :block-height="blocks[blockToMine].height"/>
+    <SuccessMsg :block-height="blocks[blockToMine].height" :is-hash-valid="blocks[blockToMine].isHashValid"/>
   </div>
 
 </div>

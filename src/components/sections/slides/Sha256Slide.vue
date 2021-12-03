@@ -15,23 +15,24 @@
   </p>
 
   <p>
-    An output of 256 bits means there are 2<sup>256</sup>-1 possible output values.
-    If interpreted as a number, the maximum value of a hash is also the number of possible values.
+    An output of 256 bits means there are 2<sup>256</sup>-1 possible output hashes.
   </p>
 
   <b-card no-body>
-    <b-list-group-item class="list-field">Max value</b-list-group-item>
+    <b-list-group-item class="list-field">Number of possible hashes</b-list-group-item>
     <b-list-group-item class="list-value">
       {{ hashMax[encoding[activeEncoding]] }}
     </b-list-group-item>
   </b-card>
 
   <p>
-    For some context, it is estimated that there are 10<sup>78</sup> to
-    10<sup>82</sup> <a
-    href="https://www.liverpoolmuseums.org.uk/stories/which-greater-number-of-atoms-universe-or-number-of-chess-moves">atoms
-    in the observable universe</a>.
+    For some context, it is estimated that there are
+    <a href="https://www.liverpoolmuseums.org.uk/stories/which-greater-number-of-atoms-universe-or-number-of-chess-moves">
+      ~10<sup>78</sup> atoms in the observable universe</a>.
+    This means that every atom in the universe could have it's own SHA-256 hash!
   </p>
+
+  <hr>
 
   <b-card no-body class="mt-4">
     <b-card-header header-bg-variant="info">
@@ -58,8 +59,10 @@
     <b-list-group-item class="list-value">{{ hash[encoding[activeEncoding]] }}</b-list-group-item>
   </b-card>
 
+  <hr>
+
   <p>
-    For more details of how SHA-256 works watch this utter maniac calculate
+    For more details of how SHA-256 works watch this utter madman calculate
     round 1/64 of SHA-256 BY HAND!
   </p>
 

@@ -1,5 +1,5 @@
 <template>
-<b-collapse id="collapse_success_msg">
+<b-collapse id="collapse_success_msg" :visible="isHashValid">
   <b-card no-body>
     <b-card-header>
       Success!!!
@@ -17,6 +17,7 @@
 export default {
   props: {
     blockHeight: Number,
+    isHashValid: Boolean,
   },
   methods: {
     slideLeft() {

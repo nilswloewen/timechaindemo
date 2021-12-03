@@ -76,7 +76,8 @@
       <b-list-group-item class="list-value">
         {{ block.header.nonce }}
         <template v-if="!isHashValid">
-          <b-button @click="$emit('mine-this-block', index)" size="sm" variant="danger" class="float-right">
+          <b-button @click="$emit('mine-this-block', index)" title="Mine this Block"
+                    size="sm" variant="danger" class="float-right">
             <b-icon-hammer size="sm" animation="fade" scale=".5"/>
           </b-button>
         </template>

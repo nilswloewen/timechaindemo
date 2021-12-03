@@ -20,44 +20,9 @@ Vue.use(VueFullPage);
 
 Vue.mixin({
   methods: {
-
     moveTo(anchor, index) {
       window.fullpage_api.moveTo(anchor, index);
     },
-
-    scrollToElm(wrapper, element, duration) {
-      // const startTime = performance.now();
-      // const wrapperPos = wrapper.getBoundingClientRect();
-      //
-      // function animateScroll() {
-      //   const now = performance.now();
-      //   const elapsed = (now - startTime) / 1000;
-      //   const t = elapsed / duration;
-      //   const quad = t < 0.5
-      //     ? 2 * t * t
-      //     : -1 + (4 - 2 * t) * t;
-      //
-      //   const elementPos = element.getBoundingClientRect();
-      //   const relativePos = elementPos.top - wrapperPos.top + wrapper.scrollTop;
-      //   console.log(`\nquad: ${quad}`);
-      //   console.log(`relativePos: ${relativePos}`);
-      //
-      //   const distance = relativePos * quad;
-      //
-      //   console.log(`t: ${t}`);
-      //   console.log(`Current Wrapper scrollTop: ${wrapper.scrollTop}`);
-      //   console.log(`Distance: ${distance}`);
-      //
-      //   // eslint-disable-next-line no-param-reassign
-      //   wrapper.scrollTop = distance;
-      //
-      //   if (t < 1) {
-      //     // window.requestAnimationFrame(animateScroll);
-      //   }
-      // }
-
-      // animateScroll();
-    }
   }
 });
 

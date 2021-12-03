@@ -1,5 +1,4 @@
 import BlockchainApi from '@/services/BlockchainApi';
-import Num from '@/services/Num';
 
 export default {
   data() {
@@ -31,11 +30,12 @@ export default {
         Zeta: { other: 'Sextillion', value: 1_000_000_000_000_000_000_000 },
         Yotta: { other: 'Septillion', value: 1_000_000_000_000_000_000_000_000 }
       },
+
     };
   },
   methods: {
     onAntminer() {
-      this.hashrate = 104;
+      this.hashrate = 13;
       this.hashrateUnit = 'Tera';
       this.calcTarget();
     },
@@ -135,7 +135,7 @@ export default {
 
       const day = hour * 24;
       if (seconds < day) {
-        return { val: Math.floor(seconds / hour), unit: 'Minutes' };
+        return { val: Math.floor(seconds / hour), unit: 'Hours' };
       }
 
       const week = day * 7;

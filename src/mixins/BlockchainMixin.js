@@ -1,10 +1,10 @@
-import BlockHeader from '@/services/block/DemoBlockHeader';
 import Block from '@/services/block/DemoBlock';
-import Num from '@/services/Num';
+import BlockHeader from '@/services/block/DemoBlockHeader';
 
 export default {
   data() {
     return {
+      blocks: [new Block('', BlockHeader.genesis, 0, '#61e294', 'inherit')],
       colors: [
         '#B983FF',
         '#94DAFF',
@@ -17,11 +17,10 @@ export default {
         '#99FEFF',
         '#A01CF2'
       ],
-      blocks: [new Block('', BlockHeader.genesis, 0, '#61e294', 'inherit')],
       disableAddBlockBtn: true,
+      guesses: [],
       hexDigits: 2,
       newBlockData: '',
-      guesses: []
     };
   },
   async mounted() {
@@ -73,10 +72,6 @@ export default {
       await block.calcHash(this.hexDigits);
       block.isHashValid = block.hash.bigInt < this.target.bigInt;
 
-      if (block.isHashValid) {
-        this.$root.$emit('bv::toggle::collapse', 'collapse_success_msg');
-      }
-
       this.guesses.push({
         xRatio: 0,
         yRatio: block.hash.num / this.hashMax.num,
@@ -103,10 +98,8 @@ export default {
 
       await this.instantUpdate(index - 1);
     },
-
     async delayedUpdate(index) {
       await this.finalizeBlock(index);
-
       if (index === 0) {
         return;
       }
@@ -132,6 +125,7 @@ export default {
 
       this.isMining = false;
     },
+
     async updateNonce(nonce, index) {
       this.blocks[index].header.nonce = nonce;
       await this.instantUpdate(index);

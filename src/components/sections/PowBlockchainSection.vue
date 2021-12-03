@@ -22,7 +22,7 @@
     </p>
 
     <p>
-      Because a hash of our demo block will likely not will not meet the new criteria,
+      Because the hash of each block will probably not meet the new criteria,
       we will add one new field to the block called a <b>nonce</b>.
     </p>
 
@@ -35,12 +35,40 @@
       In cryptography it is said to be shorthand for <br>'A number used only once'
     </b-card>
 
+    <b-card no-body>
+      <b-card-header>
+        <span class="float-left">Example Block</span> <span class="float-right">Block Number/Height</span>
+        <br> Hash
+      </b-card-header>
+
+      <!--Data-->
+      <b-list-group-item class="list-field">Data</b-list-group-item>
+      <b-list-group-item class="list-value">Any arbitrary data</b-list-group-item>
+
+      <!--Previous Hash-->
+      <b-list-group-item class="list-field">Previous Hash</b-list-group-item>
+      <b-list-group-item class="list-value">The hash of the previous block</b-list-group-item>
+
+      <!--Nonce-->
+      <b-list-group-item class="list-field">Nonce</b-list-group-item>
+      <b-list-group-item class="list-value">
+        A random number used to prove work was done to find valid hash
+      </b-list-group-item>
+    </b-card>
+
     <p>
-      If the hash of the
-      (data & previous hash & nonce) is invalid, the hash will be discarded and we will
-      try again with a new nonce. Because this will take many, many tries to find a valid
-      hash, this system is called <b>Proof-of-Work</b>.
+      If the hash of the block is invalid, the hash will be rejected and we will
+      try again with a new nonce. It may take many, many tries to find a valid
+      hash, which is why this system is called <b>Proof-of-Work</b>.
     </p>
+
+    <b-card>
+      <q>
+        The network timestamps transactions by hashing
+        them into an ongoing chain of hash-based proof-of-work, forming a
+        record that cannot be changed without redoing the proof-of-work.</q>
+      <br> - <a href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</a>
+    </b-card>
 
     <b-card no-body>
       <b-card-header header-bg-variant="info">
@@ -53,21 +81,13 @@
           <li> If <b>hash</b> is less than <b>target:</b>
             <ul>
               <li>
-                The hash is considered valid and the block will be added to the blockchain!
+                The hash is valid and the block will be added to the blockchain!
               </li>
               <li> If not - go back to step 1 try again!</li>
             </ul>
           </li>
         </ol>
       </b-card-body>
-    </b-card>
-
-    <b-card>
-      <q>
-        The network timestamps transactions by hashing
-        them into an ongoing chain of hash-based proof-of-work, forming a
-        record that cannot be changed without redoing the proof-of-work.</q>
-      <br> - <a href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</a>
     </b-card>
 
   </Page>
@@ -148,6 +168,8 @@
       :target="target"
       v-on:start-mining="startMining"
       v-on:update-nonce="updateNonce"/>
+
+    <SuccessMsg :block-height="blocks[blockToMine].height" :is-hash-valid="blocks[blockToMine].isHashValid"/>
   </div>
 </div>
 </template>
@@ -161,6 +183,7 @@ import EncodingMixin from '@/mixins/EncodingMixin';
 import Graph from '@/components/Graph';
 import MiningControls from '@/components/controls/MiningControls.vue';
 import Page from '@/components/Page.vue';
+import SuccessMsg from '@/components/controls/SuccessMsg';
 import Target from '@/components/controls/Target.vue';
 import TargetMixin from '@/mixins/TargetMixin';
 
@@ -177,7 +200,8 @@ export default {
     Graph,
     MiningControls,
     Page,
-    Target
+    Target,
+    SuccessMsg
   },
   data() {
     return {

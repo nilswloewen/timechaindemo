@@ -8,7 +8,8 @@
     For technical understanding:
     <ul>
       <li><a href="https://LearnMeABitcoin.com" target="_blank">LearnMeABitcoin.com</a></li>
-      <li><a href="https://aantonop.com/books/">Mastering Bitcoin</a></li>
+      <li><a href="https://aantonop.com/books/" target="_blank">Mastering Bitcoin</a></li>
+      <li><a href="https://bitcoin.org/bitcoin.pdf" target="_blank">Bitcoin Whitepaper</a></li>
     </ul>
   </div>
 

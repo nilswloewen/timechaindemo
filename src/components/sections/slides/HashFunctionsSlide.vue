@@ -16,6 +16,17 @@
   </p>
 
   <p>
+    Hash functions are used to answer the question:<br> <b>'Are these two pieces of data exactly the same?'</b>
+  </p>
+
+  <p>
+    A hash can be thought of as the "digital fingerprint" of a file or set of data.
+    For example, if you had two digital versions of an encyclopedia and you wanted to be sure they
+    contained exactly the same information, you could either compare them word for word,
+    or you could run each of them through the same type of hash function. If each encyclopedia had the same hash or 'fingerprint', then you could be sure that they are exact copies of one another.
+  </p>
+
+  <p>
     A hash can sometimes be misunderstood as a compression or encryption. However both
     compression and encryption are meant to be reversible; you can decompress a file
     back to its original size and you can decrypt a message back to its original meaning.
@@ -32,7 +43,7 @@
   <ol>
     <li>
       To identify sets of transactions, called blocks. Because each block is different, each one
-      has unique hash.
+      has unique hash that becomes it's block ID.
     </li>
     <li>
       To make mining difficult; it takes time and work to compute a hash - especially if not all hashes are considered

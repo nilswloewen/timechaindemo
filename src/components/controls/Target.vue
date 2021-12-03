@@ -1,8 +1,7 @@
 <template>
 <b-card no-body class="target">
   <b-card-header header-bg-variant="info">
-    <b-icon-wrench/>
-    Target
+    <b-icon-wrench/> Target
   </b-card-header>
 
   <b-list-group-item class="list-value pt-2" style="direction: rtl;"> {{ target[localEncoding] }}</b-list-group-item>
@@ -26,7 +25,7 @@
   </b-list-group-item>
 
   <b-list-group-item class="list-field">Average number of tries</b-list-group-item>
-  <b-list-group-item class="list-value"> ~{{ avgHashes.toFixed(0) }}</b-list-group-item>
+  <b-list-group-item class="list-value"> ~{{ Number(avgHashes.toFixed(0)).toLocaleString() }}</b-list-group-item>
 </b-card>
 </template>
 

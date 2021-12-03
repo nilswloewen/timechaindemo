@@ -98,7 +98,7 @@ export default {
           label: 'Real Blocks',
           slides: [
             { anchor: 'global_hash_rate', label: 'Global Hash Rate' },
-            { anchor: 'real_mining', label: 'Real-World Mining' },
+            { anchor: 'real_mining', label: 'Real-World Mining' }
           ]
         },
         { anchor: 'resources', label: 'Resources' }
@@ -107,19 +107,12 @@ export default {
   },
   mounted() {
     this.addAnchorsToFullpage();
-    this.moveToUrl();
   },
   methods: {
     addAnchorsToFullpage() {
       this.table_of_contents.forEach((section) => {
         this.fullpageOptions.anchors.push(section.anchor);
       });
-    },
-    moveToUrl() {
-      const anchors = window.location.hash.match(/(\w+)/g) || [].reverse();
-      if (anchors.length > 0) {
-        this.moveTo(anchors.pop());
-      }
     }
   }
 };
@@ -232,7 +225,7 @@ tr {
 
 hr {
   border-top: 1px solid gray;
-  margin: .5em 0;
+  margin: 1em 0;
 }
 
 .form-control,
@@ -316,6 +309,7 @@ h1 {
   background-size: cover;
   background-position: center;
 }
+
 #intro_section .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/small_brain.jpg');

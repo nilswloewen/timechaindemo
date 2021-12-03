@@ -62,6 +62,7 @@
       :index="block.height"
       :local-encoding="encoding[activeEncoding]"
       :target="target"
+      show-solution-btn
       v-on:start-mining="startMining"
       v-on:show-solution="showSolution"
       v-on:update-nonce="updateNonce" />
@@ -128,24 +129,27 @@ export default {
         isHashValid: this.block.isHashValid
       });
     },
-    startMining() {
-
-    },
-
     async updateBlockHeight(height) {
       const id = await this.mempool.getBlockIdFromHeight(height);
       this.block = await this.mempool.getBlockById(id);
+      await this.block.calcHash();
+      this.block.isHashValid = false;
+      this.originalNonce = this.block.header.nonce;
+      this.block.header.nonce = 0;
       this.setTarget();
     },
     async updateBlockHeightLatest() {
       const id = await this.mempool.getLatestBlockHash();
       this.block = await this.mempool.getBlockById(id);
       await this.block.calcHash();
+      this.block.isHashValid = false;
+      this.originalNonce = this.block.header.nonce;
+      this.block.header.nonce = 0;
       this.blockHeightMax = this.block.height;
       this.setTarget();
     },
     bitsToTarget(bits) {
-      const hex = bits.toString(16).padStart(8, '0')
+      const hex = bits.toString(16).padStart(8, '0');
       const exponent = hex.slice(0, 2);
       const coefficient = hex.slice(2);
 
@@ -164,7 +168,6 @@ export default {
     },
     showSolution() {
       this.updateNonce(this.originalNonce);
-
     }
   }
 };

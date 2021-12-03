@@ -305,6 +305,7 @@ h1 {
 }
 
 .fp-bg {
+
   background-size: cover;
   background-position: center;
 }
@@ -318,27 +319,23 @@ h1 {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/neurons_heating_up.jpg');
 }
-
 #hexadecimal_notation_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/neurons2.jpg');
+  url('/assets/backgrounds/neurons_heating_up.jpg');
 }
-
 #hash_functions_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/neurons3.jpg');
+  url('/assets/backgrounds/neurons_heating_up.jpg');
 }
-
 #sha256_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/Brain-image-by-pitju.jpg');
+  url('/assets/backgrounds/neurons_heating_up.jpg');
 }
 
 #blockchain_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/brain_black.webp');
 }
-
 #simple_blockchain_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/blue_brain.jpg');
@@ -346,34 +343,16 @@ h1 {
 
 #pow_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/orange_brain.jpg');
+  url('/assets/backgrounds/transcending_forward.jpg');
 }
-
-#difficulty_adjustment_slide .fp-bg {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/orange_brain.jpg');
-}
-
 #target_slide .fp-bg {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/brain_mushrooms.jpg');
-}
-
-#nonce_slide .fp-bg {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/brain_mushrooms.jpg');
-}
-
-#mining_algorithm_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/transcending_forward.jpg');
 }
-
 #pow_blockchain_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/transcending_forward.jpg');
 }
-
 #pow_mining_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/transcending_forward.jpg');
@@ -383,24 +362,26 @@ h1 {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/brain_man.jpg');
 }
-
+#difficulty_adjustment_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/brain_man.jpg');
+}
 #timechain_blocks_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/brain_man.jpg');
 }
-
 #timechain_mining_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/transcending_forward.jpg');
+  url('/assets/backgrounds/brain_man.jpg');
 }
 
 #real_blocks_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/ascension.jpg');
+  url('/assets/backgrounds/blue_exploding.jpg');
 }
 #real_mining_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/ascension.jpg');
+  url('/assets/backgrounds/blue_exploding.jpg');
 }
 
 #resources_section .fp-bg {

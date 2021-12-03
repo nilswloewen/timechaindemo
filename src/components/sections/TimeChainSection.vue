@@ -69,7 +69,6 @@
 
     <Difficulty
       :hashrate-long="getHashrateLong()"
-      :hashrate-latin="getHashrateLatin()"
       :hashrate="hashrate"
       :hashrateUnit="hashrateUnit"
       :hashrateUnits="hashrateUnits"

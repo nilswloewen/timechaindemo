@@ -1,11 +1,11 @@
 <template>
 <Page data-anchor="intro">
 
-  <h1>
+  <h1 class="fade-in">
     Bitcoin Timechain Demo
   </h1>
 
-  <p>
+  <p class="fade-in">
     Bitcoin is backed by not just it's massive computer network, but by time
     itself. The demo will start with underlying concepts such as hash functions and move on to show
     blockchain, proof-of-work, mining, and the difficulty-adjustment that regulates the timechain.
@@ -31,3 +31,13 @@ export default {
   }
 };
 </script>
+
+<style>
+.fade-in {
+  animation: fadein 3s;
+}
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+</style>

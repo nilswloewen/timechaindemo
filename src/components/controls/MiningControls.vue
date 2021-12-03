@@ -38,10 +38,14 @@
 
   <b-list-group-item class="list-value text-left">
     <span class="float-left" style="padding-top: 3px;"> Go Brrr </span>
-    <b-form-checkbox class="float-right" style="padding-top: 1px;"
+
+    <b-button v-if="showSolutionBtn" @click="$emit('show-solution')" size="sm"
+              :disabled="block.isHashValid" class="float-right">Show Solution</b-button>
+    <b-form-checkbox class="float-left ml-2" style="padding-top: 1px;"
                      @change="onStartMining" switch :checked="isMining" :disabled="block.isHashValid"/>
+
   </b-list-group-item>
-  <b-button @click="$emit('show-solution')">Show Winning Nonce</b-button>
+
 </b-card>
 </template>
 
@@ -56,7 +60,8 @@ export default {
     index: Number,
     isMining: Boolean,
     localEncoding: String,
-    target: Num
+    showSolutionBtn: Boolean,
+    target: Num,
   },
 
   methods: {

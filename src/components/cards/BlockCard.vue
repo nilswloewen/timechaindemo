@@ -26,7 +26,9 @@
         <b-input-group size="sm">
           <b-form-input @change="onBlockHeightChange" :value="block.height"
                         :max="blockHeightMax" :min="0" type="number" size="sm"/>
-          <b-button @click="$emit('update-block-height-latest')" variant="primary" size="sm">Latest</b-button>
+          <b-button @click="$emit('update-block-height-latest')" variant="primary" size="sm"
+                    style="border-top-left-radius: 0; border-bottom-left-radius: 0"
+          >Latest</b-button>
         </b-input-group>
       </b-list-group-item>
     </template>
@@ -72,21 +74,24 @@
 
     <!--Nonce-->
     <template v-if="showNonce">
-      <b-list-group-item class="list-field">Nonce</b-list-group-item>
-      <b-list-group-item class="list-value">
-        <template v-if="maskNonce">
-          ????????
-        </template>
-        <template v-else>
-          {{ block.header.nonce }}
-        </template>
+      <div style="width: 100%;">
+        <b-list-group class="float-left">
+          <b-list-group-item class="list-field">Nonce</b-list-group-item>
+          <b-list-group-item class="list-value">
+            <template v-if="maskNonce && !isHashValid"> ???????? </template>
+            <template v-else> {{ block.header.nonce }} </template>
+          </b-list-group-item>
+        </b-list-group>
+
+        <!-- Mine this block Button -->
         <template v-if="!isHashValid">
           <b-button @click="$emit('mine-this-block', index)" title="Mine this Block"
                     size="sm" variant="danger" class="float-right">
-            <b-icon-hammer size="sm" animation="fade" scale=".5"/>
+            <b-icon-hammer size="sm" animation="fade"/>
           </b-button>
         </template>
-      </b-list-group-item>
+
+      </div>
     </template>
   </b-card>
 </div>

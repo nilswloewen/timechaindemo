@@ -238,9 +238,40 @@ hr {
   color: inherit;
 }
 
+
 .form-control:focus {
   color: white;
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.form-control.is-valid {
+  border-color: #f79413;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23f79413' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e")
+}
+.btn-primary,
+.btn-primary:hover {
+  background-color: #3CAFAA;
+  border-color: #3CAFAA;
+}
+.btn-secondary,
+.btn-secondary:hover {
+  background-color: #7855F5;
+  border-color: #7855F5;
+}
+.btn-warning,
+.btn-warning:hover {
+  background-color: #61e294;
+  border-color: #61e294;
+}
+.btn-info,
+.btn-info:hover,
+.bg-info {
+  background-color: #3CAFAA !important;
+  border-color: #3CAFAA;
+}
+
+.card-header {
+  background-color: #3CAFAA;
 }
 
 /* Target range slider */
@@ -363,28 +394,28 @@ h1 {
 
 #timechain_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/brain_man.jpg');
+  url('/assets/backgrounds/blue_exploding.jpg');
 }
 #difficulty_adjustment_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/brain_man.jpg');
+  url('/assets/backgrounds/blue_exploding.jpg');
 }
 #timechain_blocks_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/brain_man.jpg');
+  url('/assets/backgrounds/blue_exploding.jpg');
 }
 #timechain_mining_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/brain_man.jpg');
+  url('/assets/backgrounds/blue_exploding.jpg');
 }
 
 #real_blocks_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/blue_exploding.jpg');
+  url('/assets/backgrounds/brain_man.jpg');
 }
 #real_mining_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/blue_exploding.jpg');
+  url('/assets/backgrounds/brain_man.jpg');
 }
 
 #resources_section .fp-bg {

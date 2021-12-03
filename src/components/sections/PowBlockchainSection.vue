@@ -9,8 +9,8 @@
     </p>
     <p>
       Every time a miner successfully adds a block to the blockchain they are given a reward of newly
-      minted bitcoin. The reward amount diminishes over time which is why Bitcoin has a
-      <a href="https://en.bitcoin.it/wiki/Controlled_supply">limited supply</a>.
+      minted bitcoin. The reward started at 50₿ per block and the amount gets halved every 4 years. This is why
+      Bitcoin has a <a href="https://en.bitcoin.it/wiki/Controlled_supply">limited supply</a>.
     </p>
 
     <hr>
@@ -20,7 +20,6 @@
       To make mining difficult, Bitcoin requires that a block hash will only be valid if
       it is interpreted as a number that is less than a pre-determined <b>target</b>.
     </p>
-
     <p>
       Because the hash of each block will probably not meet the new criteria,
       we will add one new field to the block called a <b>nonce</b>.
@@ -169,7 +168,10 @@
       v-on:start-mining="startMining"
       v-on:update-nonce="updateNonce"/>
 
-    <SuccessMsg :block-height="blocks[blockToMine].height" :is-hash-valid="blocks[blockToMine].isHashValid"/>
+    <SuccessMsg :block-height="blocks[blockToMine].height"
+                :is-hash-valid="blocks[blockToMine].isHashValid"
+                :avg-hashes="avgHashes"
+                :num-of-tries="guesses.length" />
   </div>
 </div>
 </template>

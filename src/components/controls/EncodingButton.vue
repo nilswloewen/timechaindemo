@@ -56,10 +56,9 @@ export default {
 
 <style>
 .slide.active .encoding_btn {
-  display: inline;
-  position: fixed;
-  top: 6em;
-  right: 15px;
+  /*position: fixed;*/
+  /*top: 6em;*/
+  /*right: 15px;*/
 }
 
 .encoding_btn {

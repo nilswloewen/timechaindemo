@@ -43,9 +43,12 @@ export default {
         scrollingSpeed: 1000,
         scrollBar: false,
         scrollOverflow: true,
-        // scrollOverflowReset: true,
+        scrollOverflowReset: true,
+        scrollOverflowResetKey: 'bmlsc2xvZXdlbi5jb21fVVFuYzJOeWIyeHNUM1psY21ac2IzZFNaWE5sZEE9PVUyRw==',
 
-        // scrollHorizontally: true,
+        scrollHorizontally: true,
+        scrollHorizontallyKey: 'bmlsc2xvZXdlbi5jb21fV08zYzJOeWIyeHNTRzl5YVhwdmJuUmhiR3g1MjZ2',
+
         navigation: true,
         normalScrollElements: '.blockchain_wrapper',
 

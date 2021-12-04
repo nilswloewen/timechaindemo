@@ -93,7 +93,6 @@ import BlockchainMixin from '@/mixins/BlockchainMixin';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import TargetMixin from '@/mixins/TargetMixin';
 import Page from '@/components/Page.vue';
-import EncodingButton from '@/components/controls/EncodingButton';
 
 export default {
   mixins: [
@@ -104,7 +103,6 @@ export default {
   components: {
     AddBlockButton,
     BlockCard,
-    EncodingButton,
     Page
   }
 };

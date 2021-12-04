@@ -134,10 +134,6 @@
 
   <div class="slide" data-anchor="pow_mining" id="pow_mining_slide">
     <div class="fp-bg"/>
-    <EncodingButton :active-encoding="activeEncoding"
-                    :encoding="encoding"
-                    v-on:update-active-encoding="updateActiveEncoding"
-                    v-on:rotate-encoding="rotateEncoding"/>
 
     <Graph id="pow_canvas" :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
     <MiningControls
@@ -154,7 +150,7 @@
     <SuccessMsg :block-height="blocks[blockToMine].height"
                 :is-hash-valid="blocks[blockToMine].isHashValid"
                 :avg-hashes="avgHashes"
-                :num-of-tries="guesses.length" />
+                :num-of-tries="guesses.length"/>
   </div>
 </div>
 </template>
@@ -163,7 +159,6 @@
 import AddBlockButton from '@/components/controls/AddBlockButton.vue';
 import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
-import EncodingButton from '@/components/controls/EncodingButton.vue';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import Graph from '@/components/Graph';
 import MiningControls from '@/components/controls/MiningControls.vue';
@@ -181,7 +176,6 @@ export default {
   components: {
     AddBlockButton,
     BlockCard,
-    EncodingButton,
     Graph,
     MiningControls,
     Page,

@@ -74,9 +74,9 @@ export default {
       });
 
       // Performance governor.
-      if (this.guesses.length > 100) {
-        this.guesses.shift();
-      }
+      // if (this.guesses.length > 100) {
+      //   this.guesses.shift();
+      // }
       if (index > 0) {
         this.blocks[index - 1].header.prevHash = block.hash;
       }
@@ -109,6 +109,7 @@ export default {
       fullpage_api.moveSlideRight();
     },
     async startMining(index) {
+      const startTime = performance.now();
       this.isMining = true;
       const block = this.blocks[index];
 
@@ -118,6 +119,8 @@ export default {
       }
 
       this.isMining = false;
+      const elapsed = performance.now() - startTime;
+      block.timeToMine = (elapsed / 1000).toFixed(2);
     },
 
     async updateNonce(nonce, index) {

@@ -4,14 +4,21 @@
     <b-card-header>
       Success!!!
     </b-card-header>
+    <b-card-body>
       Congratulations! You've found a valid hash for Block #{{ blockHeight }}!
-    <b-list-group-item class="list-field">Estimated average number of tries</b-list-group-item>
-    <b-list-group-item class="list-value">{{ avgHashes.toLocaleString() }}</b-list-group-item>
+      <hr>
 
-    <b-list-group-item class="list-field">Real number of tries</b-list-group-item>
-    <b-list-group-item class="list-value">{{ numOfTries }}</b-list-group-item>
-
-    <b-button @click="slideLeft"><b-icon-arrow-left/> Add the next block</b-button>
+      <p>
+      It took <b>{{ numOfTries }}</b> tries to find a valid hash,
+        <b>{{ avgHashes.toLocaleString() }}</b> were estimated.
+      </p>
+      <p>
+        It took {{ timeToMine }} seconds to mine, {{ estTime.blocktime }} {{ estTime.blocktimeUnit }} were estimated.
+      </p>
+      <div class="text-center">
+        <b-button @click="slideLeft"><b-icon-arrow-left/> Add the next block</b-button>
+      </div>
+    </b-card-body>
   </b-card>
 </b-collapse>
 </template>
@@ -23,6 +30,8 @@ export default {
     blockHeight: Number,
     isHashValid: Boolean,
     numOfTries: Number,
+    timeToMine: Number,
+    estTime: Object,
   },
   methods: {
     slideLeft() {
@@ -38,11 +47,5 @@ export default {
   top: 50%;
   right: 50%;
   transform: translate(50%, -50%);
-}
-#collapse_success_msg .card {
-  box-shadow: -1px 2px 5px 0 #f79413;
-}
-#collapse_success_msg .card-header {
-  background-color: #f79413;
 }
 </style>

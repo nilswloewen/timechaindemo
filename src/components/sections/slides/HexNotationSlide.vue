@@ -1,31 +1,39 @@
 <template>
-<Page slide data-anchor="hexadecimal_notation"
-      encoding-btn
-      :active-encoding="activeEncoding"
-      :encoding="encoding"
-      v-on:rotate-encoding="rotateEncoding"
-      v-on:update-active-encoding="updateActiveEncoding">
-
+<Page slide data-anchor="hexadecimal_notation">
   <h1>Numerical Notation</h1>
-  <p>
-    In the top right corner there is a button to change the notation of some numbers in this demo.
-    Try pressing it a few times to see different ways the following number can be represented.
-  </p>
-
-  <b-card class="text-left">
-   <h4 class="text-left"> Bitcoin's maximum supply</h4>
-    <b-button class="rotate_encoding_btn" @click="rotateEncoding" size="sm"><b-icon-vector-pen/></b-button>
-    <hr>
-    <b>{{ num[encoding[activeEncoding]] }}</b>
-    <br>
-    {{ encoding[activeEncoding] }} notation
-  </b-card>
 
   <p>
     <b>Numbers can be written with different notation styles for different use cases.</b> While computers think in 1's and 0's,
     binary notation is not easy for humans to read. Decimal notation is easy to read, but
     it might not be the most compact way to store numbers.
   </p>
+
+  <p>
+    You will see this notation button later in this demo:
+  </p>
+  <div class="text-center">
+    <b-button class="rotate_encoding_btn" @click="rotateEncoding" size="sm">
+      <b-icon-vector-pen/>
+    </b-button>
+  </div>
+  <p>
+    Try clicking it to see different ways numbers are represented.
+  </p>
+
+  <b-card no-body>
+    <b-card-header header-bg-variant="info">
+      Bitcoin's maximum supply
+      <b-button class="rotate_encoding_btn float-right" @click="rotateEncoding" size="sm">
+        <b-icon-vector-pen/>
+      </b-button>
+    </b-card-header>
+    <b-card-body>
+      <b>{{ num[encoding[activeEncoding]] }}</b>
+      <br>
+      {{ encoding[activeEncoding] }} notation
+    </b-card-body>
+  </b-card>
+
   <hr>
 
   <b-card>
@@ -102,14 +110,12 @@
 import Page from '@/components/Page.vue';
 import Num from '@/services/Num';
 import EncodingMixin from '@/mixins/EncodingMixin';
-import EncodingButton from '@/components/controls/EncodingButton';
 
 export default {
   mixins: [
     EncodingMixin
   ],
   components: {
-    EncodingButton,
     Page
   },
   data() {

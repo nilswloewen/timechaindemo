@@ -39,7 +39,8 @@
     </b-input-group>
   </b-list-group-item>
 
-  <b-list-group-item class="list-value text-left">
+
+  <b-list-group-item v-if="showGoBrrr" class="list-value text-left">
     <span class="float-left" style="padding-top: 3px;"> Go Brrr </span>
 
     <b-button v-if="showSolutionBtn" @click="$emit('show-solution')" size="sm"
@@ -64,6 +65,7 @@ export default {
     isMining: Boolean,
     localEncoding: String,
     showSolutionBtn: Boolean,
+    showGoBrrr: Boolean,
     target: Num,
   },
 

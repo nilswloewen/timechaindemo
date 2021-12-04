@@ -50,9 +50,6 @@
 
   <div class="slide" data-anchor="real_mining" id="real_mining_slide">
     <div class="fp-bg"/>
-    <EncodingButton :active-encoding="activeEncoding" :encoding="encoding"
-                    v-on:update-active-encoding="updateActiveEncoding"
-                    v-on:rotate-encoding="rotateEncoding"/>
 
     <Graph id="real_mining_canvas" animate
            :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
@@ -77,7 +74,6 @@
 import Block from '@/services/block/Block';
 import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockHeader from '@/services/block/BlockHeader';
-import EncodingButton from '@/components/controls/EncodingButton';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import Graph from '@/components/Graph';
 import Mempool from '@/services/Mempool';
@@ -95,7 +91,6 @@ export default {
   ],
   components: {
     BlockCard,
-    EncodingButton,
     Graph,
     MiningControls,
     Page,

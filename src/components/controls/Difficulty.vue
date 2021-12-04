@@ -6,8 +6,8 @@
 
   <b-card-body class="text-center">
     <p>
-      <b-button @click="$emit('calibrate-hps')" size="sm" variant="primary">Your Device</b-button>
-      <b-button @click="$emit('show-antminer-hashrate')" size="sm"> Antminer s9 </b-button>
+      <b-button @click="$emit('calibrate-hps')" size="sm" variant="primary" class="mr-2">Your Device</b-button>
+      <b-button @click="$emit('show-antminer-hashrate')" size="sm" class="mr-2"> Antminer s9 </b-button>
       <b-button @click="$emit('show-global-hashrate')" size="sm"> Global</b-button>
     </p>
 

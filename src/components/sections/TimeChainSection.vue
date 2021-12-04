@@ -122,9 +122,6 @@
 
   <div class="slide" data-anchor="timechain_mining" id="timechain_mining_slide">
     <div class="fp-bg"/>
-    <EncodingButton :active-encoding="activeEncoding" :encoding="encoding"
-                    v-on:update-active-encoding="updateActiveEncoding"
-                    v-on:rotate-encoding="rotateEncoding"/>
 
     <Graph id="timechain_canvas" animate
            :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
@@ -136,13 +133,18 @@
       :is-mining="isMining"
       :local-encoding="encoding[activeEncoding]"
       :target="target"
+      show-go-brrr
       v-on:rotate-encoding="rotateEncoding"
       v-on:start-mining="startMining"
       v-on:update-nonce="updateNonce"/>
 
-    <SuccessMsg :block-height="blocks[blockToMine].height" :is-hash-valid="blocks[blockToMine].isHashValid"/>
+    <SuccessMsg :block-height="blocks[blockToMine].height"
+                :is-hash-valid="blocks[blockToMine].isHashValid"
+                :time-to-mine="blocks[blockToMine].timeToMine"
+                :avg-hashes="avgHashes"
+                :est-time="{blocktime, blocktimeUnit}"
+                :num-of-tries="guesses.length" />
   </div>
-
 </div>
 </template>
 
@@ -150,7 +152,6 @@
 import AddBlockButton from '@/components/controls/AddBlockButton.vue';
 import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
-import EncodingButton from '@/components/controls/EncodingButton.vue';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import Graph from '@/components/Graph.vue';
 import MiningControls from '@/components/controls/MiningControls.vue';
@@ -159,13 +160,12 @@ import SuccessMsg from '@/components/controls/SuccessMsg';
 import Target from '@/components/controls/Target.vue';
 import TargetMixin from '@/mixins/TargetMixin';
 import Difficulty from '@/components/controls/Difficulty';
-import DifficultyMixin from '@/mixins/DifficultyMixin';
 import Num from '@/services/Num';
+import BlockchainApi from '@/services/BlockchainApi';
 
 export default {
   mixins: [
     BlockchainMixin,
-    DifficultyMixin,
     EncodingMixin,
     TargetMixin
   ],
@@ -173,7 +173,6 @@ export default {
     AddBlockButton,
     BlockCard,
     Difficulty,
-    EncodingButton,
     Graph,
     MiningControls,
     Page,
@@ -187,10 +186,38 @@ export default {
       hexDigits: 2,
       isMining: false,
       isAdjustingTarget: false,
+      hashrate: 42,
+      hashrateUnit: 'base',
+      blocktime: 15,
+      blocktimeUnit: 'Seconds',
+      blocktimeUnits: ['Seconds', 'Minutes', 'Hours', 'Days', 'Weeks', 'Months', 'Years'],
+      hashrateUnits: [
+        '',
+        'Kilo',
+        'Mega',
+        'Giga',
+        'Tera',
+        'Peta',
+        'Exa',
+        'Zeta',
+        'Yotta'
+      ],
+      hashrateConversion: {
+        base: { value: 1 },
+        Kilo: { value: 1_000 },
+        Mega: { value: 1_000_000 },
+        Giga: { value: 1_000_000_000 },
+        Tera: { value: 1_000_000_000_000 },
+        Peta: { value: 1_000_000_000_000_000 },
+        Exa: { value: 1_000_000_000_000_000_000 },
+        Zeta: { value: 1_000_000_000_000_000_000_000 },
+        Yotta: { value: 1_000_000_000_000_000_000_000_000 }
+      },
     };
   },
   mounted() {
     this.calibrateHps();
+    this.calcTarget();
   },
   methods: {
     updateNonce(nonce) {
@@ -200,7 +227,7 @@ export default {
     updateHexDigits(newHexDigits) {
       this.hexDigits = newHexDigits;
 
-      const max = BigInt(`0x${ ''.padEnd(this.hexDigits, 'f') }`);
+      const max = BigInt(`0x${ ''.padEnd(this.hexDigits, 'f')}`);
 
       this.targetMax = new Num(max - 1n, this.hexDigits);
       this.hashMax = new Num(max, this.hexDigits);
@@ -210,14 +237,174 @@ export default {
     },
     calcTarget() {
       const hashrate = this.hashrate * this.hashrateConversion[this.hashrateUnit].value;
-      const desiredSeconds = this.timeToSeconds(this.blockTime, this.blockTimeUnit);
+      const desiredSeconds = this.timeToSeconds(this.blocktime, this.blocktimeUnit);
       const desiredAvgHashes = desiredSeconds * hashrate;
+      console.log(desiredSeconds)
 
       const { hexDigits, target } = this.findTargetAndMax(desiredAvgHashes);
 
       this.updateHexDigits(hexDigits);
       this.target = new Num(BigInt(target), this.hexDigits);
       this.calcStats();
+    },
+    async calibrateHps() {
+      const start = new Date().getTime();
+      let elapsed = 0;
+
+      while (elapsed < 1000) {
+        this.blocks[0].header.nonce += 1;
+        await this.finalizeBlock(0);
+        elapsed = new Date().getTime() - start;
+      }
+
+      const hashes = this.blocks[0].header.nonce / (elapsed / 1000);
+      this.setHashrate(hashes.toFixed(0));
+      this.calcTarget();
+
+      // Reset block.
+      this.blocks[0].header.nonce = 0;
+      await this.finalizeBlock(0);
+      this.guesses = [];
+    },
+    updateHashrate(newHashrate) {
+      this.hashrate = Number(newHashrate || 1);
+      this.calcTarget();
+    },
+    updateHashrateUnit(newHashrateUnit) {
+      this.hashrateUnit = newHashrateUnit || 'base';
+      this.calcTarget();
+    },
+    updateBlocktime(newTime) {
+      this.blocktime = Number(newTime);
+      this.calcTarget();
+    },
+    updateBlocktimeUnit(newTimeUnit) {
+      this.blocktimeUnit = newTimeUnit;
+      this.calcTarget();
+    },
+    onAntminer() {
+      this.hashrate = 13;
+      this.hashrateUnit = 'Tera';
+      this.calcTarget();
+    },
+    async onGlobal() {
+      const gigaHashrate = await BlockchainApi.getHashRate();
+      this.setHashrate(gigaHashrate * this.hashrateConversion.Giga.value);
+      this.calcTarget();
+    },
+    setHashrate(hashrate) {
+      for (const unit of ['Yotta', 'Zeta', 'Exa', 'Peta', 'Tera', 'Giga', 'Mega', 'Kilo', 'base']) {
+        if (hashrate > this.hashrateConversion[unit].value) {
+          this.hashrate = hashrate / this.hashrateConversion[unit].value;
+          this.hashrateUnit = unit;
+          return;
+        }
+      }
+    },
+
+    findTargetAndMax(desiredAvgHashes) {
+      let hexDigits = 1;
+
+      // Increase complexity by increasing maximum.
+      while (hexDigits <= 64) {
+        hexDigits += 1;
+        let max = (16 ** hexDigits) - 1;
+        let target = max;
+        let avgHashes = 1 / (target / max);
+        console.log(`avgHashes: ${avgHashes}, desired: ${desiredAvgHashes}`);
+
+        // Binary search down for closest match.
+        while (target > 1) {
+          target = Math.floor(target / 2);
+          avgHashes = 1 / (target / max);
+
+          if (desiredAvgHashes < avgHashes) {
+            // Increment up to the closest match.
+            while (target < max) {
+              target += 1;
+              avgHashes = 1 / (target / max);
+
+              if (avgHashes < desiredAvgHashes) {
+                return { hexDigits, target: Math.floor(target) };
+              }
+            }
+          }
+        }
+      }
+      // @TODO: This should never happen!
+      return { hexDigits: 2, target: 69 };
+    },
+
+    timeToSeconds(time, unit) {
+      switch (unit) {
+        case 'Seconds':
+          return time;
+        case 'Minutes':
+          return time * 60;
+        case 'Hours':
+          return time * 60 * 60;
+        case 'Days':
+          return time * 60 * 60 * 24;
+        case 'Weeks':
+          return time * 60 * 60 * 24 * 7;
+        case 'Months':
+          return time * 60 * 60 * 24 * 30;
+        case 'Years':
+          return time * 60 * 60 * 24 * 365;
+      }
+    },
+    secondsToTime(seconds) {
+      const minute = 60;
+      if (seconds < minute) {
+        return { val: seconds, unit: 'Seconds' };
+      }
+
+      const hour = minute * 60;
+      if (seconds < hour) {
+        return { val: Math.floor(seconds / minute), unit: 'Minutes' };
+      }
+
+      const day = hour * 24;
+      if (seconds < day) {
+        return { val: Math.floor(seconds / hour), unit: 'Hours' };
+      }
+
+      const week = day * 7;
+      if (seconds < week) {
+        return { val: Math.floor(seconds / day), unit: 'Days' };
+      }
+
+      const month = day * 30;
+      if (seconds < month) {
+        return { val: Math.floor(seconds / week), unit: 'Weeks' };
+      }
+
+      const year = day * 365;
+      if (seconds < year) {
+        return { val: Math.floor(seconds / month), unit: 'Months' };
+      }
+
+      const years = Math.floor(seconds / year);
+      if (years < 1_000_000_000) {
+        return { val: years.toLocaleString('en-US'), unit: 'Years' };
+      }
+      return { val: years.toExponential(2), unit: 'Years' };
+    },
+
+    getHashrateLong() {
+      const hashrate = this.hashrate * this.hashrateConversion[this.hashrateUnit].value;
+      return hashrate.toLocaleString();
+    },
+
+    async updateTargetAndBlocktime(newTarget) {
+      await this.updateTarget(newTarget);
+
+      const hashrate = this.hashrate * this.hashrateConversion[this.hashrateUnit].value;
+      const seconds = Math.ceil((1 / hashrate) * this.avgHashes);
+      const { val, unit } = this.secondsToTime(seconds);
+
+      this.blocktime = val;
+      this.blocktimeUnit = unit;
     },
   }
 };

@@ -253,6 +253,7 @@ hr {
 }
 .btn-primary,
 .btn-primary.disabled,
+.btn-primary:focus,
 .btn-primary:hover {
   background-color: #3CAFAA;
   border-color: #3CAFAA;

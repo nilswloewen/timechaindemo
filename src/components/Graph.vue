@@ -129,13 +129,9 @@ export default {
       this.ctx.stroke();
       this.ctx.closePath();
 
-      if (y < 20) {
-        this.ctx.beginPath();
-        this.ctx.strokeStyle = 'transparent';
-        this.ctx.moveTo(this.zero.x - 4, this.zero.y);
-        this.ctx.lineTo(this.zero.x - 74, this.zero.y);
-        this.ctx.stroke();
-        this.ctx.closePath();
+      if (this.height - y < 20) {
+        this.ctx.fillStyle = 'blue';
+        this.ctx.clearRect(this.zero.x - 6, this.zero.y + 2, -60, -4);
       }
 
       this.ctx.font = '16px Fira Code';
@@ -146,6 +142,16 @@ export default {
         this.zero.x - 64,
         y + 6
       );
+    },
+
+    drawMinMax() {
+      this.ctx.font = '16px Fira Code';
+
+      this.ctx.fillStyle = 'rgba(255, 255, 255, 0.4)'
+      this.ctx.fillText('Max', this.zero.x - 14, this.yPad - 10);
+
+      this.ctx.fillStyle = 'rgba(255, 255, 255, 0.6)'
+      this.ctx.fillText('Min 0', this.zero.x - 14, this.zero.y + 24);
     },
 
     calcTicks() {
@@ -252,6 +258,7 @@ export default {
       this.clear();
       this.drawXAxis();
       this.drawYAxis();
+      this.drawMinMax();
 
       this.drawTarget(this.target.yRatio);
       this.drawGuesses(this.guesses);

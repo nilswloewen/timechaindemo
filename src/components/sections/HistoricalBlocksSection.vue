@@ -26,7 +26,6 @@
     </p>
 
     <BlockCard :block="block"
-               :hex-digits="64"
                :local-encoding="encoding[activeEncoding]"
                showBlockHeightInput
                showReal
@@ -61,6 +60,7 @@
       :local-encoding="encoding[activeEncoding]"
       :target="target"
       show-solution-btn
+      show-go-brrr
       v-on:rotate-encoding="rotateEncoding"
       v-on:start-mining="startMining"
       v-on:show-solution="showSolution"

@@ -15,6 +15,24 @@
 
     <hr>
 
+    <b-card no-body class="tldr">
+      <b-card-header> tl;dr | Mining Algorithm </b-card-header>
+      <b-card-body class="text-left">
+        <ol>
+          <li> Pick a random number (<b>nonce</b>)</li>
+          <li> Calculate <b>hash</b> of ( data & <b>nonce</b> )</li>
+          <li> If <b>hash</b> is less than the <b>target</b>
+            <ul>
+              <li> The hash is valid and the block will be added to the blockchain! </li>
+              <li> If not &mdash; go back to step 1 and try again!</li>
+            </ul>
+          </li>
+        </ol>
+      </b-card-body>
+    </b-card>
+
+    <hr>
+
     <p>
       In the previous example of a blockchain, every block hash was considered valid.
       To make mining difficult, Bitcoin requires that a block hash will only be valid if
@@ -47,26 +65,6 @@
         them into an ongoing chain of hash-based proof-of-work, forming a
         record that cannot be changed without redoing the proof-of-work.</q>
       <br> - <a href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</a>
-    </b-card>
-
-    <b-card no-body>
-      <b-card-header header-bg-variant="info">
-        Mining Algorithm
-      </b-card-header>
-      <b-card-body>
-        <ol>
-          <li> Pick a random <b>nonce</b></li>
-          <li> Calculate <b>hash</b>: sha256d ( data + <b>nonce</b> )</li>
-          <li> If <b>hash</b> is less than <b>target:</b>
-            <ul>
-              <li>
-                The hash is valid and the block will be added to the blockchain!
-              </li>
-              <li> If not - go back to step 1 try again!</li>
-            </ul>
-          </li>
-        </ol>
-      </b-card-body>
     </b-card>
 
   </Page>
@@ -122,7 +120,6 @@
     <div id="blockchainPow" class="text-center mt-4">
       <BlockCard v-for="(block, index) in this.blocks" :key="index"
                  :block="block"
-                 :hex-digits="hexDigits"
                  :index="index"
                  :local-encoding="encoding[activeEncoding]"
                  showData

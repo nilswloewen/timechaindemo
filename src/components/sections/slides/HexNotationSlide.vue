@@ -3,9 +3,10 @@
   <h1>Numerical Notation</h1>
 
   <p>
-    <b>Numbers can be written with different notation styles for different use cases.</b> While computers think in 1's and 0's,
+    <b>Numbers can be written with different notation styles for different use cases.</b>
+    While computers think in 1's and 0's,
     binary notation is not easy for humans to read. Decimal notation is easy to read, but
-    it might not be the most compact way to store numbers.
+    it might not be the most compact way to store values.
   </p>
 
   <p>
@@ -20,8 +21,8 @@
     Try clicking it to see different ways numbers are represented.
   </p>
 
-  <b-card no-body>
-    <b-card-header header-bg-variant="info">
+  <b-card class="info" no-body>
+    <b-card-header bg-variant="info">
       Bitcoin's maximum supply
       <b-button class="rotate_encoding_btn float-right" @click="rotateEncoding" size="sm">
         <b-icon-vector-pen/>
@@ -36,6 +37,15 @@
 
   <hr>
 
+  <b-card no-body class="tldr">
+    <b-card-header>tl;dr (Too Long; Didn't Read)</b-card-header>
+    <b-card-body>
+      Numbers can be written in different ways, but they are still just numbers.
+    </b-card-body>
+  </b-card>
+
+  <hr>
+
   <b-card>
     <h4 class="text-left"><a href="https://www.etymonline.com/word/hexadecimal">hexadecimal (adj.)</a></h4>
     <hr>
@@ -45,6 +55,7 @@
 
   <p>
     As you can see in the following table these values are equivalent yet notated differently.
+    Hexadecimal notation uses letters a-f for values 10-15.
   </p>
 
   <b-card id="hex_table" no-body>
@@ -65,6 +76,31 @@
           <b-td>{{ row.decimal }}</b-td>
           <b-td>{{ row.hexadecimal }}</b-td>
           <b-td>{{ row.binary }}</b-td>
+        </b-tr>
+      </b-tbody>
+    </b-table-simple>
+  </b-card>
+
+  <hr>
+
+  <p>
+    Very large numbers can be written in a shorthand form called <b>Exponential Notation</b>.
+    You can basically ignore everything but the last number and think <q>I don't know what this
+    number is but it's like this many digits long!</q>
+  </p>
+
+  <b-card id="exponential_table" no-body>
+    <b-table-simple class="border-1 text-center" small>
+      <b-thead>
+        <tr>
+          <th colspan="3" class="text-center h5">Exponential Notation</th>
+        </tr>
+      </b-thead>
+      <b-tbody>
+        <b-tr v-for="(row, index) in expRows" :key="index">
+          <b-td>{{ row.name }}</b-td>
+          <b-td>{{ row.val.toLocaleString() }}</b-td>
+          <b-td><b>{{ row.val.toExponential() }}</b></b-td>
         </b-tr>
       </b-tbody>
     </b-table-simple>
@@ -100,7 +136,6 @@
     <b-list-group-item class="list-value">
       <b-form-input :value="Number(val).toString(2)" @keyup="onBin"/>
     </b-list-group-item>
-
   </b-card>
 
 </Page>
@@ -122,7 +157,6 @@ export default {
     return {
       val: 48879,
       num: new Num(21_000_000n, 7),
-      columns: ['Decimal', 'Binary', 'Hexadecimal'],
       rows: [
         { decimal: 15, binary: '1111', hexadecimal: 'f' },
         { decimal: 14, binary: '1110', hexadecimal: 'e' },
@@ -140,6 +174,11 @@ export default {
         { decimal: 2, binary: '0010', hexadecimal: '2' },
         { decimal: 1, binary: '0001', hexadecimal: '1' },
         { decimal: 0, binary: '0000', hexadecimal: '0' }
+      ],
+      expRows: [
+        { val: 21_000_000, name: 'Twenty-one million' },
+        { val: 100_000_000_000_000, name: 'One-hundred Trillion' },
+        { val: Number('1e+100'), name: 'A googol' },
       ]
     };
   },
@@ -172,10 +211,6 @@ export default {
   text-align: center;
 }
 
-#hex_table table {
-  color: white;
-}
-
 #hex_converter {
   margin-left: auto;
   margin-right: auto;
@@ -187,6 +222,12 @@ export default {
   min-width: 264px;
   padding-top: 0;
   padding-bottom: 0;
+}
+
+#exponential_table td {
+  max-width: 100px;
+  overflow-x: auto;
+  overflow-wrap: normal;
 }
 
 </style>

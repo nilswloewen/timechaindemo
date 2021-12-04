@@ -90,6 +90,15 @@ export default {
   width: 554px;
 }
 
+.card.mining_controls {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-color: #4f38a1;
+  box-shadow: -2px 3px 5px 2px #4f38a1;
+}
+.card.mining_controls .card-header {
+  background-color: #7855F5;
+  border-color: #7855F5;
+}
 .mining_controls .list-value {
   text-align: right;
 }

@@ -49,6 +49,9 @@ export default {
         scrollHorizontally: true,
         scrollHorizontallyKey: 'bmlsc2xvZXdlbi5jb21fV08zYzJOeWIyeHNTRzl5YVhwdmJuUmhiR3g1MjZ2',
 
+        slidesNavigation: true,
+        slidesNavPosition: 'top',
+
         navigation: true,
         normalScrollElements: '.blockchain_wrapper',
 
@@ -129,7 +132,7 @@ export default {
   font-family: 'Fira Code', monospace;
   text-align: justify;
   color: white;
-  text-shadow: #000 0 0 3px;
+  text-shadow: #000 -1px 1px 4px;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -141,16 +144,31 @@ a:hover {
   color: #f79413;
 }
 
-/* Works on Chrome, Edge, and Safari */
+.table {
+  margin-bottom: 0;
+  color: white;
+}
+tr {
+  background-color: transparent;
+}
+hr {
+  border-top: 1px solid gray;
+  margin: 1em 0;
+}
+h1 {
+  margin-bottom: 1em;
+  text-align: center;
+  color: #f9f9fb;
+}
+
+/* Scrollbars */
 *::-webkit-scrollbar {
   width: 4px;
   height: 4px;
 }
-
 *::-webkit-scrollbar-track {
   background: #15202b;
 }
-
 *::-webkit-scrollbar-thumb {
   background-color: #17a2b8;
   border-radius: 20px;
@@ -164,24 +182,35 @@ a:hover {
   padding-top: 3em;
   padding-bottom: 30vh;
 }
-
 .card {
-  margin: 0 auto 1em auto;
+  margin: 0 auto 2em auto;
   background-color: rgba(0, 0, 0, 0.3);
   max-width: 625px;
-  box-shadow: -1px 2px 5px 0 gray;
+  box-shadow: -2px 3px 10px 2px slategray;
   text-align: left;
 }
-
 .card-header {
   background-color: #343a40;
   color: white;
-  text-shadow: black 0 0 5px;
   line-height: 30px;
 }
-
 .card-header svg {
-  filter: drop-shadow(0px 0px 1px black);
+  filter: drop-shadow(-2px 2px 2px black);
+}
+
+.tldr.card {
+  max-width: 500px;
+  text-align: center;
+  box-shadow: -1px 2px 4px 2px #f79413;
+  border-color:  #f79413;
+  margin: 2em auto;
+}
+.tldr .card-header {
+  background-color: #f79413;
+  padding: .2em;
+}
+.tldr .card-body {
+  padding: .2em;
 }
 
 .blockchain_wrapper {
@@ -203,42 +232,26 @@ a:hover {
   font-size: 0.875rem;
   padding: 0 .5em;
 }
-
 .list-field {
   padding-top: 7px;
   padding-bottom: 0;
 }
-
 .list-value {
-  overflow-y: auto;
+  overflow-x: auto;
   overflow-wrap: normal;
   padding-bottom: 7px;
   padding-top: 2px;
   border-bottom: 1px solid darkgray;
 }
-
 .card .list-value:last-child {
   border-bottom: none;
-}
-
-.table {
-  margin-bottom: 0;
-}
-
-tr {
-  background-color: transparent;
-}
-
-hr {
-  border-top: 1px solid gray;
-  margin: 1em 0;
 }
 
 .form-control,
 .form-control:disabled, .form-control[readonly],
 .input-group-text {
   background-color: inherit;
-  text-shadow: #000 0 0 5px;
+  /*text-shadow: #000 0 0 5px;*/
   color: inherit;
 }
 
@@ -270,19 +283,22 @@ hr {
   background-color: #61e294;
   border-color: #61e294;
 }
+.info,
 .btn-info,
 .btn-info:hover,
+.card.info .card-header,
 .bg-info {
   background-color: #7855F5 !important;
   border-color: #7855F5;
 }
+.card.info {
+  box-shadow: -2px 3px 10px 2px  #7855F5;
+  border-color: #7855F5;
+}
+
 .rotate_encoding_btn {
   background-color: transparent;
   border: none;
-}
-
-.card-header {
-  background-color: #6471F7;
 }
 
 /* Target range slider */
@@ -290,7 +306,6 @@ hr {
 .input-group > .custom-range:focus {
   background-color: inherit;
 }
-
 .custom-range::-webkit-slider-thumb {
   background-color: #17a2b8;
 }
@@ -303,26 +318,18 @@ hr {
 .dropdown-menu a {
   text-decoration: none;
 }
-
 .dropdown-menu a:hover {
   color: #17a2b8;
 }
-
 .dropdown-item.active {
   background-color: inherit;
   color: #17a2b8;
 }
-
 .dropdown-item:hover {
   background-color: inherit;
   color: white;
 }
 
-h1 {
-  margin-bottom: 1em;
-  text-align: center;
-  color: #f9f9fb;
-}
 
 /* FullPage Controls */
 #fp-nav {
@@ -347,10 +354,10 @@ h1 {
 
 .fp-slidesNav {
   transform: translate(50%, -50%);
+  left: 0;
+  right: 30px !important;
 }
-
 .fp-bg {
-
   background-size: cover;
   background-position: center;
 }

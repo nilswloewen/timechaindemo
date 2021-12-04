@@ -1,13 +1,14 @@
 <template>
 <b-card no-body class="target">
-  <b-card-header header-bg-variant="info">
+  <b-card-header header-bg-variant="info" class="pb-0">
     <b-icon-wrench/> Target
     <b-button class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')" size="sm">
       <b-icon-vector-pen/>
     </b-button>
   </b-card-header>
-
-  <b-list-group-item class="list-value pt-2" style="direction: rtl;"> {{ target[localEncoding] }}</b-list-group-item>
+  <div class="text-center info" style="font-size: 0.875rem;">
+    {{ target[localEncoding] }}
+  </div>
 
   <b-input-group v-if="!hideRange" prepend="Min 1" size="sm" append="Max" style="border-radius: 0;">
     <b-form-input :title="target[localEncoding]" :value="target.num" @change="onTargetChange" type="range"
@@ -27,7 +28,7 @@
     {{ getNumerator }} out of {{ getDenominator }}
   </b-list-group-item>
 
-  <b-list-group-item class="list-field">Average number of tries</b-list-group-item>
+  <b-list-group-item class="list-field">Average number of guesses to find a valid hash</b-list-group-item>
   <b-list-group-item class="list-value"> ~{{ Number(avgHashes.toFixed(0)).toLocaleString() }}</b-list-group-item>
 </b-card>
 </template>
@@ -83,5 +84,10 @@ export default {
 .target .list-field,
 .target .list-value {
   text-align: left;
+}
+.info {
+  padding: 0 4px;
+  word-wrap: normal;
+  overflow: auto;
 }
 </style>

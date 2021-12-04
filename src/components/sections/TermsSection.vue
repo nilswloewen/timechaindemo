@@ -14,8 +14,8 @@
     </p>
 
     <p>
-      <b>Hash functions</b> are the backbone to the blockchain and to mining.
-      The output of these functions are represented with <b>Hexadecimal Notation</b>.
+      <b>SHA-256 Hash functions</b> are the backbone to the blockchain and to mining. The output of these
+      functions are represented with <b>Hexadecimal Notation</b>.
     </p>
   </Page>
 

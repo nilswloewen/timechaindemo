@@ -1,17 +1,28 @@
 <template>
 <Page data-anchor="intro">
+  <div class="fade-in">
 
-  <h1 class="fade-in">
-    Bitcoin Timechain Demo
-  </h1>
+    <h1> Bitcoin Timechain Demo </h1>
 
-  <p class="fade-in">
-    Bitcoin is backed by not just it's massive computer network, but by time
-    itself. The demo will start with underlying concepts such as hash functions and move on to show
-    blockchain, proof-of-work, mining, and the difficulty-adjustment that regulates the timechain.
-  </p>
+    <p>
+      Welcome to the Timechain Demo 0.1! If you have ever wondered what Bitcoin miners are technically upto,
+      or if you have heard that Bitcoin is backed by Math but don't really know what that means, then you've come
+      to the right place!
+    </p>
 
-  <TableOfContents class="fade-in" :contents="contents"/>
+    <p>
+      The goal of this demo is to show that Bitcoin is backed by not just it's massive computer network, but by time
+      itself. The demo will start with underlying concepts such as hash functions and move on to show
+      blockchain, proof-of-work, mining, and the difficulty-adjustment that regulates the timechain.
+    </p>
+
+    <TableOfContents :contents="contents"/>
+
+    <b-card class="text-center">
+      <q>Bitcoin is Sovereignty through Mathematics</q>
+      <br> - <a href="https://www.amazon.com/dp/1090109911" target="_blank">Knut Svanholm</a>
+    </b-card>
+  </div>
 </Page>
 </template>
 

@@ -6,15 +6,18 @@
     </b-card-header>
     <b-card-body>
       Congratulations! You've found a valid hash for Block #{{ blockHeight }}!
+
       <hr>
 
       <p>
-      It took <b>{{ numOfTries }}</b> tries to find a valid hash,
+        It took <b>{{ numOfTries }}</b> guesses to find a valid hash,
         <b>{{ avgHashes.toLocaleString() }}</b> were estimated.
       </p>
 
+      <hr>
+
       <p v-if="estTime">
-        It took {{ timeToMine }} seconds to mine, {{ estTime.blocktime }} {{ estTime.blocktimeUnit }} were estimated.
+        It took <b>{{ timeToMine }}</b> seconds to mine, {{ estTime.blocktime }} {{ estTime.blocktimeUnit }} were estimated.
       </p>
       <div class="text-center">
         <b-button @click="slideLeft"><b-icon-arrow-left/> Add the next block</b-button>

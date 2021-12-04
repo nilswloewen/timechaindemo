@@ -110,7 +110,6 @@
     <div class="blockchain_wrapper">
       <BlockCard v-for="(block, index) in this.blocks" :key="index"
                  :block="block"
-                 :hex-digits="hexDigits"
                  :index="index"
                  :local-encoding="encoding[activeEncoding]"
                  showData

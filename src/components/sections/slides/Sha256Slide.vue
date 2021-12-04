@@ -39,6 +39,15 @@
 
   <hr>
 
+  <b-card no-body class="tldr">
+    <b-card-header>tl;dr</b-card-header>
+    <b-card-body>
+      A hash is an absurdly large number which makes the math really hard &mdash; which is why people trust it.
+    </b-card-body>
+  </b-card>
+
+  <hr>
+
   <b-card no-body class="mt-4">
     <b-card-header header-bg-variant="info">
       <span class="float-left"><b-icon-wrench/> SHA-256 Calculator </span>

@@ -103,10 +103,6 @@ import Block from '@/services/block/Block';
 export default {
   props: {
     block: Block,
-    hexDigits: {
-      type: Number,
-      required: false
-    },
     index: {
       type: Number,
       required: false

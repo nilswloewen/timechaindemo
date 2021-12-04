@@ -273,12 +273,16 @@ hr {
 .btn-info,
 .btn-info:hover,
 .bg-info {
-  background-color: #3CAFAA !important;
-  border-color: #3CAFAA;
+  background-color: #7855F5 !important;
+  border-color: #7855F5;
+}
+.rotate_encoding_btn {
+  background-color: transparent;
+  border: none;
 }
 
 .card-header {
-  background-color: #3CAFAA;
+  background-color: #6471F7;
 }
 
 /* Target range slider */

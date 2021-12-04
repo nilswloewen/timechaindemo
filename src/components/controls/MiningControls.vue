@@ -46,8 +46,7 @@
     <b-button v-if="showSolutionBtn" @click="$emit('show-solution')" size="sm"
               :disabled="block.isHashValid" class="float-right">Show Solution</b-button>
     <b-form-checkbox class="float-left ml-2" style="padding-top: 1px;"
-                     @change="onStartMining" switch :checked="isMining" :disabled="block.isHashValid"/>
-
+                     @change="onStartMining" switch :checked="isMining"/>
   </b-list-group-item>
 
 </b-card>

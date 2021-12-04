@@ -142,8 +142,8 @@
                 :is-hash-valid="blocks[blockToMine].isHashValid"
                 :time-to-mine="blocks[blockToMine].timeToMine"
                 :avg-hashes="avgHashes"
-                :est-time="{blocktime, blocktimeUnit}"
-                :num-of-tries="guesses.length" />
+                :est-time="{ blocktime, blocktimeUnit }"
+                :num-of-tries="blocks[blockToMine].tries"/>
   </div>
 </div>
 </template>
@@ -212,7 +212,7 @@ export default {
         Exa: { value: 1_000_000_000_000_000_000 },
         Zeta: { value: 1_000_000_000_000_000_000_000 },
         Yotta: { value: 1_000_000_000_000_000_000_000_000 }
-      },
+      }
     };
   },
   mounted() {
@@ -227,7 +227,7 @@ export default {
     updateHexDigits(newHexDigits) {
       this.hexDigits = newHexDigits;
 
-      const max = BigInt(`0x${ ''.padEnd(this.hexDigits, 'f')}`);
+      const max = BigInt(`0x${ ''.padEnd(this.hexDigits, 'f') }`);
 
       this.targetMax = new Num(max - 1n, this.hexDigits);
       this.hashMax = new Num(max, this.hexDigits);
@@ -239,7 +239,6 @@ export default {
       const hashrate = this.hashrate * this.hashrateConversion[this.hashrateUnit].value;
       const desiredSeconds = this.timeToSeconds(this.blocktime, this.blocktimeUnit);
       const desiredAvgHashes = desiredSeconds * hashrate;
-      console.log(desiredSeconds)
 
       const { hexDigits, target } = this.findTargetAndMax(desiredAvgHashes);
 
@@ -311,7 +310,6 @@ export default {
         let max = (16 ** hexDigits) - 1;
         let target = max;
         let avgHashes = 1 / (target / max);
-        console.log(`avgHashes: ${avgHashes}, desired: ${desiredAvgHashes}`);
 
         // Binary search down for closest match.
         while (target > 1) {
@@ -405,7 +403,7 @@ export default {
 
       this.blocktime = val;
       this.blocktimeUnit = unit;
-    },
+    }
   }
 };
 </script>

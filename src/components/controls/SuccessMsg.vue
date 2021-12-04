@@ -12,7 +12,8 @@
       It took <b>{{ numOfTries }}</b> tries to find a valid hash,
         <b>{{ avgHashes.toLocaleString() }}</b> were estimated.
       </p>
-      <p>
+
+      <p v-if="estTime">
         It took {{ timeToMine }} seconds to mine, {{ estTime.blocktime }} {{ estTime.blocktimeUnit }} were estimated.
       </p>
       <div class="text-center">

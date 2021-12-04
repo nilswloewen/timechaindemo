@@ -110,16 +110,19 @@ export default {
     },
     async startMining(index) {
       const startTime = performance.now();
+      let tries = 0;
       this.isMining = true;
       const block = this.blocks[index];
 
       while (!block.isHashValid) {
+        tries += 1;
         block.header.nonce += 1;
         await this.finalizeBlock(index);
       }
 
       this.isMining = false;
       const elapsed = performance.now() - startTime;
+      block.tries = tries;
       block.timeToMine = (elapsed / 1000).toFixed(2);
     },
 

@@ -28,22 +28,6 @@
       &nbsp;&mdash;&nbsp;<a href="https://t.co/HQwDRlKKx9" target="_blank">Peter Todd</a>
     </b-card>
 
-    <h4>A simplified block</h4>
-    <b-card no-body>
-      <b-card-header>
-        <span class="float-left">Block Hash</span> <span class="float-right">Block Number/Height</span>
-      </b-card-header>
-
-      <!--Data-->
-      <b-list-group-item class="list-field">Data</b-list-group-item>
-      <b-list-group-item class="list-value">Any arbitrary data</b-list-group-item>
-
-      <!--Previous Hash-->
-      <b-list-group-item class="list-field">Previous Hash</b-list-group-item>
-      <b-list-group-item class="list-value">The hash of the previous block</b-list-group-item>
-    </b-card>
-
-
     <h4 class="mt-4">Why does Bitcoin use a blockchain?</h4>
 
     <p>
@@ -73,7 +57,7 @@
     <p>
       For this demo we will start by only looking at the first 2 digits of the hash of each block.
     </p>
-    <p style="font-size: 0.875rem">
+    <p style="font-size: 0.875rem; text-align: center;">
       <b>XX</b>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     </p>
 
@@ -85,6 +69,7 @@
     </p>
 
     <AddBlockButton :disable-add-block-btn="false"
+                    v-on:rotate-encoding="rotateEncoding"
                     v-on:add-block="addBlock"
                     v-on:reset-blocks="resetBlocks"/>
 

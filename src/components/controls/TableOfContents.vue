@@ -1,10 +1,8 @@
 <template>
-<b-card id="table_of_contents" no-body class="mt-4">
-  <b-card-header>
-    Table of Contents:
-  </b-card-header>
+<b-card id="table_of_contents" class="mt-4">
+  <h4>Table of Contents</h4>
 
-  <b-table-simple hover small striped>
+  <b-table-simple small borderless>
     <b-tbody>
       <template v-for="section in contents">
         <b-tr @click="moveTo(section.anchor, 0)"

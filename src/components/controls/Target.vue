@@ -2,6 +2,9 @@
 <b-card no-body class="target">
   <b-card-header header-bg-variant="info">
     <b-icon-wrench/> Target
+    <b-button class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')" size="sm">
+      <b-icon-vector-pen/>
+    </b-button>
   </b-card-header>
 
   <b-list-group-item class="list-value pt-2" style="direction: rtl;"> {{ target[localEncoding] }}</b-list-group-item>

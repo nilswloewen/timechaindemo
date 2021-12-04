@@ -4,14 +4,18 @@
     <b-card-header header-bg-variant="info">
       <b-icon-wrench/>
       Add block
+      <b-button class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')" size="sm">
+        <b-icon-vector-pen/>
+      </b-button>
     </b-card-header>
 
     <b-card-body>
       <b-input-group prepend="Data" size="sm">
-        <b-form-input v-model="newBlockData" :disabled="disableAddBlockBtn" size="sm"/>
+        <b-form-input v-model="newBlockData" :disabled="disableAddBlockBtn"
+                      placeholder="Try adding a block..." size="sm"/>
 
-        <b-button @click="addBlock" variant="primary" size="sm" :disabled="disableAddBlockBtn"
-                  style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+        <b-button @click="addBlock" variant="primary" size="sm"
+                  :disabled="disableAddBlockBtn" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
           Add
         </b-button>
 
@@ -32,7 +36,7 @@ export default {
   },
   data() {
     return {
-      newBlockData: 'Try adding a block...',
+      newBlockData: '',
       now: new Date().toUTCString()
     };
   },

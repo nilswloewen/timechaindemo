@@ -86,6 +86,7 @@
 
     <Target v-on:updateTarget="updateTargetAndBlocktime"
             v-on:real-target-max="realTargetMax"
+            v-on:rotate-encoding="rotateEncoding"
             :avgHashes="avgHashes"
             :denominator="denominator"
             :hash-max="hashMax"
@@ -103,6 +104,7 @@
         v-on:update-active-encoding="updateActiveEncoding">
 
     <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
+                    v-on:rotate-encoding="rotateEncoding"
                     v-on:add-block="addBlock"
                     v-on:reset-blocks="resetBlocks"/>
     <div class="blockchain_wrapper">
@@ -134,6 +136,7 @@
       :is-mining="isMining"
       :local-encoding="encoding[activeEncoding]"
       :target="target"
+      v-on:rotate-encoding="rotateEncoding"
       v-on:start-mining="startMining"
       v-on:update-nonce="updateNonce"/>
 
@@ -223,7 +226,7 @@ export default {
 <style>
 /* Hide slide arrows on first and last slide. */
 .fp-viewing-timechain-timechain .fp-controlArrow.fp-prev,
-.fp-viewing-pow-pow_mining .fp-controlArrow.fp-next {
+.fp-viewing-timechain-timechain_mining .fp-controlArrow.fp-next {
   display: none;
 }
 </style>

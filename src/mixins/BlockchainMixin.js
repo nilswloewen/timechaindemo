@@ -6,16 +6,10 @@ export default {
     return {
       blocks: [new Block('', BlockHeader.genesis, 0, '#61e294', 'inherit')],
       colors: [
-        '#B983FF',
-        '#94DAFF',
-        '#94B3FD',
-        '#99FEFF',
         '#14E3FD',
-        '#3CAFAA',
+        '#B983FF',
         '#6471F7',
-        '#7855F5',
-        '#99FEFF',
-        '#A01CF2'
+        '#A01CF2',
       ],
       disableAddBlockBtn: true,
       guesses: [],
@@ -28,7 +22,7 @@ export default {
   },
   methods: {
     async addBlock(newData) {
-      let data = newData === 'Try adding a block...'
+      let data = newData === ''
         ? 'Try changing this data...'
         : newData;
 

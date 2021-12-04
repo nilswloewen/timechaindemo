@@ -2,6 +2,9 @@
 <b-card class="overlay mining_controls" no-body>
   <b-card-header>
     Mining for Block #{{ block.height }}
+    <b-button class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')" size="sm">
+      <b-icon-vector-pen/>
+    </b-button>
   </b-card-header>
 
   <!--  Max -->

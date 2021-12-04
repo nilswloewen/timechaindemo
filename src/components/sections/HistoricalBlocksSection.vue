@@ -44,7 +44,8 @@
             :probability="probability"
             hide-range
             :target="target"
-            :targetMax="targetMax"/>
+            :targetMax="targetMax"
+            v-on:rotate-encoding="rotateEncoding" />
   </Page>
 
   <div class="slide" data-anchor="real_mining" id="real_mining_slide">
@@ -63,6 +64,7 @@
       :local-encoding="encoding[activeEncoding]"
       :target="target"
       show-solution-btn
+      v-on:rotate-encoding="rotateEncoding"
       v-on:start-mining="startMining"
       v-on:show-solution="showSolution"
       v-on:update-nonce="updateNonce" />

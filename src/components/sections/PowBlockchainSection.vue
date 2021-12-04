@@ -31,28 +31,9 @@
       In phrase 'for the nonce' (Middle English for þe naness, c. 1200)
       "for a special occasion, for a particular purpose"
       <hr>
-      In cryptography it is said to be shorthand for <br>'A number used only once'
-    </b-card>
-
-    <b-card no-body>
-      <b-card-header>
-        <span class="float-left">Example Block</span> <span class="float-right">Block Number/Height</span>
-        <br> Hash
-      </b-card-header>
-
-      <!--Data-->
-      <b-list-group-item class="list-field">Data</b-list-group-item>
-      <b-list-group-item class="list-value">Any arbitrary data</b-list-group-item>
-
-      <!--Previous Hash-->
-      <b-list-group-item class="list-field">Previous Hash</b-list-group-item>
-      <b-list-group-item class="list-value">The hash of the previous block</b-list-group-item>
-
-      <!--Nonce-->
-      <b-list-group-item class="list-field">Nonce</b-list-group-item>
-      <b-list-group-item class="list-value">
-        A random number used to prove work was done to find valid hash
-      </b-list-group-item>
+      In cryptography it is said to be shorthand for <br>'A number used once'
+      <hr>
+      A random number used to prove work was done to find valid hash
     </b-card>
 
     <p>
@@ -62,8 +43,7 @@
     </p>
 
     <b-card>
-      <q>
-        The network timestamps transactions by hashing
+      <q>The network timestamps transactions by hashing
         them into an ongoing chain of hash-based proof-of-work, forming a
         record that cannot be changed without redoing the proof-of-work.</q>
       <br> - <a href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</a>
@@ -101,7 +81,7 @@
     <h1> Target </h1>
     <p>
       Because we are starting this demo by only looking at the first 2 digits of the hash of
-      each block, the maximum value of a hash is 255 and the minimum value is 0.
+      each block, the maximum value of a hash (ff) is 255 and the minimum value is 0.
     </p>
 
     <p>
@@ -114,6 +94,7 @@
 
     <Target v-on:updateTarget="updateTarget"
             v-on:real-target-max="realTargetMax"
+            v-on:rotate-encoding="rotateEncoding"
             :avgHashes="avgHashes"
             :denominator="denominator"
             :hash-max="hashMax"
@@ -134,6 +115,7 @@
     <h1>Proof-of-work Blockchain</h1>
 
     <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
+                    v-on:rotate-encoding="rotateEncoding"
                     v-on:add-block="addBlock"
                     v-on:reset-blocks="resetBlocks"/>
 
@@ -165,6 +147,7 @@
       :is-mining="isMining"
       :local-encoding="encoding[activeEncoding]"
       :target="target"
+      v-on:rotate-encoding="rotateEncoding"
       v-on:start-mining="startMining"
       v-on:update-nonce="updateNonce"/>
 
@@ -222,4 +205,7 @@ export default {
 .fp-viewing-pow-pow_mining .fp-controlArrow.fp-next {
   display: none;
 }
+.fp-viewing-pow-target .slide.active .encoding_btn {
+}
+
 </style>

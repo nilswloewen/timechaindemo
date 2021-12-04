@@ -12,8 +12,9 @@
     Try pressing it a few times to see different ways the following number can be represented.
   </p>
 
-  <b-card class="text-center">
-    Bitcoin's maximum supply:
+  <b-card class="text-left">
+   <h4 class="text-left"> Bitcoin's maximum supply</h4>
+    <b-button class="rotate_encoding_btn" @click="rotateEncoding" size="sm"><b-icon-vector-pen/></b-button>
     <hr>
     <b>{{ num[encoding[activeEncoding]] }}</b>
     <br>

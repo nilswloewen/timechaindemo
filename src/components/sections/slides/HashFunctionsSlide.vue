@@ -21,15 +21,17 @@
 
   <p>
     A hash can be thought of as the "digital fingerprint" of a file or set of data.
-    For example, if you had two digital versions of an encyclopedia and you wanted to be sure they
-    contained exactly the same information, you could either compare them word for word,
-    or you could run each of them through the same type of hash function. If each encyclopedia had the same hash or 'fingerprint', then you could be sure that they are exact copies of one another.
+    For example, lets say you have two digital versions of an encyclopedia and you want to know if they
+    contain exactly the same information. You could either compare them word for word,
+    or you could run each of them through the same type of hash function and compare the hashes.
+    If each encyclopedia had the same hash or 'fingerprint', then you could be sure that they are
+    exact copies of one another.
   </p>
 
   <p>
-    A hash can sometimes be misunderstood as a compression or encryption. However both
+    A hash can sometimes be misunderstood as a compression or encryption. Both
     compression and encryption are meant to be reversible; you can decompress a file
-    back to its original size and you can decrypt a message back to its original meaning.
+    back to its original size and you can decrypt a file back to its original contents.
   </p>
 
   <p>
@@ -37,9 +39,11 @@
     recovered from the output data. You cannot un-hash a hash.
   </p>
 
+  <hr>
   <p>
     In mining a hash is used in two ways:
   </p>
+
   <ol>
     <li>
       To identify sets of transactions, called blocks. Because each block is different, each one

@@ -19,8 +19,13 @@
   </p>
 
   <b-card no-body>
-    <b-list-group-item class="list-field">Number of possible hashes</b-list-group-item>
-    <b-list-group-item class="list-value">
+    <b-card-header>
+     <span class="float-left">Number of possible hashes</span>
+      <b-button class="rotate_encoding_btn float-right" @click="rotateEncoding" size="sm">
+        <b-icon-vector-pen/>
+      </b-button>
+    </b-card-header>
+    <b-list-group-item class="list-value pt-2">
       {{ hashMax[encoding[activeEncoding]] }}
     </b-list-group-item>
   </b-card>
@@ -36,8 +41,11 @@
 
   <b-card no-body class="mt-4">
     <b-card-header header-bg-variant="info">
-      <span class="float-left"><b-icon-wrench/> SHA-256 Calculator</span>
-      <b-icon-info-circle class="float-right" v-b-toggle.collapse_note/>
+      <span class="float-left"><b-icon-wrench/> SHA-256 Calculator </span>
+      <b-button class="rotate_encoding_btn float-right" @click="rotateEncoding" size="sm">
+        <b-icon-vector-pen/>
+      </b-button>
+      <b-button class="float-right mr-2" v-b-toggle.collapse_note size="sm" style="background-color: transparent; border: none;"><b-icon-info-circle/></b-button>
     </b-card-header>
 
     <b-collapse id="collapse_note">

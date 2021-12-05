@@ -129,7 +129,7 @@ export default {
       this.ctx.stroke();
       this.ctx.closePath();
 
-      if (this.height - y < 20) {
+      if ((this.height - (this.height * yRatio)) < 20) {
         this.ctx.fillStyle = 'blue';
         this.ctx.clearRect(this.zero.x - 6, this.zero.y + 2, -60, -4);
       }
@@ -240,13 +240,7 @@ export default {
     },
 
     drawEndCaps() {
-      this.ctx.fillStyle = this.bgColor;
-      this.ctx.fillRect(
-        this.xPad + this.width,
-        0,
-        this.xPad * 2 + this.width,
-        this.height + this.yPad * 2
-      );
+      this.ctx.clearRect(this.zero.x + 1, this.zero.y + 8, this.xPad, -(this.height + 16));
     },
 
     calcGraph() {
@@ -263,7 +257,7 @@ export default {
       this.drawTarget(this.target.yRatio);
       this.drawGuesses(this.guesses);
       this.drawTicks();
-      // this.drawEndCaps();
+      this.drawEndCaps();
 
       window.requestAnimationFrame(this.drawGraph);
     }

@@ -1,25 +1,17 @@
 <template>
 <div class="section">
-  <Page data-anchor="real_blocks" slide
-        encoding-btn
-        :active-encoding="activeEncoding"
-        :encoding="encoding"
-        v-on:rotate-encoding="rotateEncoding"
-        v-on:update-active-encoding="updateActiveEncoding">
+  <Page data-anchor="real_blocks" slide>
     <h1>Real Bitcoin Mining</h1>
 
     <p>
       The demo section is over. So how hard can it really be? Use the following slides to try re-mine a
-      real Bitcoin block yourself! Perhaps in the future this demo will allow you to try mine the next
-      real block, but for now, it only shows historical blocks.
+      real Bitcoin block yourself!
     </p>
 
     <hr>
 
     <p>
-      The 'data' in real mining consists of meta-data about each block stored in the block header. The block
-      contains transactions which are not directly hashed, only the block header is hashed during mining.
-      The block header includes the <b>Version</b> of the bitcoin software used to create the block, a
+      The 'data' in real mining includes the <b>Version</b> of the bitcoin software used to create the block, a
       recording of the target in a format called <b>Bits</b>, and a record of the transactions in
       the block called a <b>Merkle Root</b>. For more information on each field see
       <a href="https://developer.bitcoin.org/reference/block_chain.html">here</a>.
@@ -52,19 +44,27 @@
 
     <Graph id="real_mining_canvas" animate
            :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
-
-    <MiningControls
-      :block="block"
-      :hash-max="hashMax"
-      :index="block.height"
-      :local-encoding="encoding[activeEncoding]"
-      :target="target"
-      show-solution-btn
-      show-go-brrr
-      v-on:rotate-encoding="rotateEncoding"
-      v-on:start-mining="startMining"
-      v-on:show-solution="showSolution"
-      v-on:update-nonce="updateNonce" />
+    <div class="overlay">
+      <b-container>
+        <b-row>
+          <b-col>
+            <MiningControls
+              :block="block"
+              :hash-max="hashMax"
+              :index="block.height"
+              :local-encoding="encoding[activeEncoding]"
+              :target="target"
+              show-solution-btn
+              show-go-brrr
+              interactive-nonce
+              v-on:rotate-encoding="rotateEncoding"
+              v-on:start-mining="startMining"
+              v-on:show-solution="showSolution"
+              v-on:update-nonce="updateNonce" />
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
   </div>
 
 </div>

@@ -2,11 +2,8 @@
 <div class="add_block_card">
   <b-card no-body>
     <b-card-header header-bg-variant="info">
-      <b-icon-wrench/>
-      Add block
-      <b-button class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')" size="sm">
-        <b-icon-vector-pen/>
-      </b-button>
+      <b-icon-wrench/> Add block
+      <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')"/>
     </b-card-header>
 
     <b-card-body>

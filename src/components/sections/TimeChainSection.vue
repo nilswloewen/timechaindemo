@@ -29,9 +29,8 @@
     </p>
 
     <p>
-      To ensure
-      Every 2,016 blocks (two weeks) Bitcoin network self-adjusts the target to ensure that blocks
-      are always added to the chain at 10 minute intervals.
+      To ensure that the timechain only grows at fixed interval regardless of computing power, we can adjust
+      the target in relation to hashrate.
     </p>
 
     <b-card>
@@ -41,11 +40,7 @@
     </b-card>
   </Page>
 
-  <Page data-anchor="difficulty_adjustment" slide encoding-btn
-        :active-encoding="activeEncoding"
-        :encoding="encoding"
-        v-on:rotate-encoding="rotateEncoding"
-        v-on:update-active-encoding="updateActiveEncoding">
+  <Page data-anchor="difficulty_adjustment" slide>
 
     <h1>Difficulty Adjustment</h1>
 
@@ -85,7 +80,6 @@
     />
 
     <Target v-on:updateTarget="updateTargetAndBlocktime"
-            v-on:real-target-max="realTargetMax"
             v-on:rotate-encoding="rotateEncoding"
             :avgHashes="avgHashes"
             :denominator="denominator"
@@ -97,11 +91,7 @@
             :targetMax="targetMax"/>
   </Page>
 
-  <Page data-anchor="timechain_blocks" slide encoding-btn
-        :active-encoding="activeEncoding"
-        :encoding="encoding"
-        v-on:rotate-encoding="rotateEncoding"
-        v-on:update-active-encoding="updateActiveEncoding">
+  <Page data-anchor="timechain_blocks" slide>
 
     <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
                     v-on:rotate-encoding="rotateEncoding"
@@ -124,25 +114,32 @@
 
     <Graph id="timechain_canvas" animate
            :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
+    <div class="overlay">
+      <b-container>
+        <b-row>
+          <b-col>
+            <MiningControls
+              :block="blocks[blockToMine]"
+              :hash-max="hashMax"
+              :index="blockToMine"
+              :is-mining="isMining"
+              :local-encoding="encoding[activeEncoding]"
+              :target="target"
+              show-go-brrr
+              v-on:rotate-encoding="rotateEncoding"
+              v-on:start-mining="startMining"
+              v-on:update-nonce="updateNonce"/>
 
-    <MiningControls
-      :block="blocks[blockToMine]"
-      :hash-max="hashMax"
-      :index="blockToMine"
-      :is-mining="isMining"
-      :local-encoding="encoding[activeEncoding]"
-      :target="target"
-      show-go-brrr
-      v-on:rotate-encoding="rotateEncoding"
-      v-on:start-mining="startMining"
-      v-on:update-nonce="updateNonce"/>
-
-    <SuccessMsg :block-height="blocks[blockToMine].height"
-                :is-hash-valid="blocks[blockToMine].isHashValid"
-                :time-to-mine="blocks[blockToMine].timeToMine"
-                :avg-hashes="avgHashes"
-                :est-time="{ blocktime, blocktimeUnit }"
-                :num-of-tries="blocks[blockToMine].tries"/>
+            <SuccessMsg :block-height="blocks[blockToMine].height"
+                        :is-hash-valid="blocks[blockToMine].isHashValid"
+                        :time-to-mine="blocks[blockToMine].timeToMine"
+                        :avg-hashes="avgHashes"
+                        :est-time="{ blocktime, blocktimeUnit }"
+                        :num-of-tries="blocks[blockToMine].tries"/>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
   </div>
 </div>
 </template>
@@ -182,7 +179,6 @@ export default {
     return {
       blockToMine: 0,
       activeEncoding: 1,
-      hexDigits: 2,
       isMining: false,
       isAdjustingTarget: false,
       hashrate: 42,

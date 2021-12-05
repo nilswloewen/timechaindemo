@@ -8,6 +8,8 @@ class DemoBlock extends Block {
     this.color = color;
     this.prevColor = prevColor;
     this.isHashValid = false;
+    this.tries = 0;
+    this.timeToMine = 0;
   }
 
   async calcHash(hexDigits = 64) {

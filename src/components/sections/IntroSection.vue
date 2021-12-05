@@ -5,9 +5,12 @@
     <h1> Bitcoin Timechain Demo </h1>
 
     <p>
-      Welcome to the Timechain Demo 0.1! If you have ever wondered what Bitcoin miners are technically upto,
-      or if you have heard that Bitcoin is backed by Math but don't really know what that means, then you've come
-      to the right place!
+      Welcome to the Timechain Demo 0.1!
+    </p>
+
+    <p>
+      If you have ever wondered what Bitcoin 'Mining' actually entails, or if you have heard that Bitcoin
+      is backed by Math but don't really know what that means, then you've come to the right place!
     </p>
 
     <p>
@@ -16,12 +19,12 @@
       blockchain, proof-of-work, mining, and the difficulty-adjustment that regulates the timechain.
     </p>
 
-    <TableOfContents :contents="contents"/>
+    <p>
+      This demo explores ideas that are relevant to inner-workings of many crypto-currencies, but is focused on the
+      OG King &mdash; BTC.
+    </p>
 
-    <b-card class="text-center">
-      <q>Bitcoin is Sovereignty through Mathematics</q>
-      <br> - <a href="https://www.amazon.com/dp/1090109911" target="_blank">Knut Svanholm</a>
-    </b-card>
+    <TableOfContents :contents="contents"/>
   </div>
 </Page>
 </template>

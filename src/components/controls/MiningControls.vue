@@ -1,11 +1,9 @@
 <template>
-<b-card class="overlay mining_controls" no-body>
-  <b-card-header>
+<b-card class="mining_controls" no-body>
+  <b-card-body class="border-bottom">
     Mining for Block #{{ block.height }}
-    <b-button class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')" size="sm">
-      <b-icon-vector-pen/>
-    </b-button>
-  </b-card-header>
+    <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')"/>
+  </b-card-body>
 
   <!--  Max -->
   <b-list-group-item class="list-field"> Max</b-list-group-item>
@@ -26,27 +24,35 @@
   <!--Nonce-->
   <b-list-group-item class="list-field">Nonce</b-list-group-item>
   <b-list-group-item class="list-value">
-    <b-input-group size="sm">
-      <b-form-input @change="onNonceChange"
-                    :value="block.header.nonce" :state="block.isHashValid"
-                    type="number" :min="0" :max="4294967295" size="sm"/>
-      <b-button-group>
-        <b-button size="sm" @click="onIncrementNonce" :disabled="block.isHashValid"
-                  style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
-          +1
-        </b-button>
-      </b-button-group>
-    </b-input-group>
+    <template v-if="interactiveNonce">
+      <b-input-group size="sm">
+        <b-form-input @change="onNonceChange"
+                      :value="block.header.nonce" :state="block.isHashValid"
+                      type="number" :min="0" :max="4294967295" size="sm"/>
+        <b-button-group>
+          <b-button size="sm" @click="onIncrementNonce" :disabled="block.isHashValid"
+                    style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+            +1
+          </b-button>
+        </b-button-group>
+      </b-input-group>
+    </template>
+    <template v-else>
+      {{ block.header.nonce }}
+    </template>
   </b-list-group-item>
 
-
   <b-list-group-item v-if="showGoBrrr" class="list-value text-left">
-    <span class="float-left" style="padding-top: 3px;"> Go Brrr </span>
+
+    <b-form-checkbox class="float-left ml-2" style="padding-top: 1px;"
+                     @change="onStartMining" switch :checked="isMining"/>
+    <span class="float-left" style="padding-top: 3px;">
+      Go Brrr (Automate)
+    {{ block.timeToMine }} Seconds Elapsed
+    </span>
 
     <b-button v-if="showSolutionBtn" @click="$emit('show-solution')" size="sm"
               :disabled="block.isHashValid" class="float-right">Show Solution</b-button>
-    <b-form-checkbox class="float-left ml-2" style="padding-top: 1px;"
-                     @change="onStartMining" switch :checked="isMining"/>
   </b-list-group-item>
 
 </b-card>
@@ -65,6 +71,7 @@ export default {
     localEncoding: String,
     showSolutionBtn: Boolean,
     showGoBrrr: Boolean,
+    interactiveNonce: Boolean,
     target: Num,
   },
 
@@ -83,17 +90,8 @@ export default {
 </script>
 
 <style>
-.overlay {
-  position: fixed;
-  top: 6em;
-  right: 50%;
-  width: 554px;
-}
-
 .card.mining_controls {
-  background-color: rgba(0, 0, 0, 0.5);
-  border-color: #4f38a1;
-  box-shadow: -2px 3px 5px 2px #4f38a1;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 .card.mining_controls .card-header {
   background-color: #7855F5;

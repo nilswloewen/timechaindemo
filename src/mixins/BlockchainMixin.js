@@ -13,7 +13,6 @@ export default {
       ],
       disableAddBlockBtn: true,
       guesses: [],
-      hexDigits: 2,
       newBlockData: '',
     };
   },
@@ -77,6 +76,7 @@ export default {
       // if (this.guesses.length > 100) {
       //   this.guesses.shift();
       // }
+
       if (index > 0) {
         this.blocks[index - 1].header.prevHash = block.hash;
       }
@@ -110,20 +110,20 @@ export default {
     },
     async startMining(index) {
       const startTime = performance.now();
-      let tries = 0;
       this.isMining = true;
       const block = this.blocks[index];
+      block.tries = 0;
 
       while (!block.isHashValid) {
-        tries += 1;
+        block.tries += 1;
         block.header.nonce += 1;
         await this.finalizeBlock(index);
+
+        const elapsed = performance.now() - startTime;
+        block.timeToMine = (elapsed / 1000).toFixed(2);
       }
 
       this.isMining = false;
-      const elapsed = performance.now() - startTime;
-      block.tries = tries;
-      block.timeToMine = (elapsed / 1000).toFixed(2);
     },
 
     async updateNonce(nonce, index) {

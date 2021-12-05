@@ -66,16 +66,9 @@
         record that cannot be changed without redoing the proof-of-work.</q>
       <br> - <a href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</a>
     </b-card>
-
   </Page>
 
-  <Page data-anchor="target" slide
-        encoding-btn
-        :active-encoding="activeEncoding"
-        :encoding="encoding"
-        v-on:rotate-encoding="rotateEncoding"
-        v-on:update-active-encoding="updateActiveEncoding">
-
+  <Page data-anchor="target" slide>
     <h1> Target </h1>
     <p>
       Because we are starting this demo by only looking at the first 2 digits of the hash of
@@ -101,15 +94,13 @@
             :probability="probability"
             :target="target"
             :targetMax="targetMax"/>
+
+    <b-card no-body>
+      <img class="card-img" src="/assets/backgrounds/rick_dice_game.jpg" alt="That's just a dice game with extra steps!"/>
+    </b-card>
   </Page>
 
-  <Page data-anchor="pow_blockchain" slide
-        encoding-btn
-        :active-encoding="activeEncoding"
-        :encoding="encoding"
-        v-on:rotate-encoding="rotateEncoding"
-        v-on:update-active-encoding="updateActiveEncoding">
-
+  <Page data-anchor="pow_blockchain" slide>
     <h1>Proof-of-work Blockchain</h1>
 
     <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
@@ -132,22 +123,33 @@
   <div class="slide" data-anchor="pow_mining" id="pow_mining_slide">
     <div class="fp-bg"/>
 
-    <Graph id="pow_canvas" :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
-    <MiningControls
-      :block="blocks[blockToMine]"
-      :hash-max="hashMax"
-      :index="blockToMine"
-      :is-mining="isMining"
-      :local-encoding="encoding[activeEncoding]"
-      :target="target"
-      v-on:rotate-encoding="rotateEncoding"
-      v-on:start-mining="startMining"
-      v-on:update-nonce="updateNonce"/>
+    <Graph id="pow_canvas" :guesses="this.guesses" animate
+           :target="this.target" :local-encoding="encoding[activeEncoding]"/>
 
-    <SuccessMsg :block-height="blocks[blockToMine].height"
-                :is-hash-valid="blocks[blockToMine].isHashValid"
-                :avg-hashes="avgHashes"
-                :num-of-tries="guesses.length"/>
+    <div class="overlay">
+      <b-container>
+        <b-row>
+          <b-col>
+            <MiningControls
+              :block="blocks[blockToMine]"
+              :hash-max="hashMax"
+              :index="blockToMine"
+              :is-mining="isMining"
+              :local-encoding="encoding[activeEncoding]"
+              :target="target"
+              interactive-nonce
+              v-on:rotate-encoding="rotateEncoding"
+              v-on:start-mining="startMining"
+              v-on:update-nonce="updateNonce"/>
+
+            <SuccessMsg :block-height="blocks[blockToMine].height"
+                        :is-hash-valid="blocks[blockToMine].isHashValid"
+                        :avg-hashes="avgHashes"
+                        :num-of-tries="guesses.length"/>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
   </div>
 </div>
 </template>
@@ -196,7 +198,12 @@ export default {
 .fp-viewing-pow-pow_mining .fp-controlArrow.fp-next {
   display: none;
 }
-.fp-viewing-pow-target .slide.active .encoding_btn {
+
+.overlay {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding-top: 10vh;
 }
 
 </style>

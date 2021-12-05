@@ -20,21 +20,13 @@ export default {
   watch: {
     targetMax() {
       this.calcStats();
+      console.log('watch targetMax')
     }
   },
   methods: {
-    realTargetMax() {
-      this.targetMax = new Num(
-        BigInt(0x00000000ffff0000000000000000000000000000000000000000000000000000n),
-        64
-      );
-      this.calcStats();
-    },
     async updateTarget(newTarget) {
       // If hashMax is changed set target to max.
-      this.target = newTarget.bigInt > this.hashMax.bigInt
-        ? new Num(this.hashMax.bigInt)
-        : newTarget;
+      this.target = newTarget;
       this.target.yRatio = this.target.num / this.hashMax.num;
 
       this.calcStats();

@@ -2,11 +2,9 @@
 <b-card no-body class="target">
   <b-card-header header-bg-variant="info" class="pb-0">
     <b-icon-wrench/> Target
-    <b-button class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')" size="sm">
-      <b-icon-vector-pen/>
-    </b-button>
+    <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')"/>
   </b-card-header>
-  <div class="text-center info" style="font-size: 0.875rem;">
+  <div class="text-center bg-info" style="font-size: 0.875rem;">
     {{ target[localEncoding] }}
   </div>
 

@@ -1,6 +1,6 @@
 <template>
 <Page slide data-anchor="hexadecimal_notation">
-  <h1>Numerical Notation</h1>
+  <h1>Notation</h1>
 
   <p>
     <b>Numbers can be written with different notation styles for different use cases.</b>
@@ -13,20 +13,16 @@
     You will see this notation button later in this demo:
   </p>
   <div class="text-center">
-    <b-button class="rotate_encoding_btn" @click="rotateEncoding" size="sm">
-      <b-icon-vector-pen/>
-    </b-button>
+    <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="rotateEncoding"/>
   </div>
   <p>
     Try clicking it to see different ways numbers are represented.
   </p>
 
-  <b-card class="info" no-body>
-    <b-card-header bg-variant="info">
+  <b-card no-body class="info">
+    <b-card-header header-bg-variant="info">
       Bitcoin's maximum supply
-      <b-button class="rotate_encoding_btn float-right" @click="rotateEncoding" size="sm">
-        <b-icon-vector-pen/>
-      </b-button>
+      <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="rotateEncoding"/>
     </b-card-header>
     <b-card-body>
       <b>{{ num[encoding[activeEncoding]] }}</b>

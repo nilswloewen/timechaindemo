@@ -38,6 +38,7 @@ export default {
     return {
       fullpageOptions: {
         anchors: [],
+        navigationTooltips: [],
         licenseKey: '2C8168FC-415648B7-B94C4003-80F51EAC',
 
         scrollingSpeed: 1000,
@@ -117,6 +118,7 @@ export default {
     addAnchorsToFullpage() {
       this.table_of_contents.forEach((section) => {
         this.fullpageOptions.anchors.push(section.anchor);
+        this.fullpageOptions.navigationTooltips.push(section.label);
       });
     }
   }
@@ -181,6 +183,9 @@ h1 {
   margin-right: auto;
   padding-top: 3em;
   padding-bottom: 30vh;
+}
+.overlay .col {
+  margin-left: 0;
 }
 .card {
   margin: 0 auto 2em auto;
@@ -283,7 +288,7 @@ h1 {
   background-color: #61e294;
   border-color: #61e294;
 }
-.info,
+
 .btn-info,
 .btn-info:hover,
 .card.info .card-header,

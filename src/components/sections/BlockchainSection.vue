@@ -32,7 +32,7 @@
     <h4 class="mt-4">Why does Bitcoin use a blockchain?</h4>
 
     <p>
-      A physical coin or asset requires no history, it exists in only location at a time.
+      A physical coin or asset requires no history, it exists in only one location at a time.
       Ownership is proven by physical control of the coin or asset.
     </p>
 
@@ -92,12 +92,7 @@
     </b-card>
   </Page>
 
-  <Page data-anchor="simple_blockchain" slide
-        encoding-btn
-        :active-encoding="activeEncoding"
-        v-on:rotate-encoding="rotateEncoding"
-        v-on:update-active-encoding="updateActiveEncoding">
-
+  <Page data-anchor="simple_blockchain" slide>
     <h1>Simplified Blockchain</h1>
 
     <p>

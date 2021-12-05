@@ -7,19 +7,19 @@
 
       <hr>
       <div>
-        It took <b>{{ numOfTries }}</b> guesses to find a valid hash,
+        It took <b>{{ numOfTries }}</b> guesses to find a valid hash
       </div>
       <div>
-        <b>~{{ avgHashes.toFixed() }}</b> were estimated.
+        <b>~{{ avgHashes.toFixed() }}</b> were estimated
       </div>
 
       <template v-if="estTime">
         <hr>
         <div>
-          It took <b>{{ timeToMine }}</b> seconds to mine,
+          It took <b>{{ timeToMine }}</b> seconds to mine
         </div>
         <div>
-          <b>~{{ estTime.blocktime }}</b> {{ estTime.blocktimeUnit.toLowerCase() }} were estimated.
+          <b>~{{ estTime.blocktime }}</b> {{ estTime.blocktimeUnit.toLowerCase() }} were estimated
         </div>
       </template>
 
@@ -33,6 +33,11 @@
 
 <script>
 export default {
+  methods: {
+    slideLeft() {
+      fullpage_api.moveSlideLeft()
+    }
+  },
   props: {
     avgHashes: Number,
     blockHeight: Number,
@@ -40,11 +45,6 @@ export default {
     isHashValid: Boolean,
     numOfTries: Number,
     timeToMine: Number,
-  },
-  methods: {
-    slideLeft() {
-      fullpage_api.moveSlideLeft()
-    }
   }
 }
 </script>

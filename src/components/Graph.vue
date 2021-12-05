@@ -48,7 +48,7 @@ export default {
   data() {
     return {
       ctx: Object,
-      bgColor: 'rgba(0, 0, 0, 0.2)',
+      bgColor: 'transparent',
       lineColor: 'white',
       textColor: 'white',
       winningColor: 'rgba(247, 148, 19, 1)',

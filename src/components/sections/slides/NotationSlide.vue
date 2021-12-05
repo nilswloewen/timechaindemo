@@ -115,21 +115,21 @@
       Converter
     </b-card-header>
 
-    <div class="list-group-item list-field">Hexadecimal (base 16)</div>
-    <div class="list-group-item list-value">
+    <div class="list label">Hexadecimal (base 16)</div>
+    <div class="list value">
       <b-form-input @keyup="onHex" :value="Number(val).toString(16)"/>
     </div>
 
-    <div class="list-group-item list-field">Decimal (base 10)</div>
-    <div class="list-group-item list-value">
+    <div class="list label">Decimal (base 10)</div>
+    <div class="list value">
       <b-form-input v-model="val" type="number"/>
     </div>
 
-    <div class="list-group-item list-field">Exponential</div>
-    <div class="list-group-item list-value">{{ Number(val).toExponential() }}</div>
+    <div class="list label">Exponential</div>
+    <div class="list value">{{ Number(val).toExponential() }}</div>
 
-    <div class="list-group-item list-field">Binary (base 2)</div>
-    <div class="list-group-item list-value">
+    <div class="list label">Binary (base 2)</div>
+    <div class="list value">
       <b-form-input :value="Number(val).toString(2)" @keyup="onBin"/>
     </div>
   </b-card>

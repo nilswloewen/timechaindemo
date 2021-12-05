@@ -4,7 +4,7 @@
     <b-icon-wrench/> Target
     <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')"/>
   </b-card-header>
-  <div class="list-group-item list-value bg-info text-center">
+  <div class="list value bg-info text-center">
     {{ target[localEncoding] }}
   </div>
 
@@ -13,21 +13,21 @@
                   min="1" :max="hashMax.num" size="sm"/>
   </b-input-group>
 
-  <div class="list-group-item list-field">Max</div>
-  <div class="list-group-item list-value" style="direction: rtl;">{{ this.hashMax[localEncoding] }}</div>
+  <div class="list label">Max</div>
+  <div class="list value" style="direction: rtl;">{{ this.hashMax[localEncoding] }}</div>
 
-  <div class="list-group-item list-field">
+  <div class="list label">
     Probability (Only of x% of possible hashes will be accepted).
   </div>
-  <div class="list-group-item list-value"> ~{{ getProbability }}%</div>
+  <div class="list value"> ~{{ getProbability }}%</div>
 
-  <div class="list-group-item list-field">Odds</div>
-  <div class="list-group-item list-value">
+  <div class="list label">Odds</div>
+  <div class="list value">
     {{ getNumerator }} out of {{ getDenominator }}
   </div>
 
-  <div class="list-group-item list-field">Average number of guesses to find a valid hash</div>
-  <div class="list-group-item list-value"> ~{{ Number(avgHashes.toFixed(0)).toLocaleString() }}</div>
+  <div class="list label">Average number of guesses to find a valid hash</div>
+  <div class="list value"> ~{{ Number(avgHashes.toFixed(0)).toLocaleString() }}</div>
 </b-card>
 </template>
 
@@ -79,8 +79,8 @@ export default {
 </script>
 
 <style>
-.target .list-field,
-.target .list-value {
+.target .label,
+.target .value {
   text-align: left;
 }
 .info {

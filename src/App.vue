@@ -54,7 +54,7 @@ export default {
         slidesNavPosition: 'top',
         // responsiveWidth: 800,
         navigation: true,
-        normalScrollElements: '.blockchain_wrapper .list-value',
+        normalScrollElements: '.blockchain_wrapper .value',
 
         parallax: true,
         parallaxKey: 'bmlsc2xvZXdlbi5jb21fSTQyY0dGeVlXeHNZWGc9ME1T',
@@ -228,25 +228,25 @@ h1 {
   padding: 0 4px;
 }
 
-.list-group-item {
+.list {
   text-align: left;
   background-color: transparent;
   border: none;
   font-size: 0.875rem;
   padding: 0 .5em;
 }
-.list-field {
+.label {
   padding-top: 7px;
   padding-bottom: 0;
 }
-.list-value {
+.value {
   overflow-x: auto;
   overflow-wrap: normal;
   padding-bottom: 7px;
   padding-top: 2px;
   border-bottom: 1px solid darkgray;
 }
-.card .list-value:last-child {
+.card .value:last-child {
   border-bottom: none;
 }
 

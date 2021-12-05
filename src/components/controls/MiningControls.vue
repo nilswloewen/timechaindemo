@@ -6,24 +6,24 @@
   </b-card-body>
 
   <!-- Max -->
-  <div class="list-group-item list-field"> Max</div>
-  <div class="list-group-item list-value">
+  <div class="list label"> Max</div>
+  <div class="list value">
     {{ hashMax[localEncoding] }}
   </div>
 
   <!-- Target -->
-  <div class="list-group-item list-field" style="color: #f79413;">Target</div>
-  <div class="list-group-item list-value" style="color: #f79413;">
+  <div class="list label" style="color: #f79413;">Target</div>
+  <div class="list value" style="color: #f79413;">
     {{ target[localEncoding] }}
   </div>
 
   <!-- Hash -->
-  <div class="list-group-item list-field"> Hash</div>
-  <div class="list-group-item list-value">{{ block.hash[localEncoding] }}</div>
+  <div class="list label"> Hash</div>
+  <div class="list value">{{ block.hash[localEncoding] }}</div>
 
   <!--Nonce-->
-  <div class="list-group-item list-field">Nonce</div>
-  <div class="list-group-item list-value">
+  <div class="list label">Nonce</div>
+  <div class="list value">
     <template v-if="interactiveNonce">
       <b-input-group size="sm">
         <b-form-input @change="onNonceChange"
@@ -42,7 +42,7 @@
     </template>
   </div>
 
-  <div v-if="showGoBrrr" class="list-group-item list-value text-left">
+  <div v-if="showGoBrrr" class="list value text-left">
 
     <b-form-checkbox class="float-left ml-2" style="padding-top: 1px;"
                      @change="onStartMining" switch :checked="isMining"/>
@@ -97,7 +97,7 @@ export default {
   background-color: #7855F5;
   border-color: #7855F5;
 }
-.mining_controls .list-value {
+.mining_controls .value {
   text-align: right;
 }
 </style>

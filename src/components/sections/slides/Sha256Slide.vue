@@ -18,7 +18,7 @@
       <span class="float-left">Number of possible hashes</span>
       <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="rotateEncoding"/>
     </b-card-header>
-    <div class="list-group-item list-value pt-2">
+    <div class="list value pt-2">
       {{ hashMax[encoding[activeEncoding]] }}
     </div>
   </b-card>
@@ -56,15 +56,15 @@
       </b-card-body>
     </b-collapse>
 
-    <div class="list-group-item list-field">Input</div>
-    <div class="list-group-item list-value">
+    <div class="list label">Input</div>
+    <div class="list value">
       <b-input-group prepend="Data" size="sm">
         <b-form-input @keyup="updateHash" :value="data" size="sm"/>
       </b-input-group>
     </div>
 
-    <div class="list-group-item list-field">Output Hash</div>
-    <div class="list-group-item list-value">{{ hash[encoding[activeEncoding]] }}</div>
+    <div class="list label">Output Hash</div>
+    <div class="list value">{{ hash[encoding[activeEncoding]] }}</div>
   </b-card>
 
   <hr>

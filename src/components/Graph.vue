@@ -129,7 +129,7 @@ export default {
       this.ctx.stroke();
       this.ctx.closePath();
 
-      if ((this.height + this.yPad - yRatio) < 20) {
+      if (y > (this.zero.y - 20)) {
         this.ctx.fillStyle = 'blue';
         this.ctx.clearRect(this.zero.x - 6, this.zero.y + 2, -60, -4);
       }
@@ -137,11 +137,7 @@ export default {
       this.ctx.font = '16px Fira Code';
       this.ctx.direction = 'ltr';
       this.ctx.fillStyle = this.winningColor;
-      this.ctx.fillText(
-        'Target',
-        this.zero.x - 64,
-        y + 6
-      );
+      this.ctx.fillText( 'Target', this.zero.x - 64, y + 6 );
     },
 
     drawMinMax() {

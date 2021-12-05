@@ -160,7 +160,7 @@ hr {
 h1 {
   margin-bottom: 1em;
   text-align: center;
-  color: #f9f9fb;
+  color: inherit;
 }
 
 /* Scrollbars */
@@ -182,7 +182,7 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   padding-top: 3em;
-  /*padding-bottom: 30vh;*/
+  padding-bottom: 30vh;
 }
 
 .card {
@@ -266,6 +266,7 @@ h1 {
   border-color: #f79413;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23f79413' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e")
 }
+
 .btn-primary,
 .btn-primary.disabled,
 .btn-primary:focus,
@@ -333,45 +334,66 @@ h1 {
 }
 
 
-/* FullPage Controls */
-#fp-nav.fp-right {
-  top: 33%;
-  right: -6px;
+/*
+ * FullPage Controls
+ */
+#fp-nav ul li a span, .fp-slidesNav ul li a span {
+  background-color: white;
 }
+/* Slides Arrows on bottom third */
 .fp-controlArrow {
   top: 66%;
-  /*border: solid white;*/
-  /*border-width: 0 3px 3px 0;*/
-  /*display: inline-block;*/
-  /*padding: 4px;*/
 }
+/* Left Arrow */
 .fp-controlArrow.fp-prev {
-  border-width: 10px 10px 10px 0;
-  left: 4px;
+  border-width: 16px 16px 16px 0;
 }
+/* Right Arrow */
 .fp-controlArrow.fp-next {
-  border-width: 10px 0 10px 10px;
-  right: 4px;
+  border-width: 16px 0 16px 16px;
 }
 
 /* Nav dots on right */
-#fp-nav ul li a span, .fp-slidesNav ul li a span {
-  background-color: white;
-  height: 2px;
-  width: 2px;
+#fp-nav.fp-right {
+  top: 33%;
 }
-#fp-nav ul li a.active span,
-#fp-nav ul li:hover a.active span,
-.fp-slidesNav ul li a.active span,
-.fp-slidesNav ul li:hover a.active span {
-  height: 8px;
-  width: 8px;
-  margin: -6px 0 0 -5px;
-}
+
 .fp-slidesNav {
-  transform: translate(50%, -50%);
-  left: 0;
-  right: 30px !important;
+  transform: translate(46%, -50%);
+}
+
+/* Nav dots on right */
+@media only screen and (max-width: 600px) {
+  /* Nav dots on right */
+  #fp-nav.fp-right {
+    right: -6px;
+  }
+  /* Left Arrow */
+  .fp-controlArrow.fp-prev {
+    border-width: 10px 10px 10px 0;
+    left: 4px;
+  }
+
+  /* Right Arrow */
+  .fp-controlArrow.fp-next {
+    border-width: 10px 0 10px 10px;
+    right: 4px;
+  }
+
+  /* Make nav dots smaller */
+  #fp-nav ul li a span, .fp-slidesNav ul li a span {
+    height: 2px;
+    width: 2px;
+  }
+  #fp-nav ul li a.active span,
+  #fp-nav ul li:hover a.active span,
+  .fp-slidesNav ul li a.active span,
+  .fp-slidesNav ul li:hover a.active span {
+    height: 8px;
+    width: 8px;
+    margin: -6px 0 0 -5px;
+  }
+
 }
 
 /* Backgrounds */

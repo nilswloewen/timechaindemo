@@ -199,19 +199,18 @@ h1 {
 .card-header svg {
   filter: drop-shadow(-2px 2px 2px black);
 }
+
 .tldr.card {
-  max-width: 500px;
-  box-shadow: -1px 2px 4px 2px #f79413;
-  border-color:  #f79413;
-  margin: 2em auto;
+  /*box-shadow: -1px 2px 4px 2px #f79413;*/
+  /*border-color:  #f79413;*/
 }
 .tldr .card-header {
   text-align: center;
-  background-color: #f79413;
-  padding: .2em;
+  /*background-color: #f79413;*/
+  /*padding: .2em;*/
 }
 .tldr .card-body {
-  padding: .2em;
+  /*padding: .2em;*/
 }
 
 .blockchain_wrapper {

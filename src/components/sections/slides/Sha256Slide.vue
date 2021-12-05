@@ -13,7 +13,7 @@
     An output of 256 bits means there are 2<sup>256</sup>-1 possible output hashes.
   </p>
 
-  <b-card no-body>
+  <b-card no-body class="info_card">
     <b-card-header>
       <span class="float-left">Number of possible hashes</span>
       <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="rotateEncoding"/>
@@ -32,8 +32,7 @@
 
   <hr>
 
-  <b-card no-body class="tldr">
-    <b-card-header>tl;dr</b-card-header>
+  <b-card no-body class="tldr_card" header="tl;dr">
     <b-card-body>
       A hash is an absurdly large number which makes the math really hard &mdash; which is why people trust it.
     </b-card-body>
@@ -41,8 +40,8 @@
 
   <hr>
 
-  <b-card no-body class="mt-4">
-    <b-card-header header-bg-variant="info">
+  <b-card no-body class="mt-4 tool_card">
+    <b-card-header>
       <span class="float-left"><b-icon-wrench/> SHA-256 Calculator </span>
       <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="rotateEncoding"/>
       <b-icon-info-circle class="float-right mr-2" v-b-toggle.collapse_note/>
@@ -75,7 +74,7 @@
   </p>
 
   <div style="width: 350px; margin-right: auto; margin-left: auto;">
-    <b-card no-body>
+    <b-card no-body class="img_card">
       <iframe width="auto" height="197px" src="https://www.youtube.com/embed/y3dqhixzGVo" title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

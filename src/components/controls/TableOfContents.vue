@@ -1,6 +1,7 @@
 <template>
 <b-card id="table_of_contents" class="mt-4">
   <h4>Table of Contents</h4>
+  <hr class="mt-0">
 
   <b-table-simple small borderless>
     <b-tbody>

@@ -10,10 +10,14 @@
     <!--Hash-->
     <div class="header update_box_shadow" :style="`background-color: ${block.color};`" :key="getHash">
       <div class="list label">
-        <span class="block_hash_label float-left">Block Hash
+        <span class="float-left">Block Hash
           <template v-if="block.height === 0">(Genesis Block)</template>
         </span>
-        <span class="block_number float-right"> #{{ block.height }} </span>
+        <span class="float-right"> #{{ block.height }} </span>
+      </div>
+
+      <div class="list value border-0">
+        {{ getHash }}
       </div>
 
       <!-- Mine this block Button -->
@@ -24,9 +28,6 @@
         </b-button>
       </template>
 
-      <div class="list value border-0">
-        {{ getHash }}
-      </div>
     </div>
 
     <template v-if="showBlockHeightInput">

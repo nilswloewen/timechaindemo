@@ -15,8 +15,7 @@
 
     <hr>
 
-    <b-card no-body class="tldr">
-      <b-card-header> tl;dr | Mining Algorithm </b-card-header>
+    <b-card no-body class="tldr_card" header="tl;dr | Mining Algorithm">
       <b-card-body class="text-left">
         <ol>
           <li> Pick a random number (<b>nonce</b>)</li>
@@ -31,7 +30,7 @@
       </b-card-body>
     </b-card>
 
-    <b-card no-body>
+    <b-card no-body class="img_card">
       <img alt="That's just a dice game with extra steps!"
            class="card-img" src="/assets/backgrounds/rick_dice_game.jpg"/>
     </b-card>
@@ -48,8 +47,8 @@
       we will add one new field to the block called a <b>nonce</b>.
     </p>
 
-    <b-card>
-      <h4 class="text-left">nonce (n.)</h4>
+    <b-card class="definition_card">
+      <h4>nonce (n.)</h4>
       <hr>
       In phrase 'for the nonce' (Middle English for þe naness, c. 1200)
       "for a special occasion, for a particular purpose"
@@ -65,7 +64,7 @@
       hash, which is why this system is called <b>Proof-of-Work</b>.
     </p>
 
-    <b-card>
+    <b-card class="quote_card">
       <q>The network timestamps transactions by hashing
         them into an ongoing chain of hash-based proof-of-work, forming a
         record that cannot be changed without redoing the proof-of-work.</q>

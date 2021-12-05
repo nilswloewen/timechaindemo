@@ -4,7 +4,7 @@
     <h1>Timechain</h1>
 
 
-    <b-card>
+    <b-card class="quote_card">
       <q>The only way to find a valid proof-of-work is by making a lot of guesses,
         and making a single guess takes a little bit of time. The probabilistic
         sum of these guesses is what builds up the timechain that is Bitcoin.</q>
@@ -33,7 +33,7 @@
       the target in relation to hashrate.
     </p>
 
-    <b-card>
+    <b-card class="definition_card">
       <h4>Timechain</h4>
       <hr>
       A blockchain that grows at a fixed interval, regardless of computing power.
@@ -41,7 +41,6 @@
   </Page>
 
   <Page data-anchor="difficulty_adjustment" slide>
-
     <h1>Difficulty Adjustment</h1>
 
     <p>
@@ -51,7 +50,7 @@
       This is the Crème de la crème, cherry-on-top engineering marvel of Bitcoin.
     </p>
 
-    <b-card>
+    <b-card class="quote_card">
       <q>To compensate for increasing hardware speed and varying interest in running nodes over time,
         the proof-of-work difficulty is determined by a moving average targeting an average number of
         blocks per hour. If they're generated too fast, the difficulty increases.</q>
@@ -76,8 +75,7 @@
       v-on:update-blocktime-unit="updateBlocktimeUnit"
       v-on:calibrate-hps="calibrateHps"
       v-on:show-antminer-hashrate="onAntminer"
-      v-on:show-global-hashrate="onGlobal"
-    />
+      v-on:show-global-hashrate="onGlobal" />
 
     <Target v-on:updateTarget="updateTargetAndBlocktime"
             v-on:rotate-encoding="rotateEncoding"
@@ -92,11 +90,11 @@
   </Page>
 
   <Page data-anchor="timechain_blocks" slide>
-
     <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
                     v-on:rotate-encoding="rotateEncoding"
                     v-on:add-block="addBlock"
                     v-on:reset-blocks="resetBlocks"/>
+
     <div class="blockchain_wrapper">
       <BlockCard v-for="(block, index) in this.blocks" :key="index"
                  :block="block"

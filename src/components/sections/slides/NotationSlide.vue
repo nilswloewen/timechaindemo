@@ -19,8 +19,8 @@
     Try clicking it to see different ways numbers are represented.
   </p>
 
-  <b-card no-body class="info">
-    <b-card-header header-bg-variant="info">
+  <b-card no-body class="info_card">
+    <b-card-header>
       Bitcoin's maximum supply
       <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="rotateEncoding"/>
     </b-card-header>
@@ -33,8 +33,7 @@
 
   <hr>
 
-  <b-card no-body class="tldr">
-    <b-card-header>tl;dr (Too Long; Didn't Read)</b-card-header>
+  <b-card no-body class="tldr_card" header="tl;dr (Too Long; Didn't Read)">
     <b-card-body>
       Numbers can be written in different ways, but they are still just numbers.
     </b-card-body>
@@ -42,7 +41,7 @@
 
   <hr>
 
-  <b-card>
+  <b-card class="definition_card">
     <h4 class="text-left"><a href="https://www.etymonline.com/word/hexadecimal">hexadecimal (adj.)</a></h4>
     <hr>
     1952, in reference to a numeral system based on 16, not 10; from hexa- + decimal.
@@ -54,20 +53,16 @@
     Hexadecimal notation uses letters a-f for values 10-15.
   </p>
 
-  <b-card id="hex_table" no-body>
-    <b-table-simple class="border-1" small>
+  <b-card id="hex_table" no-body header="Ways to write 0-15" class="info_table">
+    <b-table-simple small>
       <b-thead>
-        <tr>
-          <th colspan="3" class="text-center h5">Ways to notate 0-15</th>
-        </tr>
-
-      </b-thead>
-      <b-tbody>
         <b-tr>
           <b-td>Decimal</b-td>
           <b-td>Hexadecimal</b-td>
           <b-td>Binary</b-td>
         </b-tr>
+      </b-thead>
+      <b-tbody>
         <b-tr v-for="(row, index) in rows" :key="index">
           <b-td>{{ row.decimal }}</b-td>
           <b-td>{{ row.hexadecimal }}</b-td>
@@ -85,13 +80,8 @@
     number is but it's like this many digits long!</q>
   </p>
 
-  <b-card id="exponential_table" no-body>
-    <b-table-simple class="border-1 text-center" small>
-      <b-thead>
-        <tr>
-          <th colspan="3" class="text-center h5">Exponential Notation</th>
-        </tr>
-      </b-thead>
+  <b-card id="exponential_table" no-body header="Exponential Notation" class="info_table">
+    <b-table-simple class="text-center" small>
       <b-tbody>
         <b-tr v-for="(row, index) in expRows" :key="index">
           <b-td>{{ row.name }}</b-td>
@@ -107,12 +97,10 @@
   <p>
     Try changing the values in the notation converter and try to predict how the other notations will change...
   </p>
-  <b-card no-body id="hex_converter">
-    <b-card-header header-bg-variant="info">
-      <b-icon-wrench/>
-      Notation
-      <b-icon-arrow-left-right/>
-      Converter
+
+  <b-card no-body id="hex_converter" class="tool_card">
+    <b-card-header>
+      <b-icon-wrench/> Notation <b-icon-arrow-left-right/> Converter
     </b-card-header>
 
     <div class="list label">Hexadecimal (base 16)</div>
@@ -177,6 +165,9 @@ export default {
         { val: Number('1e+100'), name: 'A googol' },
       ]
     };
+  },
+  mounted() {
+    this.num.decimal = '21,000,000';
   },
   methods: {
     onHex(e) {

@@ -3,7 +3,7 @@
   <Page slide data-anchor="blockchain">
     <h1>Blockchain</h1>
 
-    <b-card no-body>
+    <b-card no-body class="definition_card">
       <b-card-body>
         <h4 class="text-left">block (n.)</h4>
         <hr>
@@ -16,7 +16,7 @@
       </b-card-body>
     </b-card>
 
-    <b-card>
+    <b-card class="definition_card">
       <h4 class="text-left">blockchain (n.)</h4>
       <hr>
       <p>
@@ -41,8 +41,7 @@
       who controls how much bitcoin.
     </p>
 
-    <b-card no-body class="tldr">
-      <b-card-header>tl;dr</b-card-header>
+    <b-card no-body class="tldr_card" header="tl;dr">
       <b-card-body>
         A blockchain is used to establish an order of events in the ledger <b>to prove that one
         transaction came before another</b>.
@@ -50,12 +49,14 @@
     </b-card>
 
     <hr>
+
     <p>
-      The very first block in a blockchain is called the Genesis Block and starts at block number 0. Because new blocks are
-      'stacked on top' of old ones, the block number can also be thought of as the height or chain length.
+      The very first block in a blockchain is called the Genesis Block and starts at block number 0.
+      Because new blocks are 'stacked on top' of old ones, the block number can also be thought of as
+      the height or chain length.
     </p>
 
-    <b-card>
+    <b-card class="definition_card">
       <h4><a href="https://www.etymonline.com/word/genesis" target="_blank">genesis (n.)</a></h4>
       <hr>
         Greek genesis "origin, creation, generation," from gignesthai "to be born," related to genos
@@ -66,16 +67,14 @@
       Try changing the data or previous hash of the following block to see that the block hash changes.
     </p>
 
-    <b-card no-body class="block" style="box-shadow: -1px 2px 5px 0 #14E3FD;">
+    <b-card id="example_block" no-body class="block_card" style="box-shadow: -1px 2px 5px 0 #14E3FD;">
       <!--Hash-->
       <b-list-group class="header update_box_shadow" style="background-color: #14E3FD;" :key="blockHash">
         <div class="list label">
-          <span class="block_hash">Block Hash (Genesis Block) </span>
-          <span class="block_number"> #0 </span>
+          <span class="float-left">Block Hash (Genesis Block) </span>
+          <span class="float-right"> #0 </span>
         </div>
-        <div class="list value border-0">
-          {{ blockHash}}
-        </div>
+        <div class="list value border-0"> {{ blockHash}} </div>
       </b-list-group>
 
       <!--Data-->
@@ -99,7 +98,7 @@
       For this demo we will start by only looking at the first 2 digits of the hash of each block.
     </p>
     <p style="font-size: 0.875rem; text-align: center;">
-      <b>XX</b>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      <b>XX</b>{{ ''.padEnd(62, 'x') }}
     </p>
 
     <hr>

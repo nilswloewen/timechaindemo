@@ -16,7 +16,7 @@
   <b-card no-body class="info_card">
     <b-card-header>
       <span class="float-left">Number of possible hashes</span>
-      <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="rotateEncoding"/>
+      <b-icon-vector-pen role="button" class="rotate_encoding_btn float-right" @click="rotateEncoding"/>
     </b-card-header>
     <div class="list value pt-2">
       {{ hashMax[encoding[activeEncoding]] }}
@@ -43,7 +43,7 @@
   <b-card no-body class="mt-4 tool_card">
     <b-card-header>
       <span class="float-left"><b-icon-wrench/> SHA-256 Calculator </span>
-      <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="rotateEncoding"/>
+      <b-icon-vector-pen role="button" class="rotate_encoding_btn float-right" @click="rotateEncoding"/>
       <b-icon-info-circle class="float-right mr-2" v-b-toggle.collapse_note/>
     </b-card-header>
 

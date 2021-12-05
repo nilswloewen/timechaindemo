@@ -44,23 +44,25 @@ export default {
         scrollingSpeed: 1500,
         scrollBar: false,
         scrollOverflow: true,
+        // responsiveWidth: 800,
+
+        navigation: true,
+        slidesNavigation: true,
+        slidesNavPosition: 'top',
+        normalScrollElements: '.blockchain_wrapper .value',
+
+        // Extensions
         scrollOverflowReset: true,
         scrollOverflowResetKey: 'bmlsc2xvZXdlbi5jb21fVVFuYzJOeWIyeHNUM1psY21ac2IzZFNaWE5sZEE9PVUyRw==',
 
         scrollHorizontally: true,
         scrollHorizontallyKey: 'bmlsc2xvZXdlbi5jb21fV08zYzJOeWIyeHNTRzl5YVhwdmJuUmhiR3g1MjZ2',
 
-        slidesNavigation: true,
-        slidesNavPosition: 'top',
-        // responsiveWidth: 800,
-        navigation: true,
-        normalScrollElements: '.blockchain_wrapper .value',
-
         parallax: true,
         parallaxKey: 'bmlsc2xvZXdlbi5jb21fSTQyY0dGeVlXeHNZWGc9ME1T',
         parallaxOptions: {
           type: 'reveal',
-          percentage: 62,
+          percentage: 99,
           property: 'translate'
         }
       },
@@ -96,6 +98,7 @@ export default {
           label: 'Timechain',
           slides: [
             { anchor: 'difficulty_adjustment', label: 'Difficulty Adjustment' },
+            { anchor: 'timechain_target', label: 'Target' },
             { anchor: 'timechain_blockchain', label: 'Timechain' },
             { anchor: 'timechain_mining', label: 'Timechain Mining' }
           ]
@@ -466,6 +469,10 @@ h1 {
   url('/assets/backgrounds/transcending_forward.jpg');
 }
 #difficulty_adjustment_slide .fp-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/transcending_forward.jpg');
+}
+#timechain_target_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/transcending_forward.jpg');
 }

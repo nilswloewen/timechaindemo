@@ -22,7 +22,7 @@ export default {
   methods: {
     async addBlock(newData) {
       let data = newData === ''
-        ? 'Try changing this data...'
+        ? BlockHeader.getRandomData()
         : newData;
 
       const header = new BlockHeader(data, 0, this.blocks[0].hash);

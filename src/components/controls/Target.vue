@@ -2,7 +2,7 @@
 <b-card no-body class="target tool_card">
   <b-card-header>
     <b-icon-wrench/> Target
-    <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')"/>
+    <b-icon-vector-pen role="button" class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')"/>
   </b-card-header>
   <div class="header_addon list value text-center">
     {{ target[localEncoding] }}

@@ -9,12 +9,52 @@ class DemoBlockHeader extends BlockHeader {
   }
 
   static get genesis() {
-    const randBtc = Math.floor(Math.random() * 99 + 1);
-    return new DemoBlockHeader(`Alice sent Bob ${randBtc}₿`, 0, new Num(BigInt(0)));
+    const data = this.getRandomData();
+    return new DemoBlockHeader(data, 0, new Num(BigInt(0)));
   }
 
   serialize() {
     return this.data + this.prevHash.hexadecimal + this.nonce;
+  }
+
+  static getRandomData() {
+    const { sender, receiver } = this.getNames();
+    const randBtc = Math.floor(Math.random() * 99 + 1);
+    return `${sender} sent ${receiver} ${randBtc}₿`;
+  }
+
+  static getNames() {
+    const names = [
+      'Alice',
+      'Bob',
+      'Carlos',
+      'Chuck',
+      'Craig',
+      'Dan',
+      'Eve',
+      'Yves',
+      'Faythe',
+      'Grace',
+      'Heidi',
+      'Ivan',
+      'Mallory',
+      'Olivia',
+      'Peggy',
+      'Rupert',
+      'Ramesh',
+      'Sybil',
+      'Trudy',
+      'Victor',
+      'Walter',
+      'Wendy',
+    ];
+
+    const actors = { sender: '', receiver: '' };
+    for (const [key] of Object.entries(actors)) {
+      const rand = Math.floor(Math.random() * names.length + 1);
+      actors[key] = names.splice(rand, 1);
+    }
+    return actors;
   }
 }
 

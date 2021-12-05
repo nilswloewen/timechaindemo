@@ -159,11 +159,15 @@ export default {
 
     calcGuesses(guesses) {
       for (let i = 0; i < guesses.length; i += 1) {
-        // eslint-disable-next-line no-param-reassign
         guesses[i].xRatio += this.tickSpeed;
 
-        // Delete old guesses.
-        if (guesses[i].xRatio > 3) {
+        // Delete guess when the right side of it passes xPad.
+        let x = this.zero.x - (this.width * guesses[i].xRatio);
+        const labelMetrics = this.ctx.measureText(guesses[i].hash[this.localEncoding]);
+        const backOfLabel = x + labelMetrics.width;
+        guesses[i].opacity = backOfLabel / this.width;
+
+        if (guesses[i].opacity < 0) {
           guesses.shift();
         }
       }
@@ -191,43 +195,23 @@ export default {
       for (let i = 0; i < guesses.length; i += 1) {
         const guess = guesses[i];
 
-        // Fade out older guesses.
-        let opacity = i / guesses.length;
-
-        // Min val.
-        opacity = opacity < 0.6 ? 0.6 : opacity;
-
-        // Fade out all guess at edge of graph.
-        if (guess.xRatio > 0.9) {
-          opacity -= 1 - guess.xRatio;
-        }
-
         this.drawGuess(
           guess.xRatio,
           guess.yRatio,
           guess.hash[this.localEncoding],
-          opacity,
+          guess.opacity,
           guess.isHashValid
         );
       }
     },
 
-    drawGuess(xRatio, yRatio, label, opacity = 1, isHashValid = false) {
+    drawGuess(xRatio, yRatio, label, opacity, isHashValid = false) {
       let x = this.zero.x - (this.width * xRatio);
       const y = this.zero.y - (this.height * yRatio);
 
       if (!this.animate) {
         x -= 34;
-        opacity = 1;
       }
-
-      // Background
-      // const labelMetrics = this.ctx.measureText(label);
-      // this.ctx.fillStyle = this.bgColor;
-      // this.ctx.fillRect(
-      //   x - 2, y - 12,
-      //   labelMetrics.width + 5, 20
-      // );
 
       // Label
       this.ctx.direction = 'ltr';
@@ -236,6 +220,9 @@ export default {
     },
 
     drawEndCaps() {
+      // Left pad.
+      this.ctx.clearRect(0, this.zero.y + 8, this.xPad, -(this.height + 16));
+      // Right pad.
       this.ctx.clearRect(this.zero.x + 1, this.zero.y + 8, this.xPad, -(this.height + 16));
     },
 

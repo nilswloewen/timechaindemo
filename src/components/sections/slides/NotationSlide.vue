@@ -13,7 +13,7 @@
     You will see this notation button later in this demo:
   </p>
   <p class="text-center">
-    <b-icon-vector-pen class="rotate_encoding_btn" @click="rotateEncoding"/>
+    <b-icon-vector-pen role="button" class="rotate_encoding_btn" @click="rotateEncoding"/>
   </p>
   <p>
     Try clicking it to see different ways numbers are represented.
@@ -22,7 +22,7 @@
   <b-card no-body class="info_card">
     <b-card-header>
       Bitcoin's maximum supply
-      <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="rotateEncoding"/>
+      <b-icon-vector-pen role="button" class="rotate_encoding_btn float-right" @click="rotateEncoding"/>
     </b-card-header>
     <b-card-body>
       <b>{{ num[encoding[activeEncoding]] }}</b>

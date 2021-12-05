@@ -3,7 +3,7 @@
   <b-card no-body class="tool_card">
     <b-card-header>
       <b-icon-wrench/> Add block
-      <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')"/>
+      <b-icon-vector-pen role="button" class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')"/>
     </b-card-header>
 
     <b-card-body>

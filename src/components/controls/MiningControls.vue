@@ -2,7 +2,7 @@
 <b-card class="mining_controls tool_card" no-body>
   <b-card-header class="border-bottom">
     <b-icon-wrench/> Mining Block #{{ block.height }}
-    <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')"/>
+    <b-icon-vector-pen role="button" class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')"/>
   </b-card-header>
 
   <!-- Max -->

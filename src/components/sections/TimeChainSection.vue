@@ -3,7 +3,6 @@
   <Page data-anchor="timechain" slide>
     <h1>Timechain</h1>
 
-
     <b-card class="quote_card">
       <q>The only way to find a valid proof-of-work is by making a lot of guesses,
         and making a single guess takes a little bit of time. The probabilistic
@@ -40,7 +39,7 @@
     </b-card>
   </Page>
 
-  <Page data-anchor="difficulty_adjustment" slide>
+  <Page slide data-anchor="difficulty_adjustment">
     <h1>Difficulty Adjustment</h1>
 
     <p>
@@ -60,34 +59,49 @@
         time, not a constant level of security, difficulty, or energy expenditure.</q>
       <br> - <a href="https://dergigi.com/2021/01/14/bitcoin-is-time/" target="_blank">DerGigi</a>
     </b-card>
-
-    <Difficulty
-      :hashrate-long="getHashrateLong()"
-      :hashrate="hashrate"
-      :hashrateUnit="hashrateUnit"
-      :hashrateUnits="hashrateUnits"
-      v-on:update-hashrate="updateHashrate"
-      v-on:update-hashrate-unit="updateHashrateUnit"
-      :blocktime="blocktime"
-      :blocktime-unit="blocktimeUnit"
-      :blocktime-units="blocktimeUnits"
-      v-on:update-blocktime="updateBlocktime"
-      v-on:update-blocktime-unit="updateBlocktimeUnit"
-      v-on:calibrate-hps="calibrateHps"
-      v-on:show-antminer-hashrate="onAntminer"
-      v-on:show-global-hashrate="onGlobal" />
-
-    <Target v-on:updateTarget="updateTargetAndBlocktime"
-            v-on:rotate-encoding="rotateEncoding"
-            :avgHashes="avgHashes"
-            :denominator="denominator"
-            :hash-max="hashMax"
-            :localEncoding="encoding[activeEncoding]"
-            :numerator="numerator"
-            :probability="probability"
-            :target="target"
-            :targetMax="targetMax"/>
   </Page>
+
+  <div class="slide" data-anchor="timechain_target" id="timechain_target_slide">
+    <div class="fp-bg"/>
+
+    <Graph id="timechain_target_canvas" :guesses="[]"
+           :target="this.target" :local-encoding="encoding[activeEncoding]"/>
+    <div class="overlay">
+      <b-container>
+        <b-row>
+          <b-col>
+
+            <Difficulty
+              :hashrate-long="getHashrateLong()"
+              :hashrate="hashrate"
+              :hashrateUnit="hashrateUnit"
+              :hashrateUnits="hashrateUnits"
+              v-on:update-hashrate="updateHashrate"
+              v-on:update-hashrate-unit="updateHashrateUnit"
+              :blocktime="blocktime"
+              :blocktime-unit="blocktimeUnit"
+              :blocktime-units="blocktimeUnits"
+              v-on:update-blocktime="updateBlocktime"
+              v-on:update-blocktime-unit="updateBlocktimeUnit"
+              v-on:calibrate-hps="calibrateHps"
+              v-on:show-antminer-hashrate="onAntminer"
+              v-on:show-global-hashrate="onGlobal" />
+
+            <Target v-on:updateTarget="updateTargetAndBlocktime"
+                    v-on:rotate-encoding="rotateEncoding"
+                    :avgHashes="avgHashes"
+                    :denominator="denominator"
+                    :hash-max="hashMax"
+                    :localEncoding="encoding[activeEncoding]"
+                    :numerator="numerator"
+                    :probability="probability"
+                    :target="target"
+                    :targetMax="targetMax"/>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
+  </div>
 
   <Page data-anchor="timechain_blocks" slide>
     <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"

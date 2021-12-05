@@ -72,32 +72,46 @@
     </b-card>
   </Page>
 
-  <Page data-anchor="target" slide>
-    <h1> Target </h1>
-    <p>
-      Because we are starting this demo by only looking at the first 2 digits of the hash of
-      each block, the maximum value of a hash (ff) is 255 and the minimum value is 0.
-    </p>
+  <div class="slide" data-anchor="target" id="target_slide">
+    <div class="fp-bg"/>
 
-    <p>
-      The target is a movable value somewhere between the min and max that will be the
-      cutoff for an acceptable hash. <b>Try moving the target to see how the probabilities change.</b>
-    </p>
-    <p>
-      As the target goes down it becomes more difficult to find a winning hash.
-    </p>
+    <Graph id="pow_target_canvas" :guesses="[]"
+           :target="this.target" :local-encoding="encoding[activeEncoding]"/>
 
-    <Target v-on:updateTarget="updateTarget"
-            v-on:rotate-encoding="rotateEncoding"
-            :avgHashes="avgHashes"
-            :denominator="denominator"
-            :hash-max="hashMax"
-            :localEncoding="encoding[activeEncoding]"
-            :numerator="numerator"
-            :probability="probability"
-            :target="target"
-            :targetMax="targetMax"/>
-  </Page>
+    <div class="overlay">
+      <b-container>
+        <b-row>
+          <b-col>
+
+            <h1> Target </h1>
+            <p>
+              Because we are starting this demo by only looking at the first 2 digits of the hash of
+              each block, the maximum value of a hash (ff) is 255 and the minimum value is 0.
+            </p>
+
+            <p>
+              The target is a movable value somewhere between the min and max that will be the
+              cutoff for an acceptable hash. <b>Try moving the target to see how the probabilities change.</b>
+            </p>
+            <p>
+              As the target goes down it becomes more difficult to find a winning hash.
+            </p>
+
+            <Target v-on:updateTarget="updateTarget"
+                    v-on:rotate-encoding="rotateEncoding"
+                    :avgHashes="avgHashes"
+                    :denominator="denominator"
+                    :hash-max="hashMax"
+                    :localEncoding="encoding[activeEncoding]"
+                    :numerator="numerator"
+                    :probability="probability"
+                    :target="target"
+                    :targetMax="targetMax"/>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
+  </div>
 
   <Page data-anchor="pow_blockchain" slide>
     <h1>Proof-of-work Blockchain</h1>

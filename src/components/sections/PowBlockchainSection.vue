@@ -114,6 +114,7 @@
                  :local-encoding="encoding[activeEncoding]"
                  showData
                  showNonce
+                 v-on:rotate-encoding="rotateEncoding"
                  v-on:mine-this-block="mineThisBlock"
                  v-on:update-data="updateData"/>
     </div>
@@ -204,10 +205,9 @@ export default {
   width: 100%;
   padding-top: 10vh;
 }
-.next_section_btn {
-  position: fixed;
-  z-index: 1001;
-  top: 15px;
+
+#pow_mining_slide .mining_controls {
+  max-width: 240px;
 }
 
 </style>

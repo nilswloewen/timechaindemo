@@ -1,22 +1,29 @@
 <template>
 <b-collapse id="collapse_success_msg" :visible="isHashValid">
-  <b-card no-body>
+  <b-card no-body class="text-center">
     <b-card-body>
-      Congratulations! You found a valid hash for Block #{{ blockHeight }}!
-      <hr>
+      <h4>Congratulations!</h4>
+      You found a valid hash for Block #{{ blockHeight }}!
 
-      <p>
+      <hr>
+      <div>
         It took <b>{{ numOfTries }}</b> guesses to find a valid hash,
+      </div>
+      <div>
         <b>~{{ avgHashes.toFixed() }}</b> were estimated.
-      </p>
+      </div>
 
-      <hr>
+      <template v-if="estTime">
+        <hr>
+        <div>
+          It took <b>{{ timeToMine }}</b> seconds to mine,
+        </div>
+        <div>
+          <b>~{{ estTime.blocktime }}</b> {{ estTime.blocktimeUnit.toLowerCase() }} were estimated.
+        </div>
+      </template>
 
-      <p v-if="estTime">
-        It took <b>{{ timeToMine }}</b> seconds to mine,
-        <b>~{{ estTime.blocktime }}</b> {{ estTime.blocktimeUnit }} were estimated.
-      </p>
-      <div class="text-center">
+      <div class="text-center mt-2">
         <b-button @click="slideLeft"><b-icon-arrow-left/> Add the next block</b-button>
       </div>
     </b-card-body>
@@ -29,10 +36,10 @@ export default {
   props: {
     avgHashes: Number,
     blockHeight: Number,
+    estTime: Object,
     isHashValid: Boolean,
     numOfTries: Number,
     timeToMine: Number,
-    estTime: Object,
   },
   methods: {
     slideLeft() {
@@ -44,8 +51,8 @@ export default {
 
 <style>
 #collapse_success_msg .card {
-  border-color: #f79413;
-  box-shadow: -2px 3px 10px 2px #f79413;
+  /*border-color: #f79413;*/
+  /*box-shadow: -2px 3px 10px 2px #f79413;*/
   background-color: rgba(0, 0, 0, 0.8);
 }
 </style>

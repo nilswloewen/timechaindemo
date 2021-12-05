@@ -119,6 +119,7 @@
                  :index="index"
                  :local-encoding="encoding[activeEncoding]"
                  showData
+                 v-on:rotate-encoding="rotateEncoding"
                  v-on:update-data="updateData"/>
     </div>
   </Page>

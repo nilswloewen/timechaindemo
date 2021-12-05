@@ -23,6 +23,7 @@
                showReal
                showNonce
                mask-nonce
+               v-on:rotate-encoding="rotateEncoding"
                v-on:mine-this-block="mineThisBlock"
                v-on:update-block-height="updateBlockHeight"
                v-on:update-block-height-latest="updateBlockHeightLatest"/>
@@ -59,6 +60,7 @@
               interactive-nonce
               v-on:rotate-encoding="rotateEncoding"
               v-on:start-mining="startMining"
+              v-on:stop-mining="stopMining"
               v-on:show-solution="showSolution"
               v-on:update-nonce="updateNonce" />
           </b-col>
@@ -102,6 +104,7 @@ export default {
       guesses: [],
       block: new Block('', BlockHeader.genesis, 0),
       mempool: new Mempool(),
+      isMining: false,
       originalNonce: 0,
       hideNonce: false,
     };
@@ -165,7 +168,24 @@ export default {
     },
     showSolution() {
       this.updateNonce(this.originalNonce);
-    }
+    },
+    stopMining() {
+      this.isMining = false;
+    },
+    async startMining() {
+      const startTime = performance.now();
+      this.isMining = true;
+      this.block.tries = 0;
+
+      while (!this.block.isHashValid && this.isMining) {
+        this.block.tries += 1;
+        await this.updateNonce(this.block.header.nonce += 1);
+        const elapsed = performance.now() - startTime;
+        this.block.timeToMine = (elapsed / 1000).toFixed(2);
+      }
+
+      this.isMining = false;
+    },
   }
 };
 </script>

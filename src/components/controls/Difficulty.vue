@@ -1,8 +1,6 @@
 <template>
-<b-card no-body>
-  <b-card-header header-bg-variant="info">
-    <b-icon-wrench/> Difficulty
-  </b-card-header>
+<b-card no-body class="tool_card">
+  <b-card-header><b-icon-wrench/> Difficulty</b-card-header>
 
   <b-card-body class="text-center">
     <p>
@@ -37,6 +35,7 @@
                        :options="blocktimeUnits"/>
       </b-input-group>
     </div>
+
   </b-card-body>
 </b-card>
 </template>

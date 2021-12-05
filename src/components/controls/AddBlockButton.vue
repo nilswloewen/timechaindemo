@@ -1,7 +1,7 @@
 <template>
-<div class="add_block_card">
-  <b-card no-body>
-    <b-card-header header-bg-variant="info">
+<div class="add_block_wrapper">
+  <b-card no-body class="tool_card">
+    <b-card-header>
       <b-icon-wrench/> Add block
       <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')"/>
     </b-card-header>

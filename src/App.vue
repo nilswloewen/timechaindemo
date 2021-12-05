@@ -178,7 +178,7 @@ h1 {
 }
 
 .col {
-  max-width: 584px;
+  max-width: 590px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 3em;
@@ -200,29 +200,37 @@ h1 {
   filter: drop-shadow(-2px 2px 2px black);
 }
 
-.tldr.card {
+/* Cards with Headers */
+/*.tldr_card,*/
+/*.tool_card,*/
+/*.info_card,*/
+/*.block_card,*/
+
+/*.definition_card,*/
+/*.quote_card,*/
+
+.card.tldr_card {
   /*box-shadow: -1px 2px 4px 2px #f79413;*/
   /*border-color:  #f79413;*/
 }
-.tldr .card-header {
+.tldr_card .card-header {
   text-align: center;
   /*background-color: #f79413;*/
   /*padding: .2em;*/
 }
-.tldr .card-body {
+.tldr_card .card-body {
   /*padding: .2em;*/
 }
 
 .blockchain_wrapper {
   margin-top: 2em;
   text-align: center;
-  min-height: 60vh;
   max-height: 60vh;
   overflow-y: auto;
   scroll-behavior: smooth;
 }
 
-.add_block_card,
+.add_block_wrapper,
 .blockchain_wrapper {
   padding: 0 4px;
 }
@@ -232,15 +240,15 @@ h1 {
   background-color: transparent;
   border: none;
   font-size: 0.875rem;
-  padding: 0 .5em;
+  padding: 0 5px;
 }
-.label {
+.list.label {
   padding-top: 7px;
   padding-bottom: 0;
 }
-.value {
+.list.value {
   overflow-x: auto;
-  overflow-wrap: normal;
+  word-wrap: normal;
   padding-bottom: 7px;
   padding-top: 2px;
   border-bottom: 1px solid darkgray;
@@ -265,6 +273,10 @@ h1 {
 .form-control.is-valid {
   border-color: #f79413;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23f79413' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e")
+}
+
+.icon_btn {
+  cursor: pointer;
 }
 
 .btn-primary,

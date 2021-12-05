@@ -102,6 +102,7 @@
                  :local-encoding="encoding[activeEncoding]"
                  showData
                  showNonce
+                 v-on:rotate-encoding="rotateEncoding"
                  v-on:mine-this-block="mineThisBlock"
                  v-on:update-data="updateData"/>
     </div>
@@ -406,5 +407,9 @@ export default {
 .fp-viewing-timechain-timechain .fp-controlArrow.fp-prev,
 .fp-viewing-timechain-timechain_mining .fp-controlArrow.fp-next {
   display: none;
+}
+
+#timechain_mining_slide .mining_controls {
+  max-width: 240px;
 }
 </style>

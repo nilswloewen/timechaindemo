@@ -6,28 +6,30 @@
     <b-icon stacked icon="slash" variant="danger" v-if="!isHashValid"></b-icon>
   </b-iconstack>
 
-  <b-card no-body class="block" :style="`box-shadow: -1px 2px 5px 0 ${block.color};`">
+  <b-card no-body class="block_card" :style="`box-shadow: -1px 2px 5px 0 ${block.color};`">
+
     <!--Hash-->
     <div class="header update_box_shadow" :style="`background-color: ${block.color};`" :key="getHash">
-      <div class="list label">
-        <span class="float-left">Block Hash
-          <template v-if="block.height === 0">(Genesis Block)</template>
-        </span>
-        <span class="float-right"> #{{ block.height }} </span>
+      <div class="list label" style="line-height: 1.2em;">
+        Block Hash
+        <span v-if="block.height === 0"> (Genesis Block)</span>
+        <b-icon-vector-pen class="rotate_encoding_btn float-right ml-2" @click="$emit('rotate-encoding')"/>
+        <span class="float-right"> #{{ block.height.toLocaleString() }} </span>
       </div>
 
       <div class="list value border-0">
-        {{ getHash }}
+        <template v-if="isHashValid">
+          {{ getHash }}
+        </template>
+
+        <template v-else>
+          <div class="list value border-0 text-center">
+            <span class="invalid_hash" @click="$emit('mine-this-block', index)" role="button">
+              {{ getHash }}
+            </span>
+          </div>
+        </template>
       </div>
-
-      <!-- Mine this block Button -->
-      <template v-if="!isHashValid">
-        <b-button @click="$emit('mine-this-block', index)" title="Mine this Block"
-                  size="sm" variant="danger" class="float-right">
-          <b-icon-hammer size="sm" animation="fade"/>
-        </b-button>
-      </template>
-
     </div>
 
     <template v-if="showBlockHeightInput">
@@ -165,6 +167,11 @@ export default {
   text-shadow: none;
   padding: 0 2px;
   color: black;
+}
+.invalid_hash {
+  border-radius: 4px;
+  background-color: #b72919;
+  color: white;
 }
 
 .header {

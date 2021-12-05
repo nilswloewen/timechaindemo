@@ -129,7 +129,7 @@ export default {
       this.ctx.stroke();
       this.ctx.closePath();
 
-      if ((this.height - (this.height * yRatio)) < 20) {
+      if ((this.height + this.yPad - yRatio) < 20) {
         this.ctx.fillStyle = 'blue';
         this.ctx.clearRect(this.zero.x - 6, this.zero.y + 2, -60, -4);
       }

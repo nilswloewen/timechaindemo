@@ -20,7 +20,6 @@ export default {
   watch: {
     targetMax() {
       this.calcStats();
-      console.log('watch targetMax')
     }
   },
   methods: {

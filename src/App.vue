@@ -54,7 +54,7 @@ export default {
         slidesNavPosition: 'top',
         // responsiveWidth: 800,
         navigation: true,
-        normalScrollElements: ['.blockchain_wrapper', '.list-value'],
+        normalScrollElements: '.blockchain_wrapper .list-value',
 
         parallax: true,
         parallaxKey: 'bmlsc2xvZXdlbi5jb21fSTQyY0dGeVlXeHNZWGc9ME1T',
@@ -189,8 +189,7 @@ h1 {
   margin: 0 auto 2em auto;
   background-color: rgba(0, 0, 0, 0.3);
   max-width: 625px;
-  box-shadow: -2px 3px 10px 2px slategray;
-  text-align: left;
+  box-shadow: -2px 3px 10px 2px rgba(255, 255, 255, 0.2);
 }
 .card-header {
   background-color: #343a40;
@@ -202,12 +201,12 @@ h1 {
 }
 .tldr.card {
   max-width: 500px;
-  text-align: center;
   box-shadow: -1px 2px 4px 2px #f79413;
   border-color:  #f79413;
   margin: 2em auto;
 }
 .tldr .card-header {
+  text-align: center;
   background-color: #f79413;
   padding: .2em;
 }
@@ -373,18 +372,6 @@ h1 {
   transform: translate(50%, -50%);
   left: 0;
   right: 30px !important;
-}
-
-.next_section_btn {
-  margin-top: 3em;
-  text-align: center;
-}
-.next_section_btn span {
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid white;
 }
 
 /* Backgrounds */

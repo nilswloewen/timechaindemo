@@ -31,6 +31,11 @@
       </b-card-body>
     </b-card>
 
+    <b-card no-body>
+      <img alt="That's just a dice game with extra steps!"
+           class="card-img" src="/assets/backgrounds/rick_dice_game.jpg"/>
+    </b-card>
+
     <hr>
 
     <p>
@@ -84,7 +89,6 @@
     </p>
 
     <Target v-on:updateTarget="updateTarget"
-            v-on:real-target-max="realTargetMax"
             v-on:rotate-encoding="rotateEncoding"
             :avgHashes="avgHashes"
             :denominator="denominator"
@@ -94,10 +98,6 @@
             :probability="probability"
             :target="target"
             :targetMax="targetMax"/>
-
-    <b-card no-body>
-      <img class="card-img" src="/assets/backgrounds/rick_dice_game.jpg" alt="That's just a dice game with extra steps!"/>
-    </b-card>
   </Page>
 
   <Page data-anchor="pow_blockchain" slide>
@@ -204,6 +204,11 @@ export default {
   top: 0;
   width: 100%;
   padding-top: 10vh;
+}
+.next_section_btn {
+  position: fixed;
+  z-index: 1001;
+  top: 15px;
 }
 
 </style>

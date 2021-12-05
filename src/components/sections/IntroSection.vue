@@ -25,8 +25,6 @@
     </p>
 
     <TableOfContents :contents="contents"/>
-
-    <div class="next_section_btn"><a href="#terms" title="Terms"><span/></a></div>
   </div>
 </Page>
 </template>

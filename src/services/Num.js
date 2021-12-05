@@ -1,7 +1,7 @@
 class Num {
   // hexDigits is needed to format leading zeros.
   constructor(bigInt = BigInt(0), hexDigits = 2) {
-    this.yRatio = 0;
+    this.yRatio = 0.0;
 
     this.bigInt = bigInt;
     this.num = Number(bigInt);

@@ -10,10 +10,10 @@
     <!--Hash-->
     <b-list-group class="header update_box_shadow" :style="`background-color: ${block.color};`" :key="getHash">
       <b-list-group-item class="list-field">
-        <span class="block_hash">Block Hash
+        <span class="block_hash_label float-left">Block Hash
           <template v-if="block.height === 0">(Genesis Block)</template>
         </span>
-        <span class="block_number"> #{{ block.height }} </span>
+        <span class="block_number float-right"> #{{ block.height }} </span>
       </b-list-group-item>
       <b-list-group-item class="list-value border-0">
         {{ getHash }}
@@ -159,10 +159,6 @@ export default {
 </script>
 
 <style>
-.merkle_root {
-  font-size: 0.875rem;
-}
-
 .prev_block {
   text-shadow: none;
   padding: 0 2px;
@@ -174,21 +170,11 @@ export default {
   border-bottom-right-radius: 0;
   text-shadow: none;
   color: black;
-  font-size: 1rem;
-}
-
-.block_hash {
-  float: left;
-}
-
-.block_number {
-  float: right;
 }
 
 .update_box_shadow {
   animation: box_shadow 2s;
 }
-
 @keyframes box_shadow {
   from {
     box-shadow: 0 0 4px 4px white;

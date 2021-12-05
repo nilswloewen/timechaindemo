@@ -41,7 +41,7 @@ export default {
         navigationTooltips: [],
         licenseKey: '2C8168FC-415648B7-B94C4003-80F51EAC',
 
-        scrollingSpeed: 1000,
+        scrollingSpeed: 1500,
         scrollBar: false,
         scrollOverflow: true,
         scrollOverflowReset: true,
@@ -70,7 +70,7 @@ export default {
           anchor: 'terms',
           label: 'Terms',
           slides: [
-            { anchor: 'hexadecimal_notation', label: 'Numerical Notation' },
+            { anchor: 'notation', label: 'Numerical Notation' },
             { anchor: 'hash_functions', label: 'Hash Functions' },
             { anchor: 'sha256', label: 'SHA-256' }
           ]
@@ -229,6 +229,7 @@ h1 {
 }
 
 .list-group-item {
+  text-align: left;
   background-color: transparent;
   border: none;
   font-size: 0.875rem;
@@ -410,7 +411,7 @@ h1 {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/neurons_heating_up.jpg');
 }
-#hexadecimal_notation_slide .fp-bg {
+#notation_slide .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/neurons_heating_up.jpg');
 }

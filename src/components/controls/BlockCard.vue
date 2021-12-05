@@ -9,20 +9,29 @@
   <b-card no-body class="block" :style="`box-shadow: -1px 2px 5px 0 ${block.color};`">
     <!--Hash-->
     <b-list-group class="header update_box_shadow" :style="`background-color: ${block.color};`" :key="getHash">
-      <b-list-group-item class="list-field">
+      <div class="list-group-item list-field">
         <span class="block_hash_label float-left">Block Hash
           <template v-if="block.height === 0">(Genesis Block)</template>
         </span>
         <span class="block_number float-right"> #{{ block.height }} </span>
-      </b-list-group-item>
-      <b-list-group-item class="list-value border-0">
+      </div>
+
+      <!-- Mine this block Button -->
+      <template v-if="!isHashValid">
+        <b-button @click="$emit('mine-this-block', index)" title="Mine this Block"
+                  size="sm" variant="danger" class="float-right">
+          <b-icon-hammer size="sm" animation="fade"/>
+        </b-button>
+      </template>
+
+      <div class="list-group-item list-value border-0">
         {{ getHash }}
-      </b-list-group-item>
+      </div>
     </b-list-group>
 
     <template v-if="showBlockHeightInput">
-      <b-list-group-item class="list-field">Height</b-list-group-item>
-      <b-list-group-item class="list-value">
+      <div class="list-group-item list-field">Height</div>
+      <div class="list-group-item list-value">
         <b-input-group size="sm">
           <b-form-input @change="onBlockHeightChange" :value="block.height"
                         :max="blockHeightMax" :min="0" type="number" size="sm"/>
@@ -30,69 +39,61 @@
                     style="border-top-left-radius: 0; border-bottom-left-radius: 0"
           >Latest</b-button>
         </b-input-group>
-      </b-list-group-item>
+      </div>
     </template>
 
     <!--Data-->
     <template v-if="showData">
-      <b-list-group-item class="list-field">Data</b-list-group-item>
-      <b-list-group-item class="list-value">
+      <div class="list-group-item list-field">Data</div>
+      <div class="list-group-item list-value">
         <b-form-input @keyup="onDataChange" :value="block.header.data" size="sm"/>
-      </b-list-group-item>
+      </div>
     </template>
 
     <template v-if="showReal">
       <!--Version-->
-      <b-list-group-item class="list-field">Version</b-list-group-item>
-      <b-list-group-item class="list-value">
+      <div class="list-group-item list-field">Version</div>
+      <div class="list-group-item list-value">
         {{ block.header.version.toString(16).padStart(8, '0') }}
-      </b-list-group-item>
+      </div>
 
       <!--Bits-->
-      <b-list-group-item class="list-field">Target (Bits)</b-list-group-item>
-      <b-list-group-item class="list-value">
+      <div class="list-group-item list-field">Target (Bits)</div>
+      <div class="list-group-item list-value">
         {{ block.header.bits.toString(16).padStart(8, '0') }}
-      </b-list-group-item>
+      </div>
 
       <!--Merkle Root-->
-      <b-list-group-item class="list-field">Transactions (Merkle Root)</b-list-group-item>
-      <b-list-group-item class="list-value merkle_root">{{ block.header.merkleRoot }}</b-list-group-item>
+      <div class="list-group-item list-field">Transactions (Merkle Root)</div>
+      <div class="list-group-item list-value merkle_root">{{ block.header.merkleRoot }}</div>
 
       <!--Time-->
-      <b-list-group-item class="list-field">Timestamp</b-list-group-item>
-      <b-list-group-item class="list-value">{{ getTime }}</b-list-group-item>
+      <div class="list-group-item list-field">Timestamp</div>
+      <div class="list-group-item list-value">{{ getTime }}</div>
     </template>
 
     <!--Previous Hash-->
-    <b-list-group-item class="list-field">Previous Hash</b-list-group-item>
-    <b-list-group-item class="list-value">
+    <div class="list-group-item list-field">Previous Hash</div>
+    <div class="list-group-item list-value">
       <div class="rounded prev_block update_box_shadow" :style="getPrevColor"
            :key="block.header.prevHash">
         {{ block.header.prevHash[localEncoding] }}
       </div>
-    </b-list-group-item>
+    </div>
 
     <!--Nonce-->
     <template v-if="showNonce">
       <div style="width: 100%;">
         <b-list-group class="float-left">
-          <b-list-group-item class="list-field">Nonce</b-list-group-item>
-          <b-list-group-item class="list-value">
+          <div class="list-group-item list-field">Nonce</div>
+          <div class="list-group-item list-value">
             <template v-if="maskNonce && !isHashValid"> ???????? </template>
             <template v-else> {{ block.header.nonce }} </template>
-          </b-list-group-item>
+          </div>
         </b-list-group>
-
-        <!-- Mine this block Button -->
-        <template v-if="!isHashValid">
-          <b-button @click="$emit('mine-this-block', index)" title="Mine this Block"
-                    size="sm" variant="danger" class="float-right">
-            <b-icon-hammer size="sm" animation="fade"/>
-          </b-button>
-        </template>
-
       </div>
     </template>
+
   </b-card>
 </div>
 </template>

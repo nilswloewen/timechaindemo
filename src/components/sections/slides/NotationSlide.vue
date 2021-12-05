@@ -1,5 +1,5 @@
 <template>
-<Page slide data-anchor="hexadecimal_notation">
+<Page slide data-anchor="notation">
   <h1>Notation</h1>
 
   <p>
@@ -115,23 +115,23 @@
       Converter
     </b-card-header>
 
-    <b-list-group-item class="list-field">Hexadecimal (base 16)</b-list-group-item>
-    <b-list-group-item class="list-value">
+    <div class="list-group-item list-field">Hexadecimal (base 16)</div>
+    <div class="list-group-item list-value">
       <b-form-input @keyup="onHex" :value="Number(val).toString(16)"/>
-    </b-list-group-item>
+    </div>
 
-    <b-list-group-item class="list-field">Decimal (base 10)</b-list-group-item>
-    <b-list-group-item class="list-value">
+    <div class="list-group-item list-field">Decimal (base 10)</div>
+    <div class="list-group-item list-value">
       <b-form-input v-model="val" type="number"/>
-    </b-list-group-item>
+    </div>
 
-    <b-list-group-item class="list-field">Exponential</b-list-group-item>
-    <b-list-group-item class="list-value">{{ Number(val).toExponential() }}</b-list-group-item>
+    <div class="list-group-item list-field">Exponential</div>
+    <div class="list-group-item list-value">{{ Number(val).toExponential() }}</div>
 
-    <b-list-group-item class="list-field">Binary (base 2)</b-list-group-item>
-    <b-list-group-item class="list-value">
+    <div class="list-group-item list-field">Binary (base 2)</div>
+    <div class="list-group-item list-value">
       <b-form-input :value="Number(val).toString(2)" @keyup="onBin"/>
-    </b-list-group-item>
+    </div>
   </b-card>
 
 </Page>

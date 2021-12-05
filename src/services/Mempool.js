@@ -24,7 +24,7 @@ class Mempool {
     );
 
     const id = new Num(BigInt(`0x${ memBlock.id }`), 64);
-    return new Block(id, header, memBlock.height);
+    return new Block(id, header, Number(memBlock.height));
   }
 
   async getLatestBlockHash() {

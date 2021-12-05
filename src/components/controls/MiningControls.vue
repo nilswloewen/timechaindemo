@@ -6,24 +6,24 @@
   </b-card-body>
 
   <!-- Max -->
-  <b-list-group-item class="list-field"> Max</b-list-group-item>
-  <b-list-group-item class="list-value">
+  <div class="list-group-item list-field"> Max</div>
+  <div class="list-group-item list-value">
     {{ hashMax[localEncoding] }}
-  </b-list-group-item>
+  </div>
 
   <!-- Target -->
-  <b-list-group-item class="list-field" style="color: #f79413;">Target</b-list-group-item>
-  <b-list-group-item class="list-value" style="color: #f79413;">
+  <div class="list-group-item list-field" style="color: #f79413;">Target</div>
+  <div class="list-group-item list-value" style="color: #f79413;">
     {{ target[localEncoding] }}
-  </b-list-group-item>
+  </div>
 
   <!-- Hash -->
-  <b-list-group-item class="list-field"> Hash</b-list-group-item>
-  <b-list-group-item class="list-value">{{ block.hash[localEncoding] }}</b-list-group-item>
+  <div class="list-group-item list-field"> Hash</div>
+  <div class="list-group-item list-value">{{ block.hash[localEncoding] }}</div>
 
   <!--Nonce-->
-  <b-list-group-item class="list-field">Nonce</b-list-group-item>
-  <b-list-group-item class="list-value">
+  <div class="list-group-item list-field">Nonce</div>
+  <div class="list-group-item list-value">
     <template v-if="interactiveNonce">
       <b-input-group size="sm">
         <b-form-input @change="onNonceChange"
@@ -40,9 +40,9 @@
     <template v-else>
       {{ block.header.nonce }}
     </template>
-  </b-list-group-item>
+  </div>
 
-  <b-list-group-item v-if="showGoBrrr" class="list-value text-left">
+  <div v-if="showGoBrrr" class="list-group-item list-value text-left">
 
     <b-form-checkbox class="float-left ml-2" style="padding-top: 1px;"
                      @change="onStartMining" switch :checked="isMining"/>
@@ -53,7 +53,7 @@
 
     <b-button v-if="showSolutionBtn" @click="$emit('show-solution')" size="sm"
               :disabled="block.isHashValid" class="float-right">Show Solution</b-button>
-  </b-list-group-item>
+  </div>
 
 </b-card>
 </template>

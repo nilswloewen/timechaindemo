@@ -69,26 +69,26 @@
     <b-card no-body class="block" style="box-shadow: -1px 2px 5px 0 #14E3FD;">
       <!--Hash-->
       <b-list-group class="header update_box_shadow" style="background-color: #14E3FD;" :key="blockHash">
-        <b-list-group-item class="list-field">
+        <div class="list-group-item list-field">
           <span class="block_hash">Block Hash (Genesis Block) </span>
           <span class="block_number"> #0 </span>
-        </b-list-group-item>
-        <b-list-group-item class="list-value border-0">
+        </div>
+        <div class="list-group-item list-value border-0">
           {{ blockHash}}
-        </b-list-group-item>
+        </div>
       </b-list-group>
 
       <!--Data-->
-      <b-list-group-item class="list-field">Data</b-list-group-item>
-      <b-list-group-item class="list-value">
+      <div class="list-group-item list-field">Data</div>
+      <div class="list-group-item list-value">
         <b-form-input @keyup="onExampleDataChange" :value="data" size="sm"/>
-      </b-list-group-item>
+      </div>
 
       <!--Previous Hash-->
-      <b-list-group-item class="list-field">Previous Hash</b-list-group-item>
-      <b-list-group-item class="list-value">
+      <div class="list-group-item list-field">Previous Hash</div>
+      <div class="list-group-item list-value">
         <b-form-input @keyup="onExamplePrevHashChange" :value="prevHash" size="sm"/>
-      </b-list-group-item>
+      </div>
     </b-card>
   </Page>
 

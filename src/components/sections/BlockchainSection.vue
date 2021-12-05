@@ -122,6 +122,7 @@
                  showData
                  v-on:update-data="updateData"/>
     </div>
+    <div class="next_section_btn"><a href="#timechain" title="Timechain"><span/></a></div>
   </Page>
 </div>
 </template>

@@ -12,9 +12,9 @@
   <p>
     You will see this notation button later in this demo:
   </p>
-  <div class="text-center">
-    <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="rotateEncoding"/>
-  </div>
+  <p class="text-center">
+    <b-icon-vector-pen class="rotate_encoding_btn" @click="rotateEncoding"/>
+  </p>
   <p>
     Try clicking it to see different ways numbers are represented.
   </p>

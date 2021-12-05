@@ -1,18 +1,18 @@
 <template>
 <b-card class="mining_controls" no-body>
   <b-card-body class="border-bottom">
-    Mining for Block #{{ block.height }}
+    Mining Block #{{ block.height }}
     <b-icon-vector-pen class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')"/>
   </b-card-body>
 
-  <!--  Max -->
+  <!-- Max -->
   <b-list-group-item class="list-field"> Max</b-list-group-item>
   <b-list-group-item class="list-value">
     {{ hashMax[localEncoding] }}
   </b-list-group-item>
 
   <!-- Target -->
-  <b-list-group-item class="list-field" style="color: #f79413;"> Target</b-list-group-item>
+  <b-list-group-item class="list-field" style="color: #f79413;">Target</b-list-group-item>
   <b-list-group-item class="list-value" style="color: #f79413;">
     {{ target[localEncoding] }}
   </b-list-group-item>

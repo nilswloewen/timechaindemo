@@ -52,9 +52,9 @@ export default {
 
         slidesNavigation: true,
         slidesNavPosition: 'top',
-
+        // responsiveWidth: 800,
         navigation: true,
-        normalScrollElements: '.blockchain_wrapper',
+        normalScrollElements: ['.blockchain_wrapper', '.list-value'],
 
         parallax: true,
         parallaxKey: 'bmlsc2xvZXdlbi5jb21fSTQyY0dGeVlXeHNZWGc9ME1T',
@@ -182,11 +182,9 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   padding-top: 3em;
-  padding-bottom: 30vh;
+  /*padding-bottom: 30vh;*/
 }
-.overlay .col {
-  margin-left: 0;
-}
+
 .card {
   margin: 0 auto 2em auto;
   background-color: rgba(0, 0, 0, 0.3);
@@ -197,12 +195,11 @@ h1 {
 .card-header {
   background-color: #343a40;
   color: white;
-  line-height: 30px;
+  line-height: 1em;
 }
 .card-header svg {
   filter: drop-shadow(-2px 2px 2px black);
 }
-
 .tldr.card {
   max-width: 500px;
   text-align: center;
@@ -221,6 +218,7 @@ h1 {
 .blockchain_wrapper {
   margin-top: 2em;
   text-align: center;
+  min-height: 60vh;
   max-height: 60vh;
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -337,36 +335,63 @@ h1 {
 
 
 /* FullPage Controls */
-#fp-nav {
+#fp-nav.fp-right {
   top: 33%;
+  right: -6px;
 }
-
 .fp-controlArrow {
   top: 66%;
+  /*border: solid white;*/
+  /*border-width: 0 3px 3px 0;*/
+  /*display: inline-block;*/
+  /*padding: 4px;*/
 }
-
 .fp-controlArrow.fp-prev {
-  border-width: 16px 16px 16px 0;
+  border-width: 10px 10px 10px 0;
+  left: 4px;
 }
-
 .fp-controlArrow.fp-next {
-  border-width: 16px 0 16px 16px;
+  border-width: 10px 0 10px 10px;
+  right: 4px;
 }
 
+/* Nav dots on right */
 #fp-nav ul li a span, .fp-slidesNav ul li a span {
-  background-color: #f9f9fb;
+  background-color: white;
+  height: 2px;
+  width: 2px;
 }
-
+#fp-nav ul li a.active span,
+#fp-nav ul li:hover a.active span,
+.fp-slidesNav ul li a.active span,
+.fp-slidesNav ul li:hover a.active span {
+  height: 8px;
+  width: 8px;
+  margin: -6px 0 0 -5px;
+}
 .fp-slidesNav {
   transform: translate(50%, -50%);
   left: 0;
   right: 30px !important;
 }
+
+.next_section_btn {
+  margin-top: 3em;
+  text-align: center;
+}
+.next_section_btn span {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid white;
+}
+
+/* Backgrounds */
 .fp-bg {
   background-size: cover;
   background-position: center;
 }
-
 #intro_section .fp-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/small_brain.jpg');

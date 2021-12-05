@@ -82,6 +82,8 @@
               allowfullscreen/>
     </b-card>
   </div>
+
+  <div class="next_section_btn"><a href="#blockchain" title="Blockchain"><span/></a></div>
 </Page>
 </template>
 

@@ -19,7 +19,7 @@
     </p>
   </Page>
 
-  <HexNotationSlide/>
+  <NotationSlide/>
   <HashFunctionsSlide/>
   <Sha256Slide/>
 </div>
@@ -27,14 +27,14 @@
 
 <script>
 import HashFunctionsSlide from '@/components/sections/slides/HashFunctionsSlide.vue';
-import HexNotationSlide from '@/components/sections/slides/HexNotationSlide.vue';
+import NotationSlide from '@/components/sections/slides/NotationSlide.vue';
 import Sha256Slide from '@/components/sections/slides/Sha256Slide.vue';
 import Page from '@/components/Page.vue';
 
 export default {
   components: {
     HashFunctionsSlide,
-    HexNotationSlide,
+    NotationSlide,
     Page,
     Sha256Slide
   }

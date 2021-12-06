@@ -14,8 +14,8 @@
     </p>
 
     <p>
-      The goal of this demo is to show that Bitcoin is backed by not just it's massive computer network, but by time
-      itself. The demo will start with underlying concepts such as hash functions and move on to show
+      The goal of this demo is to show that Bitcoin is backed by a game of probabilities called mining.
+      The demo will start with underlying concepts such as hash functions and move on to show
       blockchain, proof-of-work, mining, and the difficulty-adjustment that regulates the timechain.
     </p>
 

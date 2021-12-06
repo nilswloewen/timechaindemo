@@ -211,16 +211,23 @@ h1 {
   box-shadow: -1px 2px 4px 2px #f79413;
   border-color: #f79413;
 }
-
 .card.info_card {
   box-shadow: -1px 2px 4px 2px #17a2b8;
   border-color: #17a2b8;
 }
-
 .card.tool_card {
+  box-shadow: -1px 2px 4px 2px rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.card.definition_card {
   box-shadow: -1px 2px 4px 2px #6471F7;
   border-color: #6471F7;
 }
+.card.quote_card {
+  box-shadow: -1px 2px 4px 2px #A01CF2;
+  border-color: #A01CF2;
+}
+
 
 .blockchain_wrapper {
   margin-top: 2em;

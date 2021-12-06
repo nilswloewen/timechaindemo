@@ -66,14 +66,24 @@
     </p>
 
     <b-card id="example_block" no-body class="block_card" style="box-shadow: -1px 2px 5px 0 #14E3FD;">
-      <!--Hash-->
-      <b-list-group class="header update_box_shadow" style="background-color: #14E3FD;" :key="blockHash">
-        <div class="list label">
-          <span class="float-left">Block Hash (Genesis Block) </span>
-          <span class="float-right"> #0 </span>
-        </div>
-        <div class="list value border-0"> {{ blockHash }}</div>
-      </b-list-group>
+      <b-card-header class="block_header" style="background-color: #14E3FD;" :key="blockHash">
+        <b-container>
+          <b-row>
+            <b-col>
+              <div class="text-left">Block #0</div>
+            </b-col>
+            <b-col>
+              <div class="text-center">Hash</div>
+            </b-col>
+            <b-col class="text-right">(Genesis Block)</b-col>
+          </b-row>
+          <b-row>
+            <b-col class="hash_wrapper text-left">
+              <span class="hash_value valid"> {{ blockHash }} </span>
+            </b-col>
+          </b-row>
+        </b-container>
+      </b-card-header>
 
       <!--Data-->
       <div class="list label">Data</div>
@@ -171,4 +181,35 @@ export default {
 .fp-viewing-blockchain-simple_blockchain .fp-controlArrow.fp-next {
   display: none;
 }
+
+/* I don't like that I copied this from BlockCard, but here I am. */
+.card-header.block_header {
+  text-shadow: none;
+  color: black;
+  text-align: center;
+  padding: 12px 0 0 0;
+  line-height: 1em;
+  border: 0;
+  display: flex;
+}
+.card-header.block_header .col {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.hash_wrapper {
+  margin-top: 4px;
+  padding-bottom: 2px;
+  word-wrap: normal;
+  overflow: auto;
+  line-height: 1.2em;
+  border: 0;
+}
+.hash_value {
+  text-shadow: none;
+  color: black;
+  font-size: 0.875rem;
+  padding-top: 6px;
+  padding-bottom: 2px;
+}
+
 </style>

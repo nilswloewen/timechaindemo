@@ -31,6 +31,7 @@ class DemoBlockHeader extends BlockHeader {
       'Chuck',
       'Craig',
       'Dan',
+      'Da5id',
       'Eve',
       'Yves',
       'Faythe',

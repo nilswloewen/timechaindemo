@@ -2,8 +2,12 @@
 <Page slide data-anchor="notation">
   <h1>Notation</h1>
 
+  <TldrCard title="tl;dr (Too Long; Didn't Read)">
+    Numbers can be written in different ways, but they are still just numbers.
+  </TldrCard>
+
   <p>
-    <b>Numbers can be written with different notation styles for different use cases.</b>
+    Numbers are written with different notation styles for different use cases.
     While computers think in 1's and 0's,
     binary notation is not easy for humans to read. Decimal notation is easy to read, but
     it might not be the most compact way to store values.
@@ -28,12 +32,6 @@
       {{ encoding[activeEncoding] }} notation
     </b-card-body>
   </InfoCard>
-
-  <hr>
-
-  <TldrCard title="tl;dr (Too Long; Didn't Read)">
-    Numbers can be written in different ways, but they are still just numbers.
-  </TldrCard>
 
   <hr>
 
@@ -69,8 +67,9 @@
   </InfoCard>
   <hr>
 
+  <h4>Exponential Notation</h4>
   <p>
-    Very large numbers can be written in a shorthand form called <b>Exponential Notation</b>.
+    Very large numbers can be written in a shorthand form called exponential notation.
     You can basically ignore everything but the last number and think <q>I don't know what this
     number is but it's like this many digits long!</q>
   </p>

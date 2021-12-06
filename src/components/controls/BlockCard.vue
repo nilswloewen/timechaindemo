@@ -16,7 +16,7 @@
             <div class="text-left">Block #{{ block.height.toLocaleString() }}</div>
           </b-col>
           <b-col>
-            <div class="text-center"> Hash </div>
+            <div class="text-center"> Hash</div>
           </b-col>
           <b-col class="text-right">
             &nbsp;<span v-if="block.height === 0"> (Genesis Block)</span>
@@ -42,7 +42,8 @@
                         :max="blockHeightMax" :min="0" type="number" size="sm"/>
           <b-button @click="$emit('update-block-height-latest')" variant="primary" size="sm"
                     style="border-top-left-radius: 0; border-bottom-left-radius: 0"
-          >Latest</b-button>
+          >Latest
+          </b-button>
         </b-input-group>
       </div>
     </template>
@@ -92,8 +93,8 @@
         <b-list-group class="float-left">
           <div class="list label">Nonce</div>
           <div class="list value">
-            <template v-if="maskNonce && !isHashValid"> ???????? </template>
-            <template v-else> {{ block.header.nonce }} </template>
+            <template v-if="maskNonce && !isHashValid"> ????????</template>
+            <template v-else> {{ block.header.nonce }}</template>
           </div>
         </b-list-group>
       </div>
@@ -118,7 +119,7 @@ export default {
     showReal: Boolean,
     showNonce: Boolean,
     localEncoding: String,
-    maskNonce: Boolean,
+    maskNonce: Boolean
   },
 
   data() {
@@ -170,6 +171,7 @@ export default {
   padding: 0 2px;
   color: black;
 }
+
 .invalid_hash {
   /*border-radius: 4px;*/
   /*background-color: #b72919;*/
@@ -190,6 +192,7 @@ export default {
   padding-left: 5px;
   padding-right: 5px;
 }
+
 .hash_wrapper {
   margin-top: 4px;
   padding-bottom: 2px;
@@ -198,6 +201,7 @@ export default {
   line-height: 1.2em;
   border: 0;
 }
+
 .hash_value {
   text-shadow: none;
   color: black;
@@ -209,6 +213,7 @@ export default {
 .update_box_shadow {
   animation: box_shadow 2s;
 }
+
 @keyframes box_shadow {
   from {
     box-shadow: 0 0 4px 4px white;

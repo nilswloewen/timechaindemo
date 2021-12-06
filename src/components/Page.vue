@@ -30,6 +30,6 @@ export default {
       if (this.slide) return 'slide';
       return 'section';
     }
-  },
+  }
 };
 </script>

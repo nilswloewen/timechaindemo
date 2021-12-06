@@ -17,7 +17,8 @@
     For UX inspiration:
     <ul>
       <li>
-        <a href="https://BlockchainDemo.io" target="_blank">BlockchainDemo.io</a> - Also has a great demo of Bitcoin's Peer-to-Peer (P2P) Network
+        <a href="https://BlockchainDemo.io" target="_blank">BlockchainDemo.io</a> - Also has a great demo of Bitcoin's
+        Peer-to-Peer (P2P) Network
       </li>
     </ul>
   </div>

@@ -1,11 +1,6 @@
 <template>
-<b-card class="mining_controls tool_card" no-body>
-  <b-card-header class="border-bottom">
-    <b-icon-wrench/> Mining Block #{{ block.height }}
-    <b-button class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')" size="sm">
-      <b-icon-vector-pen/>
-    </b-button>
-  </b-card-header>
+<ToolCard class="mining_controls" :title="`Mining Block #${block.height}`"
+          encoding-btn v-on:rotate-encoding="$emit('rotate-encoding')">
 
   <!-- Max -->
   <div class="list label"> Max</div>
@@ -30,7 +25,7 @@
       <b-input-group size="sm" class="float-right">
         <b-form-input @change="onNonceChange"
                       :value="block.header.nonce" :state="block.isHashValid"
-                      type="number" :min="0" :max="4294967295" size="sm" :disabled="block.isHashValid" />
+                      type="number" :min="0" :max="4294967295" size="sm" :disabled="block.isHashValid"/>
         <b-button size="sm" @click="onIncrementNonce" :disabled="block.isHashValid"
                   style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
           +1
@@ -62,17 +57,19 @@
     </span>
 
     <b-button v-if="showSolutionBtn" @click="$emit('show-solution')" size="sm"
-              :disabled="block.isHashValid" class="float-right">Show Solution</b-button>
+              :disabled="block.isHashValid" class="float-right">Show Solution
+    </b-button>
   </div>
-
-</b-card>
+</ToolCard>
 </template>
 
 <script>
 import Block from '@/services/block/Block';
 import Num from '@/services/Num';
+import ToolCard from '@/components/cards/ToolCard';
 
 export default {
+  components: { ToolCard },
   props: {
     block: Block,
     hashMax: Num,
@@ -82,7 +79,7 @@ export default {
     localEncoding: String,
     showGoBrrr: Boolean,
     showSolutionBtn: Boolean,
-    target: Num,
+    target: Num
   },
 
   computed: {
@@ -110,13 +107,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.card.mining_controls,
-.card.mining_controls .card-header {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-.mining_controls .value {
-  text-align: right;
-}
-</style>

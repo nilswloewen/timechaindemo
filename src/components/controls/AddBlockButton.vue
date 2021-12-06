@@ -1,13 +1,6 @@
 <template>
 <div class="add_block_wrapper">
-  <b-card no-body class="tool_card">
-    <b-card-header>
-      <b-icon-wrench/> Add block
-      <b-button class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')" size="sm">
-        <b-icon-vector-pen/>
-      </b-button>
-    </b-card-header>
-
+  <ToolCard title="Add Block" encoding-btn v-on:rotate-encoding="$emit('rotate-encoding')">
     <b-card-body>
       <b-input-group prepend="Data" size="sm">
         <b-form-input v-model="newBlockData" :disabled="disableAddBlockBtn"
@@ -24,12 +17,15 @@
         </b-button>
       </b-input-group>
     </b-card-body>
-  </b-card>
+  </ToolCard>
 </div>
 </template>
 
 <script>
+import ToolCard from '@/components/cards/ToolCard';
+
 export default {
+  components: { ToolCard },
   props: {
     disableAddBlockBtn: Boolean
   },

@@ -1,5 +1,5 @@
 <template>
-<ToolCard label="Target" :header-addon="target[localEncoding]"
+<ToolCard title="Target" :header-addon="target[localEncoding]"
           encoding-btn v-on:rotate-encoding="$emit('rotate-encoding')">
 
   <b-input-group v-if="!hideRange" prepend="Min 1" size="sm" append="Max">
@@ -38,7 +38,7 @@ export default {
     numerator: null,
     probability: null,
     target: Num,
-    targetMax: Num,
+    targetMax: Num
   },
   computed: {
     getProbability() {

@@ -9,11 +9,11 @@ export default {
         'rgba(20, 227, 253, 1)',
         '#B983FF',
         '#6471F7',
-        '#A01CF2',
+        '#A01CF2'
       ],
       disableAddBlockBtn: true,
       guesses: [],
-      newBlockData: '',
+      newBlockData: ''
     };
   },
   async mounted() {
@@ -136,7 +136,7 @@ export default {
     async updateData(event, index) {
       this.blocks[index].header.data = event.target.value;
       await this.delayedUpdate(index);
-    },
+    }
 
   }
 };

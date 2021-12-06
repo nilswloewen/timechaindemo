@@ -15,7 +15,8 @@
   <p class="text-center">
     <b-button class="rotate_encoding_btn" @click="rotateEncoding" size="sm">
       <b-icon-vector-pen/>
-    </b-button>  </p>
+    </b-button>
+  </p>
   <p>
     Try clicking it to see different ways numbers are represented.
   </p>
@@ -27,13 +28,12 @@
       {{ encoding[activeEncoding] }} notation
     </b-card-body>
   </InfoCard>
+
   <hr>
 
-  <b-card no-body class="tldr_card" header="tl;dr (Too Long; Didn't Read)">
-    <b-card-body>
-      Numbers can be written in different ways, but they are still just numbers.
-    </b-card-body>
-  </b-card>
+  <TldrCard title="tl;dr (Too Long; Didn't Read)">
+    Numbers can be written in different ways, but they are still just numbers.
+  </TldrCard>
 
   <hr>
 
@@ -49,7 +49,7 @@
     Hexadecimal notation uses letters a-f for values 10-15.
   </p>
 
-  <b-card id="hex_table" no-body header="Ways to write 0-15" class="info_table">
+  <InfoCard id="hex_table" title="Ways to write 0-15">
     <b-table-simple small>
       <b-thead>
         <b-tr>
@@ -66,8 +66,7 @@
         </b-tr>
       </b-tbody>
     </b-table-simple>
-  </b-card>
-
+  </InfoCard>
   <hr>
 
   <p>
@@ -76,7 +75,8 @@
     number is but it's like this many digits long!</q>
   </p>
 
-  <b-card id="exponential_table" no-body header="Exponential Notation" class="info_table">
+  <InfoCard id="exponential_table" title="Exponential Notation">
+
     <b-table-simple small>
       <b-tbody>
         <b-tr v-for="(row, index) in expRows" :key="index">
@@ -86,7 +86,7 @@
         </b-tr>
       </b-tbody>
     </b-table-simple>
-  </b-card>
+  </InfoCard>
 
   <hr>
 
@@ -94,11 +94,7 @@
     Try changing the values in the notation converter and try to predict how the other notations will change...
   </p>
 
-  <b-card no-body id="hex_converter" class="tool_card">
-    <b-card-header>
-      <b-icon-wrench/> Notation <b-icon-arrow-left-right/> Converter
-    </b-card-header>
-
+  <ToolCard title="Notation Converter">
     <div class="list label">Hexadecimal (base 16)</div>
     <div class="list value">
       <b-form-input @keyup="onHex" :value="Number(val).toString(16)"/>
@@ -116,7 +112,7 @@
     <div class="list value">
       <b-form-input :value="Number(val).toString(2)" @keyup="onBin"/>
     </div>
-  </b-card>
+  </ToolCard>
 
 </Page>
 </template>
@@ -126,14 +122,18 @@ import Page from '@/components/Page.vue';
 import Num from '@/services/Num';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import InfoCard from '@/components/cards/InfoCard';
+import TldrCard from '@/components/cards/TldrCard';
+import ToolCard from '@/components/cards/ToolCard';
 
 export default {
   mixins: [
     EncodingMixin
   ],
   components: {
+    ToolCard,
     InfoCard,
-    Page
+    Page,
+    TldrCard
   },
   data() {
     return {
@@ -160,7 +160,7 @@ export default {
       expRows: [
         { val: 21_000_000, name: 'Twenty-one million' },
         { val: 100_000_000_000_000, name: 'One-hundred Trillion' },
-        { val: Number('1e+100'), name: 'A googol' },
+        { val: Number('1e+100'), name: 'A googol' }
       ]
     };
   },
@@ -213,13 +213,16 @@ export default {
   overflow-x: auto;
   overflow-wrap: normal;
 }
+
 #exponential_table td:nth-child(1) {
   padding-left: 1.25rem;
 }
+
 #exponential_table td:nth-child(2) {
   text-align: right;
   max-width: 212px;
 }
+
 #exponential_table td:nth-child(3) {
   text-align: right;
   padding-right: 1.25rem;

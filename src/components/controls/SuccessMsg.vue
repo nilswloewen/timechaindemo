@@ -24,7 +24,10 @@
       </template>
 
       <div class="text-center mt-2">
-        <b-button @click="slideLeft"><b-icon-arrow-left/> Add the next block</b-button>
+        <b-button @click="slideLeft">
+          <b-icon-arrow-left/>
+          Add the next block
+        </b-button>
       </div>
     </b-card-body>
   </b-card>
@@ -35,7 +38,7 @@
 export default {
   methods: {
     slideLeft() {
-      fullpage_api.moveSlideLeft()
+      fullpage_api.moveSlideLeft();
     }
   },
   props: {
@@ -44,9 +47,9 @@ export default {
     estTime: Object,
     isHashValid: Boolean,
     numOfTries: Number,
-    timeToMine: Number,
+    timeToMine: Number
   }
-}
+};
 </script>
 
 <style>

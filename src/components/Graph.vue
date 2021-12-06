@@ -137,16 +137,16 @@ export default {
       this.ctx.font = '16px Fira Code';
       this.ctx.direction = 'ltr';
       this.ctx.fillStyle = this.winningColor;
-      this.ctx.fillText( 'Target', this.zero.x - 64, y + 6 );
+      this.ctx.fillText('Target', this.zero.x - 64, y + 6);
     },
 
     drawMinMax() {
       this.ctx.font = '16px Fira Code';
 
-      this.ctx.fillStyle = 'rgba(255, 255, 255, 0.4)'
+      this.ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
       this.ctx.fillText('Max', this.zero.x - 14, this.yPad - 10);
 
-      this.ctx.fillStyle = 'rgba(255, 255, 255, 0.6)'
+      this.ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
       this.ctx.fillText('Min 0', this.zero.x - 14, this.zero.y + 24);
     },
 

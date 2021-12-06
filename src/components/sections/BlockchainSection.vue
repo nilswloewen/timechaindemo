@@ -12,7 +12,7 @@
           change the data without changing the hash.
         </p>
         <hr>
-          In Bitcoin a block stores a set of transactions.
+        In Bitcoin a block stores a set of transactions.
       </b-card-body>
     </b-card>
 
@@ -41,12 +41,10 @@
       who controls how much bitcoin.
     </p>
 
-    <b-card no-body class="tldr_card" header="tl;dr">
-      <b-card-body>
-        A blockchain is used to establish an order of events in the ledger <b>to prove that one
-        transaction came before another</b>.
-      </b-card-body>
-    </b-card>
+    <TldrCard>
+      A blockchain is used to establish an order of events in the ledger <b>to prove that one
+      transaction came before another</b>.
+    </TldrCard>
 
     <hr>
 
@@ -59,8 +57,8 @@
     <b-card class="definition_card">
       <h4><a href="https://www.etymonline.com/word/genesis" target="_blank">genesis (n.)</a></h4>
       <hr>
-        Greek genesis "origin, creation, generation," from gignesthai "to be born," related to genos
-        "race, birth, descent".
+      Greek genesis "origin, creation, generation," from gignesthai "to be born," related to genos
+      "race, birth, descent".
     </b-card>
 
     <p>
@@ -74,7 +72,7 @@
           <span class="float-left">Block Hash (Genesis Block) </span>
           <span class="float-right"> #0 </span>
         </div>
-        <div class="list value border-0"> {{ blockHash}} </div>
+        <div class="list value border-0"> {{ blockHash }}</div>
       </b-list-group>
 
       <!--Data-->
@@ -134,6 +132,7 @@ import EncodingMixin from '@/mixins/EncodingMixin';
 import TargetMixin from '@/mixins/TargetMixin';
 import Page from '@/components/Page.vue';
 import { sha256dFromText } from '@/services/sha256_utils';
+import TldrCard from '@/components/cards/TldrCard';
 
 export default {
   mixins: [
@@ -142,6 +141,7 @@ export default {
     TargetMixin
   ],
   components: {
+    TldrCard,
     AddBlockButton,
     BlockCard,
     Page
@@ -150,7 +150,7 @@ export default {
     return {
       data: 'The Times 03/Jan/2009 Chancellor on brink of second bailout for banks',
       prevHash: ''.padEnd(64, '0'),
-      blockHash: 'f87efc353bf272c57c8b8dcfae6e98e1ea1349dc70b8be4292f10fc6ffacc162',
+      blockHash: 'f87efc353bf272c57c8b8dcfae6e98e1ea1349dc70b8be4292f10fc6ffacc162'
     };
   },
   methods: {

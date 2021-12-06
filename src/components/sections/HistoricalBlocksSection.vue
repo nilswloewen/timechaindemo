@@ -37,7 +37,7 @@
             hide-range
             :target="target"
             :targetMax="targetMax"
-            v-on:rotate-encoding="rotateEncoding" />
+            v-on:rotate-encoding="rotateEncoding"/>
   </Page>
 
   <div class="slide" data-anchor="real_mining" id="real_mining_slide">
@@ -62,7 +62,7 @@
               v-on:start-mining="startMining"
               v-on:stop-mining="stopMining"
               v-on:show-solution="showSolution"
-              v-on:update-nonce="updateNonce" />
+              v-on:update-nonce="updateNonce"/>
           </b-col>
         </b-row>
       </b-container>
@@ -97,7 +97,7 @@ export default {
     MiningControls,
     Page,
     SuccessMsg,
-    Target,
+    Target
   },
   data() {
     return {
@@ -106,7 +106,7 @@ export default {
       mempool: new Mempool(),
       isMining: false,
       originalNonce: 0,
-      hideNonce: false,
+      hideNonce: false
     };
   },
   async mounted() {
@@ -154,8 +154,8 @@ export default {
       const coefficient = hex.slice(2);
 
       const bytes = parseInt(exponent, 16) * 2;
-      const target = coefficient.padEnd(bytes , '0');
-      return new Num(BigInt(`0x${target}`), 64);
+      const target = coefficient.padEnd(bytes, '0');
+      return new Num(BigInt(`0x${ target }`), 64);
     },
     setTarget() {
       this.target = this.bitsToTarget(this.block.header.bits);
@@ -185,7 +185,7 @@ export default {
       }
 
       this.isMining = false;
-    },
+    }
   }
 };
 </script>

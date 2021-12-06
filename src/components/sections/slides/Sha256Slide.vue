@@ -13,54 +13,29 @@
     An output of 256 bits means there are 2<sup>256</sup>-1 possible output hashes.
   </p>
 
-  <b-card no-body class="info_card">
-    <b-card-header>
-      <span class="float-left">Number of possible hashes</span>
-      <b-button class="rotate_encoding_btn float-right" @click="rotateEncoding" size="sm">
-        <b-icon-vector-pen/>
-      </b-button>
-    </b-card-header>
+  <ToolCard title="Number of possible hashes" encoding-btn v-on:rotate-encoding="rotateEncoding">
     <div class="list value pt-2">
       {{ hashMax[encoding[activeEncoding]] }}
     </div>
-  </b-card>
+  </ToolCard>
 
   <p>
     For some context, it is estimated that there are
-    <a href="https://www.liverpoolmuseums.org.uk/stories/which-greater-number-of-atoms-universe-or-number-of-chess-moves">
+    <a
+      href="https://www.liverpoolmuseums.org.uk/stories/which-greater-number-of-atoms-universe-or-number-of-chess-moves">
       ~10<sup>78</sup> atoms in the observable universe</a>.
     This means that every atom in the universe could have it's own SHA-256 hash!
   </p>
 
   <hr>
 
-  <b-card no-body class="tldr_card" header="tl;dr">
-    <b-card-body>
-      A hash is an absurdly large number which makes the math really hard &mdash; which is why people trust it.
-    </b-card-body>
-  </b-card>
+  <TldrCard>
+    A hash is an absurdly large number which makes the math really hard &mdash; which is why people trust it.
+  </TldrCard>
 
   <hr>
 
-  <b-card no-body class="mt-4 tool_card">
-    <b-card-header>
-      <span class="float-left"><b-icon-wrench/> SHA-256 Calculator </span>
-      <b-button class="rotate_encoding_btn float-right" @click="rotateEncoding" size="sm">
-        <b-icon-vector-pen/>
-      </b-button>
-      <b-button class="rotate_encoding_btn float-right mr-2" v-b-toggle.collapse_note size="sm">
-        <b-icon-info-circle/>
-      </b-button>
-    </b-card-header>
-
-    <b-collapse id="collapse_note">
-      <b-card-body class="border-bottom pb-0">
-        In this demo all hashes are calculated as double SHA-256 or sha256d,
-        exactly as bitcoin-core does it.
-        <p>swapEndian( sha256( sha256( data ) ) )</p>
-      </b-card-body>
-    </b-collapse>
-
+  <ToolCard title="SHA-256 Calculator" encoding-btn v-on:rotate-encoding="rotateEncoding">
     <div class="list label">Input</div>
     <div class="list value">
       <b-input-group prepend="Data" size="sm">
@@ -70,7 +45,13 @@
 
     <div class="list label">Output Hash</div>
     <div class="list value">{{ hash[encoding[activeEncoding]] }}</div>
-  </b-card>
+  </ToolCard>
+
+  <div>
+    In this demo all hashes are calculated as double SHA-256 or sha256d,
+    exactly as bitcoin-core does it.
+    <p>swapEndian( sha256( sha256( data ) ) )</p>
+  </div>
 
   <hr>
 
@@ -95,13 +76,19 @@ import EncodingMixin from '@/mixins/EncodingMixin';
 import Page from '@/components/Page.vue';
 import { sha256dFromText } from '@/services/sha256_utils';
 import Num from '@/services/Num';
+import InfoCard from '@/components/cards/InfoCard';
+import ToolCard from '@/components/cards/ToolCard';
+import TldrCard from '@/components/cards/TldrCard';
 
 export default {
   mixins: [
     EncodingMixin
   ],
   components: {
-    Page
+    TldrCard,
+    InfoCard,
+    Page,
+    ToolCard
   },
   data() {
     return {

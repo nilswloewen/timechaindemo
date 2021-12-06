@@ -15,21 +15,18 @@
 
     <hr>
 
-    <b-card no-body class="tldr_card" header="tl;dr | Mining Algorithm">
-      <b-card-body class="text-left">
-        <ol>
-          <li> Pick a random number (<b>nonce</b>)</li>
-          <li> Calculate <b>hash</b> of ( data & <b>nonce</b> )</li>
-          <li> If <b>hash</b> is less than the <b>target</b>
-            <ul>
-              <li> The hash is valid and the block will be added to the blockchain! </li>
-              <li> If not &mdash; go back to step 1 and try again!</li>
-            </ul>
-          </li>
-        </ol>
-      </b-card-body>
-    </b-card>
-
+    <TldrCard title="tl;dr | Mining Algorithm">
+      <ol>
+        <li> Pick a random number (<b>nonce</b>)</li>
+        <li> Calculate <b>hash</b> of ( data & <b>nonce</b> )</li>
+        <li> If <b>hash</b> is less than the <b>target</b>
+          <ul>
+            <li> The hash is valid and the block will be added to the blockchain!</li>
+            <li> If not &mdash; go back to step 1 and try again!</li>
+          </ul>
+        </li>
+      </ol>
+    </TldrCard>
     <b-card no-body class="img_card">
       <img alt="That's just a dice game with extra steps!"
            class="card-img" src="/assets/backgrounds/rick_dice_game.jpg"/>
@@ -179,6 +176,7 @@ import Page from '@/components/Page.vue';
 import SuccessMsg from '@/components/controls/SuccessMsg';
 import Target from '@/components/controls/Target.vue';
 import TargetMixin from '@/mixins/TargetMixin';
+import TldrCard from '@/components/cards/TldrCard';
 
 export default {
   mixins: [
@@ -187,6 +185,7 @@ export default {
     TargetMixin
   ],
   components: {
+    TldrCard,
     AddBlockButton,
     BlockCard,
     Graph,
@@ -221,7 +220,7 @@ export default {
 }
 
 #pow_mining_slide .mining_controls {
-  max-width: 256px;
+  max-width: 290px;
 }
 
 </style>

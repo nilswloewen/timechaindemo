@@ -1,10 +1,10 @@
 <template>
-<ToolCard label="Difficulty">
+<ToolCard title="Difficulty">
 
   <b-card-body class="text-center">
     <p>
       <b-button @click="$emit('calibrate-hps')" size="sm" variant="primary" class="mr-2">Your Device</b-button>
-      <b-button @click="$emit('show-antminer-hashrate')" size="sm" class="mr-2"> Antminer s9 </b-button>
+      <b-button @click="$emit('show-antminer-hashrate')" size="sm" class="mr-2"> Antminer s9</b-button>
       <b-button @click="$emit('show-global-hashrate')" size="sm"> Global</b-button>
     </p>
 
@@ -53,7 +53,7 @@ export default {
     hashrate: Number,
     hashrateLong: String,
     hashrateUnit: String,
-    hashrateUnits: Array,
+    hashrateUnits: Array
   },
   methods: {
     updateHashrate(newHashrate) {
@@ -67,9 +67,9 @@ export default {
     },
     updateBlocktimeUnit(newBlocktimeUnit) {
       this.$emit('update-blocktime-unit', newBlocktimeUnit);
-    },
+    }
   }
-}
+};
 </script>
 
 <style>
@@ -78,6 +78,7 @@ export default {
   width: 96px;
   max-width: 96px;
 }
+
 .hashrate_wrapper,
 .blocktime_wrapper {
   display: inline-block;

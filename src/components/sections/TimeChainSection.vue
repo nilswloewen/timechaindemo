@@ -33,7 +33,7 @@
     </p>
 
     <b-card class="definition_card">
-      <h4>Timechain</h4>
+      <h4>Timechain (n.)</h4>
       <hr>
       A blockchain that grows at a fixed interval, regardless of computing power.
     </b-card>
@@ -85,7 +85,7 @@
               v-on:update-blocktime-unit="updateBlocktimeUnit"
               v-on:calibrate-hps="calibrateHps"
               v-on:show-antminer-hashrate="onAntminer"
-              v-on:show-global-hashrate="onGlobal" />
+              v-on:show-global-hashrate="onGlobal"/>
 
             <Target v-on:updateTarget="updateTargetAndBlocktime"
                     v-on:rotate-encoding="rotateEncoding"
@@ -425,6 +425,6 @@ export default {
 }
 
 #timechain_mining_slide .mining_controls {
-  max-width: 240px;
+  max-width: 290px;
 }
 </style>

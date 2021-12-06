@@ -20,7 +20,7 @@ class DemoBlockHeader extends BlockHeader {
   static getRandomData() {
     const { sender, receiver } = this.getNames();
     const randBtc = Math.floor(Math.random() * 99 + 1);
-    return `${sender} sent ${receiver} ${randBtc}₿`;
+    return `${ sender } sent ${ receiver } ${ randBtc }₿`;
   }
 
   static getNames() {
@@ -46,7 +46,7 @@ class DemoBlockHeader extends BlockHeader {
       'Trudy',
       'Victor',
       'Walter',
-      'Wendy',
+      'Wendy'
     ];
 
     const actors = { sender: '', receiver: '' };

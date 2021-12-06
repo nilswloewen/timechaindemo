@@ -19,13 +19,13 @@ Vue.use(VueFullPage);
 Vue.mixin({
   data() {
     return {
-      hexDigits: 2,
+      hexDigits: 2
     };
   },
   methods: {
     moveTo(anchor, index) {
       window.fullpage_api.moveTo(anchor, index);
-    },
+    }
   }
 });
 

@@ -55,7 +55,7 @@ export default {
         scrollOverflowResetKey: 'bmlsc2xvZXdlbi5jb21fVVFuYzJOeWIyeHNUM1psY21ac2IzZFNaWE5sZEE9PVUyRw==',
 
         scrollHorizontally: true,
-        scrollHorizontallyKey: 'bmlsc2xvZXdlbi5jb21fV08zYzJOeWIyeHNTRzl5YVhwdmJuUmhiR3g1MjZ2',
+        scrollHorizontallyKey: 'bmlsc2xvZXdlbi5jb21fV08zYzJOeWIyeHNTRzl5YVhwdmJuUmhiR3g1MjZ2'
       },
       table_of_contents: [
         { anchor: 'intro', label: 'Intro' },
@@ -136,6 +136,7 @@ a {
   color: white;
   text-decoration: underline;
 }
+
 a:hover {
   color: #f79413;
 }
@@ -144,13 +145,16 @@ a:hover {
   margin-bottom: 0;
   color: white;
 }
+
 tr {
   background-color: transparent;
 }
+
 hr {
   border-top: 1px solid gray;
   margin: 1em 0;
 }
+
 h1 {
   margin-bottom: 1em;
   text-align: center;
@@ -162,10 +166,12 @@ h1 {
   width: 4px;
   height: 4px;
 }
+
 *::-webkit-scrollbar-track,
 .iScrollIndicator {
   background: none !important;
 }
+
 *::-webkit-scrollbar-thumb {
   background-color: #17a2b8;
   border-radius: 20px;
@@ -177,6 +183,7 @@ h1 {
   margin-left: auto;
   margin-right: auto;
 }
+
 .page_content {
   padding-top: 3em;
   padding-bottom: 30vh;
@@ -188,34 +195,31 @@ h1 {
   max-width: 625px;
   box-shadow: -2px 3px 10px 2px rgba(255, 255, 255, 0.2);
 }
+
 .card-header {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
+
 .card-header svg {
   filter: drop-shadow(-2px 2px 2px black);
 }
 
-/* Cards with Headers */
-/*.tldr_card,*/
-/*.tool_card,*/
-/*.info_card,*/
-/*.block_card,*/
-
-/*.definition_card,*/
-/*.quote_card,*/
-
 .card.tldr_card {
-  /*box-shadow: -1px 2px 4px 2px #f79413;*/
-  /*border-color:  #f79413;*/
+  box-shadow: -1px 2px 4px 2px #f79413;
+  border-color: #f79413;
 }
-.tldr_card .card-header {
-  text-align: center;
-  /*background-color: #f79413;*/
+
+.card.info_card {
+  box-shadow: -1px 2px 4px 2px #17a2b8;
+  border-color: #17a2b8;
 }
-.tldr_card .card-body {
-  /*padding: .2em;*/
+
+.card.tool_card {
+  box-shadow: -1px 2px 4px 2px #6471F7;
+  border-color: #6471F7;
 }
 
 .blockchain_wrapper {
@@ -239,10 +243,12 @@ h1 {
   font-size: 0.875rem;
   padding: 0 5px;
 }
+
 .list.label {
   padding-top: 7px;
   padding-bottom: 0;
 }
+
 .list.value {
   overflow-x: auto;
   word-wrap: normal;
@@ -250,6 +256,7 @@ h1 {
   padding-top: 2px;
   border-bottom: 1px solid darkgray;
 }
+
 .card .value:last-child {
   border-bottom: none;
 }
@@ -293,6 +300,7 @@ h1 {
   background-color: #3CAFAA;
   border-color: #3CAFAA;
 }
+
 .btn-secondary,
 .btn-secondary.disabled,
 .btn-secondary:focus,
@@ -300,6 +308,7 @@ h1 {
   background-color: #7855F5;
   border-color: #7855F5;
 }
+
 .btn-warning,
 .btn-warning:hover {
   background-color: #61e294;
@@ -313,8 +322,9 @@ h1 {
   background-color: #7855F5 !important;
   border-color: #7855F5;
 }
+
 .card.info {
-  box-shadow: -2px 3px 10px 2px  #7855F5;
+  box-shadow: -2px 3px 10px 2px #7855F5;
   border-color: #7855F5;
 }
 
@@ -329,6 +339,7 @@ h1 {
 .input-group > .custom-range:focus {
   background-color: inherit;
 }
+
 .custom-range::-webkit-slider-thumb {
   background-color: #17a2b8;
 }
@@ -341,13 +352,16 @@ h1 {
 .dropdown-menu a {
   text-decoration: none;
 }
+
 .dropdown-menu a:hover {
   color: #17a2b8;
 }
+
 .dropdown-item.active {
   background-color: inherit;
   color: #17a2b8;
 }
+
 .dropdown-item:hover {
   background-color: inherit;
   color: white;
@@ -360,14 +374,17 @@ h1 {
 #fp-nav ul li a span, .fp-slidesNav ul li a span {
   background-color: white;
 }
+
 /* Slides Arrows on bottom third */
 .fp-controlArrow {
   top: 66%;
 }
+
 /* Left Arrow */
 .fp-controlArrow.fp-prev {
   border-width: 16px 16px 16px 0;
 }
+
 /* Right Arrow */
 .fp-controlArrow.fp-next {
   border-width: 16px 0 16px 16px;
@@ -422,6 +439,7 @@ h1 {
   background-size: cover;
   background-position: center;
 }
+
 #intro_section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/small_brain.jpg');

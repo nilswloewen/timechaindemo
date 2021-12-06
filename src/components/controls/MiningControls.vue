@@ -2,7 +2,9 @@
 <b-card class="mining_controls tool_card" no-body>
   <b-card-header class="border-bottom">
     <b-icon-wrench/> Mining Block #{{ block.height }}
-    <b-icon-vector-pen role="button" class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')"/>
+    <b-button class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')" size="sm">
+      <b-icon-vector-pen/>
+    </b-button>
   </b-card-header>
 
   <!-- Max -->
@@ -43,12 +45,20 @@
 
   <div v-if="showGoBrrr" class="list value text-left">
     <b-form-checkbox class="float-left ml-2" style="padding-top: 1px;"
-                     @change="onStartMining" switch :checked="isMining"/>
+                     @change="toggleMining" switch :checked="isMining"/>
+    <b-button @click="toggleMining">
+      <template v-if="!isMining">
+        Start
+      </template>
+      <template v-else>
+        Stop
+      </template>
+    </b-button>
     <span class="float-left" style="padding-top: 3px;">
       Go Brrr (Automate)
-      <br> {{ block.tries }} guesses
+      <br> {{ block.tries.toLocaleString() }} guesses
       <br> {{ block.timeToMine }} Seconds Elapsed
-      <br> {{ (block.tries / block.timeToMine).toFixed(2) }}<sub>H/s</sub>
+      <br> {{ getHps }}<sub>H/s</sub>
     </span>
 
     <b-button v-if="showSolutionBtn" @click="$emit('show-solution')" size="sm"
@@ -75,14 +85,20 @@ export default {
     target: Num,
   },
 
+  computed: {
+    getHps() {
+      if (this.block.timeToMine > 0) {
+        return (this.block.tries / this.block.timeToMine).toFixed(2);
+      }
+    }
+  },
   methods: {
-    onStartMining() {
+    toggleMining() {
       if (this.isMining) {
-        this.isMining = false;
         this.$emit('stop-mining', this.index);
         return;
       }
-      this.isMining = true;
+      this.isMining = !this.isMining;
       this.$emit('start-mining', this.index);
     },
     onNonceChange(newNonce) {

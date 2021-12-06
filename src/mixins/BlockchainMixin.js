@@ -125,6 +125,9 @@ export default {
 
       this.isMining = false;
     },
+    stopMining() {
+      this.isMining = false;
+    },
 
     async updateNonce(nonce, index) {
       this.blocks[index].header.nonce = nonce;

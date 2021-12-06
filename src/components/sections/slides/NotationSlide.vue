@@ -13,8 +13,9 @@
     You will see this notation button later in this demo:
   </p>
   <p class="text-center">
-    <b-icon-vector-pen role="button" class="rotate_encoding_btn" @click="rotateEncoding"/>
-  </p>
+    <b-button class="rotate_encoding_btn" @click="rotateEncoding" size="sm">
+      <b-icon-vector-pen/>
+    </b-button>  </p>
   <p>
     Try clicking it to see different ways numbers are represented.
   </p>
@@ -22,7 +23,9 @@
   <b-card no-body class="info_card">
     <b-card-header>
       Bitcoin's maximum supply
-      <b-icon-vector-pen role="button" class="rotate_encoding_btn float-right" @click="rotateEncoding"/>
+      <b-button class="rotate_encoding_btn float-right" @click="rotateEncoding" size="sm">
+        <b-icon-vector-pen/>
+      </b-button>
     </b-card-header>
     <b-card-body>
       <b>{{ num[encoding[activeEncoding]] }}</b>
@@ -81,7 +84,7 @@
   </p>
 
   <b-card id="exponential_table" no-body header="Exponential Notation" class="info_table">
-    <b-table-simple class="text-center" small>
+    <b-table-simple small>
       <b-tbody>
         <b-tr v-for="(row, index) in expRows" :key="index">
           <b-td>{{ row.name }}</b-td>
@@ -212,9 +215,19 @@ export default {
 }
 
 #exponential_table td {
-  max-width: 100px;
   overflow-x: auto;
   overflow-wrap: normal;
+}
+#exponential_table td:nth-child(1) {
+  padding-left: 1.25rem;
+}
+#exponential_table td:nth-child(2) {
+  text-align: right;
+  max-width: 212px;
+}
+#exponential_table td:nth-child(3) {
+  text-align: right;
+  padding-right: 1.25rem;
 }
 
 </style>

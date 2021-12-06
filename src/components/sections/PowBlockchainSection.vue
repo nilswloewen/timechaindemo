@@ -221,7 +221,7 @@ export default {
 }
 
 #pow_mining_slide .mining_controls {
-  max-width: 240px;
+  max-width: 256px;
 }
 
 </style>

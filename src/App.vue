@@ -63,7 +63,7 @@ export default {
           anchor: 'terms',
           label: 'Terms',
           slides: [
-            { anchor: 'notation', label: 'Numerical Notation' },
+            { anchor: 'notation', label: 'Notation' },
             { anchor: 'hash_functions', label: 'Hash Functions' },
             { anchor: 'sha256', label: 'SHA-256' }
           ]
@@ -189,7 +189,8 @@ h1 {
 .card-header {
   background-color: #343a40;
   color: white;
-  line-height: 1em;
+  line-height: 3em;
+  padding: 0 1.25rem;
 }
 .card-header svg {
   filter: drop-shadow(-2px 2px 2px black);
@@ -211,7 +212,6 @@ h1 {
 .tldr_card .card-header {
   text-align: center;
   /*background-color: #f79413;*/
-  /*padding: .2em;*/
 }
 .tldr_card .card-body {
   /*padding: .2em;*/
@@ -274,6 +274,16 @@ h1 {
   cursor: pointer;
 }
 
+/*.btn {*/
+/*  padding: 0.25rem 0.5rem;*/
+/*  font-size: 0.875rem;*/
+/*  line-height: 1.5;*/
+/*  border-radius: 0.2rem;*/
+/*}*/
+/*.btn .b-icon.bi{*/
+/*  font-size: inherit;*/
+/*}*/
+
 .btn-primary,
 .btn-primary.disabled,
 .btn-primary:focus,
@@ -307,8 +317,10 @@ h1 {
 }
 
 .rotate_encoding_btn {
-  background-color: transparent;
-  border: none;
+  margin-top: 8px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: -2px 3px 10px 2px rgba(255, 255, 255, 0.1);
 }
 
 /* Target range slider */

@@ -141,6 +141,7 @@
               show-go-brrr
               v-on:rotate-encoding="rotateEncoding"
               v-on:start-mining="startMining"
+              v-on:stop-mining="stopMining"
               v-on:update-nonce="updateNonce"/>
 
             <SuccessMsg :block-height="blocks[blockToMine].height"

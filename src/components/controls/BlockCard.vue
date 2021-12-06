@@ -10,10 +10,12 @@
 
     <!--Hash-->
     <div class="header update_box_shadow" :style="`background-color: ${block.color};`" :key="getHash">
-      <div class="list label" style="line-height: 1.2em;">
+      <div class="label">
         Block Hash
         <span v-if="block.height === 0"> (Genesis Block)</span>
-        <b-icon-vector-pen role="button" class="rotate_encoding_btn float-right ml-2" @click="$emit('rotate-encoding')"/>
+        <b-button class="rotate_encoding_btn float-right ml-2" @click="$emit('rotate-encoding')" size="sm">
+          <b-icon-vector-pen/>
+        </b-button>
         <span class="float-right"> #{{ block.height.toLocaleString() }} </span>
       </div>
 
@@ -179,6 +181,9 @@ export default {
   border-bottom-right-radius: 0;
   text-shadow: none;
   color: black;
+}
+.header .label {
+  padding-top: 6px;
 }
 
 .update_box_shadow {

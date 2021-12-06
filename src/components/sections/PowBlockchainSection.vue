@@ -121,7 +121,7 @@
                     v-on:add-block="addBlock"
                     v-on:reset-blocks="resetBlocks"/>
 
-    <div id="blockchainPow" class="text-center mt-4">
+    <div id="blockchainPow" class="blockchain_wrapper mt-4">
       <BlockCard v-for="(block, index) in this.blocks" :key="index"
                  :block="block"
                  :index="index"

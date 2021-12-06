@@ -30,7 +30,7 @@
       <b-input-group size="sm" class="float-right">
         <b-form-input @change="onNonceChange"
                       :value="block.header.nonce" :state="block.isHashValid"
-                      type="number" :min="0" :max="4294967295" size="sm" />
+                      type="number" :min="0" :max="4294967295" size="sm" :disabled="block.isHashValid" />
         <b-button size="sm" @click="onIncrementNonce" :disabled="block.isHashValid"
                   style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
           +1

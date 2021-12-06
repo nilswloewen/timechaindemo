@@ -187,7 +187,7 @@ h1 {
   box-shadow: -2px 3px 10px 2px rgba(255, 255, 255, 0.2);
 }
 .card-header {
-  background-color: #343a40;
+  background-color: rgba(0, 0, 0, 0.8);
   color: white;
   line-height: 3em;
   padding: 0 1.25rem;
@@ -228,6 +228,7 @@ h1 {
 .add_block_wrapper,
 .blockchain_wrapper {
   padding: 0 4px;
+  text-align: center;
 }
 
 .list {

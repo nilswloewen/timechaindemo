@@ -10,6 +10,8 @@ class Block {
     this.color = '#61e294';
     this.isHashValid = true;
     this.prevColor = '';
+    this.timeToMine = 0;
+    this.tries = 0;
   }
 
   async calcHash(hexDigits = 64) {

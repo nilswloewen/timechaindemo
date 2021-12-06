@@ -9,30 +9,27 @@
   <b-card no-body class="block_card" :style="`box-shadow: -1px 2px 5px 0 ${block.color};`">
 
     <!--Hash-->
-    <div class="header update_box_shadow" :style="`background-color: ${block.color};`" :key="getHash">
-      <div class="label">
-        Block Hash
-        <span v-if="block.height === 0"> (Genesis Block)</span>
-        <b-button class="rotate_encoding_btn float-right ml-2" @click="$emit('rotate-encoding')" size="sm">
-          <b-icon-vector-pen/>
-        </b-button>
-        <span class="float-right"> #{{ block.height.toLocaleString() }} </span>
+    <b-card-header class="block_header update_box_shadow" :style="`background-color: ${block.color};`" :key="getHash">
+      <div class="block_label">
+        Block #{{ block.height.toLocaleString() }} | Hash <span v-if="block.height === 0"> (Genesis Block)</span>
+
+<!--        <b-button class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')" size="sm">-->
+<!--          <b-icon-vector-pen/>-->
+<!--        </b-button>-->
       </div>
 
-      <div class="list value border-0">
+      <div class="hash_value">
         <template v-if="isHashValid">
           {{ getHash }}
         </template>
 
         <template v-else>
-          <div class="list value border-0 text-center">
             <span class="invalid_hash" @click="$emit('mine-this-block', index)" role="button">
               {{ getHash }}
             </span>
-          </div>
         </template>
       </div>
-    </div>
+    </b-card-header>
 
     <template v-if="showBlockHeightInput">
       <div class="list label">Height</div>
@@ -176,14 +173,19 @@ export default {
   color: white;
 }
 
-.header {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+.card-header.block_header {
   text-shadow: none;
   color: black;
+  text-align: left;
+  font-size: 0.875rem;
+  line-height: 1em;
 }
-.header .label {
-  padding-top: 6px;
+.block_label {
+}
+.hash_value {
+  overflow-x: auto;
+  word-wrap: normal;
+  min-height: 1em;
 }
 
 .update_box_shadow {

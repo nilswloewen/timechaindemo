@@ -39,26 +39,26 @@
   </div>
 
   <div v-if="showGoBrrr" class="list value text-left">
-    <b-form-checkbox class="float-left ml-2" style="padding-top: 1px;"
-                     @change="toggleMining" switch :checked="isMining"/>
-    <b-button @click="toggleMining">
-      <template v-if="!isMining">
-        Start
-      </template>
-      <template v-else>
-        Stop
-      </template>
-    </b-button>
-    <span class="float-left" style="padding-top: 3px;">
-      Go Brrr (Automate)
-      <br> {{ block.tries.toLocaleString() }} guesses
-      <br> {{ block.timeToMine }} Seconds Elapsed
-      <br> {{ getHps }}<sub>H/s</sub>
-    </span>
+    <div class="list label">Controls</div>
+    <div class="list value">
+      <b-button @click="toggleMining" size="sm">
+        <template v-if="!isMining">Go Brrr (Automate)</template>
+        <template v-else>Stop Mining</template>
+      </b-button>
 
-    <b-button v-if="showSolutionBtn" @click="$emit('show-solution')" size="sm"
-              :disabled="block.isHashValid" class="float-right">Show Solution
-    </b-button>
+      <b-button v-if="showSolutionBtn" @click="$emit('show-solution')" size="sm"
+                :disabled="block.isHashValid" class="float-right">Show Solution
+      </b-button>
+    </div>
+    <div class="list label">Guesses</div>
+    <div class="list value">{{ block.tries.toLocaleString() }} </div>
+
+    <div class="list label">Time Elapsed</div>
+    <div class="list value">{{ block.timeToMine }} </div>
+
+    <div class="list label">Hashrate</div>
+    <div class="list value">{{ getHps }}<sub>H/s</sub></div>
+
   </div>
 </ToolCard>
 </template>

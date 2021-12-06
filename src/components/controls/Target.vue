@@ -1,14 +1,6 @@
 <template>
-<b-card no-body class="target tool_card">
-  <b-card-header>
-    <b-icon-wrench/> Target
-    <b-button class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')" size="sm">
-      <b-icon-vector-pen/>
-    </b-button>
-  </b-card-header>
-  <div class="header_addon list value text-center">
-    {{ target[localEncoding] }}
-  </div>
+<ToolCard label="Target" :header-addon="target[localEncoding]"
+          encoding-btn v-on:rotate-encoding="$emit('rotate-encoding')">
 
   <b-input-group v-if="!hideRange" prepend="Min 1" size="sm" append="Max">
     <b-form-input :title="target[localEncoding]" :value="target.num" @change="onTargetChange" type="range"
@@ -26,13 +18,17 @@
 
   <div class="list label">Average number of guesses to find a valid hash</div>
   <div class="list value">~{{ Number(avgHashes.toFixed(0)).toLocaleString() }}</div>
-</b-card>
+</ToolCard>
 </template>
 
 <script>
+import ToolCard from '@/components/cards/ToolCard';
 import Num from '@/services/Num';
 
 export default {
+  components: {
+    ToolCard
+  },
   props: {
     avgHashes: null,
     denominator: null,

@@ -189,10 +189,9 @@ h1 {
   box-shadow: -2px 3px 10px 2px rgba(255, 255, 255, 0.2);
 }
 .card-header {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.4);
   color: white;
-  line-height: 3em;
-  padding: 0 1.25rem;
+  padding: 0;
 }
 .card-header svg {
   filter: drop-shadow(-2px 2px 2px black);
@@ -320,7 +319,6 @@ h1 {
 }
 
 .rotate_encoding_btn {
-  margin-top: 8px;
   background-color: rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: -2px 3px 10px 2px rgba(255, 255, 255, 0.1);

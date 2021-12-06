@@ -20,20 +20,13 @@
     Try clicking it to see different ways numbers are represented.
   </p>
 
-  <b-card no-body class="info_card">
-    <b-card-header>
-      Bitcoin's maximum supply
-      <b-button class="rotate_encoding_btn float-right" @click="rotateEncoding" size="sm">
-        <b-icon-vector-pen/>
-      </b-button>
-    </b-card-header>
+  <InfoCard title="Bitcoin's Maximum Supply" encoding-btn v-on:rotate-encoding="rotateEncoding">
     <b-card-body>
       <b>{{ num[encoding[activeEncoding]] }}</b>
       <br>
       {{ encoding[activeEncoding] }} notation
     </b-card-body>
-  </b-card>
-
+  </InfoCard>
   <hr>
 
   <b-card no-body class="tldr_card" header="tl;dr (Too Long; Didn't Read)">
@@ -132,12 +125,14 @@
 import Page from '@/components/Page.vue';
 import Num from '@/services/Num';
 import EncodingMixin from '@/mixins/EncodingMixin';
+import InfoCard from '@/components/cards/InfoCard';
 
 export default {
   mixins: [
     EncodingMixin
   ],
   components: {
+    InfoCard,
     Page
   },
   data() {

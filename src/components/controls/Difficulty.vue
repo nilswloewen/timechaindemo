@@ -1,6 +1,5 @@
 <template>
-<b-card no-body class="tool_card">
-  <b-card-header><b-icon-wrench/> Difficulty</b-card-header>
+<ToolCard label="Difficulty">
 
   <b-card-body class="text-center">
     <p>
@@ -37,11 +36,16 @@
     </div>
 
   </b-card-body>
-</b-card>
+</ToolCard>
 </template>
 
 <script>
+import ToolCard from '@/components/cards/ToolCard';
+
 export default {
+  components: {
+    ToolCard
+  },
   props: {
     blocktime: Number,
     blocktimeUnit: String,

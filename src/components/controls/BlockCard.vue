@@ -6,24 +6,33 @@
     <b-icon stacked icon="slash" variant="danger" v-if="!isHashValid"></b-icon>
   </b-iconstack>
 
-  <b-card no-body class="block_card" :style="`box-shadow: -1px 2px 5px 0 ${block.color}; border-color: ${block.color}`">
+  <b-card no-body class="block_card"
+          :style="`box-shadow: -1px 2px 5px 0 ${block.color}; border-color: ${block.color}`">
 
-    <!--Hash-->
     <b-card-header class="block_header update_box_shadow" :style="`background-color: ${block.color};`" :key="getHash">
-      <div class="block_number">Block #{{ block.height.toLocaleString() }}</div>
-
-      <div class="block_label">
-        Hash <span v-if="block.height === 0"> (Genesis Block)</span>
-      </div>
-    </b-card-header>
-
-    <div class="hash_wrapper" :style="`background-color: ${block.color};`">
-      <span :class="`hash_value ${isHashValid ? 'valid' : 'invalid'}`"
-            :role="`${isHashValid ? '' : 'button'}`"
-            @click="$emit('mine-this-block', index)">
+      <b-container>
+        <b-row>
+          <b-col>
+            <div class="text-left">Block #{{ block.height.toLocaleString() }}</div>
+          </b-col>
+          <b-col>
+            <div class="text-center"> Hash </div>
+          </b-col>
+          <b-col class="text-right">
+            &nbsp;<span v-if="block.height === 0"> (Genesis Block)</span>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col class="hash_wrapper text-left">
+            <span v-if="isHashValid" class="hash_value valid"> {{ getHash }} </span>
+            <span v-else class="hash_value invalid" role="button"
+                  @click="$emit('mine-this-block', index)">
               {{ getHash }}
-      </span>
-    </div>
+            </span>
+          </b-col>
+        </b-row>
+      </b-container>
+    </b-card-header>
 
     <template v-if="showBlockHeightInput">
       <div class="list label">Height</div>
@@ -176,22 +185,17 @@ export default {
   border: 0;
   display: flex;
 }
-.block_number {
-  padding-left: 4px;
-  text-align: left;
-  width: 33.33333%;
-}
-.block_label {
-  text-align: center;
-  width: 33.33333%;
-  max-height: 1em;
-  overflow: visible;
-  white-space: nowrap;
+
+.card-header.block_header .col {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .hash_wrapper {
-  padding-left: 4px;
+  margin-top: 4px;
+  padding-bottom: 2px;
   word-wrap: normal;
-  overflow-x: auto;
+  overflow: auto;
+  line-height: 1.2em;
   border: 0;
 }
 .hash_value {

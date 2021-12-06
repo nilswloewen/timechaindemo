@@ -4,7 +4,9 @@
   <b-container>
     <b-row>
       <b-col>
-        <slot/>
+        <div class="page_content">
+          <slot/>
+        </div>
       </b-col>
     </b-row>
   </b-container>

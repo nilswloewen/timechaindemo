@@ -176,6 +176,8 @@ h1 {
   max-width: 590px;
   margin-left: auto;
   margin-right: auto;
+}
+.page_content {
   padding-top: 3em;
   padding-bottom: 30vh;
 }

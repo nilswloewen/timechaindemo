@@ -13,7 +13,7 @@
       <b-container>
         <b-row>
           <b-col>
-            <div class="text-left">Block #{{ block.height.toLocaleString() }}</div>
+            <div class="text-left block_number">Block #{{ block.height.toLocaleString() }}</div>
           </b-col>
           <b-col>
             <div class="text-center"> Hash</div>
@@ -186,6 +186,7 @@ export default {
   line-height: 1em;
   border: 0;
   display: flex;
+  font-weight: normal;
 }
 
 .card-header.block_header .col {
@@ -200,6 +201,9 @@ export default {
   overflow: auto;
   line-height: 1.2em;
   border: 0;
+}
+.block_number {
+  font-weight: bold;
 }
 
 .hash_value {

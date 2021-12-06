@@ -199,6 +199,7 @@ h1 {
 .card-header {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
+  font-weight: bold;
   padding: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -259,6 +260,7 @@ h1 {
 .list.label {
   padding-top: 7px;
   padding-bottom: 0;
+  font-weight: bold;
 }
 
 .list.value {

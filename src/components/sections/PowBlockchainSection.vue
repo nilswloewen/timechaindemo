@@ -12,6 +12,10 @@
       minted bitcoin. The reward started at 50₿ per block and the amount gets halved every 4 years. This is why
       Bitcoin has a <a href="https://en.bitcoin.it/wiki/Controlled_supply">limited supply</a>.
     </p>
+    <p>
+      This demo should show you why Bitcoin's monetary policy is far more rational than the Federal Reserve,
+      who simply say <a href="https://moneyprintergobrrr.com/" target="_blank">Money Printer Go BRRR!</a>
+    </p>
 
     <hr>
 

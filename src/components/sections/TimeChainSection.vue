@@ -105,6 +105,7 @@
 
   <Page data-anchor="timechain_blocks" slide>
     <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
+                    :encoding="encoding[activeEncoding]"
                     v-on:rotate-encoding="rotateEncoding"
                     v-on:add-block="addBlock"
                     v-on:reset-blocks="resetBlocks"/>

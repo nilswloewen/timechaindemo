@@ -6,9 +6,7 @@
         <b-col>&nbsp;</b-col>
         <b-col class="text-center title"> {{ title }}</b-col>
         <b-col class="text-right">
-          <b-button v-if="encodingBtn" class="rotate_encoding_btn" @click="$emit('rotate-encoding')" size="sm">
-            <b-icon-vector-pen/>
-          </b-button>
+          <EncodingBtn v-if="encodingBtn" :encoding="encoding" v-on:rotate-encoding="$emit('rotate-encoding')"/>
         </b-col>
       </b-row>
     </b-container>
@@ -20,11 +18,17 @@
 </template>
 
 <script>
+import EncodingBtn from '@/components/controls/EncodingBtn.vue';
+
 export default {
+  components: {
+    EncodingBtn
+  },
   props: {
     title: String,
-    encodingBtn: Boolean
-  }
+    encodingBtn: Boolean,
+    encoding: String,
+  },
 };
 </script>
 

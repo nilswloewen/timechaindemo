@@ -1,6 +1,6 @@
 <template>
 <ToolCard class="mining_controls" :title="`Mining Block #${block.height}`"
-          encoding-btn v-on:rotate-encoding="$emit('rotate-encoding')">
+          encoding-btn :encoding="localEncoding" v-on:rotate-encoding="$emit('rotate-encoding')">
 
   <!-- Max -->
   <div class="list label"> Max</div>

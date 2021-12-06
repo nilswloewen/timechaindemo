@@ -17,15 +17,14 @@
     You will see this notation button later in this demo:
   </p>
   <p class="text-center">
-    <b-button class="rotate_encoding_btn" @click="rotateEncoding" size="sm">
-      <b-icon-vector-pen/>
-    </b-button>
+    <EncodingBtn :encoding="encoding[activeEncoding]" v-on:rotate-encoding="rotateEncoding"/>
   </p>
   <p>
     Try clicking it to see different ways numbers are represented.
   </p>
 
-  <InfoCard title="Bitcoin's Maximum Supply" encoding-btn v-on:rotate-encoding="rotateEncoding">
+  <InfoCard title="Bitcoin's Maximum Supply" :encoding="encoding[activeEncoding]"
+            encoding-btn v-on:rotate-encoding="rotateEncoding">
     <b-card-body>
       <b>{{ num[encoding[activeEncoding]] }}</b>
       <br>
@@ -123,12 +122,14 @@ import EncodingMixin from '@/mixins/EncodingMixin';
 import InfoCard from '@/components/cards/InfoCard';
 import TldrCard from '@/components/cards/TldrCard';
 import ToolCard from '@/components/cards/ToolCard';
+import EncodingBtn from '@/components/controls/EncodingBtn';
 
 export default {
   mixins: [
     EncodingMixin
   ],
   components: {
+    EncodingBtn,
     ToolCard,
     InfoCard,
     Page,

@@ -13,7 +13,8 @@
     An output of 256 bits means there are 2<sup>256</sup>-1 possible output hashes.
   </p>
 
-  <ToolCard title="Number of possible hashes" encoding-btn v-on:rotate-encoding="rotateEncoding">
+  <ToolCard title="Number of possible hashes"
+            encoding-btn :encoding="encoding[activeEncoding]" v-on:rotate-encoding="rotateEncoding">
     <div class="list value pt-2">
       {{ hashMax[encoding[activeEncoding]] }}
     </div>
@@ -35,7 +36,8 @@
 
   <hr>
 
-  <ToolCard title="SHA-256 Calculator" encoding-btn v-on:rotate-encoding="rotateEncoding">
+  <ToolCard title="SHA-256 Calculator"
+    encoding-btn :encoding="encoding[activeEncoding]" v-on:rotate-encoding="rotateEncoding">
     <div class="list label">Input</div>
     <div class="list value">
       <b-input-group prepend="Data" size="sm">

@@ -6,7 +6,7 @@ export default {
     return {
       blocks: [new Block('', BlockHeader.genesis, 0, '#61e294', 'inherit')],
       colors: [
-        '#14E3FD',
+        'rgba(20, 227, 253, 1)',
         '#B983FF',
         '#6471F7',
         '#A01CF2',

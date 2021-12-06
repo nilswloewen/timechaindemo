@@ -6,30 +6,24 @@
     <b-icon stacked icon="slash" variant="danger" v-if="!isHashValid"></b-icon>
   </b-iconstack>
 
-  <b-card no-body class="block_card" :style="`box-shadow: -1px 2px 5px 0 ${block.color};`">
+  <b-card no-body class="block_card" :style="`box-shadow: -1px 2px 5px 0 ${block.color}; border-color: ${block.color}`">
 
     <!--Hash-->
     <b-card-header class="block_header update_box_shadow" :style="`background-color: ${block.color};`" :key="getHash">
+      <div class="block_number">Block #{{ block.height.toLocaleString() }}</div>
+
       <div class="block_label">
-        Block #{{ block.height.toLocaleString() }} | Hash <span v-if="block.height === 0"> (Genesis Block)</span>
-
-<!--        <b-button class="rotate_encoding_btn float-right" @click="$emit('rotate-encoding')" size="sm">-->
-<!--          <b-icon-vector-pen/>-->
-<!--        </b-button>-->
-      </div>
-
-      <div class="hash_value">
-        <template v-if="isHashValid">
-          {{ getHash }}
-        </template>
-
-        <template v-else>
-            <span class="invalid_hash" @click="$emit('mine-this-block', index)" role="button">
-              {{ getHash }}
-            </span>
-        </template>
+        Hash <span v-if="block.height === 0"> (Genesis Block)</span>
       </div>
     </b-card-header>
+
+    <div class="hash_wrapper" :style="`background-color: ${block.color};`">
+      <span :class="`hash_value ${isHashValid ? 'valid' : 'invalid'}`"
+            :role="`${isHashValid ? '' : 'button'}`"
+            @click="$emit('mine-this-block', index)">
+              {{ getHash }}
+      </span>
+    </div>
 
     <template v-if="showBlockHeightInput">
       <div class="list label">Height</div>
@@ -168,24 +162,44 @@ export default {
   color: black;
 }
 .invalid_hash {
-  border-radius: 4px;
-  background-color: #b72919;
-  color: white;
+  /*border-radius: 4px;*/
+  /*background-color: #b72919;*/
+  /*color: white;*/
 }
 
 .card-header.block_header {
   text-shadow: none;
   color: black;
-  text-align: left;
-  font-size: 0.875rem;
+  text-align: center;
+  padding: 12px 0 0 0;
   line-height: 1em;
+  border: 0;
+  display: flex;
+}
+.block_number {
+  padding-left: 4px;
+  text-align: left;
+  width: 33.33333%;
 }
 .block_label {
+  text-align: center;
+  width: 33.33333%;
+  max-height: 1em;
+  overflow: visible;
+  white-space: nowrap;
+}
+.hash_wrapper {
+  padding-left: 4px;
+  word-wrap: normal;
+  overflow-x: auto;
+  border: 0;
 }
 .hash_value {
-  overflow-x: auto;
-  word-wrap: normal;
-  min-height: 1em;
+  text-shadow: none;
+  color: black;
+  font-size: 0.875rem;
+  padding-top: 6px;
+  padding-bottom: 2px;
 }
 
 .update_box_shadow {

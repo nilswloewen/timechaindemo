@@ -19,3 +19,20 @@ export default {
   }
 }
 </script>
+
+<style>
+.popover {
+  color: white;
+  font-family: 'Fira Code', monospace;
+  text-shadow: #000 -1px 1px 4px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.popover-header {
+  background-color: rgba(0,0,0,0.8);
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+.popover-body {
+  color: inherit;
+}
+
+</style>

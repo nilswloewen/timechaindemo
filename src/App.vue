@@ -227,6 +227,11 @@ h1 {
   box-shadow: -1px 2px 4px 2px #A01CF2;
   border-color: #A01CF2;
 }
+/* Encoding Btn */
+.popover {
+  border-color: red;
+  box-shadow: -1px 2px 4px 2px red;
+}
 
 
 .blockchain_wrapper {

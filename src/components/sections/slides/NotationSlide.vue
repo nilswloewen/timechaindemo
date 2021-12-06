@@ -1,4 +1,8 @@
 <template>
+<div>
+  <p class="text-center encodebtn">
+    <EncodingBtn :encoding="encoding[activeEncoding]" v-on:rotate-encoding="rotateEncoding"/>
+  </p>
 <Page slide data-anchor="notation">
   <h1>Notation</h1>
 
@@ -16,9 +20,9 @@
   <p>
     You will see this notation button later in this demo:
   </p>
-  <p class="text-center">
-    <EncodingBtn :encoding="encoding[activeEncoding]" v-on:rotate-encoding="rotateEncoding"/>
-  </p>
+<!--  <p class="text-center encodebtn">-->
+<!--    <EncodingBtn :encoding="encoding[activeEncoding]" v-on:rotate-encoding="rotateEncoding"/>-->
+<!--  </p>-->
   <p>
     Try clicking it to see different ways numbers are represented.
   </p>
@@ -113,6 +117,7 @@
   </ToolCard>
 
 </Page>
+</div>
 </template>
 
 <script>
@@ -226,6 +231,12 @@ export default {
 #exponential_table td:nth-child(3) {
   text-align: right;
   padding-right: 1.25rem;
+}
+.encodebtn {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  z-index: 1122;
 }
 
 </style>

@@ -6,7 +6,7 @@
 
       <hr>
       <div>
-        It took <b>{{ numOfTries }}</b> guesses to find a valid hash
+        It took <b>{{ numOfTries }}</b> guesses
       </div>
       <div>
         <b>~{{ avgHashes.toFixed() }}</b> were estimated

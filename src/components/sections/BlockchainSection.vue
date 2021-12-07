@@ -51,7 +51,7 @@
     <p>
       The very first block in a blockchain is called the Genesis Block and starts at block number 0.
       Because new blocks are 'stacked on top' of old ones, the block number can also be thought of as
-      the height or chain length.
+      the height or chain length. Because the first block has no previous block, the previous hash is set to 0.
     </p>
 
     <b-card class="definition_card">
@@ -66,11 +66,11 @@
     </p>
 
     <b-card id="example_block" no-body class="block_card" style="box-shadow: -1px 2px 5px 0 #14E3FD;">
-      <b-card-header class="block_header" style="background-color: #14E3FD;" :key="blockHash">
+      <b-card-header class="block_header" :key="blockHash">
         <b-container>
           <b-row>
             <b-col>
-              <div class="text-left">Block #0</div>
+              <div class="text-left"><b>Block #0</b></div>
             </b-col>
             <b-col>
               <div class="text-center">Hash</div>

@@ -2,21 +2,27 @@
 <ToolCard title="Difficulty">
 
   <b-card-body class="text-center">
-    <p>
-      <b-button @click="$emit('calibrate-hps')" size="sm" variant="primary" class="mr-2">Your Device</b-button>
-      <b-button @click="$emit('show-antminer-hashrate')" size="sm" class="mr-2"> Antminer s9</b-button>
-      <b-button @click="$emit('show-global-hashrate')" size="sm"> Global</b-button>
-    </p>
+    <b-button @click="$emit('calibrate-hps')" size="sm" class="mr-2">
+      Calibrate for your device
+    </b-button>
 
-    <div class="hashrate_wrapper">
-      <b-input-group id="hashrate_picker" size="sm" append="hashes per second">
-        <b-form-input id="hashrate_input" type="number" :min="1" step="1"
-                      style="text-align: right;" size="sm"
-                      :value="hashrate.toFixed(0)" @change="updateHashrate"/>
-        <b-form-select id="hashrate_units_select" size="sm" @change="updateHashrateUnit"
-                       :value="hashrateUnit" :options="hashrateUnits"/>
-      </b-input-group>
+    <div v-if="showGlobal">
+      <p>
+        <b-button @click="$emit('show-antminer-hashrate')" size="sm" class="mr-2"> Antminer s9</b-button>
+        <b-button @click="$emit('show-global-hashrate')" size="sm"> Global</b-button>
+      </p>
+
+      <div class="hashrate_wrapper">
+        <b-input-group id="hashrate_picker" size="sm" append="hashes per second">
+          <b-form-input id="hashrate_input" type="number" :min="1" step="1"
+                        style="text-align: right;" size="sm"
+                        :value="hashrate.toFixed(0)" @change="updateHashrate"/>
+          <b-form-select id="hashrate_units_select" size="sm" @change="updateHashrateUnit"
+                         :value="hashrateUnit" :options="hashrateUnits"/>
+        </b-input-group>
+      </div>
     </div>
+
     <div class="mt-2">
       {{ hashrateLong }}<sub>H/s</sub>
     </div>
@@ -26,13 +32,16 @@
       Block Time: (Average time to find valid block)
     </div>
 
-    <div class="blocktime_wrapper">
+    <div v-if="showGlobal" class="blocktime_wrapper">
       <b-input-group id="time_picker">
         <b-form-input id="time_input" type="number" size="sm"
                       style="text-align: right;" :value="blocktime" :min="1" @change="updateBlockTime"/>
         <b-form-select id="time_units_select" size="sm" @change="updateBlocktimeUnit" :value="blocktimeUnit"
                        :options="blocktimeUnits"/>
       </b-input-group>
+    </div>
+    <div v-else>
+      {{ blocktime }} {{ blocktimeUnit }}
     </div>
 
   </b-card-body>
@@ -53,7 +62,8 @@ export default {
     hashrate: Number,
     hashrateLong: String,
     hashrateUnit: String,
-    hashrateUnits: Array
+    hashrateUnits: Array,
+    showGlobal: Boolean,
   },
   methods: {
     updateHashrate(newHashrate) {

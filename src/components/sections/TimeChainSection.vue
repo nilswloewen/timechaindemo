@@ -3,6 +3,15 @@
   <Page data-anchor="timechain" slide>
     <h1>Timechain</h1>
 
+    <b-card class="definition_card">
+      <h4><a href="https://www.wordsense.eu/hashrate/" target="_blank">hashrate (n.)</a></h4>
+      <hr>
+      (computing, cryptocurrency) The number of hashes that a mining computer can make in a given
+      period of time, usually a second.
+      <hr>
+      Hashes per second (H/s)
+    </b-card>
+
     <b-card class="quote_card">
       <q>The only way to find a valid proof-of-work is by making a lot of guesses,
         and making a single guess takes a little bit of time. The probabilistic
@@ -11,20 +20,20 @@
     </b-card>
 
     <p>
-      We've shown that by adjusting the target it becomes more difficult to
-      find a valid hash. More tries requires more <b>time</b>.
+      We've shown that by adjusting the target it becomes more or less difficult to
+      find a valid hash. When more guesses are required, more <b>time</b> is required.
     </p>
 
     <p>
-      Remember, if a miner finds a valid hash they are rewarded with bitcoin, so the incentive is
-      to mine as many blocks as possible to increase their profits. Not only are their miners running 24/7,
-      to increase their chance of success they find ways to increase their computing power.
+      Remember, if a miner finds a block they are rewarded with bitcoin, so the incentive is
+      to mine as many blocks as possible to increase their profits. Not only are their computers running 24/7,
+      to increase their chance of success miners find ways to increase their hashrate.
     </p>
 
     <p>
       This leads to a global arms race as Bitcoin mining is a competition that is open to anyone, anywhere.
-      As each miner upgrades their hardware to increase their mining capacity, every other miner must do the same to
-      keep up or else the probability of their success decreases.
+      As each miner upgrades their hardware to increase their hashrate, every other miner must do the same
+      or else the probability of their success decreases.
     </p>
 
     <p>
@@ -35,19 +44,8 @@
     <b-card class="definition_card">
       <h4>Timechain (n.)</h4>
       <hr>
-      A blockchain that grows at a fixed interval, regardless of computing power.
+      A blockchain that grows at a fixed time interval, regardless of hashrate.
     </b-card>
-  </Page>
-
-  <Page slide data-anchor="difficulty_adjustment">
-    <h1>Difficulty Adjustment</h1>
-
-    <p>
-      Mining capacity is rated by the <b>hashrate</b> or how many hashes per second (H/s) that a miner can find.
-    </p>
-    <p>
-      This is the Crème de la crème, cherry-on-top engineering marvel of Bitcoin.
-    </p>
 
     <b-card class="quote_card">
       <q>To compensate for increasing hardware speed and varying interest in running nodes over time,
@@ -59,6 +57,7 @@
         time, not a constant level of security, difficulty, or energy expenditure.</q>
       <br> - <a href="https://dergigi.com/2021/01/14/bitcoin-is-time/" target="_blank">DerGigi</a>
     </b-card>
+
   </Page>
 
   <div class="slide" data-anchor="timechain_target" id="timechain_target_slide">
@@ -70,6 +69,13 @@
       <b-container>
         <b-row>
           <b-col>
+
+            <h1>Difficulty Adjustment</h1>
+
+            <p>
+              By manipulating the target, we can regulate the average time it takes to mine
+              a block. For this demo, let's try set the blocktime to 15 seconds.
+            </p>
 
             <Difficulty
               :hashrate-long="getHashrateLong()"
@@ -89,6 +95,7 @@
 
             <Target v-on:updateTarget="updateTargetAndBlocktime"
                     v-on:rotate-encoding="rotateEncoding"
+                    hide-range
                     :avgHashes="avgHashes"
                     :denominator="denominator"
                     :hash-max="hashMax"
@@ -156,6 +163,63 @@
       </b-container>
     </div>
   </div>
+
+  <div class="slide" data-anchor="timechain_global" id="timechain_global_slide">
+    <div class="fp-bg"/>
+
+    <div class="overlay">
+      <b-container>
+        <b-row>
+          <b-col>
+            <h1>Real Difficulty</h1>
+            <p>
+              As we are nearing the end of this demo, take a look at
+            </p>
+            <p>
+              On average, it takes 10 minutes to mine a block &mdash; regardless of global hashrate.
+              Of all the engineering breakthroughs that came together to make Bitcoin,
+              this is the crème de la crème, cherry-on-top marvel of Bitcoin.
+            </p>
+
+            <p>
+              Every two weeks the Bitcoin network analyzes the past 2,016 blocks to find the average
+              time it took to produce each block in that period.
+            </p>
+
+            <Difficulty
+              :hashrate-long="getHashrateLong()"
+              :hashrate="hashrate"
+              :hashrateUnit="hashrateUnit"
+              :hashrateUnits="hashrateUnits"
+              v-on:update-hashrate="updateHashrate"
+              v-on:update-hashrate-unit="updateHashrateUnit"
+              :blocktime="blocktime"
+              :blocktime-unit="blocktimeUnit"
+              :blocktime-units="blocktimeUnits"
+              show-global
+              v-on:update-blocktime="updateBlocktime"
+              v-on:update-blocktime-unit="updateBlocktimeUnit"
+              v-on:calibrate-hps="calibrateHps"
+              v-on:show-antminer-hashrate="onAntminer"
+              v-on:show-global-hashrate="onGlobal"/>
+
+            <Target v-on:updateTarget="updateTargetAndBlocktime"
+                    v-on:rotate-encoding="rotateEncoding"
+                    :avgHashes="avgHashes"
+                    :denominator="denominator"
+                    :hash-max="hashMax"
+                    :localEncoding="encoding[activeEncoding]"
+                    :numerator="numerator"
+                    :probability="probability"
+                    :target="target"
+                    :targetMax="targetMax"/>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
+  </div>
+
+
 </div>
 </template>
 

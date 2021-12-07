@@ -182,7 +182,7 @@ h1 {
 }
 
 .col {
-  max-width: 590px;
+  max-width: 580px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -251,8 +251,15 @@ h1 {
   color: black;
 }
 
+.hash_value {
+  /*text-shadow: none;*/
+  /*color: black;*/
+  font-size: 0.875rem;
+  /*padding-top: 6px;*/
+  /*padding-bottom: 2px;*/
+}
 .invalid {
-  /*border-radius: 4px;*/
+  border-radius: 4px;
   background-color: #b72919;
   /*color: white;*/
 }
@@ -284,13 +291,7 @@ h1 {
   font-weight: bold;
 }
 
-.hash_value {
-  /*text-shadow: none;*/
-  /*color: black;*/
-  font-size: 0.875rem;
-  padding-top: 6px;
-  padding-bottom: 2px;
-}
+
 
 
 .add_block_wrapper,

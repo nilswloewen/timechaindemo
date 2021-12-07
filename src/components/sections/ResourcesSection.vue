@@ -35,6 +35,10 @@
     </ul>
   </div>
 
+  <b-card>
+    <blockquote class="twitter-tweet" data-lang="en" data-theme="dark"><p lang="en" dir="ltr">timechain is somehow is more epically momentous :) <br>maybe people could use it in bitcoin, only it is based on the timechain, the singleton global data structure, PoW assured probabilistic forward arrow of time mechanism). others are pale imitations; blockchain became a buzzword</p>&mdash; Adam Back (@adam3us) <a href="https://twitter.com/adam3us/status/1446403918272024577?ref_src=twsrc%5Etfw">October 8, 2021</a></blockquote>
+  </b-card>
+
   Site by <a href="https://nilsloewen.com" target="_blank">Nils Loewen</a>
 
   If you found this demo to be valuable to you, please <a href="https://tippin.me/@nilswloewen">send me some sats!</a>

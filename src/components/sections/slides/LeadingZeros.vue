@@ -9,7 +9,7 @@
   <p>
     <b>0000000000</b>19d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f
   </p>
-  <p>The first 9 digits are zeros. In binary </p>
+  <p>The first 9 digits are zeros.</p>
 
   <p>
     <q>The proof-of-work involves scanning for a value that when hashed, such as with SHA-256, the

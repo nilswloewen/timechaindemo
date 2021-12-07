@@ -17,19 +17,27 @@
             <div class="text-left block_number">Block #{{ block.height.toLocaleString() }}</div>
           </b-col>
           <b-col>
-            <div class="text-center"> Hash</div>
+            <div class="text-center">Hash</div>
           </b-col>
           <b-col class="text-right">
-            &nbsp;<span v-if="block.height === 0"> (Genesis Block)</span>
+            &nbsp;<span v-if="block.height === 0">(Genesis Block)</span>
           </b-col>
         </b-row>
         <b-row>
           <b-col class="hash_wrapper text-left">
             <span v-if="isHashValid" class="hash_value valid"> {{ getHash }} </span>
-            <span v-else class="hash_value invalid" role="button"
-                  @click="$emit('mine-this-block', index)">
-              {{ getHash }}
-            </span>
+            <template v-else>
+              <span class="hash_value invalid" :id="`block_${block.height}_hash`" role="button"
+                    @click="onMineThisBlock">
+                {{ getHash }}
+              </span>
+
+              <b-popover :target="`block_${block.height}_hash`" triggers="" show>
+                <template #title>Invalid Hash</template>
+                Click on the hash to mine block.
+              </b-popover>
+            </template>
+
           </b-col>
         </b-row>
       </b-container>
@@ -115,17 +123,17 @@ export default {
       type: Number,
       required: false
     },
+    localEncoding: String,
+    maskNonce: Boolean,
     showBlockHeightInput: Boolean,
     showData: Boolean,
-    showReal: Boolean,
     showNonce: Boolean,
-    localEncoding: String,
-    maskNonce: Boolean
+    showReal: Boolean,
   },
 
   data() {
     return {
-      blockHeightMax: 706894
+      blockHeightMax: 21000000,
     };
   },
 
@@ -156,6 +164,10 @@ export default {
   },
 
   methods: {
+    onMineThisBlock() {
+      this.$emit('mine-this-block', this.index);
+      this.$root.$emit('bv::hide::popover', `block_${this.block.height}_hash`)
+    },
     onDataChange(newData) {
       this.$emit('update-data', newData, this.index);
     },

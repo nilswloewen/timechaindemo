@@ -55,9 +55,9 @@
               :index="block.height"
               :local-encoding="encoding[activeEncoding]"
               :target="target"
-              show-solution-btn
-              show-go-brrr
               interactive-nonce
+              show-go-brrr
+              show-solution-btn
               v-on:rotate-encoding="rotateEncoding"
               v-on:start-mining="startMining"
               v-on:stop-mining="stopMining"
@@ -119,6 +119,7 @@ export default {
   methods: {
     async updateNonce(nonce) {
       this.block.header.nonce = nonce;
+      this.block.tries += 1;
       await this.block.calcHash();
       this.block.isHashValid = this.block.hash.bigInt < this.target.bigInt;
 

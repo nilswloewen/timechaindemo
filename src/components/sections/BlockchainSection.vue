@@ -103,15 +103,6 @@
     <h1>Simplified Blockchain</h1>
 
     <p>
-      For this demo we will start by only looking at the first 2 digits of the hash of each block.
-    </p>
-    <p style="font-size: 0.875rem; text-align: center;">
-      <b>XX</b>{{ ''.padEnd(62, 'x') }}
-    </p>
-
-    <hr>
-
-    <p>
       Add a few blocks to the blockchain and then change an old block to see how the change
       propagated up the chain.
     </p>
@@ -137,7 +128,7 @@
 
 <script>
 import AddBlockButton from '@/components/controls/AddBlockButton.vue';
-import BlockCard from '@/components/controls/BlockCard.vue';
+import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import TargetMixin from '@/mixins/TargetMixin';
@@ -181,36 +172,6 @@ export default {
 .fp-viewing-blockchain-blockchain .fp-controlArrow.fp-prev,
 .fp-viewing-blockchain-simple_blockchain .fp-controlArrow.fp-next {
   display: none;
-}
-
-/* I don't like that I copied this from BlockCard, but here I am. */
-.card-header.block_header {
-  text-shadow: none;
-  color: black;
-  text-align: center;
-  padding: 12px 0 0 0;
-  line-height: 1em;
-  border: 0;
-  display: flex;
-}
-.card-header.block_header .col {
-  padding-left: 5px;
-  padding-right: 5px;
-}
-.hash_wrapper {
-  margin-top: 4px;
-  padding-bottom: 2px;
-  word-wrap: normal;
-  overflow: auto;
-  line-height: 1.2em;
-  border: 0;
-}
-.hash_value {
-  text-shadow: none;
-  color: black;
-  font-size: 0.875rem;
-  padding-top: 6px;
-  padding-bottom: 2px;
 }
 
 </style>

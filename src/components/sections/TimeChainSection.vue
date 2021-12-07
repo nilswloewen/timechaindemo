@@ -161,7 +161,7 @@
 
 <script>
 import AddBlockButton from '@/components/controls/AddBlockButton.vue';
-import BlockCard from '@/components/controls/BlockCard.vue';
+import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import Graph from '@/components/Graph.vue';

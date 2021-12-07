@@ -9,7 +9,8 @@
   <b-card no-body class="block_card"
           :style="`box-shadow: -1px 2px 5px 0 ${block.color}; border-color: ${block.color}`">
 
-    <b-card-header class="block_header update_box_shadow" :style="`background-color: ${block.color};`" :key="getHash">
+    <b-card-header class="block_header update_box_shadow"
+                   :key="getHash">
       <b-container>
         <b-row>
           <b-col>
@@ -166,54 +167,6 @@ export default {
 </script>
 
 <style>
-.prev_block {
-  text-shadow: none;
-  padding: 0 2px;
-  color: black;
-}
-
-.invalid_hash {
-  /*border-radius: 4px;*/
-  /*background-color: #b72919;*/
-  /*color: white;*/
-}
-
-.card-header.block_header {
-  text-shadow: none;
-  color: black;
-  text-align: center;
-  padding: 12px 0 0 0;
-  line-height: 1em;
-  border: 0;
-  display: flex;
-  font-weight: normal;
-}
-
-.card-header.block_header .col {
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-.hash_wrapper {
-  margin-top: 4px;
-  padding-bottom: 2px;
-  word-wrap: normal;
-  overflow: auto;
-  line-height: 1.2em;
-  border: 0;
-}
-.block_number {
-  font-weight: bold;
-}
-
-.hash_value {
-  text-shadow: none;
-  color: black;
-  font-size: 0.875rem;
-  padding-top: 6px;
-  padding-bottom: 2px;
-}
-
 .update_box_shadow {
   animation: box_shadow 2s;
 }

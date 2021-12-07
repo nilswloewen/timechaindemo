@@ -57,6 +57,6 @@ export default {
 #collapse_success_msg .card {
   text-align: center;
   background-color: rgba(0, 0, 0, 0.8);
-  max-width: 408px;
+  max-width: 420px;
 }
 </style>

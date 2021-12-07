@@ -9,8 +9,9 @@ class DemoBlockHeader extends BlockHeader {
   }
 
   static get genesis() {
+    const hexDigits = 2;
     const data = this.getRandomData();
-    return new DemoBlockHeader(data, 0, new Num(BigInt(0)));
+    return new DemoBlockHeader(data, 0, new Num(0n, hexDigits));
   }
 
   serialize() {
@@ -50,12 +51,13 @@ class DemoBlockHeader extends BlockHeader {
       'Wendy'
     ];
 
-    const actors = { sender: '', receiver: '' };
-    for (const [key] of Object.entries(actors)) {
-      const rand = Math.floor(Math.random() * names.length + 1);
-      actors[key] = names.splice(rand, 1);
-    }
-    return actors;
+    let rand = Math.floor(Math.random() * names.length + 1);
+    const sender = names[rand];
+
+    rand = Math.floor(Math.random() * names.length + 1);
+    const receiver = names[rand];
+
+    return { sender, receiver };
   }
 }
 

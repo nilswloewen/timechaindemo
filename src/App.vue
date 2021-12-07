@@ -11,6 +11,9 @@
     <ResourcesSection/>
 
   </full-page>
+  <b-card id="phone_msg">
+    This demo is currently not pretty enough to be shown on small devices. Please use a larger screen.
+  </b-card>
 </div>
 </template>
 
@@ -242,6 +245,53 @@ h1 {
   overflow-y: auto;
   scroll-behavior: smooth;
 }
+.prev_block {
+  text-shadow: none;
+  padding: 0 2px;
+  color: black;
+}
+
+.invalid {
+  /*border-radius: 4px;*/
+  background-color: #b72919;
+  /*color: white;*/
+}
+
+.card-header.block_header {
+  /*text-shadow: none;*/
+  /*color: black;*/
+  text-align: center;
+  padding: 12px 0 0 0;
+  line-height: 1em;
+  display: flex;
+  font-weight: normal;
+}
+
+.card-header.block_header .col {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.hash_wrapper {
+  margin-top: 4px;
+  padding-bottom: 2px;
+  word-wrap: normal;
+  overflow: auto;
+  line-height: 1.2em;
+  border: 0;
+}
+.block_number {
+  font-weight: bold;
+}
+
+.hash_value {
+  /*text-shadow: none;*/
+  /*color: black;*/
+  font-size: 0.875rem;
+  padding-top: 6px;
+  padding-bottom: 2px;
+}
+
 
 .add_block_wrapper,
 .blockchain_wrapper {
@@ -268,7 +318,7 @@ h1 {
   word-wrap: normal;
   padding-bottom: 7px;
   padding-top: 2px;
-  border-bottom: 1px solid darkgray;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .card .value:last-child {
@@ -487,6 +537,12 @@ h1 {
 #resources_section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
   url('/assets/backgrounds/ultimate.jpg');
+}
+
+@media only screen and (max-width: 750px) {
+  #fullpage {
+    display: none;
+  }
 }
 
 </style>

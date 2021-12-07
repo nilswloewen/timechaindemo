@@ -74,7 +74,7 @@
 
 <script>
 import Block from '@/services/block/Block';
-import BlockCard from '@/components/controls/BlockCard.vue';
+import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockHeader from '@/services/block/BlockHeader';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import Graph from '@/components/Graph';

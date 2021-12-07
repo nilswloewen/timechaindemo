@@ -107,3 +107,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.mining_controls {
+ background-color: rgba(0, 0, 0, 0.5);
+}
+</style>

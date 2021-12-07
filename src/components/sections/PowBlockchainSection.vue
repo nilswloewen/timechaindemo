@@ -85,6 +85,16 @@
           <b-col>
 
             <h1> Target </h1>
+
+            <p>
+              For this demo we will start by only looking at the first 2 digits of the hash of each block.
+            </p>
+            <p style="font-size: 0.875rem; text-align: center;">
+              <b>XX</b>{{ ''.padEnd(62, 'x') }}
+            </p>
+
+            <hr>
+
             <p>
               Because we are starting this demo by only looking at the first 2 digits of the hash of
               each block, the maximum value of a hash (ff) is 255 and the minimum value is 0.
@@ -172,7 +182,7 @@
 
 <script>
 import AddBlockButton from '@/components/controls/AddBlockButton.vue';
-import BlockCard from '@/components/controls/BlockCard.vue';
+import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import Graph from '@/components/Graph';
@@ -207,6 +217,7 @@ export default {
       isMining: false
     };
   }
+
 };
 </script>
 

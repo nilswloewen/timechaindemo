@@ -49,12 +49,6 @@
     <div class="list value">{{ hash[encoding[activeEncoding]] }}</div>
   </ToolCard>
 
-  <div>
-    In this demo all hashes are calculated as double SHA-256 or sha256d,
-    exactly as bitcoin-core does it.
-    <p>swapEndian( sha256( sha256( data ) ) )</p>
-  </div>
-
   <hr>
 
   <p>

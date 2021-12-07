@@ -1,5 +1,6 @@
 import Block from '@/services/block/DemoBlock';
 import BlockHeader from '@/services/block/DemoBlockHeader';
+import Num from '@/services/Num';
 
 export default {
   data() {
@@ -52,6 +53,7 @@ export default {
     },
     async resetBlocks() {
       const block = new Block('', BlockHeader.genesis, 0, this.colors[0], 'inherit');
+      block.prevHash = new Num(0n, this.hexDigits);
       await block.calcHash(this.hexDigits);
       this.blocks = [block];
 

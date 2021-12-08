@@ -119,9 +119,6 @@
                     :target="target"
                     :targetMax="targetMax"/>
 
-            Leading Zeros: It's a common misconception that a block hash requires a certain number of leading zeros.
-            While this is technically false because the hash is interpreted as in integer that is larger than
-            the target, it is a good shorthand to see understand the magnitude of different numbers.
           </b-col>
         </b-row>
       </b-container>

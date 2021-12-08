@@ -18,7 +18,9 @@
     <br> - <a href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</a>
   </p>
   <p>
-
+    Leading Zeros: It's a common misconception that a block hash requires a certain number of leading zeros.
+    While this is technically false because the hash is interpreted as in integer that is larger than
+    the target, it is a good shorthand to see understand the magnitude of different numbers.
   </p>
 </Page>
 </template>

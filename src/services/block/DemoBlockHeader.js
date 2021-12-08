@@ -31,10 +31,10 @@ class DemoBlockHeader extends BlockHeader {
       'Carlos',
       'Chuck',
       'Craig',
-      'Dan',
       'Da5id',
+      'Dan',
       'Eve',
-      'Yves',
+      'Elon',
       'Faythe',
       'Grace',
       'Heidi',
@@ -42,13 +42,15 @@ class DemoBlockHeader extends BlockHeader {
       'Mallory',
       'Olivia',
       'Peggy',
-      'Rupert',
       'Ramesh',
+      'Rupert',
+      'Saylor',
       'Sybil',
       'Trudy',
       'Victor',
       'Walter',
-      'Wendy'
+      'Wendy',
+      'Yves',
     ];
 
     let rand = Math.floor(Math.random() * names.length);

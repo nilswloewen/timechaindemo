@@ -39,6 +39,7 @@
   </div>
 
   <div v-if="showGoBrrr" class="list value text-left">
+    <template v-if="!block.isHashValid">
     <div class="list label">Controls</div>
     <div class="list value">
       <b-button @click="toggleMining" size="sm">
@@ -50,6 +51,8 @@
                 :disabled="block.isHashValid" class="float-right">Show Solution
       </b-button>
     </div>
+    </template>
+
     <div class="list label">Guesses</div>
     <div class="list value">{{ block.tries.toLocaleString() }} </div>
 
@@ -87,6 +90,7 @@ export default {
       if (this.block.timeToMine > 0) {
         return (this.block.tries / this.block.timeToMine).toFixed(2);
       }
+      return 0;
     }
   },
   methods: {

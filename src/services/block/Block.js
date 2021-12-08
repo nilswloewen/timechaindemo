@@ -12,6 +12,7 @@ class Block {
     this.prevColor = '';
     this.timeToMine = 0;
     this.tries = 0;
+    this.startTime = 0;
   }
 
   async calcHash(hexDigits = 64) {

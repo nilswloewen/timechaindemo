@@ -63,7 +63,7 @@ export default {
 
     async finalizeBlock(index) {
       const block = this.blocks[index];
-      block.header.timestamp = new Date().getTime() / 1000;
+      block.header.timestamp = performance.now() / 1000;
       await block.calcHash(this.hexDigits);
       block.isHashValid = block.hash.bigInt < this.target.bigInt;
 
@@ -110,23 +110,30 @@ export default {
       this.guesses = [];
       fullpage_api.moveSlideRight();
     },
+
     async startMining(index) {
-      const startTime = performance.now();
       this.isMining = true;
       const block = this.blocks[index];
+      block.startTime = performance.now();
       block.tries = 0;
 
-      while (!block.isHashValid) {
-        block.tries += 1;
-        block.header.nonce += 1;
-        await this.finalizeBlock(index);
-
-        const elapsed = performance.now() - startTime;
-        block.timeToMine = (elapsed / 1000).toFixed(2);
-      }
-
+      await this.mine(block, index);
       this.isMining = false;
     },
+
+    async mine(block, index) {
+      block.tries += 1;
+      block.header.nonce += 1;
+      await this.finalizeBlock(index);
+
+      const elapsed = performance.now() - block.startTime;
+      block.timeToMine = (elapsed / 1000).toFixed(2);
+
+      if (!block.isHashValid && this.isMining) {
+        await this.mine(block,index);
+      }
+    },
+
     stopMining() {
       this.isMining = false;
     },

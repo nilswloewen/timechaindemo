@@ -2,14 +2,13 @@
 <ToolCard title="Difficulty">
 
   <b-card-body class="text-center">
-    <b-button @click="$emit('calibrate-hps')" size="sm" class="mr-2">
+    <b-button @click="$emit('calibrate-hps')" size="sm" class="m-2">
       Calibrate for your device
     </b-button>
 
     <div v-if="showGlobal">
       <p>
-<!--        <b-button @click="$emit('show-antminer-hashrate')" size="sm" class="mr-2"> Antminer s9</b-button>-->
-        <b-button @click="$emit('show-global-hashrate')" size="sm"> Global</b-button>
+        <b-button @click="$emit('show-global-hashrate')" size="sm"> Global Hashrate </b-button>
       </p>
 
       <div class="hashrate_wrapper">

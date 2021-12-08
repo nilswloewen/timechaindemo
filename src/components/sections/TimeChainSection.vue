@@ -81,7 +81,6 @@
       v-on:update-blocktime="updateBlocktime"
       v-on:update-blocktime-unit="updateBlocktimeUnit"
       v-on:calibrate-hps="calibrateHps"
-      v-on:show-antminer-hashrate="onAntminer"
       v-on:show-global-hashrate="onGlobal"/>
 
     <Target v-on:updateTarget="updateTargetAndBlocktime"
@@ -151,58 +150,52 @@
     </div>
   </div>
 
-  <div class="slide" data-anchor="timechain_global" id="timechain_global_slide">
-    <div class="fp-bg"/>
+  <Page slide data-anchor="timechain_global">
 
-    <div class="overlay">
-      <b-container>
-        <b-row>
-          <b-col>
-            <h1>Real Difficulty</h1>
-            <p>
-              On average, it takes 10 minutes to mine a block &mdash; regardless of global hashrate.
-              Of all the engineering breakthroughs that came together to make Bitcoin,
-              this is the crème de la crème, cherry-on-top marvel of Bitcoin.
-            </p>
+    <h1>Real Difficulty</h1>
+    <p>
+      On average, it takes 10 minutes to mine a block &mdash; regardless of global hashrate.
+      Of all the engineering breakthroughs that came together to make Bitcoin,
+      this is the crème de la crème, cherry-on-top marvel of Bitcoin.
+    </p>
 
-            <p>
-              Every two weeks the Bitcoin network analyzes the past 2,016 blocks to find the average
-              time it took to produce each block in that period.
-            </p>
+    <p>
+      Every two weeks the Bitcoin network analyzes the past 2,016 blocks to find the average
+      time it took to produce each block in that period.
+    </p>
 
-            <Difficulty
-              :hashrate-long="getHashrateLong()"
-              :hashrate="hashrate"
-              :hashrateUnit="hashrateUnit"
-              :hashrateUnits="hashrateUnits"
-              v-on:update-hashrate="updateHashrate"
-              v-on:update-hashrate-unit="updateHashrateUnit"
-              :blocktime="blocktime"
-              :blocktime-unit="blocktimeUnit"
-              :blocktime-units="blocktimeUnits"
-              show-global
-              v-on:update-blocktime="updateBlocktime"
-              v-on:update-blocktime-unit="updateBlocktimeUnit"
-              v-on:calibrate-hps="calibrateHps"
-              v-on:show-antminer-hashrate="onAntminer"
-              v-on:show-global-hashrate="onGlobal"/>
+    <hr>
+    <p>
+      Try setting the block time to 10 minutes and see how your device would compare to the global hashrate (your competition).
+    </p>
 
-            <Target v-on:updateTarget="updateTargetAndBlocktime"
-                    v-on:rotate-encoding="rotateEncoding"
-                    :avgHashes="avgHashes"
-                    :denominator="denominator"
-                    :hash-max="hashMax"
-                    :localEncoding="encoding[activeEncoding]"
-                    :numerator="numerator"
-                    :probability="probability"
-                    :target="target"
-                    :targetMax="targetMax"/>
-          </b-col>
-        </b-row>
-      </b-container>
-    </div>
-  </div>
+    <Difficulty
+      :hashrate-long="getHashrateLong()"
+      :hashrate="hashrate"
+      :hashrateUnit="hashrateUnit"
+      :hashrateUnits="hashrateUnits"
+      v-on:update-hashrate="updateHashrate"
+      v-on:update-hashrate-unit="updateHashrateUnit"
+      :blocktime="blocktime"
+      :blocktime-unit="blocktimeUnit"
+      :blocktime-units="blocktimeUnits"
+      show-global
+      v-on:update-blocktime="updateBlocktime"
+      v-on:update-blocktime-unit="updateBlocktimeUnit"
+      v-on:calibrate-hps="calibrateHps"
+      v-on:show-global-hashrate="onGlobal"/>
 
+    <Target v-on:updateTarget="updateTargetAndBlocktime"
+            v-on:rotate-encoding="rotateEncoding"
+            :avgHashes="avgHashes"
+            :denominator="denominator"
+            :hash-max="hashMax"
+            :localEncoding="encoding[activeEncoding]"
+            :numerator="numerator"
+            :probability="probability"
+            :target="target"
+            :targetMax="targetMax"/>
+  </Page>
 
 </div>
 </template>
@@ -341,11 +334,6 @@ export default {
       this.blocktimeUnit = newTimeUnit;
       this.calcTarget();
     },
-    onAntminer() {
-      this.hashrate = 13;
-      this.hashrateUnit = 'Tera';
-      this.calcTarget();
-    },
     async onGlobal() {
       const gigaHashrate = await BlockchainApi.getHashRate();
       this.setHashrate(gigaHashrate * this.hashrateConversion.Giga.value);
@@ -471,7 +459,7 @@ export default {
 <style>
 /* Hide slide arrows on first and last slide. */
 .fp-viewing-timechain-timechain .fp-controlArrow.fp-prev,
-.fp-viewing-timechain-timechain_mining .fp-controlArrow.fp-next {
+.fp-viewing-timechain-timechain_global .fp-controlArrow.fp-next {
   display: none;
 }
 

@@ -27,6 +27,8 @@
       <hr>
       <q>A blockchain is a chain of blocks.</q>
       &nbsp;&mdash;&nbsp;<Link href="https://t.co/HQwDRlKKx9">Peter Todd</Link>
+      <hr>
+      <img class="card-img" src="/assets/blockchain.svg" alt="Blockchain"/>
     </b-card>
 
     <h4 class="mt-4">Why does Bitcoin use a blockchain?</h4>
@@ -66,7 +68,7 @@
       Try changing the data or previous hash of the following block to see that the block hash changes.
     </p>
 
-    <b-card id="example_block" no-body class="block_card" style="box-shadow: -1px 2px 5px 0 #14E3FD;">
+    <b-card id="example_block" no-body class="block_card" style="box-shadow: -1px 2px 5px 0 #14E3FD; border-color: #14E3FD">
       <b-card-header class="block_header" :key="blockHash">
         <b-container>
           <b-row>

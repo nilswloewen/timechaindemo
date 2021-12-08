@@ -92,9 +92,9 @@ export default {
           label: 'Timechain',
           slides: [
             { anchor: 'difficulty_adjustment', label: 'Difficulty Adjustment' },
-            { anchor: 'timechain_target', label: 'Target' },
             { anchor: 'timechain_blockchain', label: 'Timechain' },
-            { anchor: 'timechain_mining', label: 'Timechain Mining' }
+            { anchor: 'timechain_mining', label: 'Timechain Mining' },
+            { anchor: 'global_hashrate', label: 'Global Hashrate' }
           ]
         },
         {

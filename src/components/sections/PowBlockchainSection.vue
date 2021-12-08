@@ -155,7 +155,6 @@
               :target="target"
               interactive-nonce
               v-on:rotate-encoding="rotateEncoding"
-              v-on:start-mining="startMining"
               v-on:update-nonce="updateNonce"/>
 
             <SuccessMsg :block-height="blocks[blockToMine].height"

@@ -160,7 +160,6 @@ export default {
       expRows: [
         { val: 21_000_000, name: 'Twenty-one million' },
         { val: 100_000_000_000_000, name: 'One-hundred Trillion' },
-        { val: Number('1e+100'), name: 'A googol' }
       ]
     };
   },

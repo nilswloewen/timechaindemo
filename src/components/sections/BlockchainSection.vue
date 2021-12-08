@@ -26,7 +26,7 @@
       </p>
       <hr>
       <q>A blockchain is a chain of blocks.</q>
-      &nbsp;&mdash;&nbsp;<a href="https://t.co/HQwDRlKKx9" target="_blank">Peter Todd</a>
+      &nbsp;&mdash;&nbsp;<Link href="https://t.co/HQwDRlKKx9">Peter Todd</Link>
     </b-card>
 
     <h4 class="mt-4">Why does Bitcoin use a blockchain?</h4>
@@ -55,12 +55,13 @@
     </p>
 
     <b-card class="definition_card">
-      <h4><a href="https://www.etymonline.com/word/genesis" target="_blank">genesis (n.)</a></h4>
+      <h4><Link href="https://www.etymonline.com/word/genesis">genesis (n.)</Link></h4>
       <hr>
       Greek genesis "origin, creation, generation," from gignesthai "to be born," related to genos
       "race, birth, descent".
     </b-card>
 
+    <hr>
     <p>
       Try changing the data or previous hash of the following block to see that the block hash changes.
     </p>
@@ -92,7 +93,7 @@
       </div>
 
       <!--Previous Hash-->
-      <div class="list label">Previous Hash</div>
+      <div class="list label">Previous Block Hash</div>
       <div class="list value">
         <b-form-input @keyup="onExamplePrevHashChange" :value="prevHash" size="sm"/>
       </div>
@@ -104,7 +105,7 @@
 
     <p>
       Add a few blocks to the blockchain and then change an old block to see how the change
-      propagated up the chain.
+      propagates up the chain.
     </p>
 
     <AddBlockButton :disable-add-block-btn="false"
@@ -135,6 +136,7 @@ import TargetMixin from '@/mixins/TargetMixin';
 import Page from '@/components/Page.vue';
 import { sha256dFromText } from '@/services/sha256_utils';
 import TldrCard from '@/components/cards/TldrCard';
+import Link from '@/components/Link';
 
 export default {
   mixins: [
@@ -143,6 +145,7 @@ export default {
     TargetMixin
   ],
   components: {
+    Link,
     TldrCard,
     AddBlockButton,
     BlockCard,

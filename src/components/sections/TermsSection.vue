@@ -4,7 +4,7 @@
     <h1>Terms</h1>
 
     <p>
-      Before we begin, a few key concepts must first be understood.
+      We must first understand a few concepts before we begin:
     </p>
 
     <p>
@@ -14,8 +14,8 @@
     </p>
 
     <p>
-      <b>SHA-256 Hash functions</b> are the backbone to the blockchain and to mining. The output of these
-      functions are represented with <b>Hexadecimal Notation</b>.
+      <b>The SHA-256 Hash Function</b> is the backbone to the timechain and to mining. The output of this
+      function is represented with <b>Hexadecimal Notation</b>.
     </p>
   </Page>
 

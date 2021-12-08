@@ -5,16 +5,16 @@
 
     <p>
       Mining is the process of adding new blocks to the blockchain. The name comes from the idea that
-      if you search hard enough, you will be rewarded with 'digital gold' aka Bitcoin.
+      if you work hard enough, you will be rewarded with 'digital gold' aka Bitcoin.
     </p>
     <p>
       Every time a miner successfully adds a block to the blockchain they are given a reward of newly
       minted bitcoin. The reward started at 50₿ per block and the amount gets halved every 4 years. This is why
-      Bitcoin has a <a href="https://en.bitcoin.it/wiki/Controlled_supply">limited supply</a>.
+      Bitcoin has a <Link href="https://en.bitcoin.it/wiki/Controlled_supply">Limited Supply</Link>.
     </p>
     <p>
       This demo should show you why Bitcoin's monetary policy is far more rational than the Federal Reserve,
-      who simply say <a href="https://moneyprintergobrrr.com/" target="_blank">Money Printer Go BRRR!</a>
+      who simply say <Link href="https://moneyprintergobrrr.com">Money Printer Go BRRR!</Link>
     </p>
 
     <hr>
@@ -43,6 +43,7 @@
       To make mining difficult, Bitcoin requires that a block hash will only be valid if
       it is interpreted as a number that is less than a pre-determined <b>target</b>.
     </p>
+
     <p>
       Because the hash of each block will probably not meet the new criteria,
       we will add one new field to the block called a <b>nonce</b>.
@@ -60,7 +61,7 @@
     </b-card>
 
     <p>
-      If the hash of the block is invalid, the hash will be rejected and we will
+      If the hash of the block is invalid, the block will be rejected and we will
       try again with a new nonce. It may take many, many tries to find a valid
       hash, which is why this system is called <b>Proof-of-Work</b>.
     </p>
@@ -69,61 +70,49 @@
       <q>The network timestamps transactions by hashing
         them into an ongoing chain of hash-based proof-of-work, forming a
         record that cannot be changed without redoing the proof-of-work.</q>
-      <br> - <a href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</a>
+      <br> - <Link href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</Link>
     </b-card>
   </Page>
 
-  <div class="slide" data-anchor="target" id="target_slide">
-    <div class="fp-bg"/>
+  <Page slide data-anchor="target">
 
-    <Graph id="pow_target_canvas" :guesses="[]"
-           :target="this.target" :local-encoding="encoding[activeEncoding]"/>
 
-    <div class="overlay">
-      <b-container>
-        <b-row>
-          <b-col>
+    <h1> Target </h1>
 
-            <h1> Target </h1>
+    <p>
+      For this demo we will start by only looking at the first 2 digits of the hash of each block.
+    </p>
+    <p style="font-size: 0.875rem; text-align: center;">
+      <b>XX</b>{{ ''.padEnd(62, 'x') }}
+    </p>
 
-            <p>
-              For this demo we will start by only looking at the first 2 digits of the hash of each block.
-            </p>
-            <p style="font-size: 0.875rem; text-align: center;">
-              <b>XX</b>{{ ''.padEnd(62, 'x') }}
-            </p>
+    <hr>
 
-            <hr>
+    <p>
+      Because we are starting this demo by only looking at the first 2 digits of the hash of
+      each block, the maximum value of a hash (ff) is 255 and the minimum value is 0.
+    </p>
 
-            <p>
-              Because we are starting this demo by only looking at the first 2 digits of the hash of
-              each block, the maximum value of a hash (ff) is 255 and the minimum value is 0.
-            </p>
+    <p>
+      The target is a movable value somewhere between the min and max that will be the
+      cutoff for an acceptable hash. <b>Try moving the target to see how the probabilities change.</b>
+    </p>
+    <p>
+      As the target goes down it becomes more difficult to find a winning hash.
+    </p>
 
-            <p>
-              The target is a movable value somewhere between the min and max that will be the
-              cutoff for an acceptable hash. <b>Try moving the target to see how the probabilities change.</b>
-            </p>
-            <p>
-              As the target goes down it becomes more difficult to find a winning hash.
-            </p>
+    <Target v-on:updateTarget="updateTarget"
+            v-on:rotate-encoding="rotateEncoding"
+            :avgHashes="avgHashes"
+            :denominator="denominator"
+            :hash-max="hashMax"
+            :localEncoding="encoding[activeEncoding]"
+            :numerator="numerator"
+            :probability="probability"
+            :target="target"
+            :targetMax="targetMax"/>
 
-            <Target v-on:updateTarget="updateTarget"
-                    v-on:rotate-encoding="rotateEncoding"
-                    :avgHashes="avgHashes"
-                    :denominator="denominator"
-                    :hash-max="hashMax"
-                    :localEncoding="encoding[activeEncoding]"
-                    :numerator="numerator"
-                    :probability="probability"
-                    :target="target"
-                    :targetMax="targetMax"/>
-
-          </b-col>
-        </b-row>
-      </b-container>
-    </div>
-  </div>
+  </Page>
 
   <Page data-anchor="pow_blockchain" slide>
     <h1>Proof-of-work Blockchain</h1>
@@ -193,6 +182,7 @@ import SuccessMsg from '@/components/controls/SuccessMsg';
 import Target from '@/components/controls/Target.vue';
 import TargetMixin from '@/mixins/TargetMixin';
 import TldrCard from '@/components/cards/TldrCard';
+import Link from '@/components/Link';
 
 export default {
   mixins: [
@@ -201,6 +191,7 @@ export default {
     TargetMixin
   ],
   components: {
+    Link,
     TldrCard,
     AddBlockButton,
     BlockCard,

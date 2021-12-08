@@ -35,7 +35,7 @@
   <hr>
 
   <b-card class="definition_card">
-    <h4 class="text-left"><a href="https://www.etymonline.com/word/hexadecimal">hexadecimal (adj.)</a></h4>
+    <h4 class="text-left"><Link href="https://www.etymonline.com/word/hexadecimal">hexadecimal (adj.)</Link></h4>
     <hr>
     1952, in reference to a numeral system based on 16, not 10; from hexa- + decimal.
     From 1970 as a noun. Greek hexa-, combining form of hex "six".
@@ -123,12 +123,14 @@ import InfoCard from '@/components/cards/InfoCard';
 import TldrCard from '@/components/cards/TldrCard';
 import ToolCard from '@/components/cards/ToolCard';
 import EncodingBtn from '@/components/controls/EncodingBtn';
+import Link from '@/components/Link';
 
 export default {
   mixins: [
     EncodingMixin
   ],
   components: {
+    Link,
     EncodingBtn,
     ToolCard,
     InfoCard,

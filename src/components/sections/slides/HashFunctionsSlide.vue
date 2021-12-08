@@ -2,7 +2,7 @@
 <Page slide data-anchor="hash_functions">
   <h1>Hash Function</h1>
   <b-card class="definition_card">
-    <h4><a href="https://www.etymonline.com/word/hash">hash (v.)</a></h4>
+    <h4><Link href="https://www.etymonline.com/word/hash">hash (v.)</Link></h4>
     <hr>
     1650s, "to hack, chop into small pieces," from French hacher "chop up"
     (14c.), from Old French hache "ax" (see hatchet).
@@ -60,9 +60,11 @@
 
 <script>
 import Page from '@/components/Page.vue';
+import Link from '@/components/Link';
 
 export default {
   components: {
+    Link,
     Page
   }
 };

@@ -14,7 +14,7 @@
       The 'data' in real mining includes the <b>Version</b> of the bitcoin software used to create the block, a
       recording of the target in a format called <b>Bits</b>, and a record of the transactions in
       the block called a <b>Merkle Root</b>. For more information on each field see
-      <a href="https://developer.bitcoin.org/reference/block_chain.html">here</a>.
+      <Link href="https://developer.bitcoin.org/reference/block_chain.html">here</Link>.
     </p>
 
     <BlockCard :block="block"
@@ -85,6 +85,7 @@ import Page from '@/components/Page.vue';
 import SuccessMsg from '@/components/controls/SuccessMsg';
 import Target from '@/components/controls/Target';
 import TargetMixin from '@/mixins/TargetMixin';
+import Link from '@/components/Link';
 
 export default {
   mixins: [
@@ -92,6 +93,7 @@ export default {
     TargetMixin
   ],
   components: {
+    Link,
     BlockCard,
     Graph,
     MiningControls,

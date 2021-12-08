@@ -4,9 +4,9 @@
     <h1>Timechain</h1>
 
     <b-card class="definition_card">
-      <h4><a href="https://www.wordsense.eu/hashrate/" target="_blank">hashrate (n.)</a></h4>
+      <h4>hashrate (n.)</h4>
       <hr>
-      (computing, cryptocurrency) The number of hashes that a mining computer can make in a given
+      (computing, cryptocurrency) The number of hashes that a mining computer can calculate in a given
       period of time, usually a second.
       <hr>
       Hashes per second (H/s)
@@ -16,7 +16,7 @@
       <q>The only way to find a valid proof-of-work is by making a lot of guesses,
         and making a single guess takes a little bit of time. The probabilistic
         sum of these guesses is what builds up the timechain that is Bitcoin.</q>
-      - <a href="https://dergigi.com/2021/01/14/bitcoin-is-time/" target="_blank">DerGigi</a>
+      - <Link href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</Link>
     </b-card>
 
     <p>
@@ -51,64 +51,51 @@
       <q>To compensate for increasing hardware speed and varying interest in running nodes over time,
         the proof-of-work difficulty is determined by a moving average targeting an average number of
         blocks per hour. If they're generated too fast, the difficulty increases.</q>
-      <br> - <a href="https://bitcoin.org/bitcoin.pdf" target="_blank">Satoshi Nakamoto</a>
+      <br> - <Link href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</Link>
       <hr>
       <q>In other words, the difficulty-adjustment is about keeping a constant
         time, not a constant level of security, difficulty, or energy expenditure.</q>
-      <br> - <a href="https://dergigi.com/2021/01/14/bitcoin-is-time/" target="_blank">DerGigi</a>
+      <br> - <Link href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</Link>
     </b-card>
 
   </Page>
 
-  <div class="slide" data-anchor="timechain_target" id="timechain_target_slide">
-    <div class="fp-bg"/>
+  <Page slide data-anchor="timechain_target">
+    <h1>Difficulty Adjustment</h1>
 
-    <Graph id="timechain_target_canvas" :guesses="[]"
-           :target="this.target" :local-encoding="encoding[activeEncoding]"/>
-    <div class="overlay">
-      <b-container>
-        <b-row>
-          <b-col>
+    <p>
+      By manipulating the target, we can regulate the average time it takes to mine
+      a block. For this demo, let's try set the blocktime to 15 seconds.
+    </p>
 
-            <h1>Difficulty Adjustment</h1>
+    <Difficulty
+      :hashrate-long="getHashrateLong()"
+      :hashrate="hashrate"
+      :hashrateUnit="hashrateUnit"
+      :hashrateUnits="hashrateUnits"
+      v-on:update-hashrate="updateHashrate"
+      v-on:update-hashrate-unit="updateHashrateUnit"
+      :blocktime="blocktime"
+      :blocktime-unit="blocktimeUnit"
+      :blocktime-units="blocktimeUnits"
+      v-on:update-blocktime="updateBlocktime"
+      v-on:update-blocktime-unit="updateBlocktimeUnit"
+      v-on:calibrate-hps="calibrateHps"
+      v-on:show-antminer-hashrate="onAntminer"
+      v-on:show-global-hashrate="onGlobal"/>
 
-            <p>
-              By manipulating the target, we can regulate the average time it takes to mine
-              a block. For this demo, let's try set the blocktime to 15 seconds.
-            </p>
-
-            <Difficulty
-              :hashrate-long="getHashrateLong()"
-              :hashrate="hashrate"
-              :hashrateUnit="hashrateUnit"
-              :hashrateUnits="hashrateUnits"
-              v-on:update-hashrate="updateHashrate"
-              v-on:update-hashrate-unit="updateHashrateUnit"
-              :blocktime="blocktime"
-              :blocktime-unit="blocktimeUnit"
-              :blocktime-units="blocktimeUnits"
-              v-on:update-blocktime="updateBlocktime"
-              v-on:update-blocktime-unit="updateBlocktimeUnit"
-              v-on:calibrate-hps="calibrateHps"
-              v-on:show-antminer-hashrate="onAntminer"
-              v-on:show-global-hashrate="onGlobal"/>
-
-            <Target v-on:updateTarget="updateTargetAndBlocktime"
-                    v-on:rotate-encoding="rotateEncoding"
-                    hide-range
-                    :avgHashes="avgHashes"
-                    :denominator="denominator"
-                    :hash-max="hashMax"
-                    :localEncoding="encoding[activeEncoding]"
-                    :numerator="numerator"
-                    :probability="probability"
-                    :target="target"
-                    :targetMax="targetMax"/>
-          </b-col>
-        </b-row>
-      </b-container>
-    </div>
-  </div>
+    <Target v-on:updateTarget="updateTargetAndBlocktime"
+            v-on:rotate-encoding="rotateEncoding"
+            hide-range
+            :avgHashes="avgHashes"
+            :denominator="denominator"
+            :hash-max="hashMax"
+            :localEncoding="encoding[activeEncoding]"
+            :numerator="numerator"
+            :probability="probability"
+            :target="target"
+            :targetMax="targetMax"/>
+  </Page>
 
   <Page data-anchor="timechain_blocks" slide>
     <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
@@ -173,9 +160,6 @@
           <b-col>
             <h1>Real Difficulty</h1>
             <p>
-              As we are nearing the end of this demo, take a look at
-            </p>
-            <p>
               On average, it takes 10 minutes to mine a block &mdash; regardless of global hashrate.
               Of all the engineering breakthroughs that came together to make Bitcoin,
               this is the crème de la crème, cherry-on-top marvel of Bitcoin.
@@ -237,6 +221,7 @@ import TargetMixin from '@/mixins/TargetMixin';
 import Difficulty from '@/components/controls/Difficulty';
 import Num from '@/services/Num';
 import BlockchainApi from '@/services/BlockchainApi';
+import Link from '@/components/Link';
 
 export default {
   mixins: [
@@ -245,6 +230,7 @@ export default {
     TargetMixin
   ],
   components: {
+    Link,
     AddBlockButton,
     BlockCard,
     Difficulty,

@@ -233,8 +233,8 @@ h1 {
 }
 /* Encoding Btn */
 .popover {
-  border-color: red;
-  box-shadow: -1px 2px 4px 2px red;
+  border-color: white;
+  box-shadow: -1px 2px 4px 2px white;
 }
 
 
@@ -252,21 +252,14 @@ h1 {
 }
 
 .hash_value {
-  /*text-shadow: none;*/
-  /*color: black;*/
   font-size: 0.875rem;
-  /*padding-top: 6px;*/
-  /*padding-bottom: 2px;*/
 }
 .invalid {
   border-radius: 4px;
   background-color: #b72919;
-  /*color: white;*/
 }
 
 .card-header.block_header {
-  /*text-shadow: none;*/
-  /*color: black;*/
   text-align: center;
   padding: 12px 0 0 0;
   line-height: 1em;
@@ -290,8 +283,6 @@ h1 {
 .block_number {
   font-weight: bold;
 }
-
-
 
 
 .add_block_wrapper,
@@ -436,6 +427,12 @@ h1 {
 /*
  * FullPage Controls
  */
+#fp-nav ul li {
+  margin: 10px 0;
+}
+#fp-nav ul li .fp-tooltip {
+  font-family: 'Fira Code', monospace;
+}
 #fp-nav ul li a span, .fp-slidesNav ul li a span {
   background-color: white;
 }
@@ -443,6 +440,16 @@ h1 {
 /* Slides Arrows on bottom third */
 .fp-controlArrow {
   top: 66%;
+}
+#fp-nav ul li .active + .fp-tooltip {
+  font-weight: bold;
+}
+
+#fp-nav ul:hover .fp-tooltip {
+  right: 20px;
+  transition: opacity 0.2s ease-in;
+  width: auto;
+  opacity: 1;
 }
 
 /* Left Arrow */

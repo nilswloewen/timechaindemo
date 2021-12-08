@@ -8,7 +8,7 @@
 
     <div v-if="showGlobal">
       <p>
-        <b-button @click="$emit('show-antminer-hashrate')" size="sm" class="mr-2"> Antminer s9</b-button>
+<!--        <b-button @click="$emit('show-antminer-hashrate')" size="sm" class="mr-2"> Antminer s9</b-button>-->
         <b-button @click="$emit('show-global-hashrate')" size="sm"> Global</b-button>
       </p>
 

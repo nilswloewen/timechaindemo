@@ -2,14 +2,16 @@
 <Page data-anchor="resources">
   <h1>Resources</h1>
 
-  This tool was made possible by the inspiration and insight of the following resources:
+  <p>
+    This tool was made possible by the inspiration and insight of the following resources:
+  </p>
 
   <div>
     For technical understanding:
     <ul>
-      <li><a href="https://LearnMeABitcoin.com" target="_blank">LearnMeABitcoin.com</a></li>
-      <li><a href="https://aantonop.com/books/" target="_blank">Mastering Bitcoin</a></li>
-      <li><a href="https://bitcoin.org/bitcoin.pdf" target="_blank">Bitcoin Whitepaper</a></li>
+      <li><Link href="https://LearnMeABitcoin.com">LearnMeABitcoin.com</Link></li>
+      <li><Link href="https://aantonop.com/books/">Mastering Bitcoin</Link></li>
+      <li><Link href="https://bitcoin.org/bitcoin.pdf">Bitcoin Whitepaper</Link></li>
     </ul>
   </div>
 
@@ -17,7 +19,7 @@
     For UX inspiration:
     <ul>
       <li>
-        <a href="https://BlockchainDemo.io" target="_blank">BlockchainDemo.io</a> - Also has a great demo of Bitcoin's
+        <Link href="https://BlockchainDemo.io">BlockchainDemo.io</Link> - Also has a great demo of Bitcoin's
         Peer-to-Peer (P2P) Network
       </li>
     </ul>
@@ -27,31 +29,35 @@
     For philosophical insight:
     <ul>
       <li>
-        <a href="https://dergigi.com/2021/01/14/bitcoin-is-time" target="_blank">Bitcoin is Time</a>
+        <Link href="https://dergigi.com/2021/01/14/bitcoin-is-time">Bitcoin is Time</Link>
       </li>
       <li>
-        <a href="https://www.amazon.com/dp/1090109911" target="_blank">Bitcoin: Sovereignty through Mathematics</a>
+        <Link href="https://www.amazon.com/dp/1090109911">Bitcoin: Sovereignty through Mathematics</Link>
       </li>
     </ul>
   </div>
 
-  <b-card>
-    <blockquote class="twitter-tweet" data-lang="en" data-theme="dark"><p lang="en" dir="ltr">timechain is somehow is more epically momentous :) <br>maybe people could use it in bitcoin, only it is based on the timechain, the singleton global data structure, PoW assured probabilistic forward arrow of time mechanism). others are pale imitations; blockchain became a buzzword</p>&mdash; Adam Back (@adam3us) <a href="https://twitter.com/adam3us/status/1446403918272024577?ref_src=twsrc%5Etfw">October 8, 2021</a></blockquote>
-  </b-card>
+  <div class="mb-4" style="height: 998px;">
+    <blockquote class="twitter-tweet" data-lang="en" data-theme="dark"><p lang="en" dir="ltr">timechain is somehow is more epically momentous :) <br>maybe people could use it in bitcoin, only it is based on the timechain, the singleton global data structure, PoW assured probabilistic forward arrow of time mechanism). others are pale imitations; blockchain became a buzzword</p>&mdash; Adam Back (@adam3us) <Link href="https://twitter.com/adam3us/status/1446403918272024577?ref_src=twsrc%5Etfw">October 8, 2021</Link></blockquote>
+  </div>
 
-  Site by <a href="https://nilsloewen.com" target="_blank">Nils Loewen</a>
+  <p>
+    Site by <Link href="https://nilsloewen.com">Nils Loewen</Link>
 
-  If you found this demo to be valuable to you, please <a href="https://tippin.me/@nilswloewen">send me some sats!</a>
+    If you found this demo to be valuable, please <Link href="https://tippin.me/@nilswloewen">send me some sats!</Link>
 
-  Tick tock, next block.
+    Till then, Tick Tock, next block.
+  </p>
 </Page>
 </template>
 
 <script>
 import Page from '@/components/Page.vue';
+import Link from '@/components/Link';
 
 export default {
   components: {
+    Link,
     Page
   }
 };

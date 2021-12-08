@@ -88,7 +88,7 @@
     </template>
 
     <!--Previous Hash-->
-    <div class="list label">Previous Hash</div>
+    <div class="list label">Previous Block Hash</div>
     <div class="list value">
       <div class="rounded prev_block update_box_shadow" :style="getPrevColor"
            :key="block.header.prevHash">

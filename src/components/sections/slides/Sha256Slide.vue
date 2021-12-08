@@ -3,8 +3,8 @@
   <h1>SHA-256</h1>
   <p>
     Bitcoin mining uses a particular hash function called SHA-256, which
-    means <a href="https://en.wikipedia.org/wiki/Secure_Hash_Algorithms">
-    Secure Hash Algorithm</a> with an output length of 256 bits. The
+    means <Link href="https://en.wikipedia.org/wiki/Secure_Hash_Algorithms">
+    Secure Hash Algorithm</Link> with an output length of 256 bits. The
     output is usually encoded in hexadecimal notation as a string
     of 64 characters.
   </p>
@@ -22,16 +22,15 @@
 
   <p>
     For some context, it is estimated that there are
-    <a
-      href="https://www.liverpoolmuseums.org.uk/stories/which-greater-number-of-atoms-universe-or-number-of-chess-moves">
-      ~10<sup>78</sup> atoms in the observable universe</a>.
+    <Link href="https://www.liverpoolmuseums.org.uk/stories/which-greater-number-of-atoms-universe-or-number-of-chess-moves">
+      ~10<sup>78</sup> atoms in the observable universe</Link>.
     This means that every atom in the universe could have it's own SHA-256 hash!
   </p>
 
   <hr>
 
   <TldrCard>
-    A hash is an absurdly large number which makes the math really hard &mdash; which is why people trust it.
+    A hash is an absurdly large number.
   </TldrCard>
 
   <hr>
@@ -75,15 +74,17 @@ import Num from '@/services/Num';
 import InfoCard from '@/components/cards/InfoCard';
 import ToolCard from '@/components/cards/ToolCard';
 import TldrCard from '@/components/cards/TldrCard';
+import Link from '@/components/Link';
 
 export default {
   mixins: [
     EncodingMixin
   ],
   components: {
-    TldrCard,
     InfoCard,
+    Link,
     Page,
+    TldrCard,
     ToolCard
   },
   data() {

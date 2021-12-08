@@ -51,10 +51,10 @@ class DemoBlockHeader extends BlockHeader {
       'Wendy'
     ];
 
-    let rand = Math.floor(Math.random() * names.length + 1);
+    let rand = Math.floor(Math.random() * names.length);
     const sender = names[rand];
 
-    rand = Math.floor(Math.random() * names.length + 1);
+    rand = Math.floor(Math.random() * names.length);
     const receiver = names[rand];
 
     return { sender, receiver };

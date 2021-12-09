@@ -9,7 +9,7 @@
     </p>
     <p>
       Every time a miner successfully adds a block to the blockchain they are given a reward of newly
-      minted bitcoin. The reward started at 50₿ per block and the amount gets halved every four years. This is why
+      minted bitcoin. The reward started at <span style="color: #f79413;">50₿</span> per block and the amount gets halved every four years. This is why
       Bitcoin has a <Link href="https://en.bitcoin.it/wiki/Controlled_supply">Limited Supply</Link>.
     </p>
     <p>
@@ -101,7 +101,6 @@
     </p>
 
     <Target v-on:updateTarget="updateTarget"
-            v-on:rotate-encoding="rotateEncoding"
             :avgHashes="avgHashes"
             :denominator="denominator"
             :hash-max="hashMax"
@@ -118,7 +117,6 @@
 
     <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
                     :encoding="encoding[activeEncoding]"
-                    v-on:rotate-encoding="rotateEncoding"
                     v-on:add-block="addBlock"
                     v-on:reset-blocks="resetBlocks"/>
 
@@ -237,7 +235,7 @@ export default {
 }
 
 #pow_mining_slide .mining_controls {
-  max-width: 290px;
+  max-width: 305px;
 }
 
 </style>

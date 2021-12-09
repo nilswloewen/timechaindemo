@@ -39,6 +39,7 @@ export default {
       // Reset 'Add Block' input.
       this.disableAddBlockBtn = true;
       this.newBlockData = '';
+      this.blockToMine = 0;
 
       // Rebuild fullpage so scrolling works.
       window.fullpage_api.reBuild();
@@ -73,11 +74,6 @@ export default {
         hash: block.hash,
         isHashValid: block.isHashValid
       });
-
-      // Performance governor.
-      // if (this.guesses.length > 100) {
-      //   this.guesses.shift();
-      // }
 
       if (index > 0) {
         this.blocks[index - 1].header.prevHash = block.hash;

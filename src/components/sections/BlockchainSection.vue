@@ -115,7 +115,6 @@
 
     <AddBlockButton :disable-add-block-btn="false"
                     :encoding="encoding[activeEncoding]"
-                    v-on:rotate-encoding="rotateEncoding"
                     v-on:add-block="addBlock"
                     v-on:reset-blocks="resetBlocks"/>
 

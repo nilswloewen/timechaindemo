@@ -93,14 +93,20 @@
   </p>
 
   <ToolCard title="Notation Converter">
+    <div class="list label">Decimal (base 10)</div>
+    <div class="list value">
+      <b-input-group>
+        <b-form-input v-model="val" type="number"/>
+        <b-button-group size="sm">
+        <b-button size="sm" @click="val += 1" style="border-bottom-left-radius: 0; border-top-left-radius: 0;"><b-icon-plus/></b-button>
+          <b-button size="sm" @click="val -= 1"><b-icon-dash/></b-button>
+        </b-button-group>
+      </b-input-group>
+    </div>
+
     <div class="list label">Hexadecimal (base 16)</div>
     <div class="list value">
       <b-form-input @keyup="onHex" :value="Number(val).toString(16)"/>
-    </div>
-
-    <div class="list label">Decimal (base 10)</div>
-    <div class="list value">
-      <b-form-input v-model="val" type="number"/>
     </div>
 
     <div class="list label">Exponential</div>

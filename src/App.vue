@@ -351,16 +351,6 @@ h1 {
   cursor: pointer;
 }
 
-/*.btn {*/
-/*  padding: 0.25rem 0.5rem;*/
-/*  font-size: 0.875rem;*/
-/*  line-height: 1.5;*/
-/*  border-radius: 0.2rem;*/
-/*}*/
-/*.btn .b-icon.bi{*/
-/*  font-size: inherit;*/
-/*}*/
-
 .btn-primary,
 .btn-primary.disabled,
 .btn-primary:focus,
@@ -374,7 +364,6 @@ h1 {
 .btn-secondary:focus,
 .btn-secondary:hover {
   background-color: #7855F5;
-  border-color: #7855F5;
 }
 
 .btn-warning,

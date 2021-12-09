@@ -49,7 +49,7 @@
           </b-button>
 
           <b-button v-if="showSolutionBtn" @click="$emit('show-solution')" size="sm"
-                    :disabled="block.isHashValid" class="float-right">Show Solution
+                    :disabled="block.isHashValid" class="float-right" style="background-color: transparent; border-color: #f79413;">Show Solution
           </b-button>
         </div>
       </template>

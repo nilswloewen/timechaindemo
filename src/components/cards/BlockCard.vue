@@ -32,10 +32,10 @@
                 {{ getHash }}
               </span>
 
-<!--              <b-popover :target="`block_${block.height}_hash`" triggers="" show>-->
-<!--                <template #title>Invalid Hash</template>-->
-<!--                Click on the hash to mine block.-->
-<!--              </b-popover>-->
+              <b-popover :target="`block_${block.height}_hash`" triggers="hover">
+                <template #title>Invalid Hash</template>
+                Click on the hash to mine block.
+              </b-popover>
             </template>
 
           </b-col>

@@ -477,6 +477,6 @@ export default {
 }
 
 #timechain_mining_slide .mining_controls {
-  max-width: 290px;
+  max-width: 305px;
 }
 </style>

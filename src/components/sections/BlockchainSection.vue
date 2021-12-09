@@ -30,9 +30,6 @@
         <b>Order of Events</b>.
       </p>
       <hr>
-      <q>A blockchain is a chain of blocks.</q>
-      &nbsp;&mdash;&nbsp;<Link href="https://t.co/HQwDRlKKx9">Peter Todd</Link>
-      <hr>
       <img class="card-img" src="/assets/blockchain.svg" alt="Blockchain"/>
     </b-card>
 

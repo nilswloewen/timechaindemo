@@ -16,7 +16,8 @@
     <p>
       The goal of this demo is to show that Bitcoin is backed by a game of probabilities called mining.
       The demo will start with underlying concepts such as hash functions and move on to show
-      blockchain, proof-of-work, mining, and the difficulty-adjustment that regulates the timechain.
+      blockchain, proof-of-work, mining, and the difficulty-adjustment that regulates the timechain. Please note,
+      Bitcoin is vast and there are many topics not covered here, the timechain is just one piece of the puzzle.
     </p>
 
     <p>

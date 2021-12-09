@@ -9,7 +9,7 @@
     </p>
     <p>
       Every time a miner successfully adds a block to the blockchain they are given a reward of newly
-      minted bitcoin. The reward started at 50₿ per block and the amount gets halved every 4 years. This is why
+      minted bitcoin. The reward started at 50₿ per block and the amount gets halved every four years. This is why
       Bitcoin has a <Link href="https://en.bitcoin.it/wiki/Controlled_supply">Limited Supply</Link>.
     </p>
     <p>
@@ -50,10 +50,9 @@
     </p>
 
     <b-card class="definition_card">
-      <h4>nonce (n.)</h4>
+      <h4><Link href="https://www.etymonline.com/word/nonce">nonce (n.)</Link></h4>
       <hr>
-      In phrase 'for the nonce' (Middle English for þe naness, c. 1200)
-      "for a special occasion, for a particular purpose"
+      In phrase 'for the nonce' (c. 1200) "for a special occasion, for a particular purpose"
       <hr>
       In cryptography it is said to be shorthand for <br>'A number used once'
       <hr>

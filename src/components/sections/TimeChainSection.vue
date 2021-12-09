@@ -1,6 +1,6 @@
 <template>
 <div id="timechain_section" class="section">
-  <Page data-anchor="timechain" slide>
+  <Page first slide prev-section-btn data-anchor="timechain">
     <h1>Timechain</h1>
 
     <b-card class="definition_card">
@@ -144,13 +144,26 @@
                         :avg-hashes="avgHashes"
                         :est-time="{ blocktime, blocktimeUnit }"
                         :num-of-tries="blocks[blockToMine].tries"/>
+
+
+
+            <div class="nav_btn_mining_wrapper">
+              <b-button size="sm" class="nav_btn previous" @click="previousSlide">
+                <b-icon-arrow-left/> Prev
+              </b-button>
+
+              <b-button size="sm" class="nav_btn next_slide mining" @click="nextSlide">
+                Next <b-icon-arrow-right/>
+              </b-button>
+            </div>
+
           </b-col>
         </b-row>
       </b-container>
     </div>
   </div>
 
-  <Page slide data-anchor="timechain_global">
+  <Page last slide next-section-btn data-anchor="timechain_global">
 
     <h1>Real Difficulty</h1>
     <p>

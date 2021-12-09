@@ -48,10 +48,13 @@ export default {
         scrollBar: false,
         scrollOverflow: true,
 
+        autoScrolling: true,
+        keyboardScrolling: false,
+
         navigation: true,
         slidesNavigation: true,
         slidesNavPosition: 'top',
-        normalScrollElements: '.blockchain_wrapper .value',
+        normalScrollElements: '.blockchain_wrapper .value .page_content',
 
         // Extensions
         scrollOverflowReset: true,
@@ -188,8 +191,8 @@ h1 {
 }
 
 .page_content {
-  padding-top: 3em;
-  padding-bottom: 30vh;
+  padding-top: 30vh;
+  padding-bottom: 50vh;
 }
 
 .card {
@@ -237,6 +240,15 @@ h1 {
   box-shadow: -1px 2px 4px 2px white;
 }
 
+.nav_btn {
+  margin: 2em;
+}
+.nav_btn_mining_wrapper {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
 
 .blockchain_wrapper {
   margin-top: 2em;
@@ -440,7 +452,7 @@ h1 {
 
 /* Slides Arrows on bottom third */
 .fp-controlArrow {
-  top: 66%;
+  display: none;
 }
 #fp-nav ul li .active + .fp-tooltip {
   font-weight: bold;

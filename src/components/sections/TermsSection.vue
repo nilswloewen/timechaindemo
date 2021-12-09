@@ -1,6 +1,6 @@
 <template>
 <div id="terms_section" class="section">
-  <Page slide data-anchor="terms">
+  <Page first slide prev-section-btn data-anchor="terms">
     <h1>Terms</h1>
 
     <p>

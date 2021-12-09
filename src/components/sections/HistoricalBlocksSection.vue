@@ -65,6 +65,17 @@
               v-on:stop-mining="stopMining"
               v-on:show-solution="showSolution"
               v-on:update-nonce="updateNonce"/>
+
+            <div class="nav_btn_mining_wrapper">
+              <b-button size="sm" class="nav_btn previous" @click="previousSlide">
+                <b-icon-arrow-left/> Prev
+              </b-button>
+
+              <b-button size="sm" class="next_section mining" @click="nextSection">
+                Next <b-icon-arrow-down/>
+              </b-button>
+            </div>
+
           </b-col>
         </b-row>
       </b-container>

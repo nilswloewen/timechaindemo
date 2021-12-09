@@ -1,5 +1,5 @@
 <template>
-<Page data-anchor="intro">
+<Page data-anchor="intro" first last next-section-btn>
   <div class="fade-in">
 
     <h1> Bitcoin Timechain Demo </h1>

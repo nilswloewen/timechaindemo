@@ -1,6 +1,6 @@
 <template>
 <div id="blockchain_section" class="section">
-  <Page slide data-anchor="blockchain">
+  <Page first slide prev-section-btn data-anchor="blockchain">
     <h1>Blockchain</h1>
 
     <b-card no-body class="definition_card">
@@ -105,7 +105,7 @@
     </b-card>
   </Page>
 
-  <Page data-anchor="simple_blockchain" slide>
+  <Page last slide next-section-btn data-anchor="simple_blockchain">
     <h1>Simplified Blockchain</h1>
 
     <p>

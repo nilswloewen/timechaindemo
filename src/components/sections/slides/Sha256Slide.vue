@@ -1,5 +1,5 @@
 <template>
-<Page slide data-anchor="sha256">
+<Page last slide next-section-btn data-anchor="sha256">
   <h1>SHA-256</h1>
   <p>
     Bitcoin mining uses a particular hash function called SHA-256, which

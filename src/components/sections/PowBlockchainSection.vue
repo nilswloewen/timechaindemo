@@ -1,6 +1,6 @@
 <template>
 <div id="pow_section" class="section">
-  <Page data-anchor="pow" slide>
+  <Page first slide prev-section-btn data-anchor="pow">
     <h1> Mining / Proof-of-Work </h1>
 
     <p>
@@ -160,6 +160,17 @@
                         :is-hash-valid="blocks[blockToMine].isHashValid"
                         :avg-hashes="avgHashes"
                         :num-of-tries="guesses.length"/>
+
+            <div class="nav_btn_mining_wrapper">
+              <b-button size="sm" class="nav_btn previous" @click="previousSlide">
+                <b-icon-arrow-left/> Prev
+              </b-button>
+
+              <b-button size="sm" class="next_section mining" @click="nextSection">
+                Next <b-icon-arrow-down/>
+              </b-button>
+            </div>
+
           </b-col>
         </b-row>
       </b-container>

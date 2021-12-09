@@ -1,5 +1,5 @@
 <template>
-<Page data-anchor="resources">
+<Page first last prev-section-btn data-anchor="resources">
   <h1>Resources</h1>
 
   <p>

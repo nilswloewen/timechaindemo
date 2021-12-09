@@ -25,6 +25,18 @@ Vue.mixin({
   methods: {
     moveTo(anchor, index) {
       window.fullpage_api.moveTo(anchor, index);
+    },
+    previousSlide() {
+      fullpage_api.moveSlideLeft();
+    },
+    nextSlide() {
+      fullpage_api.moveSlideRight();
+    },
+    nextSection() {
+      fullpage_api.moveSectionDown();
+    },
+    prevSection() {
+      fullpage_api.moveSectionUp();
     }
   }
 });

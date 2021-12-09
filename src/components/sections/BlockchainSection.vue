@@ -55,7 +55,7 @@
     <p>
       The very first block in a blockchain is called the Genesis Block and starts at block number 0.
       Because new blocks are 'stacked on top' of old ones, the block number can also be thought of as
-      the height or chain length. Because the first block has no previous block, the previous hash is set to 0.
+      the height or chain length.
     </p>
 
     <b-card class="definition_card">
@@ -67,6 +67,7 @@
 
     <hr>
     <h2>Example Block</h2>
+
     <p>
       Try changing the data or previous hash of the following block to see that the block hash changes.
     </p>
@@ -107,6 +108,15 @@
 
   <Page last slide next-section-btn data-anchor="simple_blockchain">
     <h1>Simplified Blockchain</h1>
+
+    <p>
+      For this demo we will start by looking at the only first 2 digits of the hash of each block.
+    </p>
+    <p style="font-size: 0.875rem; text-align: center;">
+      <b>XX</b>{{ ''.padEnd(62, 'x') }}
+    </p>
+
+    <hr>
 
     <p>
       Add a few blocks to the blockchain and then change an old block to see how the change
@@ -174,11 +184,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.fp-viewing-blockchain-blockchain .fp-controlArrow.fp-prev,
-.fp-viewing-blockchain-simple_blockchain .fp-controlArrow.fp-next {
-  display: none;
-}
-
-</style>

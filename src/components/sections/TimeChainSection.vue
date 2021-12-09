@@ -179,7 +179,8 @@
 
     <hr>
     <p>
-      Try setting the block time to 10 minutes and see how your device would compare to the global hashrate (your competition).
+      Try setting the block time to 10 minutes and see how your device would compare to the global
+      hashrate (your competition).
     </p>
 
     <Difficulty
@@ -470,12 +471,6 @@ export default {
 </script>
 
 <style>
-/* Hide slide arrows on first and last slide. */
-.fp-viewing-timechain-timechain .fp-controlArrow.fp-prev,
-.fp-viewing-timechain-timechain_global .fp-controlArrow.fp-next {
-  display: none;
-}
-
 #timechain_mining_slide .mining_controls {
   max-width: 305px;
 }

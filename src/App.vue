@@ -56,7 +56,6 @@ export default {
         slidesNavPosition: 'top',
         normalScrollElements: '.blockchain_wrapper .value .page_content',
 
-        // Extensions
         scrollOverflowReset: true,
         scrollOverflowResetKey: 'bmlsc2xvZXdlbi5jb21fVVFuYzJOeWIyeHNUM1psY21ac2IzZFNaWE5sZEE9PVUyRw==',
 
@@ -253,14 +252,32 @@ h1 {
 .blockchain_wrapper {
   margin-top: 2em;
   text-align: center;
-  max-height: 60vh;
-  overflow-y: auto;
-  scroll-behavior: smooth;
 }
-.prev_block {
+.prev_block_hash {
   text-shadow: none;
-  padding: 0 2px;
+  padding:  2px;
   color: black;
+}
+
+#simple_blockchain_slide .prev_block_hash,
+#simple_blockchain_slide .hash_value ,
+#pow_blockchain_slide .prev_block_hash,
+#pow_blockchain_slide .hash_value,
+#timechain_blocks_slide .prev_block_hash,
+#timechain_blocks_slide .hash_value {
+  padding:  4px;
+  font-weight: bold;
+  font-size: 1em;
+}
+#simple_blockchain_slide .hash_wrapper,
+#pow_blockchain_slide .hash_wrapper,
+#timechain_blocks_slide .hash_wrapper {
+  line-height: 2em;
+}
+#simple_blockchain_slide .prev_block_hash_wrapper,
+#pow_blockchain_slide .prev_block_hash_wrapper,
+#timechain_blocks_slide .prev_block_hash_wrapper {
+  text-align: center;
 }
 
 .hash_value {

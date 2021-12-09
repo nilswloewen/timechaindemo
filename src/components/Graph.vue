@@ -47,20 +47,20 @@ export default {
   },
   data() {
     return {
-      ctx: Object,
       bgColor: 'transparent',
+      ctx: Object,
+      height: Number,
       lineColor: 'white',
+      screenHeight: Number,
+      screenWidth: Number,
       textColor: 'white',
+      tickSpeed: 1 / 1280,
+      ticks: [],
+      width: Number,
       winningColor: 'rgba(247, 148, 19, 1)',
       xPad: Number,
       yPad: Number,
-      width: Number,
-      height: Number,
-      screenWidth: Number,
-      screenHeight: Number,
       zero: Object,
-      tickSpeed: 1 / 1280,
-      ticks: []
     };
   },
 

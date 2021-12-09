@@ -36,7 +36,7 @@
   <hr>
 
   <ToolCard title="SHA-256 Calculator"
-    encoding-btn :encoding="encoding[activeEncoding]" v-on:rotate-encoding="rotateEncoding">
+            encoding-btn :encoding="encoding[activeEncoding]" v-on:rotate-encoding="rotateEncoding">
     <div class="list label">Input</div>
     <div class="list value">
       <b-input-group prepend="Data" size="sm">
@@ -56,11 +56,10 @@
   </p>
 
   <div style="width: 350px; margin-right: auto; margin-left: auto;">
-    <b-card no-body class="img_card">
-      <iframe width="auto" height="197px" src="https://www.youtube.com/embed/y3dqhixzGVo" title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen/>
+    <b-card no-body>
+      <Link href="https://www.youtube.com/embed/y3dqhixzGVo">
+        <img class="img-card" src="/assets/mine_by_hand.webp" alt="thumbnail"/>
+      </Link>
     </b-card>
   </div>
 </Page>
@@ -68,13 +67,13 @@
 
 <script>
 import EncodingMixin from '@/mixins/EncodingMixin';
-import Page from '@/components/Page.vue';
-import { sha256dFromText } from '@/services/sha256_utils';
-import Num from '@/services/Num';
 import InfoCard from '@/components/cards/InfoCard';
-import ToolCard from '@/components/cards/ToolCard';
-import TldrCard from '@/components/cards/TldrCard';
 import Link from '@/components/Link';
+import Num from '@/services/Num';
+import Page from '@/components/Page.vue';
+import TldrCard from '@/components/cards/TldrCard';
+import ToolCard from '@/components/cards/ToolCard';
+import { sha256dFromText } from '@/services/sha256_utils';
 
 export default {
   mixins: [

@@ -2,7 +2,8 @@ export default {
   data() {
     return {
       activeEncoding: 2,
-      encoding: ['binary', 'decimal', 'hexadecimal', 'exponential']
+      encoding: ['binary', 'decimal', 'hexadecimal', 'exponential'],
+      // encoding: ['decimal', 'hexadecimal'],
     };
   },
   methods: {
@@ -10,8 +11,5 @@ export default {
       this.activeEncoding += 1;
       this.activeEncoding %= this.encoding.length;
     },
-    updateActiveEncoding(newEncoding) {
-      this.activeEncoding = newEncoding;
-    }
   }
 };

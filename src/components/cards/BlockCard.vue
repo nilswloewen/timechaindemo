@@ -24,7 +24,7 @@
           </b-col>
         </b-row>
         <b-row>
-          <b-col class="hash_wrapper text-left">
+          <b-col class="hash_wrapper">
             <span v-if="isHashValid" class="hash_value valid"> {{ getHash }} </span>
             <template v-else>
               <span class="hash_value invalid" :id="`block_${block.height}_hash`" role="button"
@@ -32,10 +32,10 @@
                 {{ getHash }}
               </span>
 
-              <b-popover :target="`block_${block.height}_hash`" triggers="hover">
-                <template #title>Invalid Hash</template>
-                Click on the hash to mine block.
-              </b-popover>
+<!--              <b-popover :target="`block_${block.height}_hash`" triggers="hover">-->
+<!--                <template #title>Invalid Hash</template>-->
+<!--                Click on the hash to mine block.-->
+<!--              </b-popover>-->
             </template>
 
           </b-col>
@@ -89,11 +89,11 @@
 
     <!--Previous Hash-->
     <div class="list label">Previous Block Hash</div>
-    <div class="list value">
-      <div class="rounded prev_block update_box_shadow" :style="getPrevColor"
+    <div class="list value prev_block_hash_wrapper">
+      <span class="rounded prev_block_hash update_box_shadow" :style="getPrevColor"
            :key="block.header.prevHash">
         {{ block.header.prevHash[localEncoding] }}
-      </div>
+      </span>
     </div>
 
     <!--Nonce-->
@@ -180,7 +180,7 @@ export default {
 
 <style>
 .update_box_shadow {
-  animation: box_shadow 2s;
+  animation: box_shadow 3s;
 }
 
 @keyframes box_shadow {

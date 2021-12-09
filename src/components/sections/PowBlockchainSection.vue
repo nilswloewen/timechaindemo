@@ -19,18 +19,6 @@
 
     <hr>
 
-    <TldrCard title="tl;dr | Mining Algorithm">
-      <ol>
-        <li> Pick a random number (<b>nonce</b>)</li>
-        <li> Calculate <b>hash</b> of ( data & <b>nonce</b> )</li>
-        <li> If <b>hash</b> is less than the <b>target</b>
-          <ul>
-            <li> The hash is valid and the block will be added to the blockchain!</li>
-            <li> If not &mdash; go back to step 1 and try again!</li>
-          </ul>
-        </li>
-      </ol>
-    </TldrCard>
     <b-card no-body class="img_card">
       <img alt="That's just a dice game with extra steps!"
            class="card-img" src="/assets/backgrounds/rick_dice_game.jpg"/>
@@ -71,21 +59,28 @@
         record that cannot be changed without redoing the proof-of-work.</q>
       <br> - <Link href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</Link>
     </b-card>
+
+    <hr>
+
+    <TldrCard title="tl;dr | Mining Algorithm">
+      <ol>
+        <li> Pick a random number (<b>nonce</b>)</li>
+        <li> Calculate <b>hash</b> of ( data & <b>nonce</b> )</li>
+        <li> If <b>hash</b> is less than the <b>target</b>
+          <ul>
+            <li> The hash is valid and the block will be added to the blockchain!</li>
+            <li> If not &mdash; go back to step 1 and try again!</li>
+          </ul>
+        </li>
+      </ol>
+    </TldrCard>
+
   </Page>
 
   <Page slide data-anchor="target">
 
 
     <h1> Target </h1>
-
-    <p>
-      For this demo we will start by only looking at the first 2 digits of the hash of each block.
-    </p>
-    <p style="font-size: 0.875rem; text-align: center;">
-      <b>XX</b>{{ ''.padEnd(62, 'x') }}
-    </p>
-
-    <hr>
 
     <p>
       Because we are starting this demo by only looking at the first 2 digits of the hash of
@@ -221,12 +216,6 @@ export default {
 </script>
 
 <style>
-/* Hide slide arrows on first and last slide. */
-.fp-viewing-pow-pow .fp-controlArrow.fp-prev,
-.fp-viewing-pow-pow_mining .fp-controlArrow.fp-next {
-  display: none;
-}
-
 .overlay {
   position: fixed;
   top: 0;

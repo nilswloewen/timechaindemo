@@ -26,9 +26,9 @@
    inkscape:pagecheckerboard="true"
    inkscape:document-units="mm"
    showgrid="false"
-   inkscape:zoom="7.7926968"
-   inkscape:cx="291.87585"
-   inkscape:cy="4.1705716"
+   inkscape:zoom="1.9481742"
+   inkscape:cx="184.53175"
+   inkscape:cy="-357.00093"
    inkscape:window-width="1440"
    inkscape:window-height="2491"
    inkscape:window-x="0"
@@ -166,7 +166,7 @@
    id="text105"
    style="fill:#ffffff"><tspan
      class="TextParagraph"
-     font-family="Fira Code, monospace"
+     font-family="'Fira Code', monospace"
      font-size="254px"
      font-weight="400"
      id="tspan103"
@@ -179,7 +179,7 @@
          fill="#000000"
          stroke="none"
          id="tspan99"
-         style="fill:#ffffff">Block</tspan></tspan></tspan></text>
+         style="fill:#ffffff">Block Hash: xxxx...</tspan></tspan></tspan></text>
    </g>
   </g><g
    class="com.sun.star.drawing.PolyPolygonShape"
@@ -578,7 +578,7 @@
    class="TextShape"
    id="text251"><tspan
      class="TextParagraph"
-     font-family="Fira Code, monospace"
+     font-family="'Fira Code', monospace"
      font-size="254px"
      font-weight="400"
      id="tspan249"
@@ -587,7 +587,7 @@
        x="11712"
        y="8536"
        id="tspan247"
-       style="fill:#ffffff">Block</tspan></tspan></text>
+       style="fill:#ffffff">Block Hash: xxxx...</tspan></tspan></text>
    </g>
   </g><g
    class="com.sun.star.drawing.PolyPolygonShape"

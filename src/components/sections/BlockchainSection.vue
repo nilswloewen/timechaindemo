@@ -13,6 +13,11 @@
         </p>
         <hr>
         In Bitcoin a block stores a set of transactions.
+        <hr>
+        <div class="text-center">
+          <img class="card-img" src="/assets/block.svg" alt="Blockchain"
+               style="height: 112px; width: auto;"/>
+        </div>
       </b-card-body>
     </b-card>
 
@@ -21,7 +26,7 @@
       <hr>
       <p>
         A data structure that embeds the hash of the previous blocks into the following block,
-        therefore proving that the previous block existed before the following block which establishes an
+        therefore proving that the previous block existed before the following which establishes an
         <b>Order of Events</b>.
       </p>
       <hr>
@@ -64,6 +69,7 @@
     </b-card>
 
     <hr>
+    <h2>Example Block</h2>
     <p>
       Try changing the data or previous hash of the following block to see that the block hash changes.
     </p>

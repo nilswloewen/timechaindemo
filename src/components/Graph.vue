@@ -167,12 +167,16 @@ export default {
         const backOfLabel = x + labelMetrics.width;
         guesses[i].opacity = backOfLabel / this.width;
 
+        guesses[i].opacity -= 0.6;
+
         if (guesses[i].opacity < 0) {
           guesses.shift();
         }
       }
+      if (guesses.length > 0) {
+        guesses[guesses.length - 1].opacity = 1;
+      }
     },
-
     drawTicks() {
       for (let i = 0; i < this.ticks.length; i += 1) {
         const xRatio = this.ticks[i];
@@ -221,9 +225,9 @@ export default {
 
     drawEndCaps() {
       // Left pad.
-      this.ctx.clearRect(0, this.zero.y + 8, this.xPad, -(this.height + 16));
+      this.ctx.clearRect(0, this.zero.y + 8, this.xPad, -(this.height + 18));
       // Right pad.
-      this.ctx.clearRect(this.zero.x + 1, this.zero.y + 8, this.xPad, -(this.height + 16));
+      this.ctx.clearRect(this.zero.x + 1, this.zero.y + 8, this.xPad, -(this.height + 18));
     },
 
     calcGraph() {

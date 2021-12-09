@@ -3,10 +3,22 @@
   <b-card-header>
     <b-container>
       <b-row class="row_1">
+
         <b-col class="text-left">
-          <b-icon-wrench/>
+          <!-- Wrench icon: Made this a button just to center it -->
+          <b-button disabled size="sm" class="wrench_btn">
+            <b-icon-wrench/>
+          </b-button>
+
+          <!-- Collapse Btn -->
+          <b-button v-if="collapse" v-b-toggle="collapse" size="sm" class="collapse_mining_controls">
+            <span class="when-open"><b-icon-arrow-up/></span>
+            <span class="when-closed"><b-icon-arrow-down/></span>
+          </b-button>
         </b-col>
-        <b-col class="text-center title"> {{ title }}</b-col>
+
+        <b-col class="text-center title">{{ title }}</b-col>
+
         <b-col class="text-right">
           <EncodingBtn v-if="encodingBtn" :encoding="encoding" v-on:rotate-encoding="$emit('rotate-encoding')"/>
         </b-col>
@@ -30,6 +42,7 @@ import EncodingBtn from '@/components/controls/EncodingBtn';
 export default {
   components: { EncodingBtn },
   props: {
+    collapse: String,
     title: String,
     headerAddon: String,
     encodingBtn: Boolean,
@@ -56,5 +69,13 @@ export default {
   padding: 0 5px;
   overflow: auto;
   white-space: nowrap;
+}
+.collapsed > .when-open,
+.not-collapsed > .when-closed {
+  display: none;
+}
+.btn-secondary.wrench_btn.disabled {
+  background-color: transparent;
+  border: none;
 }
 </style>

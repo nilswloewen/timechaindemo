@@ -1,68 +1,70 @@
 <template>
-<ToolCard class="mining_controls" :title="`Mining Block #${block.height}`"
+<ToolCard class="mining_controls" :title="`Mining Block #${block.height}`" :collapse="collapse"
           encoding-btn :encoding="localEncoding" v-on:rotate-encoding="$emit('rotate-encoding')">
 
-  <!-- Max -->
-  <div class="list label"> Max</div>
-  <div class="list value">
-    {{ hashMax[localEncoding] }}
-  </div>
-
-  <!-- Target -->
-  <div class="list label" style="color: #f79413;">Target</div>
-  <div class="list value" style="color: #f79413;">
-    {{ target[localEncoding] }}
-  </div>
-
-  <!-- Hash -->
-  <div class="list label"> Hash</div>
-  <div class="list value">{{ block.hash[localEncoding] }}</div>
-
-  <!--Nonce-->
-  <div class="list label">Nonce</div>
-  <div class="list value">
-    <template v-if="interactiveNonce">
-      <b-input-group size="sm" class="float-right">
-        <b-form-input @change="onNonceChange"
-                      :value="block.header.nonce" :state="block.isHashValid"
-                      type="number" :min="0" :max="4294967295" size="sm" :disabled="block.isHashValid"/>
-        <b-button size="sm" @click="onIncrementNonce" :disabled="block.isHashValid"
-                  style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
-          +1
-        </b-button>
-      </b-input-group>
-    </template>
-
-    <template v-else>
-      {{ block.header.nonce.toLocaleString() }}
-    </template>
-  </div>
-
-  <div v-if="showGoBrrr" class="list value text-left">
-    <template v-if="!block.isHashValid">
-    <div class="list label">Controls</div>
+  <b-collapse :id="collapse" visible>
+    <!-- Max -->
+    <div class="list label"> Max</div>
     <div class="list value">
-      <b-button @click="toggleMining" size="sm">
-        <template v-if="!isMining">Go Brrr (Automate)</template>
-        <template v-else>Stop Mining</template>
-      </b-button>
-
-      <b-button v-if="showSolutionBtn" @click="$emit('show-solution')" size="sm"
-                :disabled="block.isHashValid" class="float-right">Show Solution
-      </b-button>
+      {{ hashMax[localEncoding] }}
     </div>
-    </template>
 
-    <div class="list label">Guesses</div>
-    <div class="list value">{{ block.tries.toLocaleString() }} </div>
+    <!-- Target -->
+    <div class="list label" style="color: #f79413;">Target</div>
+    <div class="list value" style="color: #f79413;">
+      {{ target[localEncoding] }}
+    </div>
 
-    <div class="list label">Time Elapsed</div>
-    <div class="list value">{{ block.timeToMine }} Seconds</div>
+    <!-- Hash -->
+    <div class="list label"> Hash</div>
+    <div class="list value">{{ block.hash[localEncoding] }}</div>
 
-    <div class="list label">Hashrate</div>
-    <div class="list value">{{ getHps }}<sub>H/s</sub></div>
+    <!--Nonce-->
+    <div class="list label">Nonce</div>
+    <div class="list value">
+      <template v-if="interactiveNonce">
+        <b-input-group size="sm" class="float-right">
+          <b-form-input @change="onNonceChange"
+                        :value="block.header.nonce" :state="block.isHashValid"
+                        type="number" :min="0" :max="4294967295" size="sm" :disabled="block.isHashValid"/>
+          <b-button size="sm" @click="onIncrementNonce" :disabled="block.isHashValid"
+                    style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+            +1
+          </b-button>
+        </b-input-group>
+      </template>
 
-  </div>
+      <template v-else>
+        {{ block.header.nonce.toLocaleString() }}
+      </template>
+    </div>
+
+    <div v-if="showGoBrrr" class="list value text-left">
+      <template v-if="!block.isHashValid">
+        <div class="list label">Controls</div>
+        <div class="list value">
+          <b-button @click="toggleMining" size="sm">
+            <template v-if="!isMining">Go Brrr (Automate)</template>
+            <template v-else>Stop Mining</template>
+          </b-button>
+
+          <b-button v-if="showSolutionBtn" @click="$emit('show-solution')" size="sm"
+                    :disabled="block.isHashValid" class="float-right">Show Solution
+          </b-button>
+        </div>
+      </template>
+
+      <div class="list label">Guesses</div>
+      <div class="list value">{{ block.tries.toLocaleString() }} </div>
+
+      <div class="list label">Time Elapsed</div>
+      <div class="list value">{{ block.timeToMine }} Seconds</div>
+
+      <div class="list label">Hashrate</div>
+      <div class="list value">{{ getHps }}<sub>H/s</sub></div>
+
+    </div>
+  </b-collapse>
 </ToolCard>
 </template>
 
@@ -82,7 +84,8 @@ export default {
     localEncoding: String,
     showGoBrrr: Boolean,
     showSolutionBtn: Boolean,
-    target: Num
+    collapse: String,
+    target: Num,
   },
 
   computed: {
@@ -114,6 +117,6 @@ export default {
 
 <style>
 .mining_controls {
- background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 </style>

@@ -55,6 +55,8 @@
               :index="block.height"
               :local-encoding="encoding[activeEncoding]"
               :target="target"
+              :is-mining="isMining"
+              collapse="historical_mining"
               interactive-nonce
               show-go-brrr
               show-solution-btn
@@ -172,23 +174,30 @@ export default {
     showSolution() {
       this.updateNonce(this.originalNonce);
     },
+
+    async startMining() {
+      this.isMining = true;
+      this.block.startTime = performance.now();
+      this.block.tries = 0;
+      await this.mine();
+      this.isMining = false;
+    },
+
+    async mine() {
+      this.block.tries += 1;
+      await this.updateNonce(this.block.header.nonce += 1);
+
+      const elapsed = performance.now() - this.block.startTime;
+      this.block.timeToMine = (elapsed / 1000).toFixed(2);
+
+      if (!this.block.isHashValid && this.isMining) {
+        await this.mine();
+      }
+    },
+
     stopMining() {
       this.isMining = false;
     },
-    async startMining() {
-      const startTime = performance.now();
-      this.isMining = true;
-      this.block.tries = 0;
-
-      while (!this.block.isHashValid && this.isMining) {
-        this.block.tries += 1;
-        await this.updateNonce(this.block.header.nonce += 1);
-        const elapsed = performance.now() - startTime;
-        this.block.timeToMine = (elapsed / 1000).toFixed(2);
-      }
-
-      this.isMining = false;
-    }
   }
 };
 </script>

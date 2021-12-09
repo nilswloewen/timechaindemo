@@ -384,6 +384,7 @@ h1 {
   border-color: #7855F5;
 }
 
+.collapse_mining_controls,
 .rotate_encoding_btn {
   background-color: rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.1);

@@ -25,7 +25,7 @@
         </b-row>
         <b-row>
           <b-col class="hash_wrapper">
-            <span v-if="isHashValid" class="hash_value valid"> {{ getHash }} </span>
+            <span v-if="isHashValid" class="hash_value valid" :style="`background-color: ${block.color}`"> {{ getHash }} </span>
             <template v-else>
               <span class="hash_value invalid" :id="`block_${block.height}_hash`" role="button"
                     @click="onMineThisBlock">
@@ -179,6 +179,9 @@ export default {
 </script>
 
 <style>
+.valid {
+  border-radius: 4px;
+}
 .update_box_shadow {
   animation: box_shadow 3s;
 }

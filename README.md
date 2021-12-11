@@ -1,4 +1,4 @@
-# manual_miner
+# Timechain Demo
 
 ## Project setup
 ```
@@ -15,53 +15,14 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+### TODO fixes: 
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
 
-# TODO:
-Welcome - Educational Tool
+#### Add Features: 
+Show 256 bits in binary compared to hex string
 
-Terms you need to know:
-  - Hexadecimal/Binary Encoding
-  - Hash
-  - Blockchain
-    - Non-pow
-    - Proof of Work
-      - Nonce
-      - Target
-      - Difficulty
-      - Probability
-      - Hash Rate
-      - Time
-      - Timechain
+Show that calibration is happening. 
 
-How hard is it, really?
-Historical Blocks
-Difficulty chart
+Add popover on invalid hash.
 
-## Definitions: 
-Difficulty 
- - The average time it takes to find a valid block within a given time frame. 
-
-Throughput / Transactions per Second
-
-Outline:
-
-Simple Blockchain
- - Prove Order of Events.
- - Prove changes propagate up.
-
-POW Blockchain
- - Target
- - Nonce
- - Numberline
-
-Timechain
- - Hash Rate
- - Difficulty
- - Animate numberline
+Show target on add block page. Perhaps only when invalid. 

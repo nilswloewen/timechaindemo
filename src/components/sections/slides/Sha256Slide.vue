@@ -99,6 +99,7 @@ export default {
   },
   methods: {
     async updateHash(event) {
+      this.activeEncoding = 2;
       this.data = event.target.value;
       const hash = await sha256dFromText(this.data);
       this.hash = new Num(BigInt(`0x${ hash }`));

@@ -1,6 +1,6 @@
 <template>
 <div id="historical_blocks_section" class="section">
-  <Page data-anchor="real_blocks" slide>
+  <Page first slide prev-section-btn data-anchor="real_blocks" >
     <h1>Real Bitcoin Mining</h1>
 
     <p>

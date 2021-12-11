@@ -3,7 +3,6 @@ export default {
     return {
       activeEncoding: 2,
       encoding: ['binary', 'decimal', 'hexadecimal', 'exponential'],
-      // encoding: ['decimal', 'hexadecimal'],
     };
   },
   methods: {

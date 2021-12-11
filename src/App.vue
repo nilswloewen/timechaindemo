@@ -254,9 +254,7 @@ h1 {
   text-align: center;
 }
 .prev_block_hash {
-  text-shadow: none;
   padding:  2px;
-  color: black;
 }
 
 #simple_blockchain_slide .prev_block_hash,

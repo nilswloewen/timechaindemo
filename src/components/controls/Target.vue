@@ -1,6 +1,7 @@
 <template>
 <ToolCard title="Target" :header-addon="target[localEncoding]"
-          encoding-btn :encoding="localEncoding" v-on:rotate-encoding="$emit('rotate-encoding')">
+          :encoding-btn="enableChangeEncoding" :encoding="localEncoding"
+          v-on:rotate-encoding="$emit('rotate-encoding')">
 
   <b-input-group v-if="!hideRange" prepend="Min 1" size="sm" append="Max">
     <b-form-input :title="target[localEncoding]" :value="target.num" @change="onTargetChange" type="range"
@@ -32,6 +33,7 @@ export default {
   props: {
     avgHashes: null,
     denominator: null,
+    enableChangeEncoding: Boolean,
     hashMax: Num,
     hideRange: Boolean,
     localEncoding: String,

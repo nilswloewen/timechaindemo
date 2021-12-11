@@ -1,7 +1,7 @@
 <template>
 <div class="add_block_wrapper">
-  <ToolCard title="Add Block"
-            encoding-btn :encoding="encoding" v-on:rotate-encoding="$emit('rotate-encoding')">
+  <ToolCard title="Add Block" :encoding-btn="enableChangeEncoding"
+            :encoding="encoding" v-on:rotate-encoding="$emit('rotate-encoding')">
     <b-card-body>
       <b-input-group prepend="Data" size="sm">
         <b-form-input v-model="newBlockData" :disabled="disableAddBlockBtn"
@@ -28,8 +28,9 @@ import ToolCard from '@/components/cards/ToolCard';
 export default {
   components: { ToolCard },
   props: {
+    enableChangeEncoding: Boolean,
     encoding: String,
-    disableAddBlockBtn: Boolean
+    disableAddBlockBtn: Boolean,
   },
   data() {
     return {

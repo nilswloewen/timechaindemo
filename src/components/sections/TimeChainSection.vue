@@ -100,6 +100,7 @@
 
   <Page data-anchor="timechain_blocks" slide>
     <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
+                    enable-change-encoding
                     :encoding="encoding[activeEncoding]"
                     v-on:rotate-encoding="rotateEncoding"
                     v-on:add-block="addBlock"
@@ -178,32 +179,32 @@
     </p>
 
     <Difficulty
+      :blocktime-unit="blocktimeUnit"
+      :blocktime-units="blocktimeUnits"
+      :blocktime="blocktime"
       :hashrate-long="getHashrateLong()"
       :hashrate="hashrate"
       :hashrateUnit="hashrateUnit"
       :hashrateUnits="hashrateUnits"
-      v-on:update-hashrate="updateHashrate"
-      v-on:update-hashrate-unit="updateHashrateUnit"
-      :blocktime="blocktime"
-      :blocktime-unit="blocktimeUnit"
-      :blocktime-units="blocktimeUnits"
       show-global
+      v-on:calibrate-hps="calibrateHps"
       v-on:update-blocktime="updateBlocktime"
       v-on:update-blocktime-unit="updateBlocktimeUnit"
-      v-on:calibrate-hps="calibrateHps"
+      v-on:update-hashrate="updateHashrate"
+      v-on:update-hashrate-unit="updateHashrateUnit"
       v-on:show-global-hashrate="onGlobal"/>
 
-    <Target v-on:updateTarget="updateTargetAndBlocktime"
-            v-on:rotate-encoding="rotateEncoding"
-            :avgHashes="avgHashes"
+    <Target :avgHashes="avgHashes"
             :denominator="denominator"
             :hash-max="hashMax"
             :localEncoding="encoding[activeEncoding]"
             :numerator="numerator"
             :probability="probability"
             :target="target"
-            :targetMax="targetMax"/>
-
+            :targetMax="targetMax"
+            enable-change-encoding
+            v-on:updateTarget="updateTargetAndBlocktime"
+            v-on:rotate-encoding="rotateEncoding"/>
 
     <h2>Difficulty Adjustment Period</h2>
     <p>

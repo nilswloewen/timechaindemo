@@ -134,7 +134,7 @@ export default {
         this.ctx.clearRect(this.zero.x - 6, this.zero.y + 2, -60, -4);
       }
 
-      this.ctx.font = '16px Fira Code';
+      this.ctx.font = 'bold 16px Fira Code';
       this.ctx.direction = 'ltr';
       this.ctx.fillStyle = this.winningColor;
       this.ctx.fillText('Target', this.zero.x - 64, y + 6);
@@ -159,20 +159,23 @@ export default {
 
     calcGuesses(guesses) {
       for (let i = 0; i < guesses.length; i += 1) {
-        guesses[i].xRatio += this.tickSpeed;
+        const guess= guesses[i];
+        guess.xRatio += this.tickSpeed;
+
+        let x = this.zero.x - (this.width * guess.xRatio);
+        const labelMetrics = this.ctx.measureText(guess.hash[this.localEncoding]);
+        let backOfLabel = x + labelMetrics.width;
+
+        // Ensure opacity is never greater than 1.
+        if (backOfLabel > this.width) {
+          backOfLabel = this.width;
+        }
+
+        guess.opacity = backOfLabel / this.width;
+        guess.opacity -= 0.3;
 
         // Delete guess when the right side of it passes xPad.
-        let x = this.zero.x - (this.width * guesses[i].xRatio);
-        const labelMetrics = this.ctx.measureText(guesses[i].hash[this.localEncoding]);
-        const backOfLabel = x + labelMetrics.width;
-        guesses[i].opacity = backOfLabel / this.width;
-
-        console.log(`before: ${guesses[i].opacity}`);
-        guesses[i].opacity -= 0.8;
-
-        console.log(`after: ${guesses[i].opacity}`);
-
-        if (guesses[i].opacity < 0) {
+        if (guess.opacity < 0) {
           guesses.shift();
         }
       }
@@ -224,6 +227,7 @@ export default {
 
       // Label
       this.ctx.direction = 'ltr';
+      this.ctx.font = '16px Fira Code';
       this.ctx.fillStyle = isHashValid ? `rgba(247, 148, 19, ${ opacity })` : `rgba(255, 255, 255, ${ opacity })`;
       this.ctx.fillText(label, x, y + 4);
     },

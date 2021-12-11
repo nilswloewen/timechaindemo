@@ -25,7 +25,7 @@
       <h4 class="text-left">blockchain (n.)</h4>
       <hr>
       <p>
-        A data structure that embeds the hash of the previous blocks into the following block,
+        A data structure that embeds the hash of the previous block into the following block,
         therefore proving that the previous block existed before the following which establishes an
         <b>Order of Events</b>.
       </p>
@@ -36,7 +36,7 @@
     <h4 class="mt-4">Why does Bitcoin use a blockchain?</h4>
 
     <p>
-      A physical coin or asset requires no history, it exists in only one location at a time.
+      A physical coin or asset requires no history, it can only exist in one location at a time.
       Ownership is proven by physical control of the coin or asset.
     </p>
 

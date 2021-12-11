@@ -191,7 +191,7 @@ h1 {
 
 .page_content {
   padding-top: 30vh;
-  padding-bottom: 50vh;
+  padding-bottom: 90vh;
 }
 
 .card {

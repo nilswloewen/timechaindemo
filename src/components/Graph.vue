@@ -167,12 +167,17 @@ export default {
         const backOfLabel = x + labelMetrics.width;
         guesses[i].opacity = backOfLabel / this.width;
 
-        guesses[i].opacity -= 0.6;
+        console.log(`before: ${guesses[i].opacity}`);
+        guesses[i].opacity -= 0.8;
+
+        console.log(`after: ${guesses[i].opacity}`);
 
         if (guesses[i].opacity < 0) {
           guesses.shift();
         }
       }
+
+      // Make latest guess brightest.
       if (guesses.length > 0) {
         guesses[guesses.length - 1].opacity = 1;
       }

@@ -20,7 +20,7 @@
     <EncodingBtn :encoding="encoding[activeEncoding]" v-on:rotate-encoding="rotateEncoding"/>
   </p>
   <p>
-    Try clicking it to see different ways numbers are represented.
+    Try clicking it to see different ways the number 21 million can be represented.
   </p>
 
   <InfoCard title="Bitcoin's Maximum Supply" :encoding="encoding[activeEncoding]"
@@ -98,8 +98,8 @@
       <b-input-group>
         <b-form-input v-model="val" type="number"/>
         <b-button-group size="sm">
-        <b-button size="sm" @click="val += 1" style="border-bottom-left-radius: 0; border-top-left-radius: 0;"><b-icon-plus/></b-button>
-          <b-button size="sm" @click="val -= 1"><b-icon-dash/></b-button>
+        <b-button size="sm" @click="val = Number(val) + 1" style="border-bottom-left-radius: 0; border-top-left-radius: 0;"><b-icon-plus/></b-button>
+          <b-button size="sm" @click="val = Number(val) - 1"><b-icon-dash/></b-button>
         </b-button-group>
       </b-input-group>
     </div>

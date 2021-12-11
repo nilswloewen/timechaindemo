@@ -4,13 +4,6 @@
     <h1>Real Bitcoin Mining</h1>
 
     <p>
-      The demo section is over. So how hard can it really be? Use the following slides to try re-mine a
-      real Bitcoin block yourself!
-    </p>
-
-    <hr>
-
-    <p>
       The 'data' in real mining includes the <b>Version</b> of the bitcoin software used to create the block, a
       recording of the target in a format called <b>Bits</b>, and a record of the transactions in
       the block called a <b>Merkle Root</b>. For more information on each field see

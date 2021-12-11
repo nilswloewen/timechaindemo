@@ -16,21 +16,21 @@
   </p>
 
   <h5>
-    Hash functions can answer the question:<br> <b><q>Are these two files exactly the same?</q></b>
+    Hash functions can answer the question:<br> <q>Are these two files exactly the same?</q>
   </h5>
   <br>
 
   <p>
     A hash can be thought of as the "digital fingerprint" of a file or set of data.
     For example, lets say you have two digital versions of an encyclopedia and you want to know if they
-    contain exactly the same information. You could either compare them word for word,
-    or you could run each of them through the same type of hash function and quickly compare the hashes.
+    contain exactly the same information. You could either tediously compare them word for word,
+    or you could run each of them through a hash function and quickly compare the hashes.
     If each encyclopedia had the same hash or 'fingerprint', then you could be sure that they are
     exact copies of one another.
   </p>
 
   <p>
-    A hash can sometimes be misunderstood as a compression or encryption. However, both
+    A hash can sometimes be misunderstood as a compression or as an encryption. However, both
     compression and encryption are meant to be reversible; you can decompress a file
     back to its original size and you can decrypt a file back to its original contents.
   </p>

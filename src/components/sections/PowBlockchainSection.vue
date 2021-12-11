@@ -7,11 +7,13 @@
       Mining is the process of adding new blocks to the blockchain. The name comes from the idea that
       if you work hard enough, you will be rewarded with 'digital gold' aka Bitcoin.
     </p>
+
     <p>
       Every time a miner successfully adds a block to the blockchain they are given a reward of newly
       minted bitcoin. The reward started at <span style="color: #f79413;">50₿</span> per block and the amount gets halved every four years. This is why
-      Bitcoin has a <Link href="https://en.bitcoin.it/wiki/Controlled_supply">Limited Supply</Link>.
+      Bitcoin has a <Link href="https://en.bitcoin.it/wiki/Controlled_supply">limited supply</Link>.
     </p>
+
     <p>
       This demo should show you why Bitcoin's monetary policy is far more rational than the Federal Reserve,
       who simply say <Link href="https://moneyprintergobrrr.com">Money Printer Go BRRR!</Link>
@@ -19,17 +21,10 @@
 
     <hr>
 
-    <b-card no-body class="img_card">
-      <img alt="That's just a dice game with extra steps!"
-           class="card-img" src="/assets/backgrounds/rick_dice_game.jpg"/>
-    </b-card>
-
-    <hr>
-
     <p>
       In the previous example of a blockchain, every block hash was considered valid.
-      To make mining difficult, Bitcoin requires that a block hash will only be valid if
-      it is interpreted as a number that is less than a pre-determined <b>target</b>.
+      To make mining difficult, Bitcoin requires that a block hash will only be valid if it's numerical value
+      is less than a pre-determined <b>target</b>.
     </p>
 
     <p>
@@ -43,8 +38,6 @@
       In phrase 'for the nonce' (c. 1200) "for a special occasion, for a particular purpose"
       <hr>
       In cryptography it is said to be shorthand for <br>'A number used once'
-      <hr>
-      A random number used to prove work was done to find valid hash
     </b-card>
 
     <p>
@@ -53,14 +46,17 @@
       hash, which is why this system is called <b>Proof-of-Work</b>.
     </p>
 
-    <b-card class="quote_card">
-      <q>The network timestamps transactions by hashing
-        them into an ongoing chain of hash-based proof-of-work, forming a
-        record that cannot be changed without redoing the proof-of-work.</q>
-      <br> - <Link href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</Link>
-    </b-card>
+    <p>
+      In this system we are essentially using the hash function as if it were a random number generator and then saying that
+      only some of these random numbers are acceptable. Though it's important to remember that a hash is neither random
+      nor a number - it's just a string of bits we interpret as a number.
+      The randomness comes from the nonce that we use as input in the hash function.
+    </p>
 
-    <hr>
+    <b-card no-body class="img_card">
+      <img alt="That's just a dice game with extra steps!"
+           class="card-img" src="/assets/backgrounds/rick_dice_game.jpg"/>
+    </b-card>
 
     <TldrCard title="tl;dr | Mining Algorithm">
       <ol>
@@ -75,24 +71,31 @@
       </ol>
     </TldrCard>
 
+<!--    <b-card class="quote_card">-->
+<!--      <q>The network timestamps transactions by hashing-->
+<!--        them into an ongoing chain of hash-based proof-of-work, forming a-->
+<!--        record that cannot be changed without redoing the proof-of-work.</q>-->
+<!--      <br> - <Link href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</Link>-->
+<!--    </b-card>-->
   </Page>
 
   <Page slide data-anchor="target">
-
-
     <h1> Target </h1>
 
     <p>
       Because we are starting this demo by only looking at the first 2 digits of the hash of
-      each block, the maximum value of a hash (ff) is 255 and the minimum value is 0.
+      each block, the possible hash values are between 00 and ff. Remember, a hash is just a number
+      written in hexadecimal notation. In decimal notation the hash ff is 255. This means there are 256
+      possible values between 00 and ff (0 to 255).
     </p>
 
     <p>
-      The target is a movable value somewhere between the min and max that will be the
-      cutoff for an acceptable hash. <b>Try moving the target to see how the probabilities change.</b>
+      The target is a movable value somewhere between the minimum and maximum that will be the
+      cutoff for an acceptable hash. As the target goes down it becomes more difficult to find a winning hash.
     </p>
+
     <p>
-      As the target goes down it becomes more difficult to find a winning hash.
+      <b>Try moving the target to see how the probabilities change.</b>
     </p>
 
     <Target v-on:updateTarget="updateTarget"
@@ -104,7 +107,6 @@
             :probability="probability"
             :target="target"
             :targetMax="targetMax"/>
-
   </Page>
 
   <Page data-anchor="pow_blockchain" slide>

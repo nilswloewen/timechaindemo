@@ -10,7 +10,7 @@
   </p>
 
   <p>
-    An output of 256 bits means there are 2<sup>256</sup>-1 possible output hashes.
+    An output of 256 bits means there are 2<sup>256</sup> possible output hashes.
   </p>
 
   <ToolCard title="Number of possible hashes"
@@ -21,16 +21,16 @@
   </ToolCard>
 
   <p>
-    For some context, it is estimated that there are
+    For some context, it is estimated that there are ~10<sup>78</sup>
     <Link href="https://www.liverpoolmuseums.org.uk/stories/which-greater-number-of-atoms-universe-or-number-of-chess-moves">
-      ~10<sup>78</sup> atoms in the observable universe</Link>.
+     atoms in the observable universe</Link>.
     This means that every atom in the universe could have it's own SHA-256 hash!
   </p>
 
   <hr>
 
   <TldrCard>
-    A hash is an absurdly large number.
+    A hash can be interpreted as an absurdly large number.
   </TldrCard>
 
   <hr>

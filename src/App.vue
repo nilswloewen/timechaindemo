@@ -267,6 +267,13 @@ h1 {
   font-weight: bold;
   font-size: 1em;
 }
+
+#simple_blockchain_slide .prev_block_hash,
+#pow_blockchain_slide .prev_block_hash,
+#timechain_blocks_slide .prev_block_hash {
+  padding: 0 2px;
+}
+
 #simple_blockchain_slide .hash_wrapper,
 #pow_blockchain_slide .hash_wrapper,
 #timechain_blocks_slide .hash_wrapper {

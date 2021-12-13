@@ -1,65 +1,6 @@
 <template>
 <div id="timechain_section" class="section">
-  <Page first slide prev-section-btn data-anchor="timechain">
-    <h1>Timechain</h1>
-
-    <b-card class="quote_card">
-      <q>The only way to find a valid proof-of-work is by making a lot of guesses,
-        and making a single guess takes a little bit of time. The probabilistic
-        sum of these guesses is what builds up the timechain that is Bitcoin.</q>
-      - <Link href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</Link>
-    </b-card>
-
-    <p>
-      We've shown that by adjusting the target it becomes more or less difficult to
-      find a valid hash. When more guesses are required, more <b>time</b> is required.
-      The difficulty can be expressed as the number of guesses per unit of time required
-      to find a valid hash.
-    </p>
-
-    <b-card class="definition_card">
-      <h4>hashrate (n.)</h4>
-      <hr>
-      (computing, cryptocurrency) The number of hashes that a mining computer can calculate in a given
-      period of time, usually a second.
-      <hr>
-      Hashes per second (H/s)
-    </b-card>
-
-    <p>
-      Remember, if a miner finds a block they are rewarded with bitcoin, so the incentive is
-      to mine as many blocks as possible to increase their profits. Not only are their computers
-      running 24/7, to increase their chance of success miners find ways to increase their hashrate.
-    </p>
-
-    <p>
-      This leads to a global arms race as Bitcoin mining is a competition that is open to anyone, anywhere.
-      As each miner upgrades their hardware to increase their hashrate, every other miner must do the same
-      or else the probability of their success decreases.
-    </p>
-
-    <p>
-      To ensure that the timechain only grows at steady rate regardless of computing power, we can adjust
-      the target in relation to hashrate.
-    </p>
-
-    <b-card class="definition_card">
-      <h4>Timechain (n.)</h4>
-      <hr>
-      A blockchain that grows at a regulated time interval, regardless of hashrate.
-    </b-card>
-
-    <b-card class="quote_card">
-      <q>To compensate for increasing hardware speed and varying interest in running nodes over time,
-        the proof-of-work difficulty is determined by a moving average targeting an average number of
-        blocks per hour. If they're generated too fast, the difficulty increases.</q>
-      <br> - <Link href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</Link>
-      <hr>
-      <q>In other words, the difficulty-adjustment is about keeping a constant
-        time, not a constant level of security, difficulty, or energy expenditure.</q>
-      <br> - <Link href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</Link>
-    </b-card>
-  </Page>
+  <TimechainSlide/>
 
   <Page slide data-anchor="timechain_target">
     <h1>Difficulty Adjustment</h1>
@@ -165,87 +106,7 @@
     </div>
   </div>
 
-  <Page slide data-anchor="real_world_mining">
-    <h1> Real World Mining </h1>
-
-    <h3>ASIC Miners</h3>
-    <p>
-      When Bitcoin was first discovered, miners were using home computers and laptops to mine. Over the years
-      new methods have been found to optimize hashrate to increase miner's profits. Nowadays it's impractical
-      to use a home computer for mining because specialized computers have been created that can only mine
-      bitcoin and they do it well, these are called ASIC (Application-Specific Integrated Circuit) miners.
-    </p>
-
-    <p>
-      The <Link href="https://shop.bitmain.com/promote/antminer_s9i_asic_bitcoin_miner/overview">Antminer S9i</Link> is one of the most popular ASICs on the market.
-
-      The hashrate of just one of these units is ~13 TeraHashes per second, or 13,000,000,000,000 <sub>TH/s</sub>.
-    </p>
-
-    <InfoCard title="Antminer S9i">
-      <img class="card-img" src="/assets/antminerS9.jpeg" alt="Antminer S9"/>
-    </InfoCard>
-
-    <hr>
-    <h3>Mining Farms</h3>
-
-    <p>
-      You may have seen photos of massive warehouses of electronics and blinking lights
-    </p>
-
-    <InfoCard title="Mining Farm">
-      <img class="card-img" src="/assets/mining_farm.jpeg" alt="Mining Farm"/>
-    </InfoCard>
-
-    <p>
-      Compare the hashrate of your device to the
-      global hashrate of the entire Bitcoin network. Mining is a global competition to see who can
-      find a winning block first. If you were to mine Bitcoin with your device this is the
-      phenomenal computing power you'd be up against.
-    </p>
-
-    <hr>
-
-    <h2>Mining Pools</h2>
-
-    <p>
-      Because the probability of individual miners finding a block is so small compared to the global
-      competition, miners sometimes choose to work as a group to increase the group's chance of a profit. These
-      groups are called 'Mining Pools'. All the member's hashrates are pooled together and the profits are
-      split based on the hashrate that each individual miner contributes to the pool.
-    </p>
-
-    <p>
-      <Link href="https://slushpool.com/en/stats/btc/">SlushPool</Link>
-      is the oldest Bitcoin mining pool and at the time of this writing their hashrate represents
-      ~8 of the global hashrate, around ~7 ExaHashes per second.
-    </p>
-
-    <hr>
-
-    <InfoCard id="hashrate_table" title="Hashrate Comparison">
-      <b-table-simple small class="text-right">
-        <b-tbody>
-          <b-tr>
-            <b-td>Your Device</b-td>
-            <b-td>~{{ this.yourDeviceHr }}<sub>H/s</sub></b-td>
-          </b-tr>
-          <b-tr>
-            <b-td>Antminer S9</b-td>
-            <b-td>13,000,000,000,000<sub>H/s</sub></b-td>
-          </b-tr>
-          <b-tr>
-            <b-td>SlushPool</b-td>
-            <b-td>7,000,000,000,000,000,000<sub>H/s</sub></b-td>
-          </b-tr>
-          <b-tr>
-            <b-td>Global</b-td>
-            <b-td>{{ this.globalHr.long }}<sub>H/s</sub></b-td>
-          </b-tr>
-        </b-tbody>
-      </b-table-simple>
-    </InfoCard>
-  </Page>
+  <RealWorldMiningSlide :global-hr="globalHr.long" :your-device-hr="yourDeviceHr"/>
 
   <Page last slide next-section-btn data-anchor="timechain_review">
     <h1>Timechain Review</h1>
@@ -299,9 +160,11 @@ import Link from '@/components/Link';
 import MiningControls from '@/components/controls/MiningControls.vue';
 import Num from '@/services/Num';
 import Page from '@/components/Page.vue';
+import RealWorldMiningSlide from '@/components/sections/slides/RealWorldMiningSlide';
 import SuccessMsg from '@/components/controls/SuccessMsg';
 import Target from '@/components/controls/Target.vue';
 import TargetMixin from '@/mixins/TargetMixin';
+import TimechainSlide from '@/components/sections/slides/TimechainSlide';
 
 export default {
   mixins: [
@@ -318,8 +181,10 @@ export default {
     Link,
     MiningControls,
     Page,
+    RealWorldMiningSlide,
     SuccessMsg,
-    Target
+    Target,
+    TimechainSlide,
   },
   data() {
     return {
@@ -557,7 +422,6 @@ export default {
       const formattedGlobalHr = this.formatHashrate(globalHr);
 
       this.globalHr = {
-        raw: globalHr,
         long: globalHr.toLocaleString(),
         value: Math.floor(formattedGlobalHr.value),
         unit: formattedGlobalHr.unit,

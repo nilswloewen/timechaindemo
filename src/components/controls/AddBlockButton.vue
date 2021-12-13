@@ -3,17 +3,19 @@
   <ToolCard title="Add Block" :encoding-btn="enableChangeEncoding"
             :encoding="encoding" v-on:rotate-encoding="$emit('rotate-encoding')">
     <b-card-body>
-      <b-input-group prepend="Data" size="sm">
-        <b-form-input v-model="newBlockData" :disabled="disableAddBlockBtn"
-                      placeholder="Try adding a block..." size="sm"/>
+      <div v-if="disableAddBlockBtn">
+        All blocks must be valid before adding new blocks.
+      </div>
+
+      <b-input-group v-else prepend="Data" size="sm">
+        <b-form-input v-model="newBlockData" placeholder="Try adding a block..." size="sm"/>
 
         <b-button @click="addBlock" variant="primary" size="sm"
-                  :disabled="disableAddBlockBtn" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                  style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
           Add
         </b-button>
 
-        <b-button title="Reset" @click="$emit('reset-blocks')" size="sm" class="ml-2"
-                  variant="warning">
+        <b-button title="Reset" @click="$emit('reset-blocks')" size="sm" class="ml-2" >
           <b-icon-trash/>
         </b-button>
       </b-input-group>

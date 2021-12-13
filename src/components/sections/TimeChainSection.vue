@@ -59,7 +59,6 @@
         time, not a constant level of security, difficulty, or energy expenditure.</q>
       <br> - <Link href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</Link>
     </b-card>
-
   </Page>
 
   <Page slide data-anchor="timechain_target">
@@ -136,6 +135,7 @@
               :is-mining="isMining"
               :local-encoding="encoding[activeEncoding]"
               :target="target"
+              encoding-btn
               show-go-brrr
               v-on:rotate-encoding="rotateEncoding"
               v-on:start-mining="startMining"
@@ -148,8 +148,6 @@
                         :avg-hashes="avgHashes"
                         :est-time="{ blocktime, blocktimeUnit }"
                         :num-of-tries="blocks[blockToMine].tries"/>
-
-
 
             <div class="nav_btn_mining_wrapper">
               <b-button size="sm" class="nav_btn previous" @click="previousSlide">
@@ -167,16 +165,93 @@
     </div>
   </div>
 
-  <Page last slide next-section-btn data-anchor="timechain_global">
+  <Page slide data-anchor="real_world_mining">
+    <h1> Real World Mining </h1>
 
-    <h1>Real Difficulty</h1>
+    <h3>ASIC Miners</h3>
     <p>
-      The demo section is over. So how hard can it really be? Compare the hashrate of your device to the
+      When Bitcoin was first discovered, miners were using home computers and laptops to mine. Over the years
+      new methods have been found to optimize hashrate to increase miner's profits. Nowadays it's impractical
+      to use a home computer for mining because specialized computers have been created that can only mine
+      bitcoin and they do it well, these are called ASIC (Application-Specific Integrated Circuit) miners.
+    </p>
+
+    <p>
+      The <Link href="https://shop.bitmain.com/promote/antminer_s9i_asic_bitcoin_miner/overview">Antminer S9i</Link> is one of the most popular ASICs on the market.
+
+      The hashrate of just one of these units is ~13 TeraHashes per second, or 13,000,000,000,000 <sub>TH/s</sub>.
+    </p>
+
+    <InfoCard title="Antminer S9i">
+      <img class="card-img" src="/assets/antminerS9.jpeg" alt="Antminer S9"/>
+    </InfoCard>
+
+    <hr>
+    <h3>Mining Farms</h3>
+
+    <p>
+      You may have seen photos of massive warehouses of electronics and blinking lights
+    </p>
+
+    <InfoCard title="Mining Farm">
+      <img class="card-img" src="/assets/mining_farm.jpeg" alt="Mining Farm"/>
+    </InfoCard>
+
+    <p>
+      Compare the hashrate of your device to the
       global hashrate of the entire Bitcoin network. Mining is a global competition to see who can
       find a winning block first. If you were to mine Bitcoin with your device this is the
       phenomenal computing power you'd be up against.
     </p>
+
+    <hr>
+
+    <h2>Mining Pools</h2>
+
     <p>
+      Because the probability of individual miners finding a block is so small compared to the global
+      competition, miners sometimes choose to work as a group to increase the group's chance of a profit. These
+      groups are called 'Mining Pools'. All the member's hashrates are pooled together and the profits are
+      split based on the hashrate that each individual miner contributes to the pool.
+    </p>
+
+    <p>
+      <Link href="https://slushpool.com/en/stats/btc/">SlushPool</Link>
+      is the oldest Bitcoin mining pool and at the time of this writing their hashrate represents
+      ~8 of the global hashrate, around ~7 ExaHashes per second.
+    </p>
+
+    <hr>
+
+    <InfoCard id="hashrate_table" title="Hashrate Comparison">
+      <b-table-simple small class="text-right">
+        <b-tbody>
+          <b-tr>
+            <b-td>Your Device</b-td>
+            <b-td>~{{ this.yourDeviceHr }}<sub>H/s</sub></b-td>
+          </b-tr>
+          <b-tr>
+            <b-td>Antminer S9</b-td>
+            <b-td>13,000,000,000,000<sub>H/s</sub></b-td>
+          </b-tr>
+          <b-tr>
+            <b-td>SlushPool</b-td>
+            <b-td>7,000,000,000,000,000,000<sub>H/s</sub></b-td>
+          </b-tr>
+          <b-tr>
+            <b-td>Global</b-td>
+            <b-td>{{ this.globalHr.long }}<sub>H/s</sub></b-td>
+          </b-tr>
+        </b-tbody>
+      </b-table-simple>
+    </InfoCard>
+  </Page>
+
+  <Page last slide next-section-btn data-anchor="timechain_review">
+    <h1>Timechain Review</h1>
+
+    <p>
+      <b>Try setting the block time to 10 minutes to see how the target changes in relation to hashrate.</b>
     </p>
 
     <Difficulty
@@ -207,39 +282,26 @@
             v-on:updateTarget="updateTargetAndBlocktime"
             v-on:rotate-encoding="rotateEncoding"/>
 
-    <h2>Difficulty Adjustment Period</h2>
-    <p>
-      The blocktime for Bitcoin is set for 10 minutes in order to give time for the global network to stay in sync.
-    </p>
-    <p>
-      Every two weeks (2,016 blocks) the time to average time find each block is calculated and compared
-      to the goal of 10 minutes. If the average time is less than 10 minutes, the
-      target is lowered and it becomes more difficult to find a valid block hash. If the average time
-      is more than 10 minutes the mining difficult decreases so that blocks may be found faster.
-    </p>
-    <p>
-      <b>Try setting the block time to 10 minutes to see how the target changes in relation to hashrate.</b>
-    </p>
   </Page>
-
 </div>
 </template>
 
 <script>
 import AddBlockButton from '@/components/controls/AddBlockButton.vue';
 import BlockCard from '@/components/cards/BlockCard.vue';
+import BlockchainApi from '@/services/BlockchainApi';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
+import Difficulty from '@/components/controls/Difficulty';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import Graph from '@/components/Graph.vue';
+import InfoCard from '@/components/cards/InfoCard';
+import Link from '@/components/Link';
 import MiningControls from '@/components/controls/MiningControls.vue';
+import Num from '@/services/Num';
 import Page from '@/components/Page.vue';
 import SuccessMsg from '@/components/controls/SuccessMsg';
 import Target from '@/components/controls/Target.vue';
 import TargetMixin from '@/mixins/TargetMixin';
-import Difficulty from '@/components/controls/Difficulty';
-import Num from '@/services/Num';
-import BlockchainApi from '@/services/BlockchainApi';
-import Link from '@/components/Link';
 
 export default {
   mixins: [
@@ -248,11 +310,12 @@ export default {
     TargetMixin
   ],
   components: {
-    Link,
     AddBlockButton,
     BlockCard,
     Difficulty,
     Graph,
+    InfoCard,
+    Link,
     MiningControls,
     Page,
     SuccessMsg,
@@ -265,6 +328,8 @@ export default {
       isMining: false,
       isCalibrating: false,
       isAdjustingTarget: false,
+      yourDeviceHr: 0,
+      globalHr: { long: '180,000,000,000,000,000,000', value: 180, unit: 'Exa' },
       hashrate: 42,
       hashrateUnit: 'base',
       blocktime: 15,
@@ -297,6 +362,7 @@ export default {
   mounted() {
     this.calibrateHps();
     this.calcTarget();
+    this.setGlobalHr();
   },
   methods: {
     updateNonce(nonce) {
@@ -337,7 +403,10 @@ export default {
       }
 
       const hashes = this.blocks[0].header.nonce / (elapsed / 1000);
-      this.setHashrate(hashes.toFixed(0));
+      const formattedHashes = this.formatHashrate(hashes.toFixed());
+      this.hashrate = formattedHashes.value;
+      this.hashrateUnit = formattedHashes.unit;
+      this.yourDeviceHr = this.hashrate * this.hashrateConversion[this.hashrateUnit].value;
       this.calcTarget();
 
       // Reset block.
@@ -362,16 +431,19 @@ export default {
       this.calcTarget();
     },
     async onGlobal() {
-      const gigaHashrate = await BlockchainApi.getHashRate();
-      this.setHashrate(gigaHashrate * this.hashrateConversion.Giga.value);
+      this.hashrate = this.globalHr.value;
+      this.hashrateUnit = this.globalHr.unit;
       this.calcTarget();
     },
-    setHashrate(hashrate) {
+    async getGlobalHr() {
+      const gigaHashrate = await BlockchainApi.getHashRate();
+      return gigaHashrate * this.hashrateConversion.Giga.value;
+    },
+    formatHashrate(hashrate) {
       for (const unit of ['Yotta', 'Zeta', 'Exa', 'Peta', 'Tera', 'Giga', 'Mega', 'Kilo', 'base']) {
         if (hashrate > this.hashrateConversion[unit].value) {
-          this.hashrate = hashrate / this.hashrateConversion[unit].value;
-          this.hashrateUnit = unit;
-          return;
+          const value = hashrate / this.hashrateConversion[unit].value;
+          return { value, unit }
         }
       }
     },
@@ -478,6 +550,18 @@ export default {
 
       this.blocktime = val;
       this.blocktimeUnit = unit;
+    },
+
+    async setGlobalHr() {
+      const globalHr = await this.getGlobalHr();
+      const formattedGlobalHr = this.formatHashrate(globalHr);
+
+      this.globalHr = {
+        raw: globalHr,
+        long: globalHr.toLocaleString(),
+        value: Math.floor(formattedGlobalHr.value),
+        unit: formattedGlobalHr.unit,
+      };
     }
   }
 };

@@ -90,7 +90,7 @@ export default {
     return {
       data: 'Try changing this data...',
       hash: { hexadecimal: '60759d1ab05baf2c79e281d8fbff268f559328dc45bd46b12114bbbe40197271' },
-      hashMax: new Num(BigInt(`0x${ ''.padEnd(64, 'f') }`) + 1n, 64)
+      hashMax: new Num(BigInt(Math.pow(2, 256)), 64),
     };
   },
   async mounted() {

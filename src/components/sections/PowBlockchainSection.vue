@@ -114,6 +114,10 @@
 
   <Page data-anchor="pow_blockchain" slide>
     <h1>Proof-of-work Blockchain</h1>
+    <p>If a block hash is outlined in red, that means the block is invalid because the hash is not
+      less than the target.
+      <b>Click on an invalid hash in order to mine the block.</b>
+    </p>
 
     <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
                     :encoding="encoding[activeEncoding]"
@@ -187,6 +191,7 @@
     </p>
 
     <Target v-on:updateTarget="updateTarget"
+            v-on:rotate-encoding="rotateEncoding"
             enable-change-encoding
             :avgHashes="avgHashes"
             :denominator="denominator"

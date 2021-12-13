@@ -16,11 +16,8 @@ npm run build
 ```
 
 ### TODO fixes: 
-Declare primary buttons
 
 Make nav buttons bigger - show text when there is space.
-
-Set target to 20 automatically.
 
 Add instructions on blockchain page to click on hash when invalid.
 
@@ -45,9 +42,13 @@ Scroll on blockchain change
 
 Examples of how to play with each tool.
 
+Format decimal inputs with commas.
+
+Add blockchain stats to show ave # guesses and time
 
 - Atomic Habits podcast - 
 - The Art of Learning - Chess/Fighting/Learning
 - Seven Habits of Highly Productive People
 
 While (true) { learn }
+

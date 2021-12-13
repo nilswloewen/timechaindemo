@@ -6,7 +6,8 @@
         <b-col>&nbsp;</b-col>
         <b-col class="text-center title"> {{ title }}</b-col>
         <b-col class="text-right">
-          <EncodingBtn v-if="encodingBtn" :encoding="encoding" v-on:rotate-encoding="$emit('rotate-encoding')"/>
+          <EncodingBtn v-if="encodingBtn" :encoding="encoding"
+                       v-on:rotate-encoding="$emit('rotate-encoding')"/>
         </b-col>
       </b-row>
     </b-container>

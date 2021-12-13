@@ -43,7 +43,7 @@
       <template v-if="!block.isHashValid">
         <div class="list label">Controls</div>
         <div class="list value">
-          <b-button @click="toggleMining" size="sm">
+          <b-button @click="toggleMining" size="sm" variant="primary">
             <template v-if="!isMining">Go Brrr (Automate)</template>
             <template v-else>Stop Mining</template>
           </b-button>

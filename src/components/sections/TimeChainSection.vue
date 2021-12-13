@@ -208,8 +208,7 @@
 
     <h2>Difficulty Adjustment Period</h2>
     <p>
-      The blocktime for Bitcoin is set for 10 minutes in order to give time for the
-      global network to stay in sync with each new block.
+      The blocktime for Bitcoin is set for 10 minutes in order to give time for the global network to stay in sync.
     </p>
     <p>
       Every two weeks (2,016 blocks) the time to average time find each block is calculated and compared

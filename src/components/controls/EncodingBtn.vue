@@ -1,6 +1,6 @@
 <template>
 <b-button v-b-popover.hover.top="getEncoding" title="Notation" class="rotate_encoding_btn"
-          @click="$emit('rotate-encoding')" size="sm">
+          @click="$emit('rotate-encoding')" :size="size">
   <b-icon-vector-pen/>
 </b-button>
 </template>
@@ -9,6 +9,7 @@
 export default {
   props: {
     encoding: String,
+    size: {type: String, default: 'sm'},
   },
   computed: {
     getEncoding() {

@@ -8,17 +8,19 @@
 
   <p>
     Numbers are written with different notation styles for different use cases.
-    While computers think in 1's and 0's,
-    binary notation is not easy for humans to read. Decimal notation is easy to read, but
-    it might not be the most compact way to store values.
+    While computers think in 1's and 0's, binary notation is not easy for humans
+    to read. Decimal notation is easy to read, but it might not be the most compact
+    way to store values.
   </p>
 
   <p>
     You will see this notation button later in this demo:
   </p>
+
   <p class="text-center">
-    <EncodingBtn :encoding="encoding[activeEncoding]" v-on:rotate-encoding="rotateEncoding"/>
+    <EncodingBtn size="lg" :encoding="encoding[activeEncoding]" v-on:rotate-encoding="rotateEncoding"/>
   </p>
+
   <p>
     Try clicking it to see different ways the number 21 million can be represented.
   </p>
@@ -28,14 +30,16 @@
     <b-card-body>
       <b>{{ num[encoding[activeEncoding]] }}</b>
       <br>
-      {{ encoding[activeEncoding] }} notation
+      {{ encoding[activeEncoding].charAt(0).toUpperCase() + encoding[activeEncoding].slice(1) }} Notation
     </b-card-body>
   </InfoCard>
 
   <hr>
 
   <b-card class="definition_card">
-    <h4 class="text-left"><Link href="https://www.etymonline.com/word/hexadecimal">hexadecimal (adj.)</Link></h4>
+    <h4 class="text-left">
+      <Link href="https://www.etymonline.com/word/hexadecimal">hexadecimal (adj.)</Link>
+    </h4>
     <hr>
     1952, in reference to a numeral system based on 16, not 10; from hexa- + decimal.
     From 1970 as a noun. Greek hexa-, combining form of hex "six".

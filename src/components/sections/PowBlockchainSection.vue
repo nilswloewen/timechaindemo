@@ -119,6 +119,8 @@
       <b>Click on an invalid hash in order to mine the block.</b>
     </p>
 
+    <BlockchainStatsCard :avg-guesses="avgGuesses" :est-avg-guesses="avgHashes"/>
+
     <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
                     :encoding="encoding[activeEncoding]"
                     v-on:add-block="addBlock"
@@ -150,6 +152,7 @@
             <MiningControls
               :block="blocks[blockToMine]"
               :hash-max="hashMax"
+              collapse="pow_mining_controls"
               :index="blockToMine"
               :is-mining="isMining"
               :local-encoding="encoding[activeEncoding]"
@@ -218,6 +221,7 @@ import Target from '@/components/controls/Target.vue';
 import TargetMixin from '@/mixins/TargetMixin';
 import TldrCard from '@/components/cards/TldrCard';
 import Link from '@/components/Link';
+import BlockchainStatsCard from '@/components/cards/BlockchainStatsCard';
 
 export default {
   mixins: [
@@ -226,6 +230,7 @@ export default {
     TargetMixin
   ],
   components: {
+    BlockchainStatsCard,
     Link,
     TldrCard,
     AddBlockButton,

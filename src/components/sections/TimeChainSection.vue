@@ -40,12 +40,16 @@
   </Page>
 
   <Page data-anchor="timechain_blocks" slide>
+
+    <BlockchainStatsCard :avg-guesses="avgGuesses" :est-avg-guesses="avgHashes"
+                         :avg-time="avgTime" :est-avg-time="blocktime" />
+
     <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
                     enable-change-encoding
                     :encoding="encoding[activeEncoding]"
                     v-on:rotate-encoding="rotateEncoding"
                     v-on:add-block="addBlock"
-                    v-on:reset-blocks="resetBlocks"/>
+                    v-on:reset-blocks="resetTimechainBlocks"/>
 
     <div class="blockchain_wrapper">
       <BlockCard v-for="(block, index) in this.blocks" :key="index"
@@ -78,10 +82,10 @@
               :target="target"
               encoding-btn
               show-go-brrr
+              collapse="timechain_mining_controls"
               v-on:rotate-encoding="rotateEncoding"
-              v-on:start-mining="startMining"
-              v-on:stop-mining="stopMining"
-              v-on:update-nonce="updateNonce"/>
+              v-on:start-mining="startTimechainMining"
+              v-on:stop-mining="stopMining" />
 
             <SuccessMsg :block-height="blocks[blockToMine].height"
                         :is-hash-valid="blocks[blockToMine].isHashValid"
@@ -165,6 +169,7 @@ import SuccessMsg from '@/components/controls/SuccessMsg';
 import Target from '@/components/controls/Target.vue';
 import TargetMixin from '@/mixins/TargetMixin';
 import TimechainSlide from '@/components/sections/slides/TimechainSlide';
+import BlockchainStatsCard from '@/components/cards/BlockchainStatsCard';
 
 export default {
   mixins: [
@@ -173,6 +178,7 @@ export default {
     TargetMixin
   ],
   components: {
+    BlockchainStatsCard,
     AddBlockButton,
     BlockCard,
     Difficulty,
@@ -190,6 +196,7 @@ export default {
     return {
       blockToMine: 0,
       activeEncoding: 1,
+      avgTime: 0,
       isMining: false,
       isCalibrating: false,
       isAdjustingTarget: false,
@@ -230,10 +237,6 @@ export default {
     this.setGlobalHr();
   },
   methods: {
-    updateNonce(nonce) {
-      this.blocks[this.blockToMine].header.nonce = Number(nonce);
-      this.finalizeBlock(this.blockToMine);
-    },
     updateHexDigits(newHexDigits) {
       this.hexDigits = newHexDigits;
 
@@ -256,6 +259,10 @@ export default {
       this.target = new Num(BigInt(target), this.hexDigits);
       this.calcStats();
     },
+    resetTimechainBlocks() {
+      this.resetBlocks();
+      this.setAvgTime();
+    },
     async calibrateHps() {
       this.isCalibrating = true;
       const start = new Date().getTime();
@@ -275,7 +282,7 @@ export default {
       this.calcTarget();
 
       // Reset block.
-      this.resetBlocks();
+      this.resetTimechainBlocks();
       this.guesses = [];
       this.isCalibrating = false;
     },
@@ -423,16 +430,32 @@ export default {
 
       this.globalHr = {
         long: globalHr.toLocaleString(),
-        value: Math.floor(formattedGlobalHr.value),
         unit: formattedGlobalHr.unit,
+        value: Math.floor(formattedGlobalHr.value),
       };
-    }
+    },
+    startTimechainMining(index) {
+      this.startMining(index);
+      this.setAvgTime();
+    },
+    setAvgTime() {
+      let totalTime = 0;
+
+      console.log(this.blocks)
+      this.blocks.forEach((block) => {
+        console.log(block.timeToMine);
+        totalTime += Number(block.timeToMine);
+        console.log(totalTime);
+      });
+      this.avgTime = (totalTime / this.blocks.length).toFixed(2);
+    },
+
   }
 };
 </script>
 
 <style>
 #timechain_mining_slide .mining_controls {
-  max-width: 305px;
+  max-width: 375px;
 }
 </style>

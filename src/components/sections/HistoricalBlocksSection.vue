@@ -192,7 +192,7 @@ export default {
       await this.updateNonce(this.block.header.nonce += 1);
 
       const elapsed = performance.now() - this.block.startTime;
-      this.block.timeToMine = (elapsed / 1000).toFixed(2);
+      this.block.timeToMine = (elapsed / 1000);
 
       if (!this.block.isHashValid && this.isMining) {
         await this.mine();

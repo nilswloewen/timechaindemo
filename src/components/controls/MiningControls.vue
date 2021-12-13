@@ -58,7 +58,7 @@
       <div class="list value">{{ block.tries.toLocaleString() }} </div>
 
       <div class="list label">Time Elapsed</div>
-      <div class="list value">{{ block.timeToMine }} Seconds</div>
+      <div class="list value">{{ block.timeToMine.toFixed(2) }} Seconds</div>
 
       <div class="list label">Hashrate</div>
       <div class="list value">{{ getHps }}<sub>H/s</sub></div>

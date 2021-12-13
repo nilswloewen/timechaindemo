@@ -14,7 +14,8 @@ export default {
       ],
       disableAddBlockBtn: true,
       guesses: [],
-      newBlockData: ''
+      newBlockData: '',
+      avgGuesses: 0,
     };
   },
   async mounted() {
@@ -60,10 +61,12 @@ export default {
 
       // Rebuild fullpage so scrolling works.
       window.fullpage_api.reBuild();
+      this.setAvgGuesses();
     },
 
     async finalizeBlock(index) {
       const block = this.blocks[index];
+      block.tries += 1;
       block.header.timestamp = performance.now() / 1000;
       await block.calcHash(this.hexDigits);
       block.isHashValid = block.hash.bigInt < this.target.bigInt;
@@ -75,8 +78,13 @@ export default {
         isHashValid: block.isHashValid
       });
 
+      // Add new hash to following block.
       if (index > 0) {
         this.blocks[index - 1].header.prevHash = block.hash;
+      }
+
+      if (block.isHashValid) {
+        this.setAvgGuesses();
       }
 
       this.resetAddBlockBtn();
@@ -111,19 +119,17 @@ export default {
       this.isMining = true;
       const block = this.blocks[index];
       block.startTime = performance.now();
-      block.tries = 0;
 
       await this.mine(block, index);
       this.isMining = false;
     },
 
     async mine(block, index) {
-      block.tries += 1;
       block.header.nonce += 1;
       await this.finalizeBlock(index);
 
       const elapsed = performance.now() - block.startTime;
-      block.timeToMine = (elapsed / 1000).toFixed(2);
+      block.timeToMine = elapsed / 1000;
 
       if (!block.isHashValid && this.isMining) {
         await this.mine(block,index);
@@ -141,7 +147,14 @@ export default {
     async updateData(event, index) {
       this.blocks[index].header.data = event.target.value;
       await this.delayedUpdate(index);
-    }
+    },
+    setAvgGuesses() {
+      let totalGuesses = 0
+      this.blocks.forEach((block) => {
+        totalGuesses += block.tries;
+      });
+      this.avgGuesses = (totalGuesses / this.blocks.length).toFixed(2);
+    },
 
   }
 };

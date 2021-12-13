@@ -104,7 +104,7 @@
       <b-input-group>
         <b-form-input v-model="val" type="number"/>
         <b-button-group size="sm">
-        <b-button size="sm" @click="val = Number(val) + 1" style="border-bottom-left-radius: 0; border-top-left-radius: 0;"><b-icon-plus/></b-button>
+        <b-button size="sm" @click="val = Number(val) + 1" style="border-bottom-left-radius: 0; border-top-left-radius: 0;" variant="primary"><b-icon-plus/></b-button>
           <b-button size="sm" @click="val = Number(val) - 1"><b-icon-dash/></b-button>
         </b-button-group>
       </b-input-group>

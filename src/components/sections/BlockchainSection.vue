@@ -53,9 +53,9 @@
     <hr>
 
     <p>
-      The very first block in a blockchain is called the Genesis Block and starts at block number 0.
+      The first block in a blockchain is called the Genesis Block and starts at block number 0.
       Because new blocks are 'stacked on top' of old ones, the block number can also be thought of as
-      the height or chain length.
+      the block height.
     </p>
 
     <b-card class="definition_card">

@@ -2,7 +2,7 @@
 <ToolCard title="Difficulty">
 
   <b-card-body class="text-center">
-    <b-button @click="$emit('calibrate-hps')" size="sm" class="m-2">
+    <b-button @click="$emit('calibrate-hps')" size="sm" class="m-2" variant="primary">
       Calibrate for your device
     </b-button>
 
@@ -23,7 +23,10 @@
     </div>
 
     <div class="mt-2">
-      {{ hashrateLong }}<sub>H/s</sub>
+      <b-icon-arrow-clockwise v-if="isCalibrating" animation="spin" size="sm"/>
+      <template v-else>
+        {{ hashrateLong }}<sub>H/s</sub>
+      </template>
     </div>
 
     <hr>
@@ -62,6 +65,7 @@ export default {
     hashrateLong: String,
     hashrateUnit: String,
     hashrateUnits: Array,
+    isCalibrating: Boolean,
     showGlobal: Boolean,
   },
   methods: {

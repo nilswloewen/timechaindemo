@@ -75,6 +75,7 @@
       :hashrate="hashrate"
       :hashrateUnit="hashrateUnit"
       :hashrateUnits="hashrateUnits"
+      :is-calibrating="isCalibrating"
       v-on:update-hashrate="updateHashrate"
       v-on:update-hashrate-unit="updateHashrateUnit"
       :blocktime="blocktime"
@@ -262,6 +263,7 @@ export default {
       blockToMine: 0,
       activeEncoding: 1,
       isMining: false,
+      isCalibrating: false,
       isAdjustingTarget: false,
       hashrate: 42,
       hashrateUnit: 'base',
@@ -324,6 +326,7 @@ export default {
       this.calcStats();
     },
     async calibrateHps() {
+      this.isCalibrating = true;
       const start = new Date().getTime();
       let elapsed = 0;
 
@@ -340,6 +343,7 @@ export default {
       // Reset block.
       this.resetBlocks();
       this.guesses = [];
+      this.isCalibrating = false;
     },
     updateHashrate(newHashrate) {
       this.hashrate = Number(newHashrate || 1);

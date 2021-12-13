@@ -88,6 +88,7 @@
       written in hexadecimal notation. In decimal notation the hash ff is 255. This means there are 256
       possible values between 00 and ff (0 to 255).
     </p>
+    <p>For this section the target and block hashes will be in decimal notation instead of hexadecimal.</p>
 
     <p>
       The target is a movable value somewhere between the minimum and maximum that will be the
@@ -95,10 +96,12 @@
     </p>
 
     <p>
-      <b>Try moving the target to see how the probabilities change.</b>
+      For now we will set the target to <b>15</b>, which means on average we will need to guess <b>17</b> times
+        before finding a valid hash.
     </p>
 
     <Target v-on:updateTarget="updateTarget"
+            hide-range
             :avgHashes="avgHashes"
             :denominator="denominator"
             :hash-max="hashMax"
@@ -147,8 +150,8 @@
               :is-mining="isMining"
               :local-encoding="encoding[activeEncoding]"
               :target="target"
+              :encoding-btn="false"
               interactive-nonce
-              v-on:rotate-encoding="rotateEncoding"
               v-on:update-nonce="updateNonce"/>
 
             <SuccessMsg :block-height="blocks[blockToMine].height"
@@ -161,8 +164,8 @@
                 <b-icon-arrow-left/> Prev
               </b-button>
 
-              <b-button size="sm" class="next_section mining" @click="nextSection">
-                Next <b-icon-arrow-down/>
+              <b-button size="sm" class="nav_btn next_slide mining" @click="nextSlide">
+                Next <b-icon-arrow-right/>
               </b-button>
             </div>
 
@@ -171,6 +174,29 @@
       </b-container>
     </div>
   </div>
+
+  <Page last slide next-section-btn data-anchor="adjustable_target">
+    <h1>Proof-of-work Review</h1>
+
+    <p>Take a minute to play with these new concepts before moving forward.</p>
+    <p>You can use the notation button to view the target and hash in hexadecimal format.</p>
+
+    <p>
+      Try changing the target to see how the mining difficulty changes.
+      Then go back to the previous slides to try out the new target yourself.
+    </p>
+
+    <Target v-on:updateTarget="updateTarget"
+            enable-change-encoding
+            :avgHashes="avgHashes"
+            :denominator="denominator"
+            :hash-max="hashMax"
+            :localEncoding="encoding[activeEncoding]"
+            :numerator="numerator"
+            :probability="probability"
+            :target="target"
+            :targetMax="targetMax"/>
+  </Page>
 </div>
 </template>
 

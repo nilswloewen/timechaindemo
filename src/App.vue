@@ -86,7 +86,8 @@ export default {
           slides: [
             { anchor: 'target', label: 'Target' },
             { anchor: 'pow_blockchain', label: 'POW Blockchain' },
-            { anchor: 'pow_mining', label: 'POW Mining' }
+            { anchor: 'pow_mining', label: 'POW Mining' },
+            { anchor: 'adjustable_target', label: 'POW Review'},
           ]
         },
         {
@@ -377,15 +378,17 @@ h1 {
 .btn-primary.disabled,
 .btn-primary:focus,
 .btn-primary:hover {
-  background-color: #3CAFAA;
-  border-color: #3CAFAA;
+  background-color: #7855F5;
+  border-color: #7855F5;
+  box-shadow: none;
 }
 
 .btn-secondary,
 .btn-secondary.disabled,
 .btn-secondary:focus,
 .btn-secondary:hover {
-  background-color: #7855F5;
+  background-color: #3CAFAA;
+  border-color: #3CAFAA;
 }
 
 .btn-warning,
@@ -404,6 +407,17 @@ h1 {
 
 .card.info {
   box-shadow: -2px 3px 10px 2px #7855F5;
+  border-color: #7855F5;
+}
+
+.nav_btn,
+.nav_btn:focus {
+  background-color: transparent;
+  border-color: #7855F5;
+  box-shadow: -2px 3px 5px 0 #7855F5;
+}
+.nav_btn:hover {
+  background-color: #7855F5;
   border-color: #7855F5;
 }
 
@@ -484,11 +498,6 @@ h1 {
 /* Right Arrow */
 .fp-controlArrow.fp-next {
   border-width: 16px 0 16px 16px;
-}
-
-/* Nav dots on right */
-#fp-nav.fp-right {
-  top: 33%;
 }
 
 .fp-slidesNav {

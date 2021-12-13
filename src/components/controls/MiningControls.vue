@@ -1,6 +1,6 @@
 <template>
 <ToolCard class="mining_controls" :title="`Mining Block #${block.height}`" :collapse="collapse"
-          encoding-btn :encoding="localEncoding" v-on:rotate-encoding="$emit('rotate-encoding')">
+          :encoding-btn="encodingBtn" :encoding="localEncoding" v-on:rotate-encoding="$emit('rotate-encoding')">
 
   <b-collapse :id="collapse" visible>
     <!-- Max -->
@@ -78,6 +78,7 @@ export default {
   props: {
     block: Block,
     hashMax: Num,
+    encodingBtn: Boolean,
     index: Number,
     interactiveNonce: Boolean,
     isMining: Boolean,

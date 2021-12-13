@@ -18,8 +18,6 @@ npm run build
 ### TODO fixes: 
 Declare primary buttons
 
-Make encoding button bigger on intro
-
 Make nav buttons bigger - show text when there is space.
 
 Set target to 20 automatically.

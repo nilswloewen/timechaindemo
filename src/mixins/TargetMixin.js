@@ -30,15 +30,8 @@ export default {
 
       this.calcStats();
 
-      // Check if all blocks are still under the target.
-      this.blocks.forEach((block) => {
-        block.isHashValid = block.hash.bigInt < this.target.bigInt;
-      });
-
-      // Check if each guess is still under target.
-      this.guesses.forEach((guess) => {
-        guess.isHashValid = guess.hash.bigInt < this.target.bigInt;
-      });
+      this.guesses = [];
+      this.resetBlocks();
     },
 
     calcStats() {

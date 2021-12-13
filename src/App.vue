@@ -128,13 +128,13 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Fira%20Code:wght@300..700&display=swap');
 
 #app {
-  background-color: #15202b;
-  font-size: 16px;
-  font-family: 'Fira Code', monospace;
-  text-align: justify;
-  color: white;
-  text-shadow: #000 -1px 1px 4px;
   -webkit-font-smoothing: antialiased;
+  background-color: #15202b;
+  color: white;
+  font-family: 'Fira Code', monospace;
+  font-size: 16px;
+  text-align: justify;
+  text-shadow: #000 -1px 1px 3px;
 }
 
 a {

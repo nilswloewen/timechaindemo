@@ -338,8 +338,7 @@ export default {
       this.calcTarget();
 
       // Reset block.
-      this.blocks[0].header.nonce = 0;
-      await this.finalizeBlock(0);
+      this.resetBlocks();
       this.guesses = [];
     },
     updateHashrate(newHashrate) {

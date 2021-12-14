@@ -43,10 +43,10 @@ export default {
   components: { EncodingBtn },
   props: {
     collapse: String,
-    title: String,
-    headerAddon: String,
-    encodingBtn: Boolean,
     encoding: { type: String, required: false },
+    encodingBtn: Boolean,
+    headerAddon: String,
+    title: String,
   },
 };
 </script>

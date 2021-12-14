@@ -81,15 +81,15 @@ export default {
   components: { ToolCard },
   props: {
     block: Block,
-    hashMax: Num,
+    collapse: String,
     encodingBtn: Boolean,
+    hashMax: Num,
     index: Number,
     interactiveNonce: Boolean,
     isMining: Boolean,
     localEncoding: String,
     showGoBrrr: Boolean,
     showSolutionBtn: Boolean,
-    collapse: String,
     target: Num,
   },
 

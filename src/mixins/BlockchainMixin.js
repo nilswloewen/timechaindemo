@@ -5,6 +5,7 @@ import Num from '@/services/Num';
 export default {
   data() {
     return {
+      avgGuesses: 0,
       blocks: [new Block('', BlockHeader.genesis, 0, '#61e294', 'inherit')],
       colors: [
         'rgba(20, 227, 253, 1)',
@@ -15,7 +16,6 @@ export default {
       disableAddBlockBtn: true,
       guesses: [],
       newBlockData: '',
-      avgGuesses: 0,
     };
   },
   async mounted() {

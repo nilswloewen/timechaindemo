@@ -172,9 +172,9 @@ export default {
   },
   data() {
     return {
+      blockHash: 'f87efc353bf272c57c8b8dcfae6e98e1ea1349dc70b8be4292f10fc6ffacc162',
       data: 'The Times 03/Jan/2009 Chancellor on brink of second bailout for banks',
       prevHash: ''.padEnd(64, '0'),
-      blockHash: 'f87efc353bf272c57c8b8dcfae6e98e1ea1349dc70b8be4292f10fc6ffacc162',
     };
   },
   methods: {

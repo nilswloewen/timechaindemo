@@ -156,7 +156,10 @@ export default {
   },
   data() {
     return {
-      val: 48879,
+      expRows: [
+        { val: 21_000_000, name: 'Twenty-one million' },
+        { val: 100_000_000_000_000, name: 'One-hundred Trillion' },
+      ],
       num: new Num(21_000_000n, 7),
       rows: [
         { decimal: 0, binary: '0000', hexadecimal: '0' },
@@ -176,10 +179,7 @@ export default {
         { decimal: 14, binary: '1110', hexadecimal: 'e' },
         { decimal: 15, binary: '1111', hexadecimal: 'f' },
       ],
-      expRows: [
-        { val: 21_000_000, name: 'Twenty-one million' },
-        { val: 100_000_000_000_000, name: 'One-hundred Trillion' },
-      ],
+      val: 48879,
     };
   },
   mounted() {

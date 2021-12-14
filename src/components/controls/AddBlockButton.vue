@@ -30,9 +30,9 @@ import ToolCard from '@/components/cards/ToolCard';
 export default {
   components: { ToolCard },
   props: {
+    disableAddBlockBtn: Boolean,
     enableChangeEncoding: Boolean,
     encoding: String,
-    disableAddBlockBtn: Boolean,
   },
   data() {
     return {

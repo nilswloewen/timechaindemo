@@ -116,12 +116,12 @@ export default {
   },
   data() {
     return {
-      guesses: [],
       block: new Block('', BlockHeader.genesis, 0),
-      mempool: new Mempool(),
-      isMining: false,
-      originalNonce: 0,
+      guesses: [],
       hideNonce: false,
+      isMining: false,
+      mempool: new Mempool(),
+      originalNonce: 0,
     };
   },
   async mounted() {

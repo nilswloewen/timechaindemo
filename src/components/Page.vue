@@ -43,8 +43,8 @@ export default {
     dataAnchor: String,
     first: Boolean,
     last: Boolean,
-    prevSectionBtn: Boolean,
     nextSectionBtn: Boolean,
+    prevSectionBtn: Boolean,
     slide: Boolean,
   },
   computed: {

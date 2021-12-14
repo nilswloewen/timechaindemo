@@ -26,9 +26,9 @@ export default {
     EncodingBtn,
   },
   props: {
-    title: String,
-    encodingBtn: Boolean,
     encoding: String,
+    encodingBtn: Boolean,
+    title: String,
   },
 };
 </script>

@@ -94,8 +94,8 @@ export default {
     Page,
   },
   props: {
-    yourDeviceHr: Number,
     globalHr: String,
+    yourDeviceHr: Number,
   },
 };
 </script>

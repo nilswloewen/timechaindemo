@@ -15,11 +15,11 @@
     <h4>Note:</h4>
     <p>
       There are many interactive elements in the following pages. If you are ever unsure of what to do,
-      click the instructions icon <TourBtn id="terms_tour_btn" v-on:start-tour="startTour"/> for help. Heck,
+      click the instructions icon
+      <TermsNavTour v-on:start-tour="startTour"/>
+      for help. Heck,
       try it now just for kicks!
     </p>
-
-    <v-tour :name="tour.name" :steps="tour.steps"/>
   </Page>
 
   <NotationSlide/>
@@ -33,52 +33,20 @@ import Page from '@/components/Page.vue';
 import HashFunctionsSlide from '@/components/sections/slides/HashFunctionsSlide.vue';
 import NotationSlide from '@/components/sections/slides/NotationSlide.vue';
 import Sha256Slide from '@/components/sections/slides/Sha256Slide.vue';
-import TourBtn from '@/components/controls/TourBtn';
+import TermsNavTour from '@/components/tours/TermsNavTour';
 
 export default {
   components: {
-    TourBtn,
+    TermsNavTour,
     HashFunctionsSlide,
     NotationSlide,
     Page,
     Sha256Slide,
   },
-  data() {
-    return {
-      tour: {
-        name: 'terms_tour',
-        steps: [
-          {
-            target: '#terms_tour_btn',
-            content: 'Nice! Let\'s take a second to learn about navigating the site.',
-            params: {
-              enableScrolling: false
-            }
-          },
-          {
-            target: '#fp-nav',
-            content: 'You can click on the dots on the right to jump between sections.',
-            params: {
-              enableScrolling: false,
-              placement: 'left',
-            }
-          },
-          {
-            target: '#terms_slide .nav_btn_wrapper',
-            content: 'Use the "Prev" and "Next" buttons to move through each page.',
-            params: {
-              enableScrolling: false
-            }
-          },
-
-        ],
-      }
-    }
-  },
   methods: {
     startTour() {
-      this.$tours[this.tour.name].start()
-    }
-  }
+      this.$tours['terms_nav_tour'].start();
+    },
+  },
 };
 </script>

@@ -53,7 +53,7 @@
 
 <script>
 import Page from '@/components/Page';
-import Link from '@/components/Link'
+import Link from '@/components/Link';
 
 export default {
   components: {

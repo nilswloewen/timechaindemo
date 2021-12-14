@@ -36,11 +36,8 @@
     A hash can be interpreted as an absurdly large number.
   </TldrCard>
 
-<!--  <TourBtn v-on:start-tour="startTour"/>-->
-  <v-tour :name="tour.name" :steps="tour.steps"/>
-
-  <ToolCard :encoding="encoding[activeEncoding]"
-            encoding-btn title="SHA-256 Calculator" v-on:rotate-encoding="rotateEncoding">
+  <ToolCard :encoding="encoding[activeEncoding]" encoding-btn
+            title="SHA-256 Calculator" v-on:rotate-encoding="rotateEncoding">
     <div class="list label">Input</div>
     <div class="list value">
       <b-input-group prepend="Data" size="sm">
@@ -78,7 +75,6 @@ import Page from '@/components/Page.vue';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import Num from '@/services/Num';
 import { sha256dFromText } from '@/services/sha256_utils';
-import TourBtn from '@/components/controls/TourBtn';
 
 export default {
   mixins: [
@@ -90,7 +86,6 @@ export default {
     Page,
     TldrCard,
     ToolCard,
-    TourBtn,
   },
   data() {
     return {
@@ -104,8 +99,8 @@ export default {
             target: '#sha_calc_input',
             content: 'Try changing this data by adding a letter.',
             params: {
-              enableScrolling: false
-            }
+              enableScrolling: false,
+            },
           },
         ],
       },
@@ -114,8 +109,6 @@ export default {
   async mounted() {
     const hash = await sha256dFromText(this.data);
     this.hash = new Num(BigInt(`0x${ hash }`), 64);
-    this.$tours[this.tour.name].start()
-
   },
   methods: {
     async updateHash(event) {
@@ -124,9 +117,9 @@ export default {
       const hash = await sha256dFromText(this.data);
       this.hash = new Num(BigInt(`0x${ hash }`));
     },
-    startTour() {
-      this.$tours[this.tour.name].start()
-    }
+    startTour(name) {
+      this.$tours[name].start();
+    },
   },
 };
 </script>

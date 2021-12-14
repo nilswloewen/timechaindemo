@@ -99,6 +99,8 @@ export default {
       await this.instantUpdate(index - 1);
     },
     async delayedUpdate(index) {
+      document.getElementById(`block_${index}`)
+        .scrollIntoView({behavior: "smooth", block: "center"} );
       await this.finalizeBlock(index);
       if (index === 0) {
         return;

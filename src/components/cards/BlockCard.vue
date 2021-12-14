@@ -1,12 +1,12 @@
 <template>
-<div :ref="`block_${block.height}`">
+<div>
   <!-- Chain-link icon -->
   <b-iconstack font-scale="3" v-if="index > 0" class="mb-4">
     <b-icon-link stacked rotate="90" :style="getLinkColor"/>
     <b-icon stacked icon="slash" variant="danger" v-if="!isHashValid"></b-icon>
   </b-iconstack>
 
-  <b-card no-body class="block_card"
+  <b-card no-body class="block_card" :id="`block_${index}`"
           :style="`box-shadow: -1px 2px 5px 0 ${block.color}; border-color: ${block.color}`">
 
     <b-card-header class="block_header update_box_shadow"
@@ -20,7 +20,8 @@
             <div class="text-center">Hash</div>
           </b-col>
           <b-col class="text-right">
-            &nbsp;<span v-if="block.height === 0">(Genesis Block)</span>
+            &nbsp;<span v-if="block.height === 0 && !showStats">(Genesis Block)</span>
+            <span v-if="showStats && block.isHashValid"># Guesses: {{ block.tries }} Time: {{ block.timeToMine.toFixed(2) }}s</span>
           </b-col>
         </b-row>
         <b-row>
@@ -31,11 +32,6 @@
                     @click="onMineThisBlock">
                 {{ getHash }}
               </span>
-
-<!--              <b-popover :target="`block_${block.height}_hash`" triggers="hover">-->
-<!--                <template #title>Invalid Hash</template>-->
-<!--                Click on the hash to mine block.-->
-<!--              </b-popover>-->
             </template>
 
           </b-col>
@@ -129,6 +125,7 @@ export default {
     showData: Boolean,
     showNonce: Boolean,
     showReal: Boolean,
+    showStats: Boolean,
   },
 
   data() {

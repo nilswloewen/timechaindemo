@@ -40,24 +40,24 @@
   </Page>
 
   <Page data-anchor="timechain_blocks" slide>
-
-    <BlockchainStatsCard :avg-guesses="avgGuesses" :est-avg-guesses="avgHashes"
-                         :avg-time="avgTime" :est-avg-time="blocktime" />
-
-    <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
-                    enable-change-encoding
-                    :encoding="encoding[activeEncoding]"
-                    v-on:rotate-encoding="rotateEncoding"
-                    v-on:add-block="addBlock"
-                    v-on:reset-blocks="resetTimechainBlocks"/>
-
     <div class="blockchain_wrapper">
+      <BlockchainStatsCard v-if="blocks.length > 2" :avg-guesses="avgGuesses" :est-avg-guesses="avgHashes"
+                           :avg-time="avgTime" :est-avg-time="blocktime" />
+
+      <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
+                      enable-change-encoding
+                      :encoding="encoding[activeEncoding]"
+                      v-on:rotate-encoding="rotateEncoding"
+                      v-on:add-block="addBlock"
+                      v-on:reset-blocks="resetTimechainBlocks"/>
+
       <BlockCard v-for="(block, index) in this.blocks" :key="index"
                  :block="block"
                  :index="index"
                  :local-encoding="encoding[activeEncoding]"
                  showData
                  showNonce
+                 showStats
                  v-on:rotate-encoding="rotateEncoding"
                  v-on:mine-this-block="mineThisBlock"
                  v-on:update-data="updateData"/>
@@ -440,12 +440,8 @@ export default {
     },
     setAvgTime() {
       let totalTime = 0;
-
-      console.log(this.blocks)
       this.blocks.forEach((block) => {
-        console.log(block.timeToMine);
         totalTime += Number(block.timeToMine);
-        console.log(totalTime);
       });
       this.avgTime = (totalTime / this.blocks.length).toFixed(2);
     },

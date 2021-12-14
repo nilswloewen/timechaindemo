@@ -15,7 +15,7 @@
       <template v-if="estTime">
         <hr>
         <div>
-          It took <b>{{ timeToMine }}</b> seconds to mine
+          It took <b>{{ timeToMine.toFixed(2) }}</b> seconds to mine
         </div>
         <div>
           <b>~{{ estTime.blocktime }}</b> {{ estTime.blocktimeUnit.toLowerCase() }} were estimated
@@ -23,7 +23,7 @@
       </template>
 
       <div class="text-center mt-2">
-        <b-button @click="slideLeft">
+        <b-button @click="slideLeft" variant="primary">
           <b-icon-arrow-left/>
           Add the next block
         </b-button>

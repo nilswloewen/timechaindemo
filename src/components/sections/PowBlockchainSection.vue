@@ -71,12 +71,12 @@
       </ol>
     </TldrCard>
 
-<!--    <b-card class="quote_card">-->
-<!--      <q>The network timestamps transactions by hashing-->
-<!--        them into an ongoing chain of hash-based proof-of-work, forming a-->
-<!--        record that cannot be changed without redoing the proof-of-work.</q>-->
-<!--      <br> - <Link href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</Link>-->
-<!--    </b-card>-->
+    <!--    <b-card class="quote_card">-->
+    <!--      <q>The network timestamps transactions by hashing-->
+    <!--        them into an ongoing chain of hash-based proof-of-work, forming a-->
+    <!--        record that cannot be changed without redoing the proof-of-work.</q>-->
+    <!--      <br> - <Link href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</Link>-->
+    <!--    </b-card>-->
   </Page>
 
   <Page slide data-anchor="target">
@@ -97,7 +97,7 @@
 
     <p>
       For now we will set the target to <b>15</b>, which means on average we will need to guess <b>17</b> times
-        before finding a valid hash.
+      before finding a valid hash.
     </p>
 
     <Target v-on:updateTarget="updateTarget"
@@ -114,28 +114,32 @@
 
   <Page data-anchor="pow_blockchain" slide>
     <h1>Proof-of-work Blockchain</h1>
-    <p>If a block hash is outlined in red, that means the block is invalid because the hash is not
-      less than the target.
-      <b>Click on an invalid hash in order to mine the block.</b>
-    </p>
 
-    <BlockchainStatsCard :avg-guesses="avgGuesses" :est-avg-guesses="avgHashes"/>
+    <div class="blockchain_wrapper">
+      <p v-if="blocks.length < 3" class="text-justify">
+        If a block hash is outlined in red, that means the block is invalid because the hash is not
+        less than the target.
+        <b>Click on an invalid hash in order to mine the block.</b>
+      </p>
 
-    <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
-                    :encoding="encoding[activeEncoding]"
-                    v-on:add-block="addBlock"
-                    v-on:reset-blocks="resetBlocks"/>
+      <BlockchainStatsCard v-else :avg-guesses="avgGuesses" :est-avg-guesses="avgHashes"/>
 
-    <div id="blockchainPow" class="blockchain_wrapper mt-4">
-      <BlockCard v-for="(block, index) in this.blocks" :key="index"
-                 :block="block"
-                 :index="index"
-                 :local-encoding="encoding[activeEncoding]"
-                 showData
-                 showNonce
-                 v-on:rotate-encoding="rotateEncoding"
-                 v-on:mine-this-block="mineThisBlock"
-                 v-on:update-data="updateData"/>
+      <AddBlockButton v-if="!disableAddBlockBtn"
+                      :encoding="encoding[activeEncoding]"
+                      v-on:add-block="addBlock"
+                      v-on:reset-blocks="resetBlocks"/>
+
+      <div id="blockchainPow" class="mt-4">
+        <BlockCard v-for="(block, index) in this.blocks" :key="index"
+                   :block="block"
+                   :index="index"
+                   :local-encoding="encoding[activeEncoding]"
+                   showData
+                   showNonce
+                   v-on:rotate-encoding="rotateEncoding"
+                   v-on:mine-this-block="mineThisBlock"
+                   v-on:update-data="updateData"/>
+      </div>
     </div>
   </Page>
 
@@ -262,7 +266,7 @@ export default {
 }
 
 #pow_mining_slide .mining_controls {
-  max-width: 305px;
+  max-width: 375px;
 }
 
 </style>

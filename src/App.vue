@@ -321,7 +321,6 @@ h1 {
 }
 
 
-.add_block_wrapper,
 .blockchain_wrapper {
   padding: 0 4px;
   text-align: center;

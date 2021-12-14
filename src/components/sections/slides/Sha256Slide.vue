@@ -27,26 +27,24 @@
     For some context, it is estimated that there are ~10<sup>78</sup>
     <Link
       href="https://www.liverpoolmuseums.org.uk/stories/which-greater-number-of-atoms-universe-or-number-of-chess-moves">
-      atoms in the observable universe
+      atoms in the observable universe.
     </Link>
-    .
     This means that every atom in the universe could have it's own SHA-256 hash!
   </p>
-
-  <hr>
 
   <TldrCard>
     A hash can be interpreted as an absurdly large number.
   </TldrCard>
 
-  <hr>
+<!--  <TourBtn v-on:start-tour="startTour"/>-->
+  <v-tour :name="tour.name" :steps="tour.steps"/>
 
   <ToolCard :encoding="encoding[activeEncoding]"
             encoding-btn title="SHA-256 Calculator" v-on:rotate-encoding="rotateEncoding">
     <div class="list label">Input</div>
     <div class="list value">
       <b-input-group prepend="Data" size="sm">
-        <b-form-input :value="data" size="sm" @keyup="updateHash"/>
+        <b-form-input id="sha_calc_input" :value="data" size="sm" @keyup="updateHash"/>
       </b-input-group>
     </div>
 
@@ -80,6 +78,7 @@ import Page from '@/components/Page.vue';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import Num from '@/services/Num';
 import { sha256dFromText } from '@/services/sha256_utils';
+import TourBtn from '@/components/controls/TourBtn';
 
 export default {
   mixins: [
@@ -91,17 +90,32 @@ export default {
     Page,
     TldrCard,
     ToolCard,
+    TourBtn,
   },
   data() {
     return {
       data: 'Try changing this data...',
       hash: { hexadecimal: '60759d1ab05baf2c79e281d8fbff268f559328dc45bd46b12114bbbe40197271' },
       hashMax: new Num(BigInt(Math.pow(2, 256)), 64),
+      tour: {
+        name: 'sha256_tour',
+        steps: [
+          {
+            target: '#sha_calc_input',
+            content: 'Try changing this data by adding a letter.',
+            params: {
+              enableScrolling: false
+            }
+          },
+        ],
+      },
     };
   },
   async mounted() {
     const hash = await sha256dFromText(this.data);
     this.hash = new Num(BigInt(`0x${ hash }`), 64);
+    this.$tours[this.tour.name].start()
+
   },
   methods: {
     async updateHash(event) {
@@ -110,6 +124,9 @@ export default {
       const hash = await sha256dFromText(this.data);
       this.hash = new Num(BigInt(`0x${ hash }`));
     },
+    startTour() {
+      this.$tours[this.tour.name].start()
+    }
   },
 };
 </script>

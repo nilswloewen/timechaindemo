@@ -48,27 +48,16 @@
     <hr>
     A blockchain that grows at a regulated time interval, regardless of hashrate.
   </b-card>
-
-  <b-card class="quote_card">
-    <q>To compensate for increasing hardware speed and varying interest in running nodes over time,
-      the proof-of-work difficulty is determined by a moving average targeting an average number of
-      blocks per hour. If they're generated too fast, the difficulty increases.</q>
-    <br> -
-    <Link href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</Link>
-    <hr>
-    <q>In other words, the difficulty-adjustment is about keeping a constant
-      time, not a constant level of security, difficulty, or energy expenditure.</q>
-    <br> -
-    <Link href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</Link>
-  </b-card>
 </Page>
 </template>
 
 <script>
 import Page from '@/components/Page';
+import Link from '@/components/Link'
 
 export default {
   components: {
+    Link,
     Page,
   },
 };

@@ -6,7 +6,7 @@
       <b-col>
         <div class="page_content">
           <slot/>
-          <div class="text-center mt-5">
+          <div class="nav_btn_wrapper text-center mt-5">
             <b-button v-if="!this.first" class="nav_btn previous_slide" size="sm" @click="previousSlide">
               <b-icon-arrow-left/>
               Prev

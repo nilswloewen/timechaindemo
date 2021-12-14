@@ -61,6 +61,14 @@ export default {
 
         scrollHorizontally: true,
         scrollHorizontallyKey: 'bmlsc2xvZXdlbi5jb21fV08zYzJOeWIyeHNTRzl5YVhwdmJuUmhiR3g1MjZ2',
+
+        // After section is loaded.
+        afterLoad: (origin, destination) => {
+          console.log(`sectionLoad: ${destination.anchor}`);
+        },
+        afterSlideLoad: (section, index, slideAnchor) => {
+          console.log(`slideAnchor: ${slideAnchor.anchor}`);
+        },
       },
       table_of_contents: [
         { anchor: 'intro', label: 'Intro' },
@@ -187,7 +195,7 @@ h1 {
 }
 
 .col {
-  max-width: 586px;
+  max-width: 588px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -401,6 +409,9 @@ h1 {
   background-color: #3CAFAA;
   border-color: #3CAFAA;
 }
+.btn-secondary:focus  {
+  background-color: transparent;
+}
 
 .btn-warning,
 .btn-warning:hover {
@@ -420,12 +431,36 @@ h1 {
   box-shadow: -2px 3px 10px 2px #7855F5;
   border-color: #7855F5;
 }
+.tour_btn {
+  background-color: transparent;
+  border-color: #f79413;
+  box-shadow: -2px 3px 5px 0 #f79413;
+}
 
 .nav_btn,
 .nav_btn:focus {
   background-color: transparent;
   border-color: #7855F5;
   box-shadow: -2px 3px 5px 0 #7855F5;
+}
+
+.v-step {
+  box-shadow: -2px 3px 5px 0 #7855F5 !important;
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid #7855F5 !important;
+  text-align: justify !important;
+}
+.v-step__buttons {
+  text-align: center;
+}
+.v-step__button {
+  margin: 0 1em !important;
+  font-size: 0.875rem !important;
+  box-shadow: -2px 3px 5px 0 gray !important;
+}
+.v-step__arrow {
+  text-align: center;
+  background-color: #7855F5 !important;
 }
 
 .nav_btn:hover {

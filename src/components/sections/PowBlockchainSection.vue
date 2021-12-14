@@ -48,7 +48,7 @@
 
       <BlockchainStatsCard :avg-guesses="avgGuesses" :est-avg-guesses="avgHashes"/>
 
-      <AddBlockButton v-if="!disableAddBlockBtn"
+      <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
                       :encoding="encoding[activeEncoding]"
                       v-on:add-block="addBlock"
                       v-on:reset-blocks="resetBlocks"/>

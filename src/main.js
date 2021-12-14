@@ -11,6 +11,10 @@ import App from './App.vue';
 import './services/fullPagejs/scrollHorizontally/fullpage.scrollHorizontally.min';
 import './services/fullPagejs/scrollOverflowReset/fullpage.scrollOverflowReset.min';
 
+import VueTour from 'vue-tour'
+
+require('vue-tour/dist/vue-tour.css')
+Vue.use(VueTour)
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(CardPlugin);

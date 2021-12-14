@@ -14,7 +14,7 @@
   </p>
 
   <p>
-    You will see this notation button later in this demo:
+    You will see this notation button throughout this demo:
   </p>
 
   <p class="text-center">
@@ -47,7 +47,7 @@
 
   <p>
     As you can see in the following table these values are equivalent yet notated differently.
-    Hexadecimal notation uses letters a-f for values 10-15.
+    <b>Hexadecimal notation uses letters a-f for values 10-15.</b>
   </p>
 
   <InfoCard id="hex_table" title="Ways to write 0-15">

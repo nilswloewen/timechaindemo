@@ -5,6 +5,19 @@
   <Page data-anchor="timechain_target" slide>
     <h1>Difficulty Adjustment</h1>
 
+    <b-card class="quote_card">
+      <q>To compensate for increasing hardware speed and varying interest in running nodes over time,
+        the proof-of-work difficulty is determined by a moving average targeting an average number of
+        blocks per hour. If they're generated too fast, the difficulty increases.</q>
+      <br> -
+      <Link href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</Link>
+      <hr>
+      <q>In other words, the difficulty-adjustment is about keeping a constant
+        time, not a constant level of security, difficulty, or energy expenditure.</q>
+      <br> -
+      <Link href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</Link>
+    </b-card>
+
     <p>
       By manipulating the target, we can regulate the average time it takes to mine
       a block. For this demo, let's try set the blocktime to 15 seconds.

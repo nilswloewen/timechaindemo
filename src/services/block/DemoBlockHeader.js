@@ -1,5 +1,5 @@
-import BlockHeader from './BlockHeader';
 import Num from '@/services/Num';
+import BlockHeader from './BlockHeader';
 
 class DemoBlockHeader extends BlockHeader {
   constructor(data, nonce, prevHash) {
@@ -12,10 +12,6 @@ class DemoBlockHeader extends BlockHeader {
     const hexDigits = 2;
     const data = this.getRandomData();
     return new DemoBlockHeader(data, 0, new Num(0n, hexDigits));
-  }
-
-  serialize() {
-    return this.data + this.prevHash.hexadecimal + this.nonce;
   }
 
   static getRandomData() {
@@ -59,6 +55,10 @@ class DemoBlockHeader extends BlockHeader {
     const receiver = names[rand];
 
     return { sender, receiver };
+  }
+
+  serialize() {
+    return this.data + this.prevHash.hexadecimal + this.nonce;
   }
 }
 

@@ -1,6 +1,6 @@
-import Block from './Block';
-import { sha256dFromText } from '@/services/sha256_utils';
 import Num from '@/services/Num';
+import { sha256dFromText } from '@/services/sha256_utils';
+import Block from './Block';
 
 class DemoBlock extends Block {
   constructor(hash, header, height, color, prevColor) {

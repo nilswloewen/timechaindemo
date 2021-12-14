@@ -2,22 +2,22 @@
 <ToolCard title="Difficulty">
 
   <b-card-body class="text-center">
-    <b-button @click="$emit('calibrate-hps')" size="sm" class="m-2" variant="primary">
+    <b-button class="m-2" size="sm" variant="primary" @click="$emit('calibrate-hps')">
       Calibrate for your device
     </b-button>
 
     <div v-if="showGlobal">
       <p>
-        <b-button @click="$emit('show-global-hashrate')" size="sm"> Global Hashrate </b-button>
+        <b-button size="sm" @click="$emit('show-global-hashrate')"> Global Hashrate</b-button>
       </p>
 
       <div class="hashrate_wrapper">
-        <b-input-group id="hashrate_picker" size="sm" append="hashes per second">
-          <b-form-input id="hashrate_input" type="number" :min="1" step="1"
-                        style="text-align: right;" size="sm"
-                        :value="hashrate.toFixed(0)" @change="updateHashrate"/>
-          <b-form-select id="hashrate_units_select" size="sm" @change="updateHashrateUnit"
-                         :value="hashrateUnit" :options="hashrateUnits"/>
+        <b-input-group id="hashrate_picker" append="hashes per second" size="sm">
+          <b-form-input id="hashrate_input" :min="1" :value="hashrate.toFixed(0)" size="sm"
+                        step="1" style="text-align: right;"
+                        type="number" @change="updateHashrate"/>
+          <b-form-select id="hashrate_units_select" :options="hashrateUnits" :value="hashrateUnit"
+                         size="sm" @change="updateHashrateUnit"/>
         </b-input-group>
       </div>
     </div>
@@ -36,10 +36,10 @@
 
     <div v-if="showGlobal" class="blocktime_wrapper">
       <b-input-group id="time_picker">
-        <b-form-input id="time_input" type="number" size="sm"
-                      style="text-align: right;" :value="blocktime" :min="1" @change="updateBlockTime"/>
-        <b-form-select id="time_units_select" size="sm" @change="updateBlocktimeUnit" :value="blocktimeUnit"
-                       :options="blocktimeUnits"/>
+        <b-form-input id="time_input" :min="1" :value="blocktime"
+                      size="sm" style="text-align: right;" type="number" @change="updateBlockTime"/>
+        <b-form-select id="time_units_select" :options="blocktimeUnits" :value="blocktimeUnit" size="sm"
+                       @change="updateBlocktimeUnit"/>
       </b-input-group>
     </div>
     <div v-else>
@@ -55,7 +55,7 @@ import ToolCard from '@/components/cards/ToolCard';
 
 export default {
   components: {
-    ToolCard
+    ToolCard,
   },
   props: {
     blocktime: Number,
@@ -80,8 +80,8 @@ export default {
     },
     updateBlocktimeUnit(newBlocktimeUnit) {
       this.$emit('update-blocktime-unit', newBlocktimeUnit);
-    }
-  }
+    },
+  },
 };
 </script>
 

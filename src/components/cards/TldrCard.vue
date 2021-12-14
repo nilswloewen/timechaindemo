@@ -1,5 +1,5 @@
 <template>
-<b-card no-body class="tldr_card">
+<b-card class="tldr_card" no-body>
   <b-card-header>
     <b-container>
       <b-row class="row_1">
@@ -18,8 +18,8 @@
 <script>
 export default {
   props: {
-    title: { type: String, default: 'tl;dr' }
-  }
+    title: { type: String, default: 'tl;dr' },
+  },
 };
 </script>
 

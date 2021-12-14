@@ -35,7 +35,7 @@ export default {
     PowBlockchainSection,
     ResourcesSection,
     TermsSection,
-    TimeChainSection
+    TimeChainSection,
   },
   data() {
     return {
@@ -60,7 +60,7 @@ export default {
         scrollOverflowResetKey: 'bmlsc2xvZXdlbi5jb21fVVFuYzJOeWIyeHNUM1psY21ac2IzZFNaWE5sZEE9PVUyRw==',
 
         scrollHorizontally: true,
-        scrollHorizontallyKey: 'bmlsc2xvZXdlbi5jb21fV08zYzJOeWIyeHNTRzl5YVhwdmJuUmhiR3g1MjZ2'
+        scrollHorizontallyKey: 'bmlsc2xvZXdlbi5jb21fV08zYzJOeWIyeHNTRzl5YVhwdmJuUmhiR3g1MjZ2',
       },
       table_of_contents: [
         { anchor: 'intro', label: 'Intro' },
@@ -70,15 +70,15 @@ export default {
           slides: [
             { anchor: 'notation', label: 'Notation' },
             { anchor: 'hash_functions', label: 'Hash Functions' },
-            { anchor: 'sha256', label: 'SHA-256' }
-          ]
+            { anchor: 'sha256', label: 'SHA-256' },
+          ],
         },
         {
           anchor: 'blockchain',
           label: 'Blockchain',
           slides: [
-            { anchor: 'simple_blockchain', label: 'Simple Example' }
-          ]
+            { anchor: 'simple_blockchain', label: 'Simple Example' },
+          ],
         },
         {
           anchor: 'pow',
@@ -87,8 +87,8 @@ export default {
             { anchor: 'target', label: 'Target' },
             { anchor: 'pow_blockchain', label: 'POW Blockchain' },
             { anchor: 'pow_mining', label: 'POW Mining' },
-            { anchor: 'adjustable_target', label: 'POW Review'},
-          ]
+            { anchor: 'adjustable_target', label: 'POW Review' },
+          ],
         },
         {
           anchor: 'timechain',
@@ -99,17 +99,17 @@ export default {
             { anchor: 'timechain_mining', label: 'Timechain Mining' },
             { anchor: 'real_world_mining', label: 'Real World Mining' },
             { anchor: 'timechain_review', label: 'Timechain Review' },
-          ]
+          ],
         },
         {
           anchor: 'real_blocks',
           label: 'Historical Blocks',
           slides: [
-            { anchor: 'real_mining', label: 'Real-World Mining' }
-          ]
+            { anchor: 'real_mining', label: 'Real-World Mining' },
+          ],
         },
-        { anchor: 'resources', label: 'Resources' }
-      ]
+        { anchor: 'resources', label: 'Resources' },
+      ],
     };
   },
   mounted() {
@@ -121,8 +121,8 @@ export default {
         this.fullpageOptions.anchors.push(section.anchor);
         this.fullpageOptions.navigationTooltips.push(section.label);
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -220,22 +220,27 @@ h1 {
   box-shadow: -1px 2px 4px 2px #f79413;
   border-color: #f79413;
 }
+
 .card.info_card {
   box-shadow: -1px 2px 4px 2px #17a2b8;
   border-color: #17a2b8;
 }
+
 .card.tool_card {
   box-shadow: -1px 2px 4px 2px rgba(255, 255, 255, 0.4);
   border-color: rgba(255, 255, 255, 0.4);
 }
+
 .card.definition_card {
   box-shadow: -1px 2px 4px 2px #6471F7;
   border-color: #6471F7;
 }
+
 .card.quote_card {
   box-shadow: -1px 2px 4px 2px #A01CF2;
   border-color: #A01CF2;
 }
+
 /* Encoding Btn */
 .popover {
   border-color: white;
@@ -245,6 +250,7 @@ h1 {
 .nav_btn {
   margin: 2em;
 }
+
 .nav_btn_mining_wrapper {
   position: fixed;
   left: 50%;
@@ -256,17 +262,18 @@ h1 {
   margin-top: 2em;
   text-align: center;
 }
+
 .prev_block_hash {
-  padding:  2px;
+  padding: 2px;
 }
 
 #simple_blockchain_slide .prev_block_hash,
-#simple_blockchain_slide .hash_value ,
+#simple_blockchain_slide .hash_value,
 #pow_blockchain_slide .prev_block_hash,
 #pow_blockchain_slide .hash_value,
 #timechain_blocks_slide .prev_block_hash,
 #timechain_blocks_slide .hash_value {
-  padding:  4px;
+  padding: 4px;
   font-weight: bold;
   font-size: 1em;
 }
@@ -282,6 +289,7 @@ h1 {
 #timechain_blocks_slide .hash_wrapper {
   line-height: 2em;
 }
+
 #simple_blockchain_slide .prev_block_hash_wrapper,
 #pow_blockchain_slide .prev_block_hash_wrapper,
 #timechain_blocks_slide .prev_block_hash_wrapper {
@@ -291,6 +299,7 @@ h1 {
 .hash_value {
   font-size: 0.875rem;
 }
+
 .invalid {
   border-radius: 4px;
   background-color: #b72919;
@@ -317,6 +326,7 @@ h1 {
   line-height: 1.2em;
   border: 0;
 }
+
 .block_number {
   font-weight: bold;
 }
@@ -417,6 +427,7 @@ h1 {
   border-color: #7855F5;
   box-shadow: -2px 3px 5px 0 #7855F5;
 }
+
 .nav_btn:hover {
   background-color: #7855F5;
   border-color: #7855F5;
@@ -469,9 +480,11 @@ h1 {
 #fp-nav ul li {
   margin: 10px 0;
 }
+
 #fp-nav ul li .fp-tooltip {
   font-family: 'Fira Code', monospace;
 }
+
 #fp-nav ul li a span, .fp-slidesNav ul li a span {
   background-color: white;
 }
@@ -480,6 +493,7 @@ h1 {
 .fp-controlArrow {
   display: none;
 }
+
 #fp-nav ul li .active + .fp-tooltip {
   font-weight: bold;
 }

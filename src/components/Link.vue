@@ -1,5 +1,5 @@
 <template>
-<a :href="href" target="_blank" rel="noopener noreferrer">
+<a :href="href" rel="noopener noreferrer" target="_blank">
   <slot/>
 </a>
 </template>
@@ -8,6 +8,6 @@
 export default {
   props: {
     href: String,
-  }
-}
+  },
+};
 </script>

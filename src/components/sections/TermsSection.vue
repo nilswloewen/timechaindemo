@@ -1,6 +1,6 @@
 <template>
 <div id="terms_section" class="section">
-  <Page first slide prev-section-btn data-anchor="terms">
+  <Page data-anchor="terms" first prev-section-btn slide>
     <h1>Terms</h1>
 
     <p>
@@ -26,17 +26,17 @@
 </template>
 
 <script>
+import Page from '@/components/Page.vue';
 import HashFunctionsSlide from '@/components/sections/slides/HashFunctionsSlide.vue';
 import NotationSlide from '@/components/sections/slides/NotationSlide.vue';
 import Sha256Slide from '@/components/sections/slides/Sha256Slide.vue';
-import Page from '@/components/Page.vue';
 
 export default {
   components: {
     HashFunctionsSlide,
     NotationSlide,
     Page,
-    Sha256Slide
-  }
+    Sha256Slide,
+  },
 };
 </script>

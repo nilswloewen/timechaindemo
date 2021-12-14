@@ -1,9 +1,9 @@
 <template>
 <div id="blockchain_section" class="section">
-  <Page first slide prev-section-btn data-anchor="blockchain">
+  <Page data-anchor="blockchain" first prev-section-btn slide>
     <h1>Blockchain</h1>
 
-    <b-card no-body class="definition_card">
+    <b-card class="definition_card" no-body>
       <b-card-body>
         <h4 class="text-left">block (n.)</h4>
         <hr>
@@ -15,7 +15,7 @@
         In Bitcoin a block stores a set of transactions.
         <hr>
         <div class="text-center">
-          <img class="card-img" src="/assets/block.svg" alt="Blockchain"
+          <img alt="Blockchain" class="card-img" src="/assets/block.svg"
                style="height: 112px; width: auto;"/>
         </div>
       </b-card-body>
@@ -30,7 +30,7 @@
         <b>Order of Events</b>.
       </p>
       <hr>
-      <img class="card-img" src="/assets/blockchain.svg" alt="Blockchain"/>
+      <img alt="Blockchain" class="card-img" src="/assets/blockchain.svg"/>
     </b-card>
 
     <h4 class="mt-4">Why does Bitcoin use a blockchain?</h4>
@@ -59,7 +59,9 @@
     </p>
 
     <b-card class="definition_card">
-      <h4><Link href="https://www.etymonline.com/word/genesis">genesis (n.)</Link></h4>
+      <h4>
+        <Link href="https://www.etymonline.com/word/genesis">genesis (n.)</Link>
+      </h4>
       <hr>
       Greek genesis "origin, creation, generation," from gignesthai "to be born," related to genos
       "race, birth, descent".
@@ -72,8 +74,9 @@
       Try changing the data or previous hash of the following block to see that the block hash changes.
     </p>
 
-    <b-card id="example_block" no-body class="block_card" style="box-shadow: -1px 2px 5px 0 #14E3FD; border-color: #14E3FD">
-      <b-card-header class="block_header" :key="blockHash">
+    <b-card id="example_block" class="block_card" no-body
+            style="box-shadow: -1px 2px 5px 0 #14E3FD; border-color: #14E3FD">
+      <b-card-header :key="blockHash" class="block_header">
         <b-container>
           <b-row>
             <b-col>
@@ -95,18 +98,18 @@
       <!--Data-->
       <div class="list label">Data</div>
       <div class="list value">
-        <b-form-input @keyup="onExampleDataChange" :value="data" size="sm"/>
+        <b-form-input :value="data" size="sm" @keyup="onExampleDataChange"/>
       </div>
 
       <!--Previous Hash-->
       <div class="list label">Previous Block Hash</div>
       <div class="list value">
-        <b-form-input @keyup="onExamplePrevHashChange" :value="prevHash" size="sm"/>
+        <b-form-input :value="prevHash" size="sm" @keyup="onExamplePrevHashChange"/>
       </div>
     </b-card>
   </Page>
 
-  <Page last slide next-section-btn data-anchor="simple_blockchain">
+  <Page data-anchor="simple_blockchain" last next-section-btn slide>
     <h1>Simplified Blockchain</h1>
 
     <p>
@@ -123,53 +126,55 @@
       propagates up the chain.
     </p>
 
-    <AddBlockButton :disable-add-block-btn="false"
-                    :encoding="encoding[activeEncoding]"
-                    v-on:add-block="addBlock"
-                    v-on:reset-blocks="resetBlocks"/>
+    <AddBlockButton
+      :disable-add-block-btn="false"
+      :encoding="encoding[activeEncoding]"
+      v-on:add-block="addBlock"
+      v-on:reset-blocks="resetBlocks"/>
 
     <div class="blockchain_wrapper">
-      <BlockCard v-for="(block, index) in this.blocks" :key="index"
-                 :block="block"
-                 :index="index"
-                 :local-encoding="encoding[activeEncoding]"
-                 showData
-                 v-on:rotate-encoding="rotateEncoding"
-                 v-on:update-data="updateData"/>
+      <BlockCard
+        v-for="(block, index) in this.blocks" :key="index"
+        :block="block"
+        :index="index"
+        :local-encoding="encoding[activeEncoding]"
+        showData
+        v-on:rotate-encoding="rotateEncoding"
+        v-on:update-data="updateData"/>
     </div>
   </Page>
 </div>
 </template>
 
 <script>
-import AddBlockButton from '@/components/controls/AddBlockButton.vue';
 import BlockCard from '@/components/cards/BlockCard.vue';
+import TldrCard from '@/components/cards/TldrCard';
+import AddBlockButton from '@/components/controls/AddBlockButton.vue';
+import Link from '@/components/Link';
+import Page from '@/components/Page.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import TargetMixin from '@/mixins/TargetMixin';
-import Page from '@/components/Page.vue';
 import { sha256dFromText } from '@/services/sha256_utils';
-import TldrCard from '@/components/cards/TldrCard';
-import Link from '@/components/Link';
 
 export default {
   mixins: [
     BlockchainMixin,
     EncodingMixin,
-    TargetMixin
+    TargetMixin,
   ],
   components: {
-    Link,
-    TldrCard,
     AddBlockButton,
     BlockCard,
-    Page
+    Link,
+    Page,
+    TldrCard,
   },
   data() {
     return {
       data: 'The Times 03/Jan/2009 Chancellor on brink of second bailout for banks',
       prevHash: ''.padEnd(64, '0'),
-      blockHash: 'f87efc353bf272c57c8b8dcfae6e98e1ea1349dc70b8be4292f10fc6ffacc162'
+      blockHash: 'f87efc353bf272c57c8b8dcfae6e98e1ea1349dc70b8be4292f10fc6ffacc162',
     };
   },
   methods: {
@@ -180,7 +185,7 @@ export default {
     async onExamplePrevHashChange(event) {
       this.prevHash = event.target.value;
       this.blockHash = await sha256dFromText(this.data + this.prevHash);
-    }
-  }
+    },
+  },
 };
 </script>

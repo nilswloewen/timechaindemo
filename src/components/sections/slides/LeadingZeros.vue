@@ -15,7 +15,8 @@
     <q>The proof-of-work involves scanning for a value that when hashed, such as with SHA-256, the
       hash begins with a number of zero bits. The average work required is exponential in the number
       of zero bits required and can be verified by executing a single hash.</q>
-    <br> - <Link href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</Link>
+    <br> -
+    <Link href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</Link>
   </p>
   <p>
     Leading Zeros: It's a common misconception that a block hash requires a certain number of leading zeros.
@@ -26,13 +27,13 @@
 </template>
 
 <script>
-import Page from '@/components/Page';
 import Link from '@/components/Link';
+import Page from '@/components/Page';
 
 export default {
   components: {
     Link,
-    Page
-  }
+    Page,
+  },
 };
 </script>

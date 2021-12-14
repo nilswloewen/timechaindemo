@@ -1,12 +1,13 @@
 <template>
-<Page first slide prev-section-btn data-anchor="timechain">
+<Page data-anchor="timechain" first prev-section-btn slide>
   <h1>Timechain</h1>
 
   <b-card class="quote_card">
     <q>The only way to find a valid proof-of-work is by making a lot of guesses,
       and making a single guess takes a little bit of time. The probabilistic
       sum of these guesses is what builds up the timechain that is Bitcoin.</q>
-    - <Link href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</Link>
+    -
+    <Link href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</Link>
   </b-card>
 
   <p>
@@ -52,11 +53,13 @@
     <q>To compensate for increasing hardware speed and varying interest in running nodes over time,
       the proof-of-work difficulty is determined by a moving average targeting an average number of
       blocks per hour. If they're generated too fast, the difficulty increases.</q>
-    <br> - <Link href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</Link>
+    <br> -
+    <Link href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto</Link>
     <hr>
     <q>In other words, the difficulty-adjustment is about keeping a constant
       time, not a constant level of security, difficulty, or energy expenditure.</q>
-    <br> - <Link href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</Link>
+    <br> -
+    <Link href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</Link>
   </b-card>
 </Page>
 </template>
@@ -66,7 +69,7 @@ import Page from '@/components/Page';
 
 export default {
   components: {
-    Page
-  }
-}
+    Page,
+  },
+};
 </script>

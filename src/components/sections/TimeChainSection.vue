@@ -2,7 +2,7 @@
 <div id="timechain_section" class="section">
   <TimechainSlide/>
 
-  <Page slide data-anchor="timechain_target">
+  <Page data-anchor="timechain_target" slide>
     <h1>Difficulty Adjustment</h1>
 
     <p>
@@ -11,25 +11,22 @@
     </p>
 
     <Difficulty
-      :hashrate-long="getHashrateLong()"
+      :blocktime="blocktime"
+      :blocktime-unit="blocktimeUnit"
+      :blocktime-units="blocktimeUnits"
       :hashrate="hashrate"
+      :hashrate-long="getHashrateLong()"
       :hashrateUnit="hashrateUnit"
       :hashrateUnits="hashrateUnits"
       :is-calibrating="isCalibrating"
       v-on:update-hashrate="updateHashrate"
       v-on:update-hashrate-unit="updateHashrateUnit"
-      :blocktime="blocktime"
-      :blocktime-unit="blocktimeUnit"
-      :blocktime-units="blocktimeUnits"
       v-on:update-blocktime="updateBlocktime"
       v-on:update-blocktime-unit="updateBlocktimeUnit"
       v-on:calibrate-hps="calibrateHps"
       v-on:show-global-hashrate="onGlobal"/>
 
     <Target
-      v-on:updateTarget="updateTargetAndBlocktime"
-      v-on:rotate-encoding="rotateEncoding"
-      hide-range
       :avgHashes="avgHashes"
       :denominator="denominator"
       :hash-max="hashMax"
@@ -37,19 +34,22 @@
       :numerator="numerator"
       :probability="probability"
       :target="target"
-      :targetMax="targetMax"/>
+      :targetMax="targetMax"
+      hide-range
+      v-on:updateTarget="updateTargetAndBlocktime"
+      v-on:rotate-encoding="rotateEncoding"/>
   </Page>
 
   <Page data-anchor="timechain_blocks" slide>
     <div class="blockchain_wrapper">
       <BlockchainStatsCard
-        :avg-guesses="avgGuesses" :est-avg-guesses="avgHashes"
-        :avg-time="avgTime" :est-avg-time="blocktime" />
+        :avg-guesses="avgGuesses" :avg-time="avgTime"
+        :est-avg-guesses="avgHashes" :est-avg-time="blocktime"/>
 
       <AddBlockButton
         v-if="!disableAddBlockBtn"
-        enable-change-encoding
         :encoding="encoding[activeEncoding]"
+        enable-change-encoding
         v-on:rotate-encoding="rotateEncoding"
         v-on:add-block="addBlock"
         v-on:reset-blocks="resetTimechainBlocks"/>
@@ -68,11 +68,11 @@
     </div>
   </Page>
 
-  <div class="slide" data-anchor="timechain_mining" id="timechain_mining_slide">
+  <div id="timechain_mining_slide" class="slide" data-anchor="timechain_mining">
     <div class="fp-bg"/>
 
-    <Graph id="timechain_canvas" animate
-           :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
+    <Graph id="timechain_canvas" :guesses="this.guesses"
+           :local-encoding="encoding[activeEncoding]" :target="this.target" animate/>
     <div class="overlay">
       <b-container>
         <b-row>
@@ -84,28 +84,30 @@
               :is-mining="isMining"
               :local-encoding="encoding[activeEncoding]"
               :target="target"
+              collapse="timechain_mining_controls"
               encoding-btn
               show-go-brrr
-              collapse="timechain_mining_controls"
               v-on:rotate-encoding="rotateEncoding"
               v-on:start-mining="startTimechainMining"
-              v-on:stop-mining="stopMining" />
+              v-on:stop-mining="stopMining"/>
 
             <SuccessMsg
-              :block-height="blocks[blockToMine].height"
-              :is-hash-valid="blocks[blockToMine].isHashValid"
-              :time-to-mine="blocks[blockToMine].timeToMine"
               :avg-hashes="avgHashes"
+              :block-height="blocks[blockToMine].height"
               :est-time="{ blocktime, blocktimeUnit }"
-              :num-of-tries="blocks[blockToMine].tries"/>
+              :is-hash-valid="blocks[blockToMine].isHashValid"
+              :num-of-tries="blocks[blockToMine].tries"
+              :time-to-mine="blocks[blockToMine].timeToMine"/>
 
             <div class="nav_btn_mining_wrapper">
-              <b-button size="sm" class="nav_btn previous" @click="previousSlide">
-                <b-icon-arrow-left/> Prev
+              <b-button class="nav_btn previous" size="sm" @click="previousSlide">
+                <b-icon-arrow-left/>
+                Prev
               </b-button>
 
-              <b-button size="sm" class="nav_btn next_slide mining" @click="nextSlide">
-                Next <b-icon-arrow-right/>
+              <b-button class="nav_btn next_slide mining" size="sm" @click="nextSlide">
+                Next
+                <b-icon-arrow-right/>
               </b-button>
             </div>
 
@@ -117,7 +119,7 @@
 
   <RealWorldMiningSlide :global-hr="globalHr.long" :your-device-hr="yourDeviceHr"/>
 
-  <Page last slide next-section-btn data-anchor="timechain_review">
+  <Page data-anchor="timechain_review" last next-section-btn slide>
     <h1>Timechain Review</h1>
 
     <p>
@@ -125,11 +127,11 @@
     </p>
 
     <Difficulty
+      :blocktime="blocktime"
       :blocktime-unit="blocktimeUnit"
       :blocktime-units="blocktimeUnits"
-      :blocktime="blocktime"
-      :hashrate-long="getHashrateLong()"
       :hashrate="hashrate"
+      :hashrate-long="getHashrateLong()"
       :hashrateUnit="hashrateUnit"
       :hashrateUnits="hashrateUnits"
       show-global
@@ -158,30 +160,30 @@
 </template>
 
 <script>
-import AddBlockButton from '@/components/controls/AddBlockButton.vue';
 import BlockCard from '@/components/cards/BlockCard.vue';
-import BlockchainApi from '@/services/BlockchainApi';
-import BlockchainMixin from '@/mixins/BlockchainMixin';
-import Difficulty from '@/components/controls/Difficulty';
-import EncodingMixin from '@/mixins/EncodingMixin';
-import Graph from '@/components/Graph.vue';
+import BlockchainStatsCard from '@/components/cards/BlockchainStatsCard';
 import InfoCard from '@/components/cards/InfoCard';
-import Link from '@/components/Link';
+import AddBlockButton from '@/components/controls/AddBlockButton.vue';
+import Difficulty from '@/components/controls/Difficulty';
 import MiningControls from '@/components/controls/MiningControls.vue';
-import Num from '@/services/Num';
-import Page from '@/components/Page.vue';
-import RealWorldMiningSlide from '@/components/sections/slides/RealWorldMiningSlide';
 import SuccessMsg from '@/components/controls/SuccessMsg';
 import Target from '@/components/controls/Target.vue';
-import TargetMixin from '@/mixins/TargetMixin';
+import Graph from '@/components/Graph.vue';
+import Link from '@/components/Link';
+import Page from '@/components/Page.vue';
+import RealWorldMiningSlide from '@/components/sections/slides/RealWorldMiningSlide';
 import TimechainSlide from '@/components/sections/slides/TimechainSlide';
-import BlockchainStatsCard from '@/components/cards/BlockchainStatsCard';
+import BlockchainMixin from '@/mixins/BlockchainMixin';
+import EncodingMixin from '@/mixins/EncodingMixin';
+import TargetMixin from '@/mixins/TargetMixin';
+import BlockchainApi from '@/services/BlockchainApi';
+import Num from '@/services/Num';
 
 export default {
   mixins: [
     BlockchainMixin,
     EncodingMixin,
-    TargetMixin
+    TargetMixin,
   ],
   components: {
     BlockchainStatsCard,
@@ -222,7 +224,7 @@ export default {
         'Peta',
         'Exa',
         'Zeta',
-        'Yotta'
+        'Yotta',
       ],
       hashrateConversion: {
         base: { value: 1 },
@@ -233,8 +235,8 @@ export default {
         Peta: { value: 1_000_000_000_000_000 },
         Exa: { value: 1_000_000_000_000_000_000 },
         Zeta: { value: 1_000_000_000_000_000_000_000 },
-        Yotta: { value: 1_000_000_000_000_000_000_000_000 }
-      }
+        Yotta: { value: 1_000_000_000_000_000_000_000_000 },
+      },
     };
   },
   mounted() {
@@ -320,7 +322,7 @@ export default {
       for (const unit of ['Yotta', 'Zeta', 'Exa', 'Peta', 'Tera', 'Giga', 'Mega', 'Kilo', 'base']) {
         if (hashrate > this.hashrateConversion[unit].value) {
           const value = hashrate / this.hashrateConversion[unit].value;
-          return { value, unit }
+          return { value, unit };
         }
       }
     },
@@ -451,7 +453,7 @@ export default {
       this.avgTime = (totalTime / this.blocks.length).toFixed(2);
     },
 
-  }
+  },
 };
 </script>
 

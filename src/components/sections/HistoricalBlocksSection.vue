@@ -1,22 +1,23 @@
 <template>
 <div id="historical_blocks_section" class="section">
-  <Page first slide prev-section-btn data-anchor="real_blocks" >
+  <Page data-anchor="real_blocks" first prev-section-btn slide>
     <h1>Real Bitcoin Mining</h1>
 
     <p>
       The 'data' in real mining includes the <b>Version</b> of the bitcoin software used to create the block, a
       recording of the target in a format called <b>Bits</b>, and a record of the transactions in
       the block called a <b>Merkle Root</b>. For more information on each field see
-      <Link href="https://developer.bitcoin.org/reference/block_chain.html">here</Link>.
+      <Link href="https://developer.bitcoin.org/reference/block_chain.html">here</Link>
+      .
     </p>
 
     <BlockCard
       :block="block"
       :local-encoding="encoding[activeEncoding]"
-      showBlockHeightInput
-      showReal
-      showNonce
       mask-nonce
+      showBlockHeightInput
+      showNonce
+      showReal
       v-on:rotate-encoding="rotateEncoding"
       v-on:mine-this-block="mineThisBlock"
       v-on:update-block-height="updateBlockHeight"
@@ -29,17 +30,17 @@
       :localEncoding="encoding[activeEncoding]"
       :numerator="numerator"
       :probability="probability"
-      hide-range
       :target="target"
       :targetMax="targetMax"
+      hide-range
       v-on:rotate-encoding="rotateEncoding"/>
   </Page>
 
-  <div class="slide" data-anchor="real_mining" id="real_mining_slide">
+  <div id="real_mining_slide" class="slide" data-anchor="real_mining">
     <div class="fp-bg"/>
 
-    <Graph id="real_mining_canvas" animate
-           :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
+    <Graph id="real_mining_canvas" :guesses="this.guesses"
+           :local-encoding="encoding[activeEncoding]" :target="this.target" animate/>
 
     <div class="overlay">
       <b-container>
@@ -49,9 +50,9 @@
               :block="block"
               :hash-max="hashMax"
               :index="block.height"
+              :is-mining="isMining"
               :local-encoding="encoding[activeEncoding]"
               :target="target"
-              :is-mining="isMining"
               collapse="historical_mining"
               encoding-btn
               interactive-nonce
@@ -64,12 +65,14 @@
               v-on:update-nonce="updateNonce"/>
 
             <div class="nav_btn_mining_wrapper">
-              <b-button size="sm" class="nav_btn previous" @click="previousSlide">
-                <b-icon-arrow-left/> Prev
+              <b-button class="nav_btn previous" size="sm" @click="previousSlide">
+                <b-icon-arrow-left/>
+                Prev
               </b-button>
 
-              <b-button size="sm" class="next_section mining" @click="nextSection">
-                Next <b-icon-arrow-down/>
+              <b-button class="next_section mining" size="sm" @click="nextSection">
+                Next
+                <b-icon-arrow-down/>
               </b-button>
             </div>
 
@@ -83,24 +86,24 @@
 </template>
 
 <script>
-import Block from '@/services/block/Block';
 import BlockCard from '@/components/cards/BlockCard.vue';
-import BlockHeader from '@/services/block/BlockHeader';
-import EncodingMixin from '@/mixins/EncodingMixin';
-import Graph from '@/components/Graph';
-import Mempool from '@/services/Mempool';
 import MiningControls from '@/components/controls/MiningControls';
-import Num from '@/services/Num';
-import Page from '@/components/Page.vue';
 import SuccessMsg from '@/components/controls/SuccessMsg';
 import Target from '@/components/controls/Target';
-import TargetMixin from '@/mixins/TargetMixin';
+import Graph from '@/components/Graph';
 import Link from '@/components/Link';
+import Page from '@/components/Page.vue';
+import EncodingMixin from '@/mixins/EncodingMixin';
+import TargetMixin from '@/mixins/TargetMixin';
+import Block from '@/services/block/Block';
+import BlockHeader from '@/services/block/BlockHeader';
+import Mempool from '@/services/Mempool';
+import Num from '@/services/Num';
 
 export default {
   mixins: [
     EncodingMixin,
-    TargetMixin
+    TargetMixin,
   ],
   components: {
     Link,
@@ -109,7 +112,7 @@ export default {
     MiningControls,
     Page,
     SuccessMsg,
-    Target
+    Target,
   },
   data() {
     return {
@@ -118,7 +121,7 @@ export default {
       mempool: new Mempool(),
       isMining: false,
       originalNonce: 0,
-      hideNonce: false
+      hideNonce: false,
     };
   },
   async mounted() {
@@ -139,7 +142,7 @@ export default {
         xRatio: 0,
         yRatio: this.block.hash.num / this.hashMax.num,
         hash: this.block.hash,
-        isHashValid: this.block.isHashValid
+        isHashValid: this.block.isHashValid,
       });
     },
     async updateBlockHeight(height) {
@@ -205,6 +208,6 @@ export default {
     stopMining() {
       this.isMining = false;
     },
-  }
+  },
 };
 </script>

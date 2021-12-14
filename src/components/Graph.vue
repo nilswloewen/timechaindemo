@@ -11,7 +11,7 @@ export default {
     guesses: Array,
     id: String,
     localEncoding: String,
-    target: Num
+    target: Num,
   },
 
   mounted() {
@@ -159,7 +159,7 @@ export default {
 
     calcGuesses(guesses) {
       for (let i = 0; i < guesses.length; i += 1) {
-        const guess= guesses[i];
+        const guess = guesses[i];
         guess.xRatio += this.tickSpeed;
 
         let x = this.zero.x - (this.width * guess.xRatio);
@@ -212,7 +212,7 @@ export default {
           guess.yRatio,
           guess.hash[this.localEncoding],
           guess.opacity,
-          guess.isHashValid
+          guess.isHashValid,
         );
       }
     },
@@ -256,7 +256,7 @@ export default {
       this.drawEndCaps();
 
       window.requestAnimationFrame(this.drawGraph);
-    }
-  }
+    },
+  },
 };
 </script>

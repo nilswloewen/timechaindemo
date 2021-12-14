@@ -10,5 +10,5 @@ export default {
       this.activeEncoding += 1;
       this.activeEncoding %= this.encoding.length;
     },
-  }
+  },
 };

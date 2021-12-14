@@ -1,5 +1,5 @@
 <template>
-<div :id="id" :data-anchor="dataAnchor" :class="getClasses">
+<div :id="id" :class="getClasses" :data-anchor="dataAnchor">
   <div class="fp-bg"/>
   <b-container>
     <b-row>
@@ -7,20 +7,24 @@
         <div class="page_content">
           <slot/>
           <div class="text-center mt-5">
-            <b-button v-if="!this.first" size="sm" class="nav_btn previous_slide" @click="previousSlide">
-              <b-icon-arrow-left/> Prev
+            <b-button v-if="!this.first" class="nav_btn previous_slide" size="sm" @click="previousSlide">
+              <b-icon-arrow-left/>
+              Prev
             </b-button>
 
-            <b-button v-if="this.prevSectionBtn" size="sm" class="nav_btn previous_section" @click="prevSection">
-              <b-icon-arrow-up/> Prev
+            <b-button v-if="this.prevSectionBtn" class="nav_btn previous_section" size="sm" @click="prevSection">
+              <b-icon-arrow-up/>
+              Prev
             </b-button>
 
-            <b-button v-if="!this.last" size="sm" class="nav_btn next_slide" @click="nextSlide">
-              Next <b-icon-arrow-right/>
+            <b-button v-if="!this.last" class="nav_btn next_slide" size="sm" @click="nextSlide">
+              Next
+              <b-icon-arrow-right/>
             </b-button>
 
-            <b-button v-if="this.nextSectionBtn" size="sm" class="nav_btn next_section" @click="nextSection">
-              Next <b-icon-arrow-down/>
+            <b-button v-if="this.nextSectionBtn" class="nav_btn next_section" size="sm" @click="nextSection">
+              Next
+              <b-icon-arrow-down/>
             </b-button>
           </div>
 

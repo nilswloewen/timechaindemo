@@ -1,17 +1,17 @@
 <template>
-<b-card no-body class="tool_card">
+<b-card class="tool_card" no-body>
   <b-card-header>
     <b-container>
       <b-row class="row_1">
 
         <b-col class="text-left">
           <!-- Wrench icon: Made this a button just to center it -->
-          <b-button disabled size="sm" class="wrench_btn">
+          <b-button class="wrench_btn" disabled size="sm">
             <b-icon-wrench/>
           </b-button>
 
           <!-- Collapse Btn -->
-          <b-button v-if="collapse" v-b-toggle="collapse" size="sm" class="collapse_mining_controls">
+          <b-button v-if="collapse" v-b-toggle="collapse" class="collapse_mining_controls" size="sm">
             <span class="when-open"><b-icon-arrow-up/></span>
             <span class="when-closed"><b-icon-arrow-down/></span>
           </b-button>
@@ -46,8 +46,8 @@ export default {
     title: String,
     headerAddon: String,
     encodingBtn: Boolean,
-    encoding: {type: String, required: false},
-  }
+    encoding: { type: String, required: false },
+  },
 };
 </script>
 
@@ -70,10 +70,12 @@ export default {
   overflow: auto;
   white-space: nowrap;
 }
+
 .collapsed > .when-open,
 .not-collapsed > .when-closed {
   display: none;
 }
+
 .btn-secondary.wrench_btn.disabled {
   background-color: transparent;
   border: none;

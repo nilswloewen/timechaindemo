@@ -32,5 +32,5 @@ export default {
     estAvgGuesses: Number,
     estAvgTime: Number,
   },
-}
+};
 </script>

@@ -2,7 +2,7 @@
 <div id="pow_section" class="section">
   <MiningPOWSlide/>
 
-  <Page slide data-anchor="target">
+  <Page data-anchor="target" slide>
     <h1> Target </h1>
 
     <p>
@@ -24,8 +24,6 @@
     </p>
 
     <Target
-      v-on:updateTarget="updateTarget"
-      hide-range
       :avgHashes="avgHashes"
       :denominator="denominator"
       :hash-max="hashMax"
@@ -33,7 +31,9 @@
       :numerator="numerator"
       :probability="probability"
       :target="target"
-      :targetMax="targetMax"/>
+      :targetMax="targetMax"
+      hide-range
+      v-on:updateTarget="updateTarget"/>
   </Page>
 
   <Page data-anchor="pow_blockchain" slide>
@@ -68,11 +68,11 @@
     </div>
   </Page>
 
-  <div class="slide" data-anchor="pow_mining" id="pow_mining_slide">
+  <div id="pow_mining_slide" class="slide" data-anchor="pow_mining">
     <div class="fp-bg"/>
 
-    <Graph id="pow_canvas" :guesses="this.guesses" animate
-      :target="this.target" :local-encoding="encoding[activeEncoding]"/>
+    <Graph id="pow_canvas" :guesses="this.guesses" :local-encoding="encoding[activeEncoding]"
+           :target="this.target" animate/>
 
     <div class="overlay">
       <b-container>
@@ -80,29 +80,31 @@
           <b-col>
             <MiningControls
               :block="blocks[blockToMine]"
+              :encoding-btn="false"
               :hash-max="hashMax"
-              collapse="pow_mining_controls"
               :index="blockToMine"
               :is-mining="isMining"
               :local-encoding="encoding[activeEncoding]"
               :target="target"
-              :encoding-btn="false"
+              collapse="pow_mining_controls"
               interactive-nonce
               v-on:update-nonce="updateNonce"/>
 
             <SuccessMsg
+              :avg-hashes="avgHashes"
               :block-height="blocks[blockToMine].height"
               :is-hash-valid="blocks[blockToMine].isHashValid"
-              :avg-hashes="avgHashes"
               :num-of-tries="guesses.length"/>
 
             <div class="nav_btn_mining_wrapper">
-              <b-button size="sm" class="nav_btn previous" @click="previousSlide">
-                <b-icon-arrow-left/> Prev
+              <b-button class="nav_btn previous" size="sm" @click="previousSlide">
+                <b-icon-arrow-left/>
+                Prev
               </b-button>
 
-              <b-button size="sm" class="nav_btn next_slide mining" @click="nextSlide">
-                Next <b-icon-arrow-right/>
+              <b-button class="nav_btn next_slide mining" size="sm" @click="nextSlide">
+                Next
+                <b-icon-arrow-right/>
               </b-button>
             </div>
 
@@ -112,7 +114,7 @@
     </div>
   </div>
 
-  <Page last slide next-section-btn data-anchor="adjustable_target">
+  <Page data-anchor="adjustable_target" last next-section-btn slide>
     <h1>Proof-of-work Review</h1>
 
     <p>Take a minute to play with these new concepts before moving forward.</p>
@@ -124,9 +126,6 @@
     </p>
 
     <Target
-      v-on:updateTarget="updateTarget"
-      v-on:rotate-encoding="rotateEncoding"
-      enable-change-encoding
       :avgHashes="avgHashes"
       :denominator="denominator"
       :hash-max="hashMax"
@@ -134,32 +133,35 @@
       :numerator="numerator"
       :probability="probability"
       :target="target"
-      :targetMax="targetMax"/>
+      :targetMax="targetMax"
+      enable-change-encoding
+      v-on:updateTarget="updateTarget"
+      v-on:rotate-encoding="rotateEncoding"/>
   </Page>
 </div>
 </template>
 
 <script>
-import AddBlockButton from '@/components/controls/AddBlockButton.vue';
 import BlockCard from '@/components/cards/BlockCard.vue';
-import BlockchainMixin from '@/mixins/BlockchainMixin';
 import BlockchainStatsCard from '@/components/cards/BlockchainStatsCard';
-import EncodingMixin from '@/mixins/EncodingMixin';
-import Graph from '@/components/Graph';
-import Link from '@/components/Link';
+import TldrCard from '@/components/cards/TldrCard';
+import AddBlockButton from '@/components/controls/AddBlockButton.vue';
 import MiningControls from '@/components/controls/MiningControls.vue';
-import MiningPOWSlide from '@/components/sections/slides/MiningPOWSlide';
-import Page from '@/components/Page.vue';
 import SuccessMsg from '@/components/controls/SuccessMsg';
 import Target from '@/components/controls/Target.vue';
+import Graph from '@/components/Graph';
+import Link from '@/components/Link';
+import Page from '@/components/Page.vue';
+import MiningPOWSlide from '@/components/sections/slides/MiningPOWSlide';
+import BlockchainMixin from '@/mixins/BlockchainMixin';
+import EncodingMixin from '@/mixins/EncodingMixin';
 import TargetMixin from '@/mixins/TargetMixin';
-import TldrCard from '@/components/cards/TldrCard';
 
 export default {
   mixins: [
     BlockchainMixin,
     EncodingMixin,
-    TargetMixin
+    TargetMixin,
   ],
   components: {
     AddBlockButton,
@@ -179,9 +181,9 @@ export default {
       activeEncoding: 1,
       blockToMine: 0,
       guesses: [],
-      isMining: false
+      isMining: false,
     };
-  }
+  },
 
 };
 </script>

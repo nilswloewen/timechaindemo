@@ -1,5 +1,5 @@
-import { intToHex, swapEndian } from '@/services/sha256_utils';
 import Num from '@/services/Num';
+import { intToHex, swapEndian } from '@/services/sha256_utils';
 
 class BlockHeader {
   constructor(bits, merkleRoot, nonce, prevHash, timestamp, version) {
@@ -11,15 +11,6 @@ class BlockHeader {
     this.version = version;
   }
 
-  serialize() {
-    return swapEndian(intToHex(this.version))
-      + swapEndian(this.prevHash.hexadecimal)
-      + swapEndian(this.merkleRoot)
-      + swapEndian(intToHex(this.timestamp))
-      + swapEndian(intToHex(this.bits))
-      + swapEndian(intToHex(this.nonce));
-  }
-
   static get genesis() {
     return new BlockHeader(
       486604799,
@@ -27,8 +18,17 @@ class BlockHeader {
       2083236893,
       new Num(0n, 64),
       1231006505,
-      1
+      1,
     );
+  }
+
+  serialize() {
+    return swapEndian(intToHex(this.version))
+      + swapEndian(this.prevHash.hexadecimal)
+      + swapEndian(this.merkleRoot)
+      + swapEndian(intToHex(this.timestamp))
+      + swapEndian(intToHex(this.bits))
+      + swapEndian(intToHex(this.nonce));
   }
 }
 

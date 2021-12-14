@@ -1,6 +1,7 @@
 <template>
-<ToolCard class="mining_controls" :title="`Mining Block #${block.height}`" :collapse="collapse"
-          :encoding-btn="encodingBtn" :encoding="localEncoding" v-on:rotate-encoding="$emit('rotate-encoding')">
+<ToolCard :collapse="collapse" :encoding="localEncoding" :encoding-btn="encodingBtn"
+          :title="`Mining Block #${block.height}`" class="mining_controls"
+          v-on:rotate-encoding="$emit('rotate-encoding')">
 
   <b-collapse :id="collapse" visible>
     <!-- Max -->
@@ -23,12 +24,14 @@
     <div class="list label">Nonce</div>
     <div class="list value">
       <template v-if="interactiveNonce">
-        <b-input-group size="sm" class="float-right">
-          <b-form-input @change="onNonceChange"
-                        :value="block.header.nonce" :state="block.isHashValid"
-                        type="number" :min="0" :max="4294967295" size="sm" :disabled="block.isHashValid"/>
-          <b-button size="sm" @click="onIncrementNonce" :disabled="block.isHashValid"
-                    style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+        <b-input-group class="float-right" size="sm">
+          <b-form-input :disabled="block.isHashValid"
+                        :max="4294967295" :min="0"
+                        :state="block.isHashValid" :value="block.header.nonce" size="sm" type="number"
+                        @change="onNonceChange"/>
+          <b-button :disabled="block.isHashValid" size="sm"
+                    style="border-top-left-radius: 0; border-bottom-left-radius: 0;"
+                    @click="onIncrementNonce">
             +1
           </b-button>
         </b-input-group>
@@ -43,19 +46,20 @@
       <template v-if="!block.isHashValid">
         <div class="list label">Controls</div>
         <div class="list value">
-          <b-button @click="toggleMining" size="sm" variant="primary">
+          <b-button size="sm" variant="primary" @click="toggleMining">
             <template v-if="!isMining">Go Brrr (Automate)</template>
             <template v-else>Stop Mining</template>
           </b-button>
 
-          <b-button v-if="showSolutionBtn" @click="$emit('show-solution')" size="sm"
-                    :disabled="block.isHashValid" class="float-right" style="background-color: transparent; border-color: #f79413;">Show Solution
+          <b-button v-if="showSolutionBtn" :disabled="block.isHashValid" class="float-right"
+                    size="sm" style="background-color: transparent; border-color: #f79413;"
+                    @click="$emit('show-solution')">Show Solution
           </b-button>
         </div>
       </template>
 
       <div class="list label">Guesses</div>
-      <div class="list value">{{ block.tries.toLocaleString() }} </div>
+      <div class="list value">{{ block.tries.toLocaleString() }}</div>
 
       <div class="list label">Time Elapsed</div>
       <div class="list value">{{ block.timeToMine.toFixed(2) }} Seconds</div>
@@ -69,9 +73,9 @@
 </template>
 
 <script>
+import ToolCard from '@/components/cards/ToolCard';
 import Block from '@/services/block/Block';
 import Num from '@/services/Num';
-import ToolCard from '@/components/cards/ToolCard';
 
 export default {
   components: { ToolCard },
@@ -95,7 +99,7 @@ export default {
         return (this.block.tries / this.block.timeToMine).toFixed(2);
       }
       return 0;
-    }
+    },
   },
   methods: {
     toggleMining() {
@@ -111,8 +115,8 @@ export default {
     },
     onIncrementNonce() {
       this.$emit('update-nonce', this.block.header.nonce + 1, this.index);
-    }
-  }
+    },
+  },
 };
 </script>
 

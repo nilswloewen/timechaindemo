@@ -23,7 +23,7 @@
       </template>
 
       <div class="text-center mt-2">
-        <b-button @click="slideLeft" variant="primary">
+        <b-button variant="primary" @click="slideLeft">
           <b-icon-arrow-left/>
           Add the next block
         </b-button>
@@ -35,12 +35,13 @@
 
 <script>
 import InfoCard from '@/components/cards/InfoCard';
+
 export default {
   components: { InfoCard },
   methods: {
     slideLeft() {
       fullpage_api.moveSlideLeft();
-    }
+    },
   },
   props: {
     avgHashes: Number,
@@ -48,8 +49,8 @@ export default {
     estTime: Object,
     isHashValid: Boolean,
     numOfTries: Number,
-    timeToMine: Number
-  }
+    timeToMine: Number,
+  },
 };
 </script>
 

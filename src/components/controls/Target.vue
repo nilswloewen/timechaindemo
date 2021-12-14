@@ -1,11 +1,11 @@
 <template>
-<ToolCard title="Target" :header-addon="target[localEncoding]"
-          :encoding-btn="enableChangeEncoding" :encoding="localEncoding"
+<ToolCard :encoding="localEncoding" :encoding-btn="enableChangeEncoding"
+          :header-addon="target[localEncoding]" title="Target"
           v-on:rotate-encoding="$emit('rotate-encoding')">
 
-  <b-input-group v-if="!hideRange" prepend="Min 1" size="sm" append="Max">
-    <b-form-input :title="target[localEncoding]" :value="target.num" @change="onTargetChange" type="range"
-                  min="1" :max="hashMax.num" size="sm"/>
+  <b-input-group v-if="!hideRange" append="Max" prepend="Min 1" size="sm">
+    <b-form-input :max="hashMax.num" :title="target[localEncoding]" :value="target.num" min="1"
+                  size="sm" type="range" @change="onTargetChange"/>
   </b-input-group>
 
   <div class="list label">Max</div>
@@ -28,7 +28,7 @@ import Num from '@/services/Num';
 
 export default {
   components: {
-    ToolCard
+    ToolCard,
   },
   props: {
     avgHashes: null,
@@ -40,7 +40,7 @@ export default {
     numerator: null,
     probability: null,
     target: Num,
-    targetMax: Num
+    targetMax: Num,
   },
   computed: {
     getProbability() {
@@ -64,13 +64,13 @@ export default {
         return Number(this.denominator).toExponential(2);
       }
       return this.denominator.toLocaleString('en-US');
-    }
+    },
   },
   methods: {
     onTargetChange(newTarget) {
       this.$emit('updateTarget', new Num(BigInt(Number(newTarget)), this.hexDigits));
-    }
-  }
+    },
+  },
 };
 </script>
 <style>

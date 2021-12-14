@@ -1,5 +1,5 @@
-import { sha256dFromHex } from '@/services/sha256_utils';
 import Num from '@/services/Num';
+import { sha256dFromHex } from '@/services/sha256_utils';
 
 class Block {
   constructor(hash, header, height) {

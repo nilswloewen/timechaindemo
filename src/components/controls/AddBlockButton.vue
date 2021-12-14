@@ -1,7 +1,7 @@
 <template>
 <div class="add_block_wrapper">
-  <ToolCard title="Add Block" :encoding-btn="enableChangeEncoding"
-            :encoding="encoding" v-on:rotate-encoding="$emit('rotate-encoding')">
+  <ToolCard :encoding="encoding" :encoding-btn="enableChangeEncoding"
+            title="Add Block" v-on:rotate-encoding="$emit('rotate-encoding')">
     <b-card-body>
       <div v-if="disableAddBlockBtn">
         All blocks must be valid before adding new blocks.
@@ -10,12 +10,12 @@
       <b-input-group v-else prepend="Data" size="sm">
         <b-form-input v-model="newBlockData" placeholder="Try adding a block..." size="sm"/>
 
-        <b-button @click="addBlock" variant="primary" size="sm"
-                  style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+        <b-button size="sm" style="border-top-left-radius: 0; border-bottom-left-radius: 0;" variant="primary"
+                  @click="addBlock">
           Add
         </b-button>
 
-        <b-button title="Reset" @click="$emit('reset-blocks')" size="sm" class="ml-2" >
+        <b-button class="ml-2" size="sm" title="Reset" @click="$emit('reset-blocks')">
           <b-icon-trash/>
         </b-button>
       </b-input-group>
@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       newBlockData: '',
-      now: new Date().toUTCString()
+      now: new Date().toUTCString(),
     };
   },
   mounted() {
@@ -50,7 +50,7 @@ export default {
     getTime() {
       this.now = new Date().toUTCString();
       setTimeout(this.getTime, 1000);
-    }
-  }
+    },
+  },
 };
 </script>

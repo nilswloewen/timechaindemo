@@ -1,5 +1,5 @@
 <template>
-<b-card no-body class="info_card">
+<b-card class="info_card" no-body>
   <b-card-header>
     <b-container>
       <b-row class="row_1">
@@ -23,7 +23,7 @@ import EncodingBtn from '@/components/controls/EncodingBtn.vue';
 
 export default {
   components: {
-    EncodingBtn
+    EncodingBtn,
   },
   props: {
     title: String,

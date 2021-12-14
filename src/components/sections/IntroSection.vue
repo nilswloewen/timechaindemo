@@ -31,19 +31,19 @@
 </template>
 
 <script>
-import Page from '@/components/Page.vue';
 import TableOfContents from '@/components/controls/TableOfContents.vue';
+import Page from '@/components/Page.vue';
 
 export default {
   props: {
     contents: {
-      type: Array
-    }
+      type: Array,
+    },
   },
   components: {
     Page,
-    TableOfContents
-  }
+    TableOfContents,
+  },
 };
 </script>
 

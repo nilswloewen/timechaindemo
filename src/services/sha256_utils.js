@@ -58,5 +58,5 @@ export {
   intToHex,
   sha256dFromHex,
   sha256dFromText,
-  swapEndian
+  swapEndian,
 };

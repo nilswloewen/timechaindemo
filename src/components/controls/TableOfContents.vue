@@ -3,11 +3,11 @@
   <h4>Table of Contents</h4>
   <hr class="mt-0">
 
-  <b-table-simple small borderless>
+  <b-table-simple borderless small>
     <b-tbody>
       <template v-for="section in contents">
-        <b-tr @click="moveTo(section.anchor, 0)"
-              :key="section.anchor" :data-menuanchor="section.anchor">
+        <b-tr :key="section.anchor"
+              :data-menuanchor="section.anchor" @click="moveTo(section.anchor, 0)">
           <b-td>
             <a :href="`#${section.anchor}`"> {{ section.label }} </a>
           </b-td>
@@ -18,7 +18,7 @@
                 :data-menuanchor="slide"
                 @click="moveTo(section.anchor, index + 1)">
             <b-td>
-              <a class="ml-4" :href="`#${slide.anchor}`">
+              <a :href="`#${slide.anchor}`" class="ml-4">
                 {{ slide.label }}
               </a>
             </b-td>
@@ -35,9 +35,9 @@
 export default {
   props: {
     contents: {
-      type: Array
-    }
-  }
+      type: Array,
+    },
+  },
 };
 </script>
 

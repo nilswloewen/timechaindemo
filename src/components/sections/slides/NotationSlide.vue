@@ -1,5 +1,5 @@
 <template>
-<Page slide data-anchor="notation">
+<Page data-anchor="notation" slide>
   <h1>Notation</h1>
 
   <TldrCard title="tl;dr (Too Long; Didn't Read)">
@@ -18,15 +18,15 @@
   </p>
 
   <p class="text-center">
-    <EncodingBtn size="lg" :encoding="encoding[activeEncoding]" v-on:rotate-encoding="rotateEncoding"/>
+    <EncodingBtn :encoding="encoding[activeEncoding]" size="lg" v-on:rotate-encoding="rotateEncoding"/>
   </p>
 
   <p>
     Try clicking it to see different ways the number 21 million can be represented.
   </p>
 
-  <InfoCard title="Bitcoin's Maximum Supply" :encoding="encoding[activeEncoding]"
-            encoding-btn v-on:rotate-encoding="rotateEncoding">
+  <InfoCard :encoding="encoding[activeEncoding]" encoding-btn
+            title="Bitcoin's Maximum Supply" v-on:rotate-encoding="rotateEncoding">
     <b-card-body>
       <b>{{ num[encoding[activeEncoding]] }}</b>
       <br>
@@ -104,15 +104,20 @@
       <b-input-group>
         <b-form-input v-model="val" type="number"/>
         <b-button-group size="sm">
-        <b-button size="sm" @click="val = Number(val) + 1" style="border-bottom-left-radius: 0; border-top-left-radius: 0;" variant="primary"><b-icon-plus/></b-button>
-          <b-button size="sm" @click="val = Number(val) - 1"><b-icon-dash/></b-button>
+          <b-button size="sm" style="border-bottom-left-radius: 0; border-top-left-radius: 0;"
+                    variant="primary" @click="val = Number(val) + 1">
+            <b-icon-plus/>
+          </b-button>
+          <b-button size="sm" @click="val = Number(val) - 1">
+            <b-icon-dash/>
+          </b-button>
         </b-button-group>
       </b-input-group>
     </div>
 
     <div class="list label">Hexadecimal (base 16)</div>
     <div class="list value">
-      <b-form-input @keyup="onHex" :value="Number(val).toString(16)"/>
+      <b-form-input :value="Number(val).toString(16)" @keyup="onHex"/>
     </div>
 
     <div class="list label">Exponential</div>
@@ -128,18 +133,18 @@
 </template>
 
 <script>
-import Page from '@/components/Page.vue';
-import Num from '@/services/Num';
-import EncodingMixin from '@/mixins/EncodingMixin';
 import InfoCard from '@/components/cards/InfoCard';
 import TldrCard from '@/components/cards/TldrCard';
 import ToolCard from '@/components/cards/ToolCard';
 import EncodingBtn from '@/components/controls/EncodingBtn';
 import Link from '@/components/Link';
+import Page from '@/components/Page.vue';
+import EncodingMixin from '@/mixins/EncodingMixin';
+import Num from '@/services/Num';
 
 export default {
   mixins: [
-    EncodingMixin
+    EncodingMixin,
   ],
   components: {
     Link,
@@ -147,7 +152,7 @@ export default {
     ToolCard,
     InfoCard,
     Page,
-    TldrCard
+    TldrCard,
   },
   data() {
     return {
@@ -174,7 +179,7 @@ export default {
       expRows: [
         { val: 21_000_000, name: 'Twenty-one million' },
         { val: 100_000_000_000_000, name: 'One-hundred Trillion' },
-      ]
+      ],
     };
   },
   mounted() {
@@ -196,8 +201,8 @@ export default {
         binVal = 0;
       }
       this.val = parseInt(binVal, 2);
-    }
-  }
+    },
+  },
 };
 </script>
 

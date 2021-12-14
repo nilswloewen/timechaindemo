@@ -1,5 +1,5 @@
 <template>
-<Page slide data-anchor="real_world_mining">
+<Page data-anchor="real_world_mining" slide>
   <h1> Real World Mining </h1>
 
   <h3>ASIC Miners</h3>
@@ -11,13 +11,15 @@
   </p>
 
   <p>
-    The <Link href="https://shop.bitmain.com/promote/antminer_s9i_asic_bitcoin_miner/overview">Antminer S9i</Link> is one of the most popular ASICs on the market.
+    The
+    <Link href="https://shop.bitmain.com/promote/antminer_s9i_asic_bitcoin_miner/overview">Antminer S9i</Link>
+    is one of the most popular ASICs on the market.
 
     The hashrate of just one of these units is ~13 TeraHashes per second, or 13,000,000,000,000 <sub>TH/s</sub>.
   </p>
 
   <InfoCard title="Antminer S9i">
-    <img class="card-img" src="/assets/antminerS9.jpeg" alt="Antminer S9"/>
+    <img alt="Antminer S9" class="card-img" src="/assets/antminerS9.jpeg"/>
   </InfoCard>
 
   <hr>
@@ -28,7 +30,7 @@
   </p>
 
   <InfoCard title="Mining Farm">
-    <img class="card-img" src="/assets/mining_farm.jpeg" alt="Mining Farm"/>
+    <img alt="Mining Farm" class="card-img" src="/assets/mining_farm.jpeg"/>
   </InfoCard>
 
   <p>
@@ -58,7 +60,7 @@
   <hr>
 
   <InfoCard id="hashrate_table" title="Hashrate Comparison">
-    <b-table-simple small class="text-right">
+    <b-table-simple class="text-right" small>
       <b-tbody>
         <b-tr>
           <b-td>Your Device</b-td>
@@ -94,6 +96,6 @@ export default {
   props: {
     yourDeviceHr: Number,
     globalHr: String,
-  }
-}
+  },
+};
 </script>

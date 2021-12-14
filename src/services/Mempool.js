@@ -1,7 +1,7 @@
-import mempoolJS from '@mempool/mempool.js';
 import Block from '@/services/block/Block';
 import BlockHeader from '@/services/block/BlockHeader';
 import Num from '@/services/Num';
+import mempoolJS from '@mempool/mempool.js';
 
 class Mempool {
   constructor() {
@@ -20,7 +20,7 @@ class Mempool {
       memBlock.nonce,
       prevHash,
       memBlock.timestamp,
-      memBlock.version
+      memBlock.version,
     );
 
     const id = new Num(BigInt(`0x${ memBlock.id }`), 64);

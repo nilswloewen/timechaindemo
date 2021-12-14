@@ -1,15 +1,15 @@
-import Vue from 'vue';
 import { BootstrapVue, CardPlugin, IconsPlugin } from 'bootstrap-vue';
-import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 import 'fullpage.js/vendors/scrolloverflow';
-import './services/fullPagejs/scrollOverflowReset/fullpage.scrollOverflowReset.min';
-import './services/fullPagejs/scrollHorizontally/fullpage.scrollHorizontally.min';
+import Vue from 'vue';
 
 import VueFullPage from 'vue-fullpage.js';
 
 import App from './App.vue';
+import './services/fullPagejs/scrollHorizontally/fullpage.scrollHorizontally.min';
+import './services/fullPagejs/scrollOverflowReset/fullpage.scrollOverflowReset.min';
 
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
@@ -37,12 +37,12 @@ Vue.mixin({
     },
     prevSection() {
       fullpage_api.moveSectionUp();
-    }
-  }
+    },
+  },
 });
 
 Vue.config.productionTip = false;
 Vue.config.silent = true;
 new Vue({
-  render: (h) => h(App)
+  render: (h) => h(App),
 }).$mount('#app');

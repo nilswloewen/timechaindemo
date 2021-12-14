@@ -10,7 +10,7 @@ export default {
       numerator: 0n,
       probability: 0.06,
       target: new Num(15n),
-      targetMax: new Num(255n)
+      targetMax: new Num(255n),
     };
   },
   mounted() {
@@ -20,7 +20,7 @@ export default {
   watch: {
     targetMax() {
       this.calcStats();
-    }
+    },
   },
   methods: {
     async updateTarget(newTarget) {
@@ -54,6 +54,6 @@ export default {
         if (a === BigInt(0)) return b;
         b %= a;
       }
-    }
-  }
+    },
+  },
 };

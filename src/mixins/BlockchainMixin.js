@@ -10,7 +10,7 @@ export default {
         'rgba(20, 227, 253, 1)',
         '#B983FF',
         '#6471F7',
-        '#A01CF2'
+        '#A01CF2',
       ],
       disableAddBlockBtn: true,
       guesses: [],
@@ -133,7 +133,7 @@ export default {
       block.timeToMine = elapsed / 1000;
 
       if (!block.isHashValid && this.isMining) {
-        await this.mine(block,index);
+        await this.mine(block, index);
       }
     },
 
@@ -150,12 +150,12 @@ export default {
       await this.delayedUpdate(index);
     },
     setAvgGuesses() {
-      let totalGuesses = 0
+      let totalGuesses = 0;
       this.blocks.forEach((block) => {
         totalGuesses += block.tries;
       });
       this.avgGuesses = (totalGuesses / this.blocks.length).toFixed(2);
     },
 
-  }
+  },
 };

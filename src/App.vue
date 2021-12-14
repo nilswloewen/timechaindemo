@@ -137,6 +137,7 @@ export default {
   font-size: 16px;
   text-align: justify;
   text-shadow: #000 -1px 1px 3px;
+  scroll-behavior: smooth;
 }
 
 a {
@@ -186,7 +187,7 @@ h1 {
 }
 
 .col {
-  max-width: 580px;
+  max-width: 586px;
   margin-left: auto;
   margin-right: auto;
 }

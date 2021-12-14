@@ -72,10 +72,10 @@ export default {
       block.isHashValid = block.hash.bigInt < this.target.bigInt;
 
       this.guesses.push({
+        hash: block.hash,
+        isHashValid: block.isHashValid,
         xRatio: 0,
         yRatio: block.hash.num / this.hashMax.num,
-        hash: block.hash,
-        isHashValid: block.isHashValid
       });
 
       // Add new hash to following block.
@@ -99,9 +99,8 @@ export default {
       await this.instantUpdate(index - 1);
     },
     async delayedUpdate(index) {
-      document.getElementById(`block_${index}`)
-        .scrollIntoView({behavior: "smooth", block: "center"} );
       await this.finalizeBlock(index);
+
       if (index === 0) {
         return;
       }

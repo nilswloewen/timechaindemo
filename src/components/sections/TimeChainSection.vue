@@ -26,41 +26,45 @@
       v-on:calibrate-hps="calibrateHps"
       v-on:show-global-hashrate="onGlobal"/>
 
-    <Target v-on:updateTarget="updateTargetAndBlocktime"
-            v-on:rotate-encoding="rotateEncoding"
-            hide-range
-            :avgHashes="avgHashes"
-            :denominator="denominator"
-            :hash-max="hashMax"
-            :localEncoding="encoding[activeEncoding]"
-            :numerator="numerator"
-            :probability="probability"
-            :target="target"
-            :targetMax="targetMax"/>
+    <Target
+      v-on:updateTarget="updateTargetAndBlocktime"
+      v-on:rotate-encoding="rotateEncoding"
+      hide-range
+      :avgHashes="avgHashes"
+      :denominator="denominator"
+      :hash-max="hashMax"
+      :localEncoding="encoding[activeEncoding]"
+      :numerator="numerator"
+      :probability="probability"
+      :target="target"
+      :targetMax="targetMax"/>
   </Page>
 
   <Page data-anchor="timechain_blocks" slide>
     <div class="blockchain_wrapper">
-      <BlockchainStatsCard v-if="blocks.length > 2" :avg-guesses="avgGuesses" :est-avg-guesses="avgHashes"
-                           :avg-time="avgTime" :est-avg-time="blocktime" />
+      <BlockchainStatsCard
+        :avg-guesses="avgGuesses" :est-avg-guesses="avgHashes"
+        :avg-time="avgTime" :est-avg-time="blocktime" />
 
-      <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
-                      enable-change-encoding
-                      :encoding="encoding[activeEncoding]"
-                      v-on:rotate-encoding="rotateEncoding"
-                      v-on:add-block="addBlock"
-                      v-on:reset-blocks="resetTimechainBlocks"/>
+      <AddBlockButton
+        v-if="!disableAddBlockBtn"
+        enable-change-encoding
+        :encoding="encoding[activeEncoding]"
+        v-on:rotate-encoding="rotateEncoding"
+        v-on:add-block="addBlock"
+        v-on:reset-blocks="resetTimechainBlocks"/>
 
-      <BlockCard v-for="(block, index) in this.blocks" :key="index"
-                 :block="block"
-                 :index="index"
-                 :local-encoding="encoding[activeEncoding]"
-                 showData
-                 showNonce
-                 showStats
-                 v-on:rotate-encoding="rotateEncoding"
-                 v-on:mine-this-block="mineThisBlock"
-                 v-on:update-data="updateData"/>
+      <BlockCard
+        v-for="(block, index) in this.blocks" :key="index"
+        :block="block"
+        :index="index"
+        :local-encoding="encoding[activeEncoding]"
+        showData
+        showNonce
+        showStats
+        v-on:rotate-encoding="rotateEncoding"
+        v-on:mine-this-block="mineThisBlock"
+        v-on:update-data="updateData"/>
     </div>
   </Page>
 
@@ -87,12 +91,13 @@
               v-on:start-mining="startTimechainMining"
               v-on:stop-mining="stopMining" />
 
-            <SuccessMsg :block-height="blocks[blockToMine].height"
-                        :is-hash-valid="blocks[blockToMine].isHashValid"
-                        :time-to-mine="blocks[blockToMine].timeToMine"
-                        :avg-hashes="avgHashes"
-                        :est-time="{ blocktime, blocktimeUnit }"
-                        :num-of-tries="blocks[blockToMine].tries"/>
+            <SuccessMsg
+              :block-height="blocks[blockToMine].height"
+              :is-hash-valid="blocks[blockToMine].isHashValid"
+              :time-to-mine="blocks[blockToMine].timeToMine"
+              :avg-hashes="avgHashes"
+              :est-time="{ blocktime, blocktimeUnit }"
+              :num-of-tries="blocks[blockToMine].tries"/>
 
             <div class="nav_btn_mining_wrapper">
               <b-button size="sm" class="nav_btn previous" @click="previousSlide">
@@ -135,17 +140,18 @@
       v-on:update-hashrate-unit="updateHashrateUnit"
       v-on:show-global-hashrate="onGlobal"/>
 
-    <Target :avgHashes="avgHashes"
-            :denominator="denominator"
-            :hash-max="hashMax"
-            :localEncoding="encoding[activeEncoding]"
-            :numerator="numerator"
-            :probability="probability"
-            :target="target"
-            :targetMax="targetMax"
-            enable-change-encoding
-            v-on:updateTarget="updateTargetAndBlocktime"
-            v-on:rotate-encoding="rotateEncoding"/>
+    <Target
+      :avgHashes="avgHashes"
+      :denominator="denominator"
+      :hash-max="hashMax"
+      :localEncoding="encoding[activeEncoding]"
+      :numerator="numerator"
+      :probability="probability"
+      :target="target"
+      :targetMax="targetMax"
+      enable-change-encoding
+      v-on:updateTarget="updateTargetAndBlocktime"
+      v-on:rotate-encoding="rotateEncoding"/>
 
   </Page>
 </div>
@@ -202,7 +208,7 @@ export default {
       isAdjustingTarget: false,
       yourDeviceHr: 0,
       globalHr: { long: '180,000,000,000,000,000,000', value: 180, unit: 'Exa' },
-      hashrate: 42,
+      hashrate: 1,
       hashrateUnit: 'base',
       blocktime: 15,
       blocktimeUnit: 'Seconds',
@@ -232,7 +238,6 @@ export default {
     };
   },
   mounted() {
-    this.calibrateHps();
     this.calcTarget();
     this.setGlobalHr();
   },

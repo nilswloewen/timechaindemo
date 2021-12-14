@@ -10,27 +10,29 @@
       <Link href="https://developer.bitcoin.org/reference/block_chain.html">here</Link>.
     </p>
 
-    <BlockCard :block="block"
-               :local-encoding="encoding[activeEncoding]"
-               showBlockHeightInput
-               showReal
-               showNonce
-               mask-nonce
-               v-on:rotate-encoding="rotateEncoding"
-               v-on:mine-this-block="mineThisBlock"
-               v-on:update-block-height="updateBlockHeight"
-               v-on:update-block-height-latest="updateBlockHeightLatest"/>
+    <BlockCard
+      :block="block"
+      :local-encoding="encoding[activeEncoding]"
+      showBlockHeightInput
+      showReal
+      showNonce
+      mask-nonce
+      v-on:rotate-encoding="rotateEncoding"
+      v-on:mine-this-block="mineThisBlock"
+      v-on:update-block-height="updateBlockHeight"
+      v-on:update-block-height-latest="updateBlockHeightLatest"/>
 
-    <Target :avgHashes="avgHashes"
-            :denominator="denominator"
-            :hash-max="hashMax"
-            :localEncoding="encoding[activeEncoding]"
-            :numerator="numerator"
-            :probability="probability"
-            hide-range
-            :target="target"
-            :targetMax="targetMax"
-            v-on:rotate-encoding="rotateEncoding"/>
+    <Target
+      :avgHashes="avgHashes"
+      :denominator="denominator"
+      :hash-max="hashMax"
+      :localEncoding="encoding[activeEncoding]"
+      :numerator="numerator"
+      :probability="probability"
+      hide-range
+      :target="target"
+      :targetMax="targetMax"
+      v-on:rotate-encoding="rotateEncoding"/>
   </Page>
 
   <div class="slide" data-anchor="real_mining" id="real_mining_slide">
@@ -38,6 +40,7 @@
 
     <Graph id="real_mining_canvas" animate
            :guesses="this.guesses" :target="this.target" :local-encoding="encoding[activeEncoding]"/>
+
     <div class="overlay">
       <b-container>
         <b-row>
@@ -50,6 +53,7 @@
               :target="target"
               :is-mining="isMining"
               collapse="historical_mining"
+              encoding-btn
               interactive-nonce
               show-go-brrr
               show-solution-btn
@@ -182,7 +186,6 @@ export default {
     async startMining() {
       this.isMining = true;
       this.block.startTime = performance.now();
-      this.block.tries = 0;
       await this.mine();
       this.isMining = false;
     },

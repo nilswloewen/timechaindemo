@@ -39,10 +39,11 @@ export default {
     // Disable scrolling on all steps.
     getSteps() {
       this.steps.forEach((step) => {
-        step.params = {
-          enableScrolling: false,
-          ...step.params,
-        };
+        if (typeof step.params !== 'undefined') {
+          step.params.enableScrolling = false;
+          return;
+        }
+        step.params = { enableScrolling: false };
       });
       return this.steps;
     },

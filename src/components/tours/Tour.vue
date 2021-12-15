@@ -1,15 +1,22 @@
 <template>
+
 <span>
-  <b-button :id="`${name}_btn`" class="tour_btn" size="sm" @click="startTour">
+  <b-button v-if="bigBtn" class="tour_btn" size="lg">
+    <b-icon-info-circle @click="startTour" role="button" scale="1.5"/>
+  </b-button>
+
+  <b-button v-else :id="`${name}_btn`" class="tour_btn" size="sm" @click="startTour">
     <b-icon-info-circle/>
   </b-button>
   <v-tour :name="name" :options="options" :steps="getSteps()"/>
 </span>
+
 </template>
 
 <script>
 export default {
   props: {
+    bigBtn: Boolean,
     name: String,
     steps: Array,
   },

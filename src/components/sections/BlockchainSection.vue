@@ -1,6 +1,6 @@
 <template>
 <div id="blockchain_section" class="section">
-  <Page data-anchor="blockchain" first prev-section-btn slide>
+  <Page first slide prev-section-btn data-anchor="blockchain" >
     <h1>Blockchain</h1>
 
     <b-card class="definition_card" no-body>
@@ -68,6 +68,7 @@
     </b-card>
 
     <hr>
+
     <h2>Example Block</h2>
 
     <p>
@@ -78,13 +79,9 @@
             style="box-shadow: -1px 2px 5px 0 #14E3FD; border-color: #14E3FD">
       <b-card-header :key="blockHash" class="block_header">
         <b-container>
-          <b-row style="line-height: 2em;">
-            <b-col>
-              <div class="text-left"><b>Block #0</b></div>
-            </b-col>
-            <b-col>
-              <div class="text-center">Hash</div>
-            </b-col>
+          <b-row>
+            <b-col class="text-left"> <b>Block #0</b> </b-col>
+            <b-col class="text-center"> Hash </b-col>
             <b-col class="text-right">(Genesis Block)</b-col>
           </b-row>
           <b-row>
@@ -110,7 +107,7 @@
     </b-card>
   </Page>
 
-  <Page data-anchor="simple_blockchain" last next-section-btn slide>
+  <Page last slide next-section-btn data-anchor="simple_blockchain">
     <h1>Simplified Blockchain</h1>
 
     <p>
@@ -122,18 +119,21 @@
 
     <hr>
 
-    <p>
-      Add a few blocks to the blockchain and then change an old block to see how the change
-      propagates up the chain.
-    </p>
-
-    <AddBlockButton
-      :disable-add-block-btn="false"
-      :encoding="encoding[activeEncoding]"
-      v-on:add-block="addBlock"
-      v-on:reset-blocks="resetBlocks"/>
+    <div class="d-flex mb-2">
+      <SimpleBlockchainTour/>
+      <span style="display: inline-block">
+        Add a few blocks to the blockchain and then change an old block to see how the change
+        propagates up the chain.
+      </span>
+    </div>
 
     <div class="blockchain_wrapper">
+      <AddBlockButton
+        :disable-add-block-btn="false"
+        :encoding="encoding[activeEncoding]"
+        v-on:add-block="addBlock"
+        v-on:reset-blocks="resetBlocks"/>
+
       <BlockCard
         v-for="(block, index) in this.blocks" :key="index"
         :block="block"
@@ -157,6 +157,7 @@ import BlockchainMixin from '@/mixins/BlockchainMixin';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import TargetMixin from '@/mixins/TargetMixin';
 import { sha256dFromText } from '@/services/sha256_utils';
+import SimpleBlockchainTour from '@/components/tours/SimpleBlockchainTour';
 
 export default {
   mixins: [
@@ -165,6 +166,7 @@ export default {
     TargetMixin,
   ],
   components: {
+    SimpleBlockchainTour,
     AddBlockButton,
     BlockCard,
     Link,

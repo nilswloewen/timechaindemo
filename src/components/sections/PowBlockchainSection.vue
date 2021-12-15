@@ -46,7 +46,7 @@
         <b>Click on an invalid hash in order to mine the block.</b>
       </p>
 
-      <BlockchainStatsCard :avg-guesses="avgGuesses" :est-avg-guesses="avgHashes"/>
+<!--      <BlockchainStatsCard :avg-guesses="avgGuesses" :est-avg-guesses="avgHashes"/>-->
 
       <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
                       :encoding="encoding[activeEncoding]"

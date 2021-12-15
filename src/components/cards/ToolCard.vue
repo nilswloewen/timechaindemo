@@ -21,7 +21,6 @@
 
         <b-col class="text-right">
           <slot name="tour"/>
-          <!--          <TourBtn v-if="tourName" :name="tourName" v-on:start-tour="startTour"/>-->
           <EncodingBtn v-if="encodingBtn" :encoding="encoding" v-on:rotate-encoding="$emit('rotate-encoding')"/>
         </b-col>
       </b-row>
@@ -49,12 +48,6 @@ export default {
     encodingBtn: Boolean,
     headerAddon: String,
     title: String,
-    tourName: String,
-  },
-  methods: {
-    startTour(name) {
-      this.$emit('start-tour', name);
-    },
   },
 };
 </script>

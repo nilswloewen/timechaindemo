@@ -78,7 +78,7 @@
             style="box-shadow: -1px 2px 5px 0 #14E3FD; border-color: #14E3FD">
       <b-card-header :key="blockHash" class="block_header">
         <b-container>
-          <b-row>
+          <b-row style="line-height: 2em;">
             <b-col>
               <div class="text-left"><b>Block #0</b></div>
             </b-col>
@@ -89,7 +89,7 @@
           </b-row>
           <b-row>
             <b-col class="hash_wrapper text-left">
-              <span class="hash_value valid"> {{ blockHash }} </span>
+              <span class="hash_value"> {{ blockHash }} </span>
             </b-col>
           </b-row>
         </b-container>
@@ -98,13 +98,14 @@
       <!--Data-->
       <div class="list label">Data</div>
       <div class="list value">
-        <b-form-input :value="data" size="sm" @keyup="onExampleDataChange"/>
+        <b-form-input id="example_data_input" :value="data" size="sm" @keyup="onExampleDataChange"/>
       </div>
 
       <!--Previous Hash-->
       <div class="list label">Previous Block Hash</div>
       <div class="list value">
-        <b-form-input :value="prevHash" size="sm" @keyup="onExamplePrevHashChange"/>
+        <b-form-input id="example_prev_hash_input"
+                      :value="prevHash" size="sm" @keyup="onExamplePrevHashChange"/>
       </div>
     </b-card>
   </Page>

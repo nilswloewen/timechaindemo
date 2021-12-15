@@ -80,10 +80,11 @@
 </template>
 
 <script>
-import TldrCard from '@/components/cards/TldrCard';
+import Link from '@/components/Link';
 import Page from '@/components/Page';
+import TldrCard from '@/components/cards/TldrCard';
 
 export default {
-  components: { TldrCard, Page },
+  components: { Link, TldrCard, Page },
 };
 </script>

@@ -3,7 +3,7 @@
   <b-button :id="`${name}_btn`" class="tour_btn" size="sm" @click="startTour">
     <b-icon-info-circle/>
   </b-button>
-  <v-tour :name="name" :options="options" :steps="steps"/>
+  <v-tour :name="name" :options="options" :steps="getSteps()"/>
 </span>
 </template>
 
@@ -29,6 +29,62 @@ export default {
     startTour() {
       this.$emit('start-tour', this.name);
     },
+    // Disable scrolling on all steps.
+    getSteps() {
+      this.steps.forEach((step) => {
+        step.params = {
+          enableScrolling: false,
+          ...step.params
+        };
+      });
+      return this.steps;
+    }
   },
 };
 </script>
+
+<style>
+.btn-secondary.tour_btn {
+  background-color: transparent;
+  border-color: gray;
+  box-shadow: -2px 3px 5px 0 gray;
+  margin-right: .5em;
+}
+.btn-secondary.tour_btn:focus {
+  background-color: transparent;
+}
+
+.v-tour__target--highlighted {
+  box-shadow: none;
+  border: 1px solid red;
+}
+
+.v-tour,
+.v-tour div {
+  display: inline-block;
+}
+
+.v-step {
+  min-width: 225px;
+  box-shadow: -2px 3px 5px 0 #7855F5 !important;
+  background-color: rgba(0, 0, 0, 0.9) !important;
+  border: 1px solid #7855F5 !important;
+  text-align: justify !important;
+  line-height: 1.5em;
+  font-weight: normal;
+}
+
+.v-step__buttons {
+  text-align: center;
+}
+.v-step__button {
+  margin: 0 0.5em !important;
+  font-size: 0.875rem !important;
+  box-shadow: -2px 3px 5px 0 gray !important;
+}
+
+.v-step__arrow {
+  text-align: center;
+  background-color: #7855F5 !important;
+}
+</style>

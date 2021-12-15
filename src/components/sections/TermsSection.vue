@@ -16,9 +16,8 @@
     <p>
       There are many interactive elements in the following pages. If you are ever unsure of what to do,
       click the instructions icon
-      <TermsNavTour v-on:start-tour="startTour"/>
-      for help. Heck,
-      try it now just for kicks!
+      <TermsNavTour/>
+      for help. Heck, try it now just for kicks!
     </p>
   </Page>
 
@@ -29,24 +28,19 @@
 </template>
 
 <script>
-import Page from '@/components/Page.vue';
 import HashFunctionsSlide from '@/components/sections/slides/HashFunctionsSlide.vue';
 import NotationSlide from '@/components/sections/slides/NotationSlide.vue';
+import Page from '@/components/Page.vue';
 import Sha256Slide from '@/components/sections/slides/Sha256Slide.vue';
 import TermsNavTour from '@/components/tours/TermsNavTour';
 
 export default {
   components: {
-    TermsNavTour,
     HashFunctionsSlide,
     NotationSlide,
     Page,
     Sha256Slide,
-  },
-  methods: {
-    startTour() {
-      this.$tours['terms_nav_tour'].start();
-    },
+    TermsNavTour,
   },
 };
 </script>

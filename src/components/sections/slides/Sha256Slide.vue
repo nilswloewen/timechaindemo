@@ -36,8 +36,10 @@
     A hash can be interpreted as an absurdly large number.
   </TldrCard>
 
-  <ToolCard :encoding="encoding[activeEncoding]" encoding-btn
+  <ToolCard id="sha256_calc_card" :encoding="encoding[activeEncoding]" encoding-btn
             title="SHA-256 Calculator" v-on:rotate-encoding="rotateEncoding">
+    <template v-slot:tour><Sha256Tour /></template>
+
     <div class="list label">Input</div>
     <div class="list value">
       <b-input-group prepend="Data" size="sm">
@@ -46,7 +48,10 @@
     </div>
 
     <div class="list label">Output Hash</div>
-    <div class="list value">{{ hash[encoding[activeEncoding]] }}</div>
+    <div class="list value output_hash">
+      <span class="start_of_hash">{{ hash[encoding[activeEncoding]].slice(0, 3) }}</span>
+      <span>{{ hash[encoding[activeEncoding]].slice(3) }}</span>
+    </div>
   </ToolCard>
 
   <hr>
@@ -75,6 +80,7 @@ import Page from '@/components/Page.vue';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import Num from '@/services/Num';
 import { sha256dFromText } from '@/services/sha256_utils';
+import Sha256Tour from '@/components/tours/Sha256Tour';
 
 export default {
   mixins: [
@@ -84,6 +90,7 @@ export default {
     InfoCard,
     Link,
     Page,
+    Sha256Tour,
     TldrCard,
     ToolCard,
   },
@@ -92,18 +99,6 @@ export default {
       data: 'Try changing this data...',
       hash: { hexadecimal: '60759d1ab05baf2c79e281d8fbff268f559328dc45bd46b12114bbbe40197271' },
       hashMax: new Num(BigInt(Math.pow(2, 256)), 64),
-      tour: {
-        name: 'sha256_tour',
-        steps: [
-          {
-            target: '#sha_calc_input',
-            content: 'Try changing this data by adding a letter.',
-            params: {
-              enableScrolling: false,
-            },
-          },
-        ],
-      },
     };
   },
   async mounted() {

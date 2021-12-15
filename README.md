@@ -28,3 +28,14 @@ Format decimal inputs with commas.
 - Seven Habits of Highly Productive People
 
 While (true) { learn }
+
+
+  <b-card class="quote_card">
+    <q>timechain is somehow is more epically momentous :) <br>maybe people could use it in bitcoin, only it is based on the timechain, the singleton global data structure, PoW assured probabilistic forward arrow of time mechanism). others are pale imitations; blockchain became a buzzword</q>
+    <p>
+    &mdash;
+      <Link href="https://twitter.com/adam3us/status/1446403918272024577?ref_src=twsrc%5Etfw">
+        Adam Back (@adam3us) October 8, 2021
+      </Link>
+    </p>
+  </b-card>

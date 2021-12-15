@@ -54,19 +54,6 @@
     Till then, Tick Tock, next block.
   </p>
 
-  <p>
-    For some more food for thought, check out Dr. Adam Back's definition of Timechain:
-  </p>
-
-  <div class="mb-4" style="height: 998px;">
-    <blockquote class="twitter-tweet" data-lang="en" data-theme="dark"><p dir="ltr" lang="en">timechain is somehow is
-      more epically momentous :) <br>maybe people could use it in bitcoin, only it is based on the timechain, the
-      singleton global data structure, PoW assured probabilistic forward arrow of time mechanism). others are pale
-      imitations; blockchain became a buzzword</p>&mdash; Adam Back (@adam3us)
-      <Link href="https://twitter.com/adam3us/status/1446403918272024577?ref_src=twsrc%5Etfw">October 8, 2021</Link>
-    </blockquote>
-  </div>
-
 </Page>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
 
 <span>
-  <b-button v-if="bigBtn" class="tour_btn" size="lg">
+  <b-button v-if="bigBtn" :id="`${name}_btn`" class="tour_btn" size="lg">
     <b-icon-info-circle @click="startTour" role="button" scale="1.5"/>
   </b-button>
 
@@ -62,8 +62,8 @@ export default {
 }
 
 .v-tour__target--highlighted {
-  box-shadow: none;
-  border: 1px solid red;
+  border: 1px solid white;
+  box-shadow: 0 0 5px 3px white !important;
 }
 
 .v-tour,
@@ -73,9 +73,9 @@ export default {
 
 .v-step {
   min-width: 225px;
-  box-shadow: -2px 3px 5px 0 #7855F5 !important;
+  box-shadow: -2px 3px 5px 0 white !important;
   background-color: rgba(0, 0, 0, 0.9) !important;
-  border: 1px solid #7855F5 !important;
+  border: 1px solid white !important;
   text-align: justify !important;
   line-height: 1.5em;
   font-weight: normal;
@@ -92,6 +92,6 @@ export default {
 
 .v-step__arrow {
   text-align: center;
-  background-color: #7855F5 !important;
+  background-color: white !important;
 }
 </style>

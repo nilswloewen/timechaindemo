@@ -6,7 +6,7 @@
     <b-icon v-if="!isHashValid" icon="slash" stacked variant="danger"></b-icon>
   </b-iconstack>
 
-  <b-card :id="`block_${index}`" :style="`box-shadow: -1px 2px 5px 0 ${block.color}; border-color: ${block.color}`"
+  <b-card :id="`${type}_block_${index}`" :style="`box-shadow: -1px 2px 5px 0 ${block.color}; border-color: ${block.color}`"
           class="block_card"
           no-body>
 
@@ -131,6 +131,7 @@ export default {
     showNonce: Boolean,
     showReal: Boolean,
     showStats: Boolean,
+    type: String,
   },
 
   data() {

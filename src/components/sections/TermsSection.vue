@@ -12,13 +12,15 @@
       gibberish to humans. The following pages will show that while this gibberish is not very
       human-readable, it is not non-sense.
     </p>
-    <h4>Note:</h4>
-    <p>
+
+    <hr>
+    <div class="d-flex">
+      <TermsNavTour />
       There are many interactive elements in the following pages. If you are ever unsure of what to do,
       click the instructions icon
-      <TermsNavTour/>
       for help. Heck, try it now just for kicks!
-    </p>
+    </div>
+
   </Page>
 
   <NotationSlide/>

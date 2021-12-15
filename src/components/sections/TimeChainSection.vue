@@ -75,6 +75,7 @@
         showData
         showNonce
         showStats
+        type="time"
         v-on:rotate-encoding="rotateEncoding"
         v-on:mine-this-block="mineThisBlock"
         v-on:update-data="updateData"/>

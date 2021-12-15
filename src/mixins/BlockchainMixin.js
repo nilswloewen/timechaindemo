@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     async addBlock(newData) {
-      let data = newData === ''
+      let data = !newData
         ? BlockHeader.getRandomData()
         : newData;
 
@@ -55,6 +55,7 @@ export default {
     },
     async resetBlocks() {
       const block = new Block('', BlockHeader.genesis, 0, this.colors[0], 'inherit');
+      block.header.data = 'Alice sent Bob 42₿';
       block.prevHash = new Num(0n, this.hexDigits);
       await block.calcHash(this.hexDigits);
       this.blocks = [block];

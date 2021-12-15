@@ -121,10 +121,7 @@
 
     <div class="d-flex mb-2">
       <SimpleBlockchainTour/>
-      <span style="display: inline-block">
-        Add a few blocks to the blockchain and then change an old block to see how the change
-        propagates up the chain.
-      </span>
+      Try change the data of block #1 and watch see how the change propagates up the chain.
     </div>
 
     <div class="blockchain_wrapper">
@@ -135,6 +132,7 @@
         v-on:reset-blocks="resetBlocks"/>
 
       <BlockCard
+        type="simple"
         v-for="(block, index) in this.blocks" :key="index"
         :block="block"
         :index="index"
@@ -179,6 +177,11 @@ export default {
       data: 'The Times 03/Jan/2009 Chancellor on brink of second bailout for banks',
       prevHash: ''.padEnd(64, '0'),
     };
+  },
+  async mounted() {
+    await this.blocks[0].calcHash(this.hexDigits);
+    await this.addBlock();
+    await this.addBlock();
   },
   methods: {
     async onExampleDataChange(event) {

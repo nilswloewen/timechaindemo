@@ -40,13 +40,12 @@
     <h1>Proof-of-work Blockchain</h1>
 
     <div class="blockchain_wrapper">
-      <p v-if="blocks.length === 1" class="text-justify">
-        If a block hash is outlined in red, that means the block is invalid because the hash is not
-        less than the target.
-        <b>Click on an invalid hash in order to mine the block.</b>
-      </p>
+      <div class="d-flex text-justify mb-4">
+        <PowBlockchainTour/>
+        Unlike the Simple Blockchain example, now we require work to build a blockchain!
+      </div>
 
-<!--      <BlockchainStatsCard :avg-guesses="avgGuesses" :est-avg-guesses="avgHashes"/>-->
+      <BlockchainStatsCard v-if="showBlockStats" :avg-guesses="avgGuesses" :est-avg-guesses="avgHashes"/>
 
       <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
                       :encoding="encoding[activeEncoding]"
@@ -61,6 +60,7 @@
           :local-encoding="encoding[activeEncoding]"
           showData
           showNonce
+          type="pow"
           v-on:rotate-encoding="rotateEncoding"
           v-on:mine-this-block="mineThisBlock"
           v-on:update-data="updateData"/>
@@ -156,6 +156,7 @@ import MiningPOWSlide from '@/components/sections/slides/MiningPOWSlide';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import TargetMixin from '@/mixins/TargetMixin';
+import PowBlockchainTour from '@/components/tours/PowBlockchainTour';
 
 export default {
   mixins: [
@@ -164,6 +165,7 @@ export default {
     TargetMixin,
   ],
   components: {
+    PowBlockchainTour,
     AddBlockButton,
     BlockCard,
     BlockchainStatsCard,
@@ -182,6 +184,7 @@ export default {
       blockToMine: 0,
       guesses: [],
       isMining: false,
+      showBlockStats: false,
     };
   },
 

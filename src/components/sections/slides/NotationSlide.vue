@@ -179,7 +179,7 @@ export default {
         { decimal: 14, binary: '1110', hexadecimal: 'e' },
         { decimal: 15, binary: '1111', hexadecimal: 'f' },
       ],
-      val: 48879,
+      val: 10,
     };
   },
   mounted() {

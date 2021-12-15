@@ -54,13 +54,19 @@
   </Page>
 
   <Page data-anchor="timechain_blocks" slide>
+    <h1>Timechain</h1>
+
+    <div v-if="!showBlockStats" class="d-flex text-justify mb-4">
+      No matter your device's computing power, each block will take about 15 seconds to mine.
+    </div>
+
     <div class="blockchain_wrapper">
-      <BlockchainStatsCard
+      <BlockchainStatsCard v-if="showBlockStats"
         :avg-guesses="avgGuesses" :avg-time="avgTime"
         :est-avg-guesses="avgHashes" :est-avg-time="blocktime"/>
 
       <AddBlockButton
-        v-if="!disableAddBlockBtn"
+        :disable-add-block-btn="disableAddBlockBtn"
         :encoding="encoding[activeEncoding]"
         enable-change-encoding
         v-on:rotate-encoding="rotateEncoding"
@@ -74,7 +80,7 @@
         :local-encoding="encoding[activeEncoding]"
         showData
         showNonce
-        showStats
+        :show-stats="showBlockStats"
         type="time"
         v-on:rotate-encoding="rotateEncoding"
         v-on:mine-this-block="mineThisBlock"
@@ -170,6 +176,10 @@
       v-on:updateTarget="updateTargetAndBlocktime"
       v-on:rotate-encoding="rotateEncoding"/>
 
+    <p>
+      Use this switch to show block stats on each block.
+      <b-checkbox switch v-model="showBlockStats">Show block stats</b-checkbox>
+    </p>
   </Page>
 </div>
 </template>
@@ -251,6 +261,7 @@ export default {
       isAdjustingTarget: false,
       isCalibrating: false,
       isMining: false,
+      showBlockStats: false,
       yourDeviceHr: 0,
     };
   },
@@ -290,7 +301,7 @@ export default {
       const start = new Date().getTime();
       let elapsed = 0;
 
-      while (elapsed < 1000) {
+      while (elapsed < 2000) {
         this.blocks[0].header.nonce += 1;
         await this.finalizeBlock(0);
         elapsed = new Date().getTime() - start;

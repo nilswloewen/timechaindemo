@@ -22,9 +22,10 @@
           </b-col>
           <b-col class="text-right">
             &nbsp;<span v-if="block.height === 0 && !showStats">(Genesis Block)</span>
-            <span v-if="showStats && block.isHashValid">
-              # Guesses: {{ block.tries }} Time: {{ block.timeToMine.toFixed(2) }}s
-            </span>
+            <template v-if="showStats && block.isHashValid">
+              Guesses: {{ block.tries }}
+              <div v-if="block.timeToMine > 0">Time: {{ block.timeToMine.toFixed(2) }}s</div>
+            </template>
           </b-col>
         </b-row>
         <b-row>

@@ -61,6 +61,7 @@
           showData
           showNonce
           type="pow"
+          :show-stats="showBlockStats"
           v-on:rotate-encoding="rotateEncoding"
           v-on:mine-this-block="mineThisBlock"
           v-on:update-data="updateData"/>
@@ -145,7 +146,7 @@
       v-on:rotate-encoding="rotateEncoding"/>
 
     <p>
-      Use this switch to show block stats above the blockchain.
+      Use this switch to show block stats on each block.
       <b-checkbox switch v-model="showBlockStats">Show block stats</b-checkbox>
     </p>
 
@@ -178,8 +179,6 @@ export default {
     TargetMixin,
   ],
   components: {
-    PowMiningTour,
-    PowBlockchainTour,
     AddBlockButton,
     BlockCard,
     BlockchainStatsCard,
@@ -188,6 +187,8 @@ export default {
     MiningControls,
     MiningPOWSlide,
     Page,
+    PowBlockchainTour,
+    PowMiningTour,
     SuccessMsg,
     Target,
     TldrCard,

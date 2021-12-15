@@ -58,10 +58,10 @@
           :block="block"
           :index="index"
           :local-encoding="encoding[activeEncoding]"
+          :show-stats="showBlockStats"
           showData
           showNonce
           type="pow"
-          :show-stats="showBlockStats"
           v-on:rotate-encoding="rotateEncoding"
           v-on:mine-this-block="mineThisBlock"
           v-on:update-data="updateData"/>
@@ -147,7 +147,7 @@
 
     <p>
       Use this switch to show block stats on each block.
-      <b-checkbox switch v-model="showBlockStats">Show block stats</b-checkbox>
+      <b-checkbox v-model="showBlockStats" switch>Show block stats</b-checkbox>
     </p>
 
   </Page>

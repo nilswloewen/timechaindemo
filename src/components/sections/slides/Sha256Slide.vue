@@ -38,7 +38,9 @@
 
   <ToolCard id="sha256_calc_card" :encoding="encoding[activeEncoding]" encoding-btn
             title="SHA-256 Calculator" v-on:rotate-encoding="rotateEncoding">
-    <template v-slot:tour><Sha256Tour /></template>
+    <template v-slot:tour>
+      <Sha256Tour/>
+    </template>
 
     <div class="list label">Input</div>
     <div class="list value">

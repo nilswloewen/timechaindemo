@@ -16,12 +16,10 @@ npm run build
 ```
 
 ### TODO fixes: 
-
-Make nav buttons bigger - show text when there is space.
+Timechain mining - if you start and stop the time gets reset. 
 
 #### Add Features: 
 
-Examples of how to play with each tool.
 
 Format decimal inputs with commas.
 

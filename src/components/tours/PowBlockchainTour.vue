@@ -1,5 +1,5 @@
 <template>
-<Tour big-btn :name="name" :steps="steps" v-on:start-tour="startTour"/>
+<Tour :name="name" :steps="steps" big-btn v-on:start-tour="startTour"/>
 </template>
 
 <script>
@@ -14,12 +14,12 @@ export default {
         {
           target: '#pow_block_0 .hash_value',
           content: 'This hash is outlined in red because it is invalid! The new rules are that the block hash must be less than the target to be considered valid.',
-          params: {highlight: true},
+          params: { highlight: true },
         },
         {
           target: '#pow_block_0 .hash_value',
           content: 'Click on the invalid hash to start mining this block.',
-          params: {highlight: true},
+          params: { highlight: true },
         },
       ],
     };

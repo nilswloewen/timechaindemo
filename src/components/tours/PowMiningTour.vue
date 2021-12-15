@@ -26,7 +26,7 @@ export default {
             const input = document.querySelector('#pow_mining_controls input');
             input.value = '42069';
             input.dispatchEvent(new Event('change'));
-          }
+          },
         },
         {
           target: '#pow_mining_controls .inc_nonce_btn',

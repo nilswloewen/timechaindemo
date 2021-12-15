@@ -15,14 +15,14 @@ export default {
           target: '#sha256_calc_card .start_of_hash',
           content: 'Before making any changes, make a mental note of the start of the hash "607".',
           params: {
-            highlight: true
+            highlight: true,
           },
           before: () => {
             // Reset input to original.
             const input = document.getElementById('sha_calc_input');
             input.value = 'Try changing this data...';
             input.dispatchEvent(new KeyboardEvent('keyup'));
-          }
+          },
         },
         {
           target: '#sha_calc_input',
@@ -32,13 +32,13 @@ export default {
           target: '#sha256_calc_card .start_of_hash',
           content: 'The start of the hash is now "3a7".',
           params: {
-            highlight: true
+            highlight: true,
           },
           before: () => {
             const input = document.getElementById('sha_calc_input');
             input.value = 'Try changing this data..';
             input.dispatchEvent(new KeyboardEvent('keyup'));
-          }
+          },
         },
         {
           target: '#sha_calc_input',
@@ -48,14 +48,14 @@ export default {
           target: '#sha256_calc_card .start_of_hash',
           content: 'Because the input data is now the same as when we started, the start of the hash is now back to "607".',
           params: {
-            highlight: true
+            highlight: true,
           },
           before: () => {
             // Reset input to original.
             const input = document.getElementById('sha_calc_input');
             input.value = 'Try changing this data...';
             input.dispatchEvent(new KeyboardEvent('keyup'));
-          }
+          },
         },
       ],
     };

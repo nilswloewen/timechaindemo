@@ -1,6 +1,6 @@
 <template>
 <div id="blockchain_section" class="section">
-  <Page first slide prev-section-btn data-anchor="blockchain" >
+  <Page data-anchor="blockchain" first prev-section-btn slide>
     <h1>Blockchain</h1>
 
     <b-card class="definition_card" no-body>
@@ -80,8 +80,8 @@
       <b-card-header :key="blockHash" class="block_header">
         <b-container>
           <b-row>
-            <b-col class="text-left"> <b>Block #0</b> </b-col>
-            <b-col class="text-center"> Hash </b-col>
+            <b-col class="text-left"><b>Block #0</b></b-col>
+            <b-col class="text-center"> Hash</b-col>
             <b-col class="text-right">(Genesis Block)</b-col>
           </b-row>
           <b-row>
@@ -107,7 +107,7 @@
     </b-card>
   </Page>
 
-  <Page last slide next-section-btn data-anchor="simple_blockchain">
+  <Page data-anchor="simple_blockchain" last next-section-btn slide>
     <h1>Simplified Blockchain</h1>
 
     <p>
@@ -132,12 +132,12 @@
         v-on:reset-blocks="resetBlocks"/>
 
       <BlockCard
-        type="simple"
-        v-for="(block, index) in this.blocks" :key="index"
-        :block="block"
+        v-for="(block, index) in this.blocks"
+        :key="index" :block="block"
         :index="index"
         :local-encoding="encoding[activeEncoding]"
         showData
+        type="simple"
         v-on:rotate-encoding="rotateEncoding"
         v-on:update-data="updateData"/>
     </div>

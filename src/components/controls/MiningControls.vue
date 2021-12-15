@@ -33,7 +33,7 @@
                         :max="4294967295" :min="0"
                         :state="block.isHashValid" :value="block.header.nonce" size="sm" type="number"
                         @change="onNonceChange"/>
-          <b-button class="inc_nonce_btn" :disabled="block.isHashValid" size="sm"
+          <b-button :disabled="block.isHashValid" class="inc_nonce_btn" size="sm"
                     style="border-top-left-radius: 0; border-bottom-left-radius: 0;"
                     @click="onIncrementNonce">
             +1

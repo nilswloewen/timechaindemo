@@ -2,15 +2,11 @@
 <ToolCard title="Difficulty">
 
   <b-card-body class="text-center">
-    <b-button class="m-2" size="sm" variant="primary" @click="$emit('calibrate-hps')">
+    <b-button v-if="showCalibrateBtn" class="m-2" size="sm" variant="primary" @click="$emit('calibrate-hps')">
       Calibrate for your device
     </b-button>
 
-    <div v-if="showGlobal">
-      <p>
-        <b-button size="sm" @click="$emit('show-global-hashrate')"> Global Hashrate</b-button>
-      </p>
-
+    <div v-if="showHashratePicker">
       <div class="hashrate_wrapper">
         <b-input-group id="hashrate_picker" append="hashes per second" size="sm">
           <b-form-input id="hashrate_input" :min="1" :value="hashrate.toFixed(0)" size="sm"
@@ -67,6 +63,8 @@ export default {
     hashrateUnits: Array,
     isCalibrating: Boolean,
     showGlobal: Boolean,
+    showHashratePicker: Boolean,
+    showCalibrateBtn: Boolean,
   },
   methods: {
     updateHashrate(newHashrate) {

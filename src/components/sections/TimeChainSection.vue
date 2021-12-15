@@ -32,6 +32,7 @@
       :hashrateUnit="hashrateUnit"
       :hashrateUnits="hashrateUnits"
       :is-calibrating="isCalibrating"
+      show-calibrate-btn
       v-on:update-hashrate="updateHashrate"
       v-on:update-hashrate-unit="updateHashrateUnit"
       v-on:update-blocktime="updateBlocktime"
@@ -62,8 +63,8 @@
 
     <div class="blockchain_wrapper">
       <BlockchainStatsCard v-if="showBlockStats"
-        :avg-guesses="avgGuesses" :avg-time="avgTime"
-        :est-avg-guesses="avgHashes" :est-avg-time="blocktime"/>
+                           :avg-guesses="avgGuesses" :avg-time="avgTime"
+                           :est-avg-guesses="avgHashes" :est-avg-time="blocktime"/>
 
       <AddBlockButton
         :disable-add-block-btn="disableAddBlockBtn"
@@ -78,9 +79,9 @@
         :block="block"
         :index="index"
         :local-encoding="encoding[activeEncoding]"
+        :show-stats="showBlockStats"
         showData
         showNonce
-        :show-stats="showBlockStats"
         type="time"
         v-on:rotate-encoding="rotateEncoding"
         v-on:mine-this-block="mineThisBlock"
@@ -144,7 +145,11 @@
     <h1>Timechain Review</h1>
 
     <p>
-      <b>Try setting the block time to 10 minutes to see how the target changes in relation to hashrate.</b>
+      As you have seen, there is a relationship between <b>Hashrate</b>, <b>Block Time</b>, and the <b>Target</b>. Go
+      ahead and play around with these numbers to see how difficult this game of mining can become.
+    </p>
+    <p>
+      Try setting the block time to 10 minutes to see how difficult mining would become.
     </p>
 
     <Difficulty
@@ -156,6 +161,7 @@
       :hashrateUnit="hashrateUnit"
       :hashrateUnits="hashrateUnits"
       show-global
+      show-hashrate-picker
       v-on:calibrate-hps="calibrateHps"
       v-on:update-blocktime="updateBlocktime"
       v-on:update-blocktime-unit="updateBlocktimeUnit"
@@ -178,7 +184,7 @@
 
     <p>
       Use this switch to show block stats on each block.
-      <b-checkbox switch v-model="showBlockStats">Show block stats</b-checkbox>
+      <b-checkbox v-model="showBlockStats" switch>Show block stats</b-checkbox>
     </p>
   </Page>
 </div>

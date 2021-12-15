@@ -4,7 +4,7 @@
             title="Add Block" v-on:rotate-encoding="$emit('rotate-encoding')">
     <b-card-body>
       <div v-if="disableAddBlockBtn">
-        All blocks must be valid before adding new blocks.
+        All blocks must be valid before adding new ones.
       </div>
 
       <b-input-group v-else prepend="Data" size="sm">

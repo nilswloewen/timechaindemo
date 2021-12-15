@@ -1,5 +1,5 @@
 <template>
-<Tour big-btn :name="name" :steps="steps" v-on:start-tour="startTour"/>
+<Tour :name="name" :steps="steps" big-btn v-on:start-tour="startTour"/>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ export default {
         {
           target: '#simple_block_0 .hash_value',
           content: 'Before we begin, make a mental note of hash of Block #2.',
-          params: {highlight: true},
+          params: { highlight: true },
         },
         {
           target: '#simple_block_0',
@@ -29,16 +29,16 @@ export default {
           target: '#simple_block_0 input',
           content: 'See how the hash has changed?',
           before: () => {
-            const input = document.querySelector('#simple_block_0 input')
-            input.value = input.value.replace(/\d{1,2}₿/g, '')
+            const input = document.querySelector('#simple_block_0 input');
+            input.value = input.value.replace(/\d{1,2}₿/g, '');
             input.value = input.value + '999₿';
             input.dispatchEvent(new KeyboardEvent('keyup'));
           },
         },
         {
           target: '#simple_block_0 .prev_block_hash',
-          content: 'Now let\'s change the <b>Previous Block Hash</b> by changing the data of the previous block.' ,
-          params: {highlight: true},
+          content: 'Now let\'s change the <b>Previous Block Hash</b> by changing the data of the previous block.',
+          params: { highlight: true },
         },
         {
           target: '#simple_block_1 input',
@@ -48,8 +48,8 @@ export default {
           target: '#simple_block_1 input',
           content: 'See how the hash has changed?',
           before: () => {
-            const input = document.querySelector('#simple_block_1 input')
-            input.value = input.value.replace(/\d{1,2}₿/g, '')
+            const input = document.querySelector('#simple_block_1 input');
+            input.value = input.value.replace(/\d{1,2}₿/g, '');
             input.value = input.value + '999₿';
             input.dispatchEvent(new KeyboardEvent('keyup'));
           },
@@ -57,7 +57,7 @@ export default {
         {
           target: '#simple_block_0 .hash_value',
           content: 'Because these blocks are linked together, any change in an old block is reflected in the newer ones.',
-          params: {highlight: true},
+          params: { highlight: true },
         },
         {
           target: '.add_block_btn',

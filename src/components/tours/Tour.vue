@@ -2,7 +2,7 @@
 
 <span>
   <b-button v-if="bigBtn" :id="`${name}_btn`" class="tour_btn" size="lg">
-    <b-icon-info-circle @click="startTour" role="button" scale="1.5"/>
+    <b-icon-info-circle role="button" scale="1.5" @click="startTour"/>
   </b-button>
 
   <b-button v-else :id="`${name}_btn`" class="tour_btn" size="sm" @click="startTour">
@@ -41,11 +41,11 @@ export default {
       this.steps.forEach((step) => {
         step.params = {
           enableScrolling: false,
-          ...step.params
+          ...step.params,
         };
       });
       return this.steps;
-    }
+    },
   },
 };
 </script>
@@ -57,6 +57,7 @@ export default {
   box-shadow: -2px 3px 5px 0 gray;
   margin-right: .5em;
 }
+
 .btn-secondary.tour_btn:focus {
   background-color: transparent;
 }
@@ -84,6 +85,7 @@ export default {
 .v-step__buttons {
   text-align: center;
 }
+
 .v-step__button {
   margin: 0 0.5em !important;
   font-size: 0.875rem !important;

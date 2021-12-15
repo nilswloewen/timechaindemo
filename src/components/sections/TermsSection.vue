@@ -15,7 +15,7 @@
 
     <hr>
     <div class="d-flex">
-      <TermsNavTour />
+      <TermsNavTour/>
       There are many interactive elements in the following pages. If you are ever unsure of what to do,
       click the instructions icon
       for help. Heck, try it now just for kicks!

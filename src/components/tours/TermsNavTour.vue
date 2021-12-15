@@ -1,5 +1,5 @@
 <template>
-<Tour big-btn :name="name" :steps="steps" v-on:start-tour="startTour"/>
+<Tour :name="name" :steps="steps" big-btn v-on:start-tour="startTour"/>
 </template>
 
 <script>

@@ -40,7 +40,7 @@
     <h1>Proof-of-work Blockchain</h1>
 
     <div class="blockchain_wrapper">
-      <div class="d-flex text-justify mb-4">
+      <div v-if="!showBlockStats" class="d-flex text-justify mb-4">
         <PowBlockchainTour/>
         Unlike the Simple Blockchain example, now we require work to build a blockchain!
       </div>
@@ -88,7 +88,12 @@
               :target="target"
               collapse="pow_mining_controls"
               interactive-nonce
-              v-on:update-nonce="updateNonce"/>
+              type="pow"
+              v-on:update-nonce="updateNonce">
+              <template v-slot:tour>
+                <PowMiningTour/>
+              </template>
+            </MiningControls>
 
             <SuccessMsg
               :avg-hashes="avgHashes"
@@ -125,6 +130,7 @@
       Then go back to the previous slides to try out the new target yourself.
     </p>
 
+
     <Target
       :avgHashes="avgHashes"
       :denominator="denominator"
@@ -137,6 +143,12 @@
       enable-change-encoding
       v-on:updateTarget="updateTarget"
       v-on:rotate-encoding="rotateEncoding"/>
+
+    <p>
+      Use this switch to show block stats above the blockchain.
+      <b-checkbox switch v-model="showBlockStats">Show block stats</b-checkbox>
+    </p>
+
   </Page>
 </div>
 </template>
@@ -157,6 +169,7 @@ import BlockchainMixin from '@/mixins/BlockchainMixin';
 import EncodingMixin from '@/mixins/EncodingMixin';
 import TargetMixin from '@/mixins/TargetMixin';
 import PowBlockchainTour from '@/components/tours/PowBlockchainTour';
+import PowMiningTour from '@/components/tours/PowMiningTour';
 
 export default {
   mixins: [
@@ -165,6 +178,7 @@ export default {
     TargetMixin,
   ],
   components: {
+    PowMiningTour,
     PowBlockchainTour,
     AddBlockButton,
     BlockCard,
@@ -200,7 +214,7 @@ export default {
 }
 
 #pow_mining_slide .mining_controls {
-  max-width: 375px;
+  max-width: 388px;
 }
 
 </style>

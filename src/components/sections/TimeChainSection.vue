@@ -101,6 +101,7 @@
               collapse="timechain_mining_controls"
               encoding-btn
               show-go-brrr
+              type="time"
               v-on:rotate-encoding="rotateEncoding"
               v-on:start-mining="startTimechainMining"
               v-on:stop-mining="stopMining"/>

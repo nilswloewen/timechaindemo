@@ -1,7 +1,11 @@
 <template>
-<ToolCard :collapse="collapse" :encoding="localEncoding" :encoding-btn="encodingBtn"
+<ToolCard :id="`${type}_mining_controls`"
+          :collapse="collapse" :encoding="localEncoding" :encoding-btn="encodingBtn"
           :title="`Mining Block #${block.height}`" class="mining_controls"
           v-on:rotate-encoding="$emit('rotate-encoding')">
+  <template v-slot:tour>
+    <slot name="tour"/>
+  </template>
 
   <b-collapse :id="collapse" visible>
     <!-- Max -->
@@ -29,7 +33,7 @@
                         :max="4294967295" :min="0"
                         :state="block.isHashValid" :value="block.header.nonce" size="sm" type="number"
                         @change="onNonceChange"/>
-          <b-button :disabled="block.isHashValid" size="sm"
+          <b-button class="inc_nonce_btn" :disabled="block.isHashValid" size="sm"
                     style="border-top-left-radius: 0; border-bottom-left-radius: 0;"
                     @click="onIncrementNonce">
             +1
@@ -91,6 +95,7 @@ export default {
     showGoBrrr: Boolean,
     showSolutionBtn: Boolean,
     target: Num,
+    type: String,
   },
 
   computed: {

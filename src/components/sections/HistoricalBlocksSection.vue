@@ -58,6 +58,7 @@
               interactive-nonce
               show-go-brrr
               show-solution-btn
+              type="historical"
               v-on:rotate-encoding="rotateEncoding"
               v-on:start-mining="startMining"
               v-on:stop-mining="stopMining"

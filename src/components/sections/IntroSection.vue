@@ -10,7 +10,7 @@
 
     <p>
       If you have ever wondered what Bitcoin 'Mining' actually entails, or if you have heard that Bitcoin
-      is backed by Math but don't really know what that means, then you've come to the right place!
+      is backed by math but don't really know what that means, then you've come to the right place!
     </p>
 
     <p>

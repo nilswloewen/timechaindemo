@@ -65,10 +65,10 @@ export default {
         normalScrollElements: '.blockchain_wrapper .value .page_content',
 
         scrollOverflowReset: true,
-        scrollOverflowResetKey: 'bmlsc2xvZXdlbi5jb21fVVFuYzJOeWIyeHNUM1psY21ac2IzZFNaWE5sZEE9PVUyRw==',
+        scrollOverflowResetKey: 'dGltZWNoYWluZGVtby5pb19VTW5jMk55YjJ4c1QzWmxjbVpzYjNkU1pYTmxkQT09T0to',
 
         scrollHorizontally: true,
-        scrollHorizontallyKey: 'bmlsc2xvZXdlbi5jb21fV08zYzJOeWIyeHNTRzl5YVhwdmJuUmhiR3g1MjZ2',
+        scrollHorizontallyKey: 'dGltZWNoYWluZGVtby5pb19VeFFjMk55YjJ4c1NHOXlhWHB2Ym5SaGJHeDVFTUs=',
       },
       table_of_contents: [
         { anchor: 'intro', label: 'Intro' },

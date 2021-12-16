@@ -87,9 +87,11 @@
 <script>
 import InfoCard from '@/components/cards/InfoCard';
 import Page from '@/components/Page';
+import Link from '@/components/Link';
 
 export default {
   components: {
+    Link,
     InfoCard,
     Page,
   },

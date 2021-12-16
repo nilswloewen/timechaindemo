@@ -61,7 +61,7 @@
 
   <b-card class="img_card" no-body>
     <img alt="That's just a dice game with extra steps!"
-         class="card-img" src="/assets/backgrounds/rick_dice_game.jpg"/>
+         class="card-img" src="/assets/backgrounds/rick_dice_game.jpg" width="555" height="312"/>
   </b-card>
 
   <TldrCard title="tl;dr | Mining Algorithm">

@@ -1,6 +1,6 @@
 <template>
-<Page data-anchor="real_world_mining" slide>
-  <h1> Real World Mining </h1>
+<Page data-anchor="real_world_hashrate" slide>
+  <h1> Real-World Hashrate </h1>
 
   <h3>ASIC Miners</h3>
   <p>
@@ -19,7 +19,7 @@
   </p>
 
   <InfoCard title="Antminer S9i">
-    <img alt="Antminer S9" class="card-img" src="/assets/antminerS9.jpeg"/>
+    <img alt="Antminer S9" class="card-img" src="/assets/antminerS9.jpeg" width="556" height="556"/>
   </InfoCard>
 
   <hr>
@@ -30,7 +30,7 @@
   </p>
 
   <InfoCard title="Mining Farm">
-    <img alt="Mining Farm" class="card-img" src="/assets/mining_farm.jpeg"/>
+    <img alt="Mining Farm" class="card-img" src="/assets/mining_farm.jpeg" width="556" height="356"/>
   </InfoCard>
 
   <p>

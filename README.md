@@ -37,3 +37,12 @@ https://github.com/Open-Web-Analytics/Open-Web-Analytics
       </Link>
     </p>
   </b-card>
+
+
+Meme: 
+
+
+Bitcoin is magic internet money.
+Bitcoin is backed by math.
+Bitcoin is unstoppable.
+Bitcoin is magic internet money.

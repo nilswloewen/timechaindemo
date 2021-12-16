@@ -15,7 +15,7 @@
       <q>In other words, the difficulty-adjustment is about keeping a constant
         time, not a constant level of security, difficulty, or energy expenditure.</q>
       <br> -
-      <Link href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</Link>
+      <Link href="https://dergigi.com/2021/01/14/bitcoin-is-time/">Gigi</Link>
     </b-card>
 
     <p>
@@ -202,7 +202,7 @@ import Target from '@/components/controls/Target.vue';
 import Graph from '@/components/Graph.vue';
 import Link from '@/components/Link';
 import Page from '@/components/Page.vue';
-import RealWorldMiningSlide from '@/components/sections/slides/RealWorldMiningSlide';
+import RealWorldMiningSlide from '@/components/sections/slides/RealWorldHashrateSlide';
 import TimechainSlide from '@/components/sections/slides/TimechainSlide';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
 import EncodingMixin from '@/mixins/EncodingMixin';

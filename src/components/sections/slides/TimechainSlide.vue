@@ -7,7 +7,7 @@
       and making a single guess takes a little bit of time. The probabilistic
       sum of these guesses is what builds up the timechain that is Bitcoin.</q>
     -
-    <Link href="https://dergigi.com/2021/01/14/bitcoin-is-time/">DerGigi</Link>
+    <Link href="https://dergigi.com/2021/01/14/bitcoin-is-time/">Gigi</Link>
   </b-card>
 
   <p>

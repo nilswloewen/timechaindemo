@@ -105,7 +105,7 @@ export default {
             { anchor: 'difficulty_adjustment', label: 'Difficulty Adjustment' },
             { anchor: 'timechain_blockchain', label: 'Timechain' },
             { anchor: 'timechain_mining', label: 'Timechain Mining' },
-            { anchor: 'real_world_mining', label: 'Real World Mining' },
+            { anchor: 'real_world_hashrate', label: 'Real-World Hashrate' },
             { anchor: 'timechain_review', label: 'Timechain Review' },
           ],
         },

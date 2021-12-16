@@ -11,9 +11,17 @@
     <ResourcesSection/>
 
   </full-page>
-  <b-card id="phone_msg">
-    This demo is currently not pretty enough to be shown on small devices. Please use a larger screen.
-  </b-card>
+
+  <b-container>
+    <b-row>
+      <b-col>
+        <b-card id="phone_msg" style="margin-top: 50%;">
+          This demo is currently not pretty enough to be shown on small devices. Please use a larger screen.
+        </b-card>
+      </b-col>
+    </b-row>
+  </b-container>
+
 </div>
 </template>
 
@@ -559,6 +567,13 @@ h1 {
 }
 
 /* Backgrounds */
+#app {
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/small_brain.jpg');
+}
 .fp-bg,
 .section {
   background-size: cover;
@@ -601,7 +616,8 @@ h1 {
 }
 
 @media only screen and (max-width: 750px) {
-  #fullpage {
+  #fullpage,
+  #fp-nav {
     display: none;
   }
 }

@@ -58,7 +58,7 @@
     <h1>Timechain</h1>
 
     <div v-if="!showBlockStats" class="d-flex text-justify mb-4">
-      No matter your device's computing power, each block will take about 15 seconds to mine.
+      Based on your device's computing power, each block will take about 15 seconds to mine.
     </div>
 
     <div class="blockchain_wrapper">
@@ -98,7 +98,7 @@
       <b-container>
         <b-row>
           <b-col>
-            <MiningControls
+            <MiningControls v-if="!blocks[blockToMine].isHashValid"
               :block="blocks[blockToMine]"
               :hash-max="hashMax"
               :index="blockToMine"

@@ -19,8 +19,6 @@ npm run build
 Timechain mining - if you start and stop the time gets reset. 
 
 #### Add Features: 
-
-
 Format decimal inputs with commas.
 
 - Atomic Habits podcast - 
@@ -29,7 +27,7 @@ Format decimal inputs with commas.
 
 While (true) { learn }
 
-
+https://github.com/Open-Web-Analytics/Open-Web-Analytics
   <b-card class="quote_card">
     <q>timechain is somehow is more epically momentous :) <br>maybe people could use it in bitcoin, only it is based on the timechain, the singleton global data structure, PoW assured probabilistic forward arrow of time mechanism). others are pale imitations; blockchain became a buzzword</q>
     <p>

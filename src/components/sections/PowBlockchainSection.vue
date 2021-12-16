@@ -79,7 +79,7 @@
       <b-container>
         <b-row>
           <b-col>
-            <MiningControls
+            <MiningControls v-if="!blocks[blockToMine].isHashValid"
               :block="blocks[blockToMine]"
               :encoding-btn="false"
               :hash-max="hashMax"

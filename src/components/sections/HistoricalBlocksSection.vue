@@ -46,7 +46,7 @@
       <b-container>
         <b-row>
           <b-col>
-            <MiningControls
+            <MiningControls v-if="!block.isHashValid"
               :block="block"
               :hash-max="hashMax"
               :index="block.height"

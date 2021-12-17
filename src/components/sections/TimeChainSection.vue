@@ -66,6 +66,10 @@
                            :avg-guesses="avgGuesses" :avg-time="avgTime"
                            :est-avg-guesses="avgHashes" :est-avg-time="blocktime"/>
 
+      <p v-if="blocks.length > 3">
+        <b-checkbox v-model="showBlockStats" switch>Show block stats</b-checkbox>
+      </p>
+
       <AddBlockButton
         :disable-add-block-btn="disableAddBlockBtn"
         :encoding="encoding[activeEncoding]"
@@ -187,10 +191,6 @@
       v-on:updateTarget="updateTargetAndBlocktime"
       v-on:rotate-encoding="rotateEncoding"/>
 
-    <p>
-      Use this switch to show block stats on each block.
-      <b-checkbox v-model="showBlockStats" switch>Show block stats</b-checkbox>
-    </p>
   </Page>
 </div>
 </template>

@@ -47,6 +47,10 @@
 
       <BlockchainStatsCard v-if="showBlockStats" :avg-guesses="avgGuesses" :est-avg-guesses="avgHashes"/>
 
+      <p v-if="blocks.length > 3">
+        <b-checkbox v-model="showBlockStats" switch>Show block stats</b-checkbox>
+      </p>
+
       <AddBlockButton :disable-add-block-btn="disableAddBlockBtn"
                       :encoding="encoding[activeEncoding]"
                       v-on:add-block="addBlock"
@@ -145,11 +149,6 @@
       enable-change-encoding
       v-on:updateTarget="updateTarget"
       v-on:rotate-encoding="rotateEncoding"/>
-
-    <p>
-      Use this switch to show block stats on each block.
-      <b-checkbox v-model="showBlockStats" switch>Show block stats</b-checkbox>
-    </p>
 
   </Page>
 </div>

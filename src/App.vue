@@ -582,17 +582,17 @@ h1 {
 
 #intro_section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/small_brain.jpg');
+  url('/assets/backgrounds/sacred.jpg');
 }
 
 #terms_section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/neurons_heating_up.jpg');
+  url('/assets/backgrounds/small_brain.jpg');
 }
 
 #blockchain_section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/brain_black.webp');
+  url('/assets/backgrounds/neurons_heating_up.jpg');
 }
 
 #pow_section {

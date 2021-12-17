@@ -2,29 +2,42 @@
 <Page data-anchor="intro" first last next-section-btn>
   <div class="fade-in">
 
-    <h1> Bitcoin Timechain Demo </h1>
+    <h1>Timechain</h1>
 
     <p>
-      Welcome to the Timechain Demo 0.1!
+      <b>The timechain is the history of all bitcoin transactions ever made.</b> New transactions
+      are added to the timechain with a game of probabilities called mining.
     </p>
 
     <p>
-      If you have ever wondered what Bitcoin 'Mining' actually entails, or if you have heard that Bitcoin
-      is backed by math but don't really know what that means, then you've come to the right place!
+      Every 10 minutes there is a worldwide, winner-takes-all competition to see who can record
+      new transactions onto the timechain first. The winner is rewarded with newly created
+      bitcoin, plus the fees from all the transactions they just finalized.
     </p>
 
     <p>
-      The goal of this demo is to show that Bitcoin is backed by a game of probabilities called mining.
-      We will start with underlying concepts such as hash functions and move on to show
-      blockchain, proof-of-work, mining, and the difficulty-adjustment that regulates the timechain.
-      Please note, Bitcoin is vast and there are many topics not covered here, the timechain is just
-      one piece of the puzzle.
+      At the time of this writing, the reward is <b>~6.25 BTC</b>. This is valued around $300,000 USD.
+      Yes, that's over a quarter-million dollars being given away every 10 minutes.
     </p>
 
     <p>
-      This demo explores ideas that are relevant to inner-workings of many crypto-currencies, but is
-      focused on the OG King &mdash; BTC.
+      This game is driven by greed, yet every participant ends up benefiting. The rules of the game
+      are 100% transparent and cannot be changed. There is no referee; every participant double-checks
+      the work of every other participant, cheaters are simply ignored.
     </p>
+
+    <p>
+      The real reward from mining is that everyone on the global Bitcoin network can now agree upon something.
+      Isn't that a miracle! Even enemies can look at the shared timechain and say: "Yes, we have analysed
+      the timechain and neither you nor I have cheated one another." <b>Mining creates an irrefutable, immutable,
+      shared reality.</b>
+    </p>
+
+    <hr class="m-4">
+
+    <h5 class="text-center">This demo will explain the rules of the game.</h5>
+
+    <hr class="m-4">
 
     <TableOfContents :contents="contents"/>
   </div>

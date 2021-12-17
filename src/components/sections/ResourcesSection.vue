@@ -44,15 +44,20 @@
     </ul>
   </div>
 
-  <p>
-    Site by
-    <Link href="https://nilsloewen.com">Nils Loewen</Link>
+  <hr style="margin: 4em 0;">
 
+  <p class="text-center">
+    Site by <Link href="https://nilsloewen.com">Nils Loewen</Link>
+  </p>
+
+  <p>
     If you found this demo to be valuable, please
     <Link href="https://tippin.me/@nilswloewen">send me some sats!</Link>
 
     Till then, Tick Tock, next block.
   </p>
+
+  <hr style="margin: 4em 0;">
 
   <b-card no-body>
     <img class="card-img" src="/assets/opening_meme.webp" alt="Bitcoin is magic internet money"

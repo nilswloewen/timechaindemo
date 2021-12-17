@@ -572,7 +572,7 @@ h1 {
   background-size: cover;
   background-position: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/small_brain.jpg');
+  url('/assets/backgrounds/small_brain.webp');
 }
 
 .fp-bg,
@@ -583,37 +583,37 @@ h1 {
 
 #intro_section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/fractalSculpture.jpg');
+  url('/assets/backgrounds/fractalSculpture.webp');
 }
 
 #terms_section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/small_brain.jpg');
+  url('/assets/backgrounds/small_brain.webp');
 }
 
 #blockchain_section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/neurons_heating_up.jpg');
+  url('/assets/backgrounds/neurons_heating_up.webp');
 }
 
 #pow_section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/blue_exploding.jpg');
+  url('/assets/backgrounds/blue_exploding.webp');
 }
 
 #timechain_section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/transcending_forward.jpg');
+  url('/assets/backgrounds/transcending_forward.webp');
 }
 
 #historical_blocks_section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/brain_man.jpg');
+  url('/assets/backgrounds/brain_man.webp');
 }
 
 #resources_section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/ultimate.jpg');
+  url('/assets/backgrounds/ultimate.webp');
 }
 
 @media only screen and (max-width: 750px) {

@@ -53,8 +53,8 @@
   <hr style="margin: 4em 0;">
 
   <p class="text-center">
-    Site by
-    <Link href="https://nilsloewen.com">Nils Loewen</Link>
+    Site by <Link href="https://nilsloewen.com">Nils Loewen</Link>,
+    built with <Link href="https://vuejs.org/">Vue.js</Link>.
   </p>
 
   <p>

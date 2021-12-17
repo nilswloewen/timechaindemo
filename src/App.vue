@@ -583,7 +583,7 @@ h1 {
 
 #intro_section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/sacred.jpg');
+  url('/assets/backgrounds/nodes.jpg');
 }
 
 #terms_section {

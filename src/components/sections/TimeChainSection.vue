@@ -99,19 +99,19 @@
         <b-row>
           <b-col>
             <MiningControls v-if="!blocks[blockToMine].isHashValid"
-              :block="blocks[blockToMine]"
-              :hash-max="hashMax"
-              :index="blockToMine"
-              :is-mining="isMining"
-              :local-encoding="encoding[activeEncoding]"
-              :target="target"
-              collapse="timechain_mining_controls"
-              encoding-btn
-              show-go-brrr
-              type="time"
-              v-on:rotate-encoding="rotateEncoding"
-              v-on:start-mining="startTimechainMining"
-              v-on:stop-mining="stopMining"/>
+                            :block="blocks[blockToMine]"
+                            :hash-max="hashMax"
+                            :index="blockToMine"
+                            :is-mining="isMining"
+                            :local-encoding="encoding[activeEncoding]"
+                            :target="target"
+                            collapse="timechain_mining_controls"
+                            encoding-btn
+                            show-go-brrr
+                            type="time"
+                            v-on:rotate-encoding="rotateEncoding"
+                            v-on:start-mining="startTimechainMining"
+                            v-on:stop-mining="stopMining"/>
 
             <SuccessMsg
               :avg-hashes="avgHashes"

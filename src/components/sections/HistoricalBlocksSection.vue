@@ -47,23 +47,23 @@
         <b-row>
           <b-col>
             <MiningControls v-if="!block.isHashValid"
-              :block="block"
-              :hash-max="hashMax"
-              :index="block.height"
-              :is-mining="isMining"
-              :local-encoding="encoding[activeEncoding]"
-              :target="target"
-              collapse="historical_mining"
-              encoding-btn
-              interactive-nonce
-              show-go-brrr
-              show-solution-btn
-              type="historical"
-              v-on:rotate-encoding="rotateEncoding"
-              v-on:start-mining="startMining"
-              v-on:stop-mining="stopMining"
-              v-on:show-solution="showSolution"
-              v-on:update-nonce="updateNonce"/>
+                            :block="block"
+                            :hash-max="hashMax"
+                            :index="block.height"
+                            :is-mining="isMining"
+                            :local-encoding="encoding[activeEncoding]"
+                            :target="target"
+                            collapse="historical_mining"
+                            encoding-btn
+                            interactive-nonce
+                            show-go-brrr
+                            show-solution-btn
+                            type="historical"
+                            v-on:rotate-encoding="rotateEncoding"
+                            v-on:start-mining="startMining"
+                            v-on:stop-mining="stopMining"
+                            v-on:show-solution="showSolution"
+                            v-on:update-nonce="updateNonce"/>
 
             <div class="nav_btn_mining_wrapper">
               <b-button class="nav_btn previous" size="sm" @click="previousSlide">

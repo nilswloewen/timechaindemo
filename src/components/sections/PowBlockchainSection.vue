@@ -80,17 +80,17 @@
         <b-row>
           <b-col>
             <MiningControls v-if="!blocks[blockToMine].isHashValid"
-              :block="blocks[blockToMine]"
-              :encoding-btn="false"
-              :hash-max="hashMax"
-              :index="blockToMine"
-              :is-mining="isMining"
-              :local-encoding="encoding[activeEncoding]"
-              :target="target"
-              collapse="pow_mining_controls"
-              interactive-nonce
-              type="pow"
-              v-on:update-nonce="updateNonce">
+                            :block="blocks[blockToMine]"
+                            :encoding-btn="false"
+                            :hash-max="hashMax"
+                            :index="blockToMine"
+                            :is-mining="isMining"
+                            :local-encoding="encoding[activeEncoding]"
+                            :target="target"
+                            collapse="pow_mining_controls"
+                            interactive-nonce
+                            type="pow"
+                            v-on:update-nonce="updateNonce">
               <template v-slot:tour>
                 <PowMiningTour/>
               </template>

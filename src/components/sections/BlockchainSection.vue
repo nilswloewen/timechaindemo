@@ -15,7 +15,7 @@
         In Bitcoin a block stores a set of transactions.
         <hr>
         <div class="text-center">
-          <img alt="Blockchain" class="card-img" src="/assets/block.svg" width="209" height="112"/>
+          <img alt="Blockchain" class="card-img" height="112" src="/assets/block.svg" width="209"/>
         </div>
       </b-card-body>
     </b-card>
@@ -29,7 +29,7 @@
         <b>Order of Events</b>.
       </p>
       <hr>
-      <img alt="Blockchain" class="card-img" src="/assets/blockchain.svg"  width="516" height="113"/>
+      <img alt="Blockchain" class="card-img" height="113" src="/assets/blockchain.svg" width="516"/>
     </b-card>
 
     <h4 class="mt-4">Why does Bitcoin use a blockchain?</h4>

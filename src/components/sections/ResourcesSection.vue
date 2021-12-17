@@ -1,5 +1,5 @@
 <template>
-<Page data-anchor="resources" first last >
+<Page data-anchor="resources" first last>
   <h1>Resources</h1>
 
   <p>
@@ -47,7 +47,8 @@
   <hr style="margin: 4em 0;">
 
   <p class="text-center">
-    Site by <Link href="https://nilsloewen.com">Nils Loewen</Link>
+    Site by
+    <Link href="https://nilsloewen.com">Nils Loewen</Link>
   </p>
 
   <p>
@@ -60,8 +61,8 @@
   <hr style="margin: 4em 0;">
 
   <b-card no-body>
-    <img class="card-img" src="/assets/opening_meme.webp" alt="Bitcoin is magic internet money"
-         width="556" height="775"/>
+    <img alt="Bitcoin is magic internet money" class="card-img" height="775"
+         src="/assets/opening_meme.webp" width="556"/>
   </b-card>
 </Page>
 </template>

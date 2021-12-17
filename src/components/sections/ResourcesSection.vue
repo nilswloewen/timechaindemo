@@ -1,5 +1,5 @@
 <template>
-<Page data-anchor="resources" first last prev-section-btn>
+<Page data-anchor="resources" first last >
   <h1>Resources</h1>
 
   <p>
@@ -54,6 +54,10 @@
     Till then, Tick Tock, next block.
   </p>
 
+  <b-card no-body>
+    <img class="card-img" src="/assets/opening_meme.webp" alt="Bitcoin is magic internet money"
+         width="556" height="775"/>
+  </b-card>
 </Page>
 </template>
 

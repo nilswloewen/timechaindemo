@@ -18,6 +18,10 @@
 
   <ToolCard :encoding="encoding[activeEncoding]"
             encoding-btn title="Number of possible hashes" v-on:rotate-encoding="rotateEncoding">
+
+    <div class="list label">
+      {{ encoding[activeEncoding].charAt(0).toUpperCase() + encoding[activeEncoding].slice(1) }} Notation
+    </div>
     <div class="list value pt-2">
       {{ hashMax[encoding[activeEncoding]] }}
     </div>

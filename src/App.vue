@@ -202,7 +202,7 @@ h1 {
 
 .page_content {
   padding-top: 30vh;
-  padding-bottom: 90vh;
+  padding-bottom: 70vh;
 }
 
 .card {

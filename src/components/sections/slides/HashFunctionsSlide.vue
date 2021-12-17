@@ -53,7 +53,7 @@
       has unique hash that becomes it's block ID.
     </li>
     <li>
-      To make mining difficult; it takes time and work to compute a hash - especially if not all hashes are considered
+      To make mining difficult; it takes time and work to compute a hash &mdash; especially if not all hashes are considered
       valid...
     </li>
   </ol>

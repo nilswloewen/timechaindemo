@@ -41,8 +41,7 @@ https://github.com/Open-Web-Analytics/Open-Web-Analytics
 
 Meme: 
 
-
 Bitcoin is magic internet money.
 Bitcoin is backed by math.
-Bitcoin is unstoppable.
+Bitcoin is Sovereignty through Mathematics.
 Bitcoin is magic internet money.

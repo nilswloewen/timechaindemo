@@ -583,7 +583,7 @@ h1 {
 
 #intro_section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url('/assets/backgrounds/nodes.jpg');
+  url('/assets/backgrounds/fractalSculpture.jpg');
 }
 
 #terms_section {

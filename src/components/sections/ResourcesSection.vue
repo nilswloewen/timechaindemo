@@ -41,6 +41,9 @@
       <li>
         <Link href="https://www.amazon.com/dp/1090109911">Bitcoin: Sovereignty through Mathematics</Link>
       </li>
+      <li>
+        <Link href="https://bitcoinmagazine.com/culture/decoding-the-bitcoin-full-node-sculpture-a-cypherpunk-chronometer">Bitcoin Full Node Sculpture by FractalEncrypt</Link>
+      </li>
     </ul>
   </div>
 

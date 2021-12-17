@@ -148,8 +148,12 @@
       As you have seen, there is a relationship between <b>Hashrate</b>, <b>Block Time</b>, and the <b>Target</b>. Go
       ahead and play around with these numbers to see how difficult this game of mining can become.
     </p>
+
+    <h2>Difficulty Adjustment Period</h2>
     <p>
-      Try setting the block time to 10 minutes to see how difficult mining would become.
+      In the real world, Bitcoin's block time is regulated to 10 minutes. Every two weeks the
+      difficulty is re-adjusted based on the average time it took to mine the previous 2,016 blocks.
+      The adjustment involves calculations very similar to what you see here.
     </p>
 
     <Difficulty

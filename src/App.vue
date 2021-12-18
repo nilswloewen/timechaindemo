@@ -4,15 +4,10 @@
 
     <IntroSection :contents="table_of_contents"/>
     <TermsSection/>
-
     <BlockchainSection/>
-
     <PowBlockchainSection/>
-
     <TimeChainSection/>
-
     <HistoricalBlocksSection/>
-
     <ResourcesSection/>
   </full-page>
 

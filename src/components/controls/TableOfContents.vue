@@ -42,6 +42,11 @@ export default {
 </script>
 
 <style>
+.table {
+  margin-bottom: 0;
+  color: white;
+}
+
 #table_of_contents {
   margin-left: auto;
   margin-right: auto;

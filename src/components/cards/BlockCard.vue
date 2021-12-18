@@ -192,6 +192,21 @@ export default {
   animation: box_shadow 3s;
 }
 
+.block_number {
+  font-weight: bold;
+}
+
+.hash_value {
+  font-size: 0.875rem;
+}
+
+.invalid {
+  border-radius: 4px;
+  background-color: #b72919;
+}
+.prev_block_hash {
+  padding: 2px;
+}
 @keyframes box_shadow {
   from {
     box-shadow: 0 0 4px 4px white;

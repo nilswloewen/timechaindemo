@@ -74,4 +74,9 @@ export default {
     opacity: 1;
   }
 }
+
+#intro_section {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/fractalSculpture.webp');
+}
 </style>

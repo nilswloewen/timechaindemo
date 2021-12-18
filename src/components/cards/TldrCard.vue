@@ -27,4 +27,9 @@ export default {
 .row_1 {
   line-height: 2.6em;
 }
+
+.card.tldr_card {
+  box-shadow: -1px 2px 4px 2px #f79413;
+  border-color: #f79413;
+}
 </style>

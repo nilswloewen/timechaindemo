@@ -1,6 +1,5 @@
 <template>
 <div :id="id" :class="getClasses" :data-anchor="dataAnchor">
-  <div class="fp-bg"/>
   <b-container>
     <b-row>
       <b-col>

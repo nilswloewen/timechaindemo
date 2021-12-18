@@ -46,3 +46,10 @@ export default {
   },
 };
 </script>
+
+<style>
+#terms_section {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/small_brain.webp');
+}
+</style>

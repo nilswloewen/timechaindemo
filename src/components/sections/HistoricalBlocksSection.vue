@@ -37,8 +37,6 @@
   </Page>
 
   <div id="real_mining_slide" class="slide" data-anchor="real_mining">
-    <div class="fp-bg"/>
-
     <Graph id="real_mining_canvas" :guesses="this.guesses"
            :local-encoding="encoding[activeEncoding]" :target="this.target" animate/>
 
@@ -212,3 +210,10 @@ export default {
   },
 };
 </script>
+
+<style>
+#historical_blocks_section {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/brain_man.webp');
+}
+</style>

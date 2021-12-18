@@ -74,8 +74,6 @@
   </Page>
 
   <div id="pow_mining_slide" class="slide" data-anchor="pow_mining">
-    <div class="fp-bg"/>
-
     <Graph id="pow_canvas" :guesses="this.guesses" :local-encoding="encoding[activeEncoding]"
            :target="this.target" animate/>
 
@@ -218,4 +216,8 @@ export default {
   max-width: 388px;
 }
 
+#pow_section {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/blue_exploding.webp');
+}
 </style>

@@ -42,4 +42,9 @@ export default {
   overflow: visible;
   white-space: nowrap;
 }
+
+.card.info_card {
+  box-shadow: -1px 2px 4px 2px #17a2b8;
+  border-color: #17a2b8;
+}
 </style>

@@ -194,3 +194,15 @@ export default {
   },
 };
 </script>
+
+<style>
+.card-header.block_header .col {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#blockchain_section {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/neurons_heating_up.webp');
+}
+</style>

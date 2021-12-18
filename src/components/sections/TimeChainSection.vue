@@ -94,8 +94,6 @@
   </Page>
 
   <div id="timechain_mining_slide" class="slide" data-anchor="timechain_mining">
-    <div class="fp-bg"/>
-
     <Graph id="timechain_canvas" :guesses="this.guesses"
            :local-encoding="encoding[activeEncoding]" :target="this.target" animate/>
     <div class="overlay">
@@ -497,5 +495,10 @@ export default {
 <style>
 #timechain_mining_slide .mining_controls {
   max-width: 375px;
+}
+
+#timechain_section {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('/assets/backgrounds/transcending_forward.webp');
 }
 </style>

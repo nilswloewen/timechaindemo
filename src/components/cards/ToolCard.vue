@@ -81,4 +81,15 @@ export default {
   background-color: transparent;
   border: none;
 }
+
+.card.tool_card {
+  box-shadow: -1px 2px 4px 2px rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.collapse_mining_controls {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: -2px 3px 10px 2px rgba(255, 255, 255, 0.1);
+}
 </style>

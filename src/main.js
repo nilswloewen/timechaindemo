@@ -5,11 +5,13 @@ import VueTour from 'vue-tour';
 import { BootstrapVue, CardPlugin, IconsPlugin } from 'bootstrap-vue';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import './css/bootstrap_overrides.css';
 
 import VueFullPage from 'vue-fullpage.js';
 import 'fullpage.js/vendors/scrolloverflow';
 import './services/fullPagejs/scrollHorizontally/fullpage.scrollHorizontally.min';
 import './services/fullPagejs/scrollOverflowReset/fullpage.scrollOverflowReset.min';
+import './css/fullpage_overrides.css';
 
 import App from './App.vue';
 

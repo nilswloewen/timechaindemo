@@ -27,6 +27,8 @@ export default {
   font-family: 'Fira Code', monospace;
   text-shadow: #000 -1px 1px 4px;
   background-color: rgba(0, 0, 0, 0.8);
+  border-color: white;
+  box-shadow: -1px 2px 4px 2px white;
 }
 
 .popover-header {
@@ -38,4 +40,9 @@ export default {
   color: inherit;
 }
 
+.rotate_encoding_btn {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: -2px 3px 10px 2px rgba(255, 255, 255, 0.1);
+}
 </style>

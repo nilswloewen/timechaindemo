@@ -15,6 +15,7 @@
     "fullpage.js": "^3.1.2",
     "vue": "^2.6.12",
     "vue-fullpage.js": "^0.1.7",
+    "vue-router": "^3.5.3",
     "vue-tour": "^2.0.0"
   },
   "devDependencies": {

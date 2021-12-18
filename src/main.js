@@ -1,24 +1,26 @@
+import Vue from 'vue';
+import VueRouter from 'vue-router'
+import VueTour from 'vue-tour';
+
 import { BootstrapVue, CardPlugin, IconsPlugin } from 'bootstrap-vue';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
-import 'fullpage.js/vendors/scrolloverflow';
-import Vue from 'vue';
-
 import VueFullPage from 'vue-fullpage.js';
-
-import App from './App.vue';
+import 'fullpage.js/vendors/scrolloverflow';
 import './services/fullPagejs/scrollHorizontally/fullpage.scrollHorizontally.min';
 import './services/fullPagejs/scrollOverflowReset/fullpage.scrollOverflowReset.min';
 
-import VueTour from 'vue-tour';
+import App from './App.vue';
 
 require('vue-tour/dist/vue-tour.css');
-Vue.use(VueTour);
+
 Vue.use(BootstrapVue);
-Vue.use(IconsPlugin);
 Vue.use(CardPlugin);
+Vue.use(IconsPlugin);
 Vue.use(VueFullPage);
+Vue.use(VueRouter)
+Vue.use(VueTour);
 
 Vue.mixin({
   data() {

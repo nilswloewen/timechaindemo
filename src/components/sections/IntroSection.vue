@@ -39,6 +39,10 @@
 
     <hr class="m-4">
 
+    <p class="text-center">
+      * This site works best on desktop and tablet devices. *
+    </p>
+
     <TableOfContents :contents="contents"/>
   </div>
 </Page>

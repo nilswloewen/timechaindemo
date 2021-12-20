@@ -19,7 +19,7 @@
   </p>
 
   <InfoCard title="Antminer S9i">
-    <img alt="Antminer S9" class="card-img" height="556" src="/assets/antminerS9.jpeg" width="556"/>
+    <img alt="Antminer S9" class="card-img" height="auto" src="/assets/antminerS9.jpeg" width="556"/>
   </InfoCard>
 
   <hr>
@@ -30,7 +30,7 @@
   </p>
 
   <InfoCard title="Mining Farm">
-    <img alt="Mining Farm" class="card-img" height="356" src="/assets/mining_farm.jpeg" width="556"/>
+    <img alt="Mining Farm" class="card-img" height="auto" src="/assets/mining_farm.jpeg" width="556"/>
   </InfoCard>
 
   <p>
@@ -60,26 +60,17 @@
   <hr>
 
   <InfoCard id="hashrate_table" title="Hashrate Comparison">
-    <b-table-simple class="text-right" small>
-      <b-tbody>
-        <b-tr>
-          <b-td>Your Device</b-td>
-          <b-td>~{{ this.yourDeviceHr }}<sub>H/s</sub></b-td>
-        </b-tr>
-        <b-tr>
-          <b-td>Antminer S9</b-td>
-          <b-td>13,000,000,000,000<sub>H/s</sub></b-td>
-        </b-tr>
-        <b-tr>
-          <b-td>SlushPool</b-td>
-          <b-td>7,000,000,000,000,000,000<sub>H/s</sub></b-td>
-        </b-tr>
-        <b-tr>
-          <b-td>Global</b-td>
-          <b-td>{{ this.globalHr }}<sub>H/s</sub></b-td>
-        </b-tr>
-      </b-tbody>
-    </b-table-simple>
+    <div class="list label">Your Device</div>
+    <div class="list value">~{{ this.yourDeviceHr }}<sub>H/s</sub></div>
+
+    <div class="list label">Antminer S9</div>
+    <div class="list value">13,000,000,000,000<sub>H/s</sub></div>
+
+    <div class="list label">SlushPool</div>
+    <div class="list value">7,000,000,000,000,000,000<sub>H/s</sub></div>
+
+    <div class="list label">Global</div>
+    <div class="list value">{{ this.globalHr }}<sub>H/s</sub></div>
   </InfoCard>
 </Page>
 </template>
@@ -101,3 +92,8 @@ export default {
   },
 };
 </script>
+<style>
+#hashrate_table .value {
+  text-align: right;
+}
+</style>

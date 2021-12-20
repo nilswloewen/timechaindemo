@@ -1,7 +1,6 @@
 <template>
 <div id="app">
   <full-page id="fullpage" :options="fullpageOptions">
-
     <IntroSection :contents="table_of_contents"/>
     <TermsSection/>
     <BlockchainSection/>
@@ -10,17 +9,6 @@
     <HistoricalBlocksSection/>
     <ResourcesSection/>
   </full-page>
-
-  <b-container>
-    <b-row>
-      <b-col>
-        <b-card id="phone_msg" style="margin-top: 50%;">
-          This demo is currently not pretty enough to be shown on small devices. Please use a larger screen.
-        </b-card>
-      </b-col>
-    </b-row>
-  </b-container>
-
 </div>
 </template>
 
@@ -188,22 +176,6 @@ h1 {
   border: 3px solid #17a2b8;
 }
 
-/* Hide site for mobile screens. */
-@media only screen and (max-width: 750px) {
-  #fullpage,
-  #fp-nav {
-    display: none;
-  }
-  /* Backgrounds */
-  #app {
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('/assets/backgrounds/small_brain.webp');
-  }
-}
-
 .col {
   max-width: 588px;
   margin-left: auto;
@@ -245,7 +217,7 @@ h1 {
 }
 
 .nav_btn {
-  margin: 2em;
+  margin: 0.5em;
 }
 
 .nav_btn_mining_wrapper {

@@ -85,7 +85,7 @@
       <b-tbody>
         <b-tr v-for="(row, index) in expRows" :key="index">
           <b-td>{{ row.name }}</b-td>
-          <b-td>{{ row.val.toLocaleString() }}</b-td>
+          <b-td style="overflow: auto; max-width: 100px;">{{ row.val.toLocaleString() }}</b-td>
           <b-td><b>{{ row.val.toExponential() }}</b></b-td>
         </b-tr>
       </b-tbody>

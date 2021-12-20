@@ -50,10 +50,14 @@
 
 
 /* Nav dots on right */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 576px) {
+  .col {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   /* Nav dots on right */
   #fp-nav.fp-right {
-    right: -6px;
+    right: 0;
   }
   /* Left Arrow */
   .fp-controlArrow.fp-prev {

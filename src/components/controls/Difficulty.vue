@@ -8,7 +8,7 @@
 
     <div v-if="showHashratePicker">
       <div class="hashrate_wrapper">
-        <b-input-group id="hashrate_picker" append="hashes per second" size="sm">
+        <b-input-group id="hashrate_picker" append="H/s" size="sm">
           <b-form-input id="hashrate_input" :min="1" :value="hashrate.toFixed(0)" size="sm"
                         step="1" style="text-align: right;"
                         type="number" @change="updateHashrate"/>
@@ -85,9 +85,9 @@ export default {
 
 <style>
 #time_input, #hashrate_input,
-#time_units_select, #hashrate_units_select {
-  width: 96px;
-  max-width: 96px;
+#hashrate_units_select {
+  width: 80px;
+  max-width: 80px;
 }
 
 .hashrate_wrapper,

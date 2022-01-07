@@ -15,7 +15,7 @@
     <Link href="https://shop.bitmain.com/promote/antminer_s9i_asic_bitcoin_miner/overview">Antminer S9i</Link>
     is one of the most popular ASICs on the market.
 
-    The hashrate of just one of these units is ~13 TeraHashes per second, or 13,000,000,000,000 <sub>TH/s</sub>.
+    The hashrate of just one of these units is ~13 TeraHashes per second, or 13,000,000,000,000 <sub>H/s</sub>.
   </p>
 
   <InfoCard title="Antminer S9i">

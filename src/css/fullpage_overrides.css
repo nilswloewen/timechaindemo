@@ -1,0 +1,87 @@
+
+/*
+ * FullPage Controls
+ */
+#fp-nav ul li {
+  margin: 10px 0;
+}
+
+#fp-nav ul li .fp-tooltip {
+  font-family: 'Fira Code', monospace;
+}
+
+#fp-nav ul li a span, .fp-slidesNav ul li a span {
+  background-color: white;
+}
+
+/* Slides Arrows on bottom third */
+.fp-controlArrow {
+  display: none;
+}
+
+#fp-nav ul li .active + .fp-tooltip {
+  font-weight: bold;
+}
+
+#fp-nav ul:hover .fp-tooltip {
+  right: 20px;
+  transition: opacity 0.2s ease-in;
+  width: auto;
+  opacity: 1;
+}
+
+/* Left Arrow */
+.fp-controlArrow.fp-prev {
+  border-width: 16px 16px 16px 0;
+}
+
+/* Right Arrow */
+.fp-controlArrow.fp-next {
+  border-width: 16px 0 16px 16px;
+}
+.fp-slidesNav {
+  transform: translate(46%, -50%);
+}
+
+.section {
+  background-size: cover;
+  background-position: center;
+}
+
+
+/* Nav dots on right */
+@media only screen and (max-width: 576px) {
+  .col {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  /* Nav dots on right */
+  #fp-nav.fp-right {
+    right: 0;
+  }
+  /* Left Arrow */
+  .fp-controlArrow.fp-prev {
+    border-width: 10px 10px 10px 0;
+    left: 4px;
+  }
+
+  /* Right Arrow */
+  .fp-controlArrow.fp-next {
+    border-width: 10px 0 10px 10px;
+    right: 4px;
+  }
+
+  /* Make nav dots smaller */
+  #fp-nav ul li a span, .fp-slidesNav ul li a span {
+    height: 2px;
+    width: 2px;
+  }
+  #fp-nav ul li a.active span,
+  #fp-nav ul li:hover a.active span,
+  .fp-slidesNav ul li a.active span,
+  .fp-slidesNav ul li:hover a.active span {
+    height: 8px;
+    width: 8px;
+    margin: -6px 0 0 -5px;
+  }
+}

@@ -55,6 +55,9 @@
   <p class="text-center">
     Site by <Link href="https://nilsloewen.com">Nils Loewen</Link>,
     built with <Link href="https://vuejs.org/">Vue.js</Link>.
+    <Link href="https://github.com/nilswloewen/timechaindemo">
+      <img src="/assets/GitHub-Mark-Light-32px.png" alt="GitHub Logo" height="20px"/>
+    </Link>
   </p>
 
   <p>

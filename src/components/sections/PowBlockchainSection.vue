@@ -43,6 +43,8 @@
       <div v-if="!showBlockStats" class="d-flex text-justify mb-4">
         <PowBlockchainTour/>
         Unlike the Simple Blockchain example, now we require work to build a blockchain!
+        <br>
+          To change the nonce, click on a block hash that is outlined in red.
       </div>
 
       <BlockchainStatsCard v-if="showBlockStats" :avg-guesses="avgGuesses" :est-avg-guesses="avgHashes"/>

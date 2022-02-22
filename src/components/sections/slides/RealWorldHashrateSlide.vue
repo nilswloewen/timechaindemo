@@ -54,7 +54,7 @@
   <p>
     <Link href="https://slushpool.com/en/stats/btc/">SlushPool</Link>
     is the oldest Bitcoin mining pool and at the time of this writing their hashrate represents
-    ~8 of the global hashrate, around ~7 ExaHashes per second.
+    ~8% of the global hashrate, around ~7 ExaHashes per second.
   </p>
 
   <hr>

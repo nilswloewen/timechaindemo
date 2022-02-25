@@ -53,10 +53,10 @@
   <hr style="margin: 4em 0;">
 
   <p class="text-center">
-    Site by <Link href="https://nilsloewen.com">Nils Loewen</Link>,
+    Site by Nils Loewen <Link href="https://twitter.com/nilswloewen"><b-icon-twitter/></Link>,
     built with <Link href="https://vuejs.org/">Vue.js</Link>.
     <Link href="https://github.com/nilswloewen/timechaindemo">
-      <img src="/assets/GitHub-Mark-Light-32px.png" alt="GitHub Logo" height="20px"/>
+      <img src="/assets/GitHub-Mark-Light-32px.png" alt="GitHub Logo" height="18px" style="padding-bottom: 2px;"/>
     </Link>
   </p>
 

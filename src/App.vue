@@ -6,7 +6,7 @@
     <BlockchainSection/>
     <PowBlockchainSection/>
     <TimeChainSection/>
-    <HistoricalBlocksSection/>
+    <RealMiningSection/>
     <ResourcesSection/>
   </full-page>
 </div>
@@ -14,7 +14,7 @@
 
 <script>
 import BlockchainSection from '@/components/sections/BlockchainSection.vue';
-import HistoricalBlocksSection from '@/components/sections/HistoricalBlocksSection.vue';
+import RealMiningSection from '@/components/sections/RealMining.vue';
 import IntroSection from '@/components/sections/IntroSection.vue';
 import PowBlockchainSection from '@/components/sections/PowBlockchainSection.vue';
 import ResourcesSection from '@/components/sections/ResourcesSection.vue';
@@ -25,7 +25,7 @@ export default {
   name: 'app',
   components: {
     BlockchainSection,
-    HistoricalBlocksSection,
+    RealMiningSection,
     IntroSection,
     PowBlockchainSection,
     ResourcesSection,
@@ -97,10 +97,10 @@ export default {
           ],
         },
         {
-          anchor: 'real_blocks',
-          label: 'Historical Blocks',
+          anchor: 'real_mining',
+          label: 'Real Mining',
           slides: [
-            { anchor: 'real_mining', label: 'Real-World Mining' },
+            { anchor: 'real_mining', label: 'Real Mining' },
           ],
         },
         { anchor: 'resources', label: 'Resources' },

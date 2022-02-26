@@ -1,7 +1,7 @@
 <template>
 <div id="historical_blocks_section" class="section">
-  <Page data-anchor="real_blocks" first prev-section-btn slide>
-    <h1>Real Bitcoin Mining</h1>
+  <Page data-anchor="real_mining" first prev-section-btn slide>
+    <h1>Real Mining</h1>
 
     <p>
       The 'data' in real mining includes the <b>Version</b> of the bitcoin software used to create the block, a

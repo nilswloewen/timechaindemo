@@ -21,7 +21,7 @@
     </p>
 
     <p>
-      This game is driven by greed, yet every participant ends up benefiting. The rules of the game
+      This game is driven by self-interest, yet every participant ends up benefiting. The rules of the game
       are 100% transparent and cannot be changed. There is no referee; every participant double-checks
       the work of every other participant, cheaters are simply ignored.
     </p>

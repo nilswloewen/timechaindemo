@@ -122,7 +122,13 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fira%20Code:wght@300..700&display=swap');
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(/assets/fonts/fira_code_300.ttf) format('truetype');
+}
 
 #app {
   -webkit-font-smoothing: antialiased;
@@ -184,7 +190,7 @@ h1 {
 
 .page_content {
   padding-top: 30vh;
-  padding-bottom: 70vh;
+  padding-bottom: 30vh;
 }
 
 .card {

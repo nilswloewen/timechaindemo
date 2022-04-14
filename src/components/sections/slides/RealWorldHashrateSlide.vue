@@ -12,14 +12,14 @@
 
   <p>
     The
-    <Link href="https://shop.bitmain.com/promote/antminer_s9i_asic_bitcoin_miner/overview">Antminer S9i</Link>
+    <Link href="https://shop.bitmain.com/promote/antminer_s9i_asic_bitcoin_miner/overview">Antminer S9</Link>
     is one of the most popular ASICs on the market.
 
     The hashrate of just one of these units is ~13 TeraHashes per second, or 13,000,000,000,000 <sub>H/s</sub>.
   </p>
 
-  <InfoCard title="Antminer S9i">
-    <img alt="Antminer S9" class="card-img" height="auto" src="/assets/antminerS9.jpeg" width="556"/>
+  <InfoCard title="Antminer S9">
+    <img alt="Antminer S9" class="card-img" height="auto" src="/assets/antminerS9.webp" width="556"/>
   </InfoCard>
 
   <hr>
@@ -30,7 +30,7 @@
   </p>
 
   <InfoCard title="Mining Farm">
-    <img alt="Mining Farm" class="card-img" height="auto" src="/assets/mining_farm.jpeg" width="556"/>
+    <img alt="Mining Farm" class="card-img" height="auto" src="/assets/mining_farm.webp" width="556"/>
   </InfoCard>
 
   <p>

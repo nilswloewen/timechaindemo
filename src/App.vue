@@ -129,6 +129,13 @@ export default {
   font-display: swap;
   src: url(/assets/fonts/fira_code_300.ttf) format('truetype');
 }
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/assets/fonts/fira_code_700.ttf) format('truetype');
+}
 
 #app {
   -webkit-font-smoothing: antialiased;

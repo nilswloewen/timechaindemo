@@ -48,7 +48,7 @@ export default {
         navigation: true,
         slidesNavigation: true,
         slidesNavPosition: 'top',
-        normalScrollElements: '#intro_section .blockchain_wrapper .value .page_content',
+        normalScrollElements: '.container .blockchain_wrapper .value .page_content',
 
         scrollOverflowReset: true,
         scrollOverflowResetKey: 'dGltZWNoYWluZGVtby5pb19VTW5jMk55YjJ4c1QzWmxjbVpzYjNkU1pYTmxkQT09T0to',

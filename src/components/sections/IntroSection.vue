@@ -66,7 +66,7 @@ export default {
 </script>
 
 <style>
-.fade-in {
+.fade-in, #intro_section {
   animation: fadein 3s;
 }
 

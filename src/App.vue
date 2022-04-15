@@ -45,11 +45,10 @@ export default {
 
         autoScrolling: true,
         keyboardScrolling: false,
-
         navigation: true,
         slidesNavigation: true,
         slidesNavPosition: 'top',
-        normalScrollElements: '.blockchain_wrapper .value .page_content',
+        normalScrollElements: '#intro_section .blockchain_wrapper .value .page_content',
 
         scrollOverflowReset: true,
         scrollOverflowResetKey: 'dGltZWNoYWluZGVtby5pb19VTW5jMk55YjJ4c1QzWmxjbVpzYjNkU1pYTmxkQT09T0to',
@@ -197,7 +196,7 @@ h1 {
 
 .page_content {
   padding-top: 30vh;
-  padding-bottom: 30vh;
+  padding-bottom: 50vh;
 }
 
 .card {

@@ -13,8 +13,6 @@ import './services/fullPagejs/scrollHorizontally/fullpage.scrollHorizontally.min
 import './services/fullPagejs/scrollOverflowReset/fullpage.scrollOverflowReset.min';
 import './css/fullpage_overrides.css';
 
-import App from './App.vue';
-
 require('vue-tour/dist/vue-tour.css');
 
 Vue.use(BootstrapVue);
@@ -51,6 +49,16 @@ Vue.mixin({
 
 Vue.config.productionTip = false;
 Vue.config.silent = true;
+
+import Routes from './routes';
 new Vue({
-  render: (h) => h(App),
+  data: {
+    currentRoute: window.location.pathname
+  },
+  computed: {
+    ViewComponent () {
+      return Routes[this.currentRoute] || Routes['/']
+    }
+  },
+  render (h) { return h(this.ViewComponent) }
 }).$mount('#app');

@@ -1,6 +1,6 @@
 <template>
-<div id="blockchain_section" class="section">
-  <Page data-anchor="blockchain" first prev-section-btn slide>
+<FullPage id="blockchain_section">
+  <Page data-anchor="blockchain" first prev-section-btn="/terms" slide>
     <h1>Blockchain</h1>
 
     <b-card class="definition_card" no-body>
@@ -106,7 +106,7 @@
     </b-card>
   </Page>
 
-  <Page data-anchor="simple_blockchain" last next-section-btn slide>
+  <Page data-anchor="simple_blockchain" last next-section-btn="/pow" slide>
     <h1>Simplified Blockchain</h1>
 
     <p>
@@ -141,20 +141,21 @@
         v-on:update-data="updateData"/>
     </div>
   </Page>
-</div>
+</FullPage>
 </template>
 
 <script>
-import BlockCard from '@/components/cards/BlockCard.vue';
-import TldrCard from '@/components/cards/TldrCard';
 import AddBlockButton from '@/components/controls/AddBlockButton.vue';
-import Link from '@/components/Link';
-import Page from '@/components/Page.vue';
+import BlockCard from '@/components/cards/BlockCard.vue';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
 import EncodingMixin from '@/mixins/EncodingMixin';
-import TargetMixin from '@/mixins/TargetMixin';
-import { sha256dFromText } from '@/services/sha256_utils';
+import FullPage from '@/components/FullPage.vue';
+import Link from '@/components/Link';
+import Page from '@/components/Page.vue';
 import SimpleBlockchainTour from '@/components/tours/SimpleBlockchainTour';
+import TargetMixin from '@/mixins/TargetMixin';
+import TldrCard from '@/components/cards/TldrCard';
+import { sha256dFromText } from '@/services/sha256_utils';
 
 export default {
   mixins: [
@@ -163,11 +164,12 @@ export default {
     TargetMixin,
   ],
   components: {
-    SimpleBlockchainTour,
     AddBlockButton,
     BlockCard,
+    FullPage,
     Link,
     Page,
+    SimpleBlockchainTour,
     TldrCard,
   },
   data() {

@@ -1,5 +1,5 @@
 <template>
-<div id="pow_section" class="section">
+<FullPage id="pow_section">
   <MiningPOWSlide/>
 
   <Page data-anchor="target" slide>
@@ -125,7 +125,7 @@
     </div>
   </div>
 
-  <Page data-anchor="adjustable_target" last next-section-btn slide>
+  <Page data-anchor="adjustable_target" last next-section-btn="/timechain" slide>
     <h1>Proof-of-work Review</h1>
 
     <p>Take a minute to play with these new concepts before moving forward.</p>
@@ -151,7 +151,7 @@
       v-on:rotate-encoding="rotateEncoding"/>
 
   </Page>
-</div>
+</FullPage>
 </template>
 
 <script>
@@ -165,6 +165,7 @@ import Target from '@/components/controls/Target.vue';
 import Graph from '@/components/Graph';
 import Link from '@/components/Link';
 import Page from '@/components/Page.vue';
+import FullPage from '@/components/FullPage.vue';
 import MiningPOWSlide from '@/components/sections/slides/MiningPOWSlide';
 import BlockchainMixin from '@/mixins/BlockchainMixin';
 import EncodingMixin from '@/mixins/EncodingMixin';
@@ -183,6 +184,7 @@ export default {
     BlockCard,
     BlockchainStatsCard,
     Graph,
+    FullPage,
     Link,
     MiningControls,
     MiningPOWSlide,

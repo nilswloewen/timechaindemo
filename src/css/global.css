@@ -13,7 +13,7 @@
   src: url(/assets/fonts/fira_code_700.ttf) format('truetype');
 }
 
-#app {
+body {
   -webkit-font-smoothing: antialiased;
   color: white;
   font-family: 'Fira Code', monospace;
@@ -72,7 +72,7 @@ h1 {
 
 .page_content {
   padding-top: 30vh;
-  padding-bottom: 50vh;
+  padding-bottom: 30vh;
 }
 
 .card {

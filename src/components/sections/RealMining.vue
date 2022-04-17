@@ -1,6 +1,6 @@
 <template>
-<div id="historical_blocks_section" class="section">
-  <Page data-anchor="real_mining" first prev-section-btn slide>
+<FullPage id="historical_blocks_section" class="section">
+  <Page data-anchor="real_mining" first prev-section-btn="/timechain" slide>
     <h1>Real Mining</h1>
 
     <p>
@@ -44,8 +44,7 @@
       <b-container>
         <b-row>
           <b-col>
-            <MiningControls v-if="!block.isHashValid"
-                            :block="block"
+            <MiningControls :block="block"
                             :hash-max="hashMax"
                             :index="block.height"
                             :is-mining="isMining"
@@ -69,10 +68,12 @@
                 Prev
               </b-button>
 
-              <b-button class="next_section mining" size="sm" @click="nextSection">
-                Next
-                <b-icon-arrow-down/>
-              </b-button>
+              <a href="/resources">
+                <b-button class="next_section mining" size="sm">
+                  Next
+                  <b-icon-arrow-down/>
+                </b-button>
+              </a>
             </div>
 
           </b-col>
@@ -81,23 +82,24 @@
     </div>
   </div>
 
-</div>
+</FullPage>
 </template>
 
 <script>
+import Block from '@/services/block/Block';
 import BlockCard from '@/components/cards/BlockCard.vue';
-import MiningControls from '@/components/controls/MiningControls';
-import SuccessMsg from '@/components/controls/SuccessMsg';
-import Target from '@/components/controls/Target';
+import BlockHeader from '@/services/block/BlockHeader';
+import EncodingMixin from '@/mixins/EncodingMixin';
+import FullPage from '@/components/FullPage.vue';
 import Graph from '@/components/Graph';
 import Link from '@/components/Link';
-import Page from '@/components/Page.vue';
-import EncodingMixin from '@/mixins/EncodingMixin';
-import TargetMixin from '@/mixins/TargetMixin';
-import Block from '@/services/block/Block';
-import BlockHeader from '@/services/block/BlockHeader';
 import Mempool from '@/services/Mempool';
+import MiningControls from '@/components/controls/MiningControls';
 import Num from '@/services/Num';
+import Page from '@/components/Page.vue';
+import SuccessMsg from '@/components/controls/SuccessMsg';
+import Target from '@/components/controls/Target';
+import TargetMixin from '@/mixins/TargetMixin';
 
 export default {
   mixins: [
@@ -109,6 +111,7 @@ export default {
     BlockCard,
     Graph,
     MiningControls,
+    FullPage,
     Page,
     SuccessMsg,
     Target,

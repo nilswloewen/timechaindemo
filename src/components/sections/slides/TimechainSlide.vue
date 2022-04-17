@@ -1,5 +1,5 @@
 <template>
-<Page data-anchor="timechain" first prev-section-btn slide>
+<Page data-anchor="timechain" first prev-section-btn="/pow" slide>
   <h1>Timechain</h1>
 
   <b-card class="quote_card">

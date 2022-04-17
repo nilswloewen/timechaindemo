@@ -1,6 +1,6 @@
 <template>
-<div id="terms_section" class="section">
-  <Page data-anchor="terms" first prev-section-btn slide>
+<FullPage id="terms_section">
+  <Page data-anchor="terms" first prev-section-btn="/" slide>
     <h1>Terms</h1>
 
     <p>
@@ -26,7 +26,7 @@
   <NotationSlide/>
   <HashFunctionsSlide/>
   <Sha256Slide/>
-</div>
+</FullPage>
 </template>
 
 <script>
@@ -35,12 +35,14 @@ import NotationSlide from '@/components/sections/slides/NotationSlide.vue';
 import Page from '@/components/Page.vue';
 import Sha256Slide from '@/components/sections/slides/Sha256Slide.vue';
 import TermsNavTour from '@/components/tours/TermsNavTour';
+import FullPage from "@/components/FullPage.vue";
 
 export default {
   components: {
     HashFunctionsSlide,
     NotationSlide,
     Page,
+    FullPage,
     Sha256Slide,
     TermsNavTour,
   },

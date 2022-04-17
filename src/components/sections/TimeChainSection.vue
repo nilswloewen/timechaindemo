@@ -1,5 +1,5 @@
 <template>
-<div id="timechain_section" class="section">
+<FullPage id="timechain_section">
   <TimechainSlide/>
 
   <Page data-anchor="timechain_target" slide>
@@ -144,7 +144,7 @@
 
   <RealWorldMiningSlide :global-hr="globalHr.long" :your-device-hr="yourDeviceHr"/>
 
-  <Page data-anchor="timechain_review" last next-section-btn slide>
+  <Page data-anchor="timechain_review" last next-section-btn="/real_mining" slide>
     <h1>Timechain Review</h1>
 
     <p>
@@ -190,28 +190,29 @@
       v-on:rotate-encoding="rotateEncoding"/>
 
   </Page>
-</div>
+</FullPage>
 </template>
 
 <script>
-import BlockCard from '@/components/cards/BlockCard.vue';
-import BlockchainStatsCard from '@/components/cards/BlockchainStatsCard';
-import InfoCard from '@/components/cards/InfoCard';
 import AddBlockButton from '@/components/controls/AddBlockButton.vue';
+import BlockCard from '@/components/cards/BlockCard.vue';
+import BlockchainApi from '@/services/BlockchainApi';
+import BlockchainMixin from '@/mixins/BlockchainMixin';
+import BlockchainStatsCard from '@/components/cards/BlockchainStatsCard';
 import Difficulty from '@/components/controls/Difficulty';
-import MiningControls from '@/components/controls/MiningControls.vue';
-import SuccessMsg from '@/components/controls/SuccessMsg';
-import Target from '@/components/controls/Target.vue';
+import EncodingMixin from '@/mixins/EncodingMixin';
+import FullPage from '@/components/FullPage.vue';
 import Graph from '@/components/Graph.vue';
+import InfoCard from '@/components/cards/InfoCard';
 import Link from '@/components/Link';
+import MiningControls from '@/components/controls/MiningControls.vue';
+import Num from '@/services/Num';
 import Page from '@/components/Page.vue';
 import RealWorldMiningSlide from '@/components/sections/slides/RealWorldHashrateSlide';
-import TimechainSlide from '@/components/sections/slides/TimechainSlide';
-import BlockchainMixin from '@/mixins/BlockchainMixin';
-import EncodingMixin from '@/mixins/EncodingMixin';
+import SuccessMsg from '@/components/controls/SuccessMsg';
+import Target from '@/components/controls/Target.vue';
 import TargetMixin from '@/mixins/TargetMixin';
-import BlockchainApi from '@/services/BlockchainApi';
-import Num from '@/services/Num';
+import TimechainSlide from '@/components/sections/slides/TimechainSlide';
 
 export default {
   mixins: [
@@ -220,10 +221,11 @@ export default {
     TargetMixin,
   ],
   components: {
-    BlockchainStatsCard,
     AddBlockButton,
     BlockCard,
+    BlockchainStatsCard,
     Difficulty,
+    FullPage,
     Graph,
     InfoCard,
     Link,

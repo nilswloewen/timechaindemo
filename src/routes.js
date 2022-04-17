@@ -1,10 +1,10 @@
-import Intro from './components/sections/IntroSection.vue';
-import Terms from './components/sections/TermsSection.vue';
 import Blockchain from './components/sections/BlockchainSection.vue';
+import Intro from './components/sections/IntroSection.vue';
 import Pow from './components/sections/PowBlockchainSection.vue';
-import Timechain from './components/sections/TimeChainSection.vue';
 import RealMining from './components/sections/RealMining.vue';
 import Resources from './components/sections/ResourcesSection.vue';
+import Terms from './components/sections/TermsSection.vue';
+import Timechain from './components/sections/TimeChainSection.vue';
 
 export default {
   '/': Intro,

@@ -11,20 +11,24 @@
               Prev
             </b-button>
 
-            <b-button v-if="this.prevSectionBtn" class="nav_btn previous_section" size="sm" @click="prevSection">
-              <b-icon-arrow-up/>
-              Prev
-            </b-button>
+            <a v-if="this.prevSectionBtn" :href="this.prevSectionBtn">
+              <b-button  class="nav_btn previous_section" size="sm">
+                <b-icon-arrow-up/>
+                Prev
+              </b-button>
+            </a>
 
             <b-button v-if="!this.last" class="nav_btn next_slide" size="sm" @click="nextSlide">
               Next
               <b-icon-arrow-right/>
             </b-button>
 
-            <b-button v-if="this.nextSectionBtn" class="nav_btn next_section" size="sm" @click="nextSection">
-              Next
-              <b-icon-arrow-down/>
-            </b-button>
+            <a v-if="this.nextSectionBtn" :href="this.nextSectionBtn">
+              <b-button class="nav_btn next_section" size="sm">
+                Next
+                <b-icon-arrow-down/>
+              </b-button>
+            </a>
           </div>
 
         </div>

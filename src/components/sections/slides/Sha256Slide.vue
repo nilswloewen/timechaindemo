@@ -70,7 +70,7 @@
   <div style="width: 350px; margin-right: auto; margin-left: auto;">
     <b-card no-body>
       <Link href="https://www.youtube.com/embed/y3dqhixzGVo">
-        <img alt="thumbnail" class="img-card" height="197" src="/assets/mine_by_hand.webp" width="350"/>
+        <img alt="thumbnail" class="img-card" height="197" src="/assets/images/mine_by_hand.webp" width="350"/>
       </Link>
     </b-card>
   </div>

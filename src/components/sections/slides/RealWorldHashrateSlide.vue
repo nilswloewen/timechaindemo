@@ -19,7 +19,7 @@
   </p>
 
   <InfoCard title="Antminer S9">
-    <img alt="Antminer S9" class="card-img" height="auto" src="/assets/antminerS9.webp" width="556"/>
+    <img alt="Antminer S9" class="card-img" height="auto" src="/assets/images/antminerS9.webp" width="556"/>
   </InfoCard>
 
   <hr>
@@ -30,7 +30,7 @@
   </p>
 
   <InfoCard title="Mining Farm">
-    <img alt="Mining Farm" class="card-img" height="auto" src="/assets/mining_farm.webp" width="556"/>
+    <img alt="Mining Farm" class="card-img" height="auto" src="/assets/images/mining_farm.webp" width="556"/>
   </InfoCard>
 
   <p>

@@ -112,7 +112,7 @@ h1 {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 0;
+  bottom: 50px;
 }
 
 .blockchain_wrapper {

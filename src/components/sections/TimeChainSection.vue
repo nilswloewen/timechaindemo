@@ -159,6 +159,14 @@
       The adjustment involves calculations very similar to what you see here.
     </p>
 
+    <p>
+      Try changing the block time to 10 minutes to get an idea of how the target relates to block time.
+    </p>
+
+    <p>
+      You can go backwards a few slides and try mining with the new difficulty you have chosen.
+    </p>
+
     <Difficulty
       :blocktime="blocktime"
       :blocktime-unit="blocktimeUnit"

@@ -1,5 +1,5 @@
 <template>
-<Page data-anchor="sha256" last next-section-btn slide>
+<Page data-anchor="sha256" last next-section-btn="/blockchain" slide>
   <h1>SHA-256</h1>
   <p>
     Bitcoin mining uses a particular hash function called SHA-256, which
@@ -70,7 +70,7 @@
   <div style="width: 350px; margin-right: auto; margin-left: auto;">
     <b-card no-body>
       <Link href="https://www.youtube.com/embed/y3dqhixzGVo">
-        <img alt="thumbnail" class="img-card" height="197" src="/assets/mine_by_hand.webp" width="350"/>
+        <img alt="thumbnail" class="img-card" height="197" src="/assets/images/mine_by_hand.webp" width="350"/>
       </Link>
     </b-card>
   </div>

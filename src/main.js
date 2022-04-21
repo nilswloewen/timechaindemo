@@ -11,11 +11,12 @@ import VueFullPage from 'vue-fullpage.js';
 import 'fullpage.js/vendors/scrolloverflow';
 import './services/fullPagejs/scrollHorizontally/fullpage.scrollHorizontally.min';
 import './services/fullPagejs/scrollOverflowReset/fullpage.scrollOverflowReset.min';
+import './css/fullpage.min.css';
 import './css/fullpage_overrides.css';
 
-import App from './App.vue';
-
 require('vue-tour/dist/vue-tour.css');
+
+import './css/global.css';
 
 Vue.use(BootstrapVue);
 Vue.use(CardPlugin);
@@ -40,17 +41,21 @@ Vue.mixin({
     nextSlide() {
       fullpage_api.moveSlideRight();
     },
-    nextSection() {
-      fullpage_api.moveSectionDown();
-    },
-    prevSection() {
-      fullpage_api.moveSectionUp();
-    },
   },
 });
 
 Vue.config.productionTip = false;
 Vue.config.silent = true;
+
+import Routes from './routes';
 new Vue({
-  render: (h) => h(App),
+  data: {
+    currentRoute: window.location.pathname
+  },
+  computed: {
+    ViewComponent () {
+      return Routes[this.currentRoute] || Routes['/']
+    }
+  },
+  render (h) { return h(this.ViewComponent) }
 }).$mount('#app');

@@ -85,7 +85,7 @@
       Site by Nils Loewen <Link href="https://twitter.com/nilswloewen"><b-icon-twitter/></Link>,
       built with <Link href="https://vuejs.org/">Vue.js</Link>.
       <Link href="https://github.com/nilswloewen/timechaindemo">
-        <img src="/assets/GitHub-Mark-Light-32px.png" alt="GitHub Logo" height="18px" style="padding-bottom: 2px;"/>
+        <img src="/assets/images/github_logo.png" alt="GitHub Logo" height="18px" style="padding-bottom: 2px;"/>
       </Link>
     </p>
 
@@ -100,7 +100,7 @@
 
     <b-card no-body>
       <img alt="Bitcoin is magic internet money" class="card-img" height="775"
-           src="/assets/opening_meme.webp" width="556"/>
+           src="/assets/images/opening_meme.webp" width="556"/>
     </b-card>
   </Page>
 </template>

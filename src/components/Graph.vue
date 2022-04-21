@@ -28,7 +28,7 @@ export default {
     this.ctx.font = '16px Fira Code';
 
     this.xPad = this.screenWidth * 0.1;
-    this.yPad = this.screenHeight * 0.05;
+    this.yPad = this.screenHeight * 0.08;
 
     this.width = this.screenWidth - (this.xPad * 2);
     this.height = this.screenHeight - (this.yPad * 2);

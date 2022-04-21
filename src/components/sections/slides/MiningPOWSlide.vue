@@ -1,5 +1,5 @@
 <template>
-<Page data-anchor="pow" first prev-section-btn slide>
+<Page data-anchor="pow" first prev-section-btn="/blockchain" slide>
   <h1> Mining / Proof-of-Work </h1>
 
   <p>

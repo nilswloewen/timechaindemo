@@ -72,69 +72,6 @@ export default {
     Page,
     TableOfContents,
   },
-  mounted() {
-    this.addAnchorsToFullpage();
-  },
-  methods: {
-    addAnchorsToFullpage() {
-      this.table_of_contents.forEach((section) => {
-        this.fullpageOptions.anchors.push(section.anchor);
-        this.fullpageOptions.navigationTooltips.push(section.label);
-      });
-    },
-  },
-  data() {
-    return {
-      table_of_contents: [
-        {anchor: 'intro', label: 'Intro'},
-        {
-          anchor: 'terms',
-          label: 'Terms',
-          slides: [
-            {anchor: 'notation', label: 'Notation'},
-            {anchor: 'hash_functions', label: 'Hash Functions'},
-            {anchor: 'sha256', label: 'SHA-256'},
-          ],
-        },
-        {
-          anchor: 'blockchain',
-          label: 'Blockchain',
-          slides: [
-            {anchor: 'simple_blockchain', label: 'Simple Example'},
-          ],
-        },
-        {
-          anchor: 'pow',
-          label: 'Mining / Proof-of-Work',
-          slides: [
-            {anchor: 'target', label: 'Target'},
-            {anchor: 'pow_blockchain', label: 'POW Blockchain'},
-            {anchor: 'pow_mining', label: 'POW Mining'},
-            {anchor: 'adjustable_target', label: 'POW Review'},
-          ],
-        },
-        {
-          anchor: 'timechain',
-          label: 'Timechain',
-          slides: [
-            {anchor: 'difficulty_adjustment', label: 'Difficulty Adjustment'},
-            {anchor: 'timechain_blockchain', label: 'Timechain'},
-            {anchor: 'timechain_mining', label: 'Timechain Mining'},
-            {anchor: 'real_world_hashrate', label: 'Real-World Hashrate'},
-            {anchor: 'timechain_review', label: 'Timechain Review'},
-          ],
-        },
-        {
-          anchor: 'real_mining',
-          label: 'Real Mining',
-          slides: [
-            {anchor: 'real_mining', label: 'Real Mining'},
-          ],
-        },
-        {anchor: 'resources', label: 'Resources'},
-      ],
-    }
-  }
 };
 </script>
 

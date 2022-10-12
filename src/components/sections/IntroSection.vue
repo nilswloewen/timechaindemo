@@ -40,7 +40,7 @@
     <hr class="m-4">
 
     <p class="text-center">
-      * This site works best on desktop and tablet devices. *
+      * This site works best on desktop or tablet with Chrome browser. *
     </p>
 
     <TableOfContents :contents="table_of_contents"/>
